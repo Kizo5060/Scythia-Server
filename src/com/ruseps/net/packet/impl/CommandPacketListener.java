@@ -363,6 +363,12 @@ public class CommandPacketListener implements PacketListener {
             player.performGraphic(new Graphic(1176));
             player.moveTo(new Position(2317, 3891), true);
         }
+        
+        if (command[0].equalsIgnoreCase("afk")) {
+                TeleportHandler.teleportPlayer(player, new Position(2016, 4635), player.getSpellbook()
+                        .getTeleportType());
+            }
+        
 
         if (command[0].equalsIgnoreCase("raidsdeath")) {
             player.forceChat("I have died a total of "
