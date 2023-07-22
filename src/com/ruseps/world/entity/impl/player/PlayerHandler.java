@@ -194,7 +194,7 @@ public class PlayerHandler
         }
         
         player.getPacketSender()
-                .sendMessage("@blu@Welcome to Solara! @bla@ Visit our website at: www.SolaraScape.org");
+                .sendMessage("@blu@Welcome to Scythia! @bla@ Visit our website at: www.ScythiaScape.org");
 
 
         if (player.experienceLocked()) {
@@ -221,7 +221,7 @@ public class PlayerHandler
             StartScreen.open(player);
             player.setHidePlayer(true);
             player.setPlayerLocked(true);
-            World.sendMessage("<col=6600CC><img=10>[New Solara Member]: " + player.getUsername() + " Let's Give Our New Member a Warm Welcoming! <img=10>");
+            World.sendMessage("<col=6600CC><img=10>[New Scythia Member]: " + player.getUsername() + " Let's Give Our New Member a Warm Welcoming! <img=10>");
 
 
         } else {

@@ -18,14 +18,14 @@ public class GameServer {
 		Runtime.getRuntime().addShutdownHook(new ShutdownHook());
 		try {
 			
-			logger.info("Starting Up Solara...");
+			logger.info("Starting Up Scythia...");
 			loader.init();
 			loader.finish();
 			/** COMPILE **/
-			logger.info("Solara is now ONLINE!");
+			logger.info("Scythia is now ONLINE!");
 			
 		} catch (Exception ex) {
-			logger.log(Level.SEVERE, "Could not start Solara Program terminated.", ex);
+			logger.log(Level.SEVERE, "Could not start Scythia Program terminated.", ex);
 			System.exit(1);
 		}
 	}

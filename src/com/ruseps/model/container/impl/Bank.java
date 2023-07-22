@@ -56,7 +56,7 @@ public class Bank extends ItemContainer {
 	}
 	
 	public static void sendBankTitle(Player player) {
-		player.getPacketSender().sendString(5383, "@whi@Bank of Solara || Value: " + Bank.getTotalValue(player, true));
+		player.getPacketSender().sendString(5383, "@whi@Bank of Scythia || Value: " + Bank.getTotalValue(player, true));
 	}
 	
 	public Bank open(Player player, boolean reset) {

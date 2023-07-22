@@ -1798,7 +1798,7 @@ public class Locations {
 
 			}
 		},
-		SOLARA_ZONE(new int[] { 2305, 2315 }, new int[] { 3205, 3212 }, true, true, true, false, false, true) {
+		SCYTHIA_ZONE(new int[] { 2305, 2315 }, new int[] { 3205, 3212 }, true, true, true, false, false, true) {
 			public boolean hasOverpoweredWeapon(Player player) {
                 for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
                     if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()

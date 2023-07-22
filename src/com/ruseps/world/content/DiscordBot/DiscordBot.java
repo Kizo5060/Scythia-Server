@@ -33,7 +33,7 @@ public class DiscordBot extends ListenerAdapter {
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "players")) {
 			
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Solara!");
+			embed.setTitle("Scythia!");
 			embed.setColor(Color.DARK_GRAY);
 
 			embed.setDescription("");
@@ -46,11 +46,11 @@ public class DiscordBot extends ListenerAdapter {
 		
 			
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Solara Voting!");
+			embed.setTitle("Scythia Voting!");
 			embed.setColor(Color.DARK_GRAY);
 			embed.setDescription("");
 			embed.addField("Do ::vote in-game", "", false);
-			embed.addField("Or head too http://Solararsps.everythingrs.com/services/vote to vote", "", false);
+			embed.addField("Or head too http://Scythiarsps.everythingrs.com/services/vote to vote", "", false);
 			embed.addField("Vote on all the sites", "", false);
 			embed.addField("Do ::reward 1 all", "", false);
 			event.getChannel().sendMessage(embed.build()).queue();
@@ -60,11 +60,11 @@ public class DiscordBot extends ListenerAdapter {
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "store")) {
 
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Solara Store");
+			embed.setTitle("Scythia Store");
 			embed.setColor(Color.DARK_GRAY);
 			embed.setDescription("");
 			embed.addField("Do ::donate in-game", "", false);
-			embed.addField("Or head too http://Solararsps.everythingrs.com/services/store", "", false);
+			embed.addField("Or head too http://Scythiarsps.everythingrs.com/services/store", "", false);
 			embed.addField("Purchase whatever you would like", "", false);
 			embed.addField("Do ::claim in-game!", "", false);
 			event.getChannel().sendMessage(embed.build()).queue();
@@ -73,7 +73,7 @@ public class DiscordBot extends ListenerAdapter {
 
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "website")) {
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Solara Website");
+			embed.setTitle("Scythia Website");
 			embed.setColor(Color.DARK_GRAY);
 			embed.setDescription("");
 			embed.addField(event.getMember().getAsMention() + " http://server.com", "", false);
@@ -84,7 +84,7 @@ public class DiscordBot extends ListenerAdapter {
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "help")) {
 			System.out.println("Command executed");
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Solara's Commands");
+			embed.setTitle("Scythia's Commands");
 			embed.setColor(Color.RED);
 			embed.setDescription("");
 			embed.addField("::store - links you to our donation store.", "", false);

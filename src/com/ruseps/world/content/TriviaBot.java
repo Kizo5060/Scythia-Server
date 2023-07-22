@@ -6,7 +6,7 @@ import com.ruseps.model.PlayerRights;
 import com.ruseps.util.Misc;
 
 /*
- * @author Aj - SolaraRsPs rsps
+ * @author Aj - ScythiaRsPs rsps
  */
 public class TriviaBot {
 	
@@ -120,9 +120,9 @@ public class TriviaBot {
 	
 	private static final String[][] TRIVIA_DATA = {
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ How many thieving stalls are there at the home area?", "5"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the name of the server?", "Solara"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the name of the server?", "Scythia"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What attack level do you need to wield an abyssal whip?", "70"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Where is the home area located?", "Solara Castle"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Where is the home area located?", "Scythia Castle"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What mining level do you need to mine shooting stars?", "80"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the bandos boss called?", "General graardor"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the name of the clan chat everyone is in?", "help"},
@@ -132,13 +132,13 @@ public class TriviaBot {
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What npc drops Lost Soul?", "blood king"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What boss drops staff of the wind?", "dark magician girl"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the level requirement to wear skillcapes?", "99"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the maximum combat level in Solara?", "209"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the maximum combat level in Scythia?", "209"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What defence level is required to wear barrows?", "70"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Where can you get super sayian armour in Solara?", "anime raid"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Where can you gamble in Solara?", "gamble"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is best in slot range weapon?", "Solaras shooter"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Where can you get super sayian armour in Scythia?", "anime raid"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Where can you gamble in Scythia?", "gamble"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is best in slot range weapon?", "Scythias shooter"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the most powerful Melee Weapon in the game?", "bone collector"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Who is the owner of Solara?", "Cutter", "Cutter"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Who is the owner of Scythia?", "Cutter", "Cutter"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Where can you get dharoks armour?", "barrows"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What miniquest grants access to barrows gloves?", "recipe for disaster"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What combat level are Lava Dragons?", "999"},
@@ -149,9 +149,9 @@ public class TriviaBot {
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What boss drops Doomed Pieces?", "doomsday"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the best offensive range prayer in the normal prayer book?", "rigour"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the best offensive mage prayer in the normal prayer book?", "augury"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ How many skills are there in Solara", "25"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ How many skills are there in Scythia", "25"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the best offensive range prayer in the normal prayer book?", "Rigour"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is your total level if you have 99 in every skill in SolaraRsPs?", "2475"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is your total level if you have 99 in every skill in ScythiaRsPs?", "2475"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What trees do you cut for magic logs?", "Magic"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What is the highest level rock to mine", "runite"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Where can you fight other players for their loot?", "wilderness"},
@@ -164,7 +164,7 @@ public class TriviaBot {
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What points do you get for killing bosses?", "boss points"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ How many free slots does each bank tab have?", "600"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What skill advances your combat level past 200?", "summoning"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What food heals the most in SolaraRsPs", "rocktail"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What food heals the most in ScythiaRsPs", "rocktail"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What should I do every day to help the server?", "vote"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What skill do I use when crafting runes", "runecrafting"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ How many elite achievement tasks are there?", "8"},
@@ -188,7 +188,7 @@ public class TriviaBot {
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ At what level prayer can you use Hawk Eye?", "26"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ Which NPC will be able to give you a title?", "Sir Vyvin"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ What was Herblore's name originally called?", "Herblaw"},
-			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ In what month was Solara released?", "June"},
+			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA]@red@ In what month was Scythia released?", "June"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA-GUESS]@red@ Guess a number 1-10?", "1"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA-GUESS]@red@ Guess a number 1-10?", "2"},
 			{"<img=2><col=1aa3ff><shad=1aa3ff>[TRIVIA-GUESS]@red@ Guess a number 1-10?", "3"},

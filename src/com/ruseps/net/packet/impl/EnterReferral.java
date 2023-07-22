@@ -8,11 +8,11 @@ import com.ruseps.world.entity.impl.player.Player;
 
 public class EnterReferral extends Input {
 	public static final String[] rewardableUsers = new String[] {"rsorig", "jipy", "", ""};
-	public static final String[] temporaryCodes = new String[] {"solara", "", "", "", ""};
+	public static final String[] temporaryCodes = new String[] {"scythia", "", "", "", ""};
 	public static final String[] merkCode = new String[] {"fpk merk", "merk", "Fpk Merk"};
 	public static final String[] OwenCode = new String[] {"Gamer Owen", "Owen", "7ds"};
 	public static final String[] CasaCode = new String[] {"Casalusio", "Casa", "casalusio"};
-	public static final String[] solaraCode = new String[] {"solara", "solara", "solarascape"};
+	public static final String[] scythiaCode = new String[] {"scythia", "sycthia", "scythiascape"};
 	public static final String[] NoobsCode = new String[] {"noob", "Noobs own", "Noobsown", "Noobs Own", "noobs own"};
 	public static final String[] WreckedCode = new String[] {"wr3ckedyou", "Wr3ckedyou", "wreckedyou"};
 	public static final String[] GhostCode = new String[] {"ghost", "ghostrsps", "ghost rsps"};
@@ -70,7 +70,7 @@ public class EnterReferral extends Input {
 				player.getInventory().add(18057, 1);
 				player.sendMessage("@red@Congratz! Because you used the code " + username + " You have gotten a special reward!");
 			}
-        	else if(Arrays.stream(solaraCode).anyMatch(username::equalsIgnoreCase)) {
+        	else if(Arrays.stream(scythiaCode).anyMatch(username::equalsIgnoreCase)) {
             	player.getInventory().add(18338, 4);
             	player.getInventory().add(19992, 10);
             	player.getInventory().add(915, 3);

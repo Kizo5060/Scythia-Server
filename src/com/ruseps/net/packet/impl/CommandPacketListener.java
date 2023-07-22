@@ -337,7 +337,7 @@ public class CommandPacketListener implements PacketListener {
         }
 		
         if (command[0].equalsIgnoreCase("events")) {
-            String title = "@whi@Solara World Boss Events (" + GameEventManager.getEvents()
+            String title = "@whi@Scythia World Boss Events (" + GameEventManager.getEvents()
                     .size() + ")";
             List<String> events = new ArrayList<>();
             int index = 0;
@@ -384,7 +384,7 @@ public class CommandPacketListener implements PacketListener {
             player.performGraphic(new Graphic(1552));
             player.moveTo(new Position(3357, 3034), true);
         }
-        if (command[0].equalsIgnoreCase("solara")) {
+        if (command[0].equalsIgnoreCase("Scythia")) {
             player.performGraphic(new Graphic(1207));
             player.moveTo(new Position(2311, 3208), true);
         }
@@ -487,8 +487,8 @@ public class CommandPacketListener implements PacketListener {
                             player.sendMessage("@blu@You now have " + player.getAmountDonated() + " total Donated");
                         }
                         player.getPacketSender()
-                                .sendMessage("<img=10>@blu@Thank you " + player.getUsername() + " for donating on Solara!");
-                        World.sendMessage(player.getUsername() + "has just donated to support Solara!");
+                                .sendMessage("<img=10>@blu@Thank you " + player.getUsername() + " for donating on Scythia!");
+                        World.sendMessage(player.getUsername() + "has just donated to support Scythia!");
                     } catch (Exception e) {
                         player.getPacketSender()
                                 .sendMessage("<img=10>@red@Donating Services are currently offline. Please check back shortly!");
@@ -1002,15 +1002,15 @@ public class CommandPacketListener implements PacketListener {
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Discord");
         }
         if (wholeCommand.equalsIgnoreCase("website") || wholeCommand.equalsIgnoreCase("Website")) {
-            player.getPacketSender().sendString(1, "http://solara-rsps.online");
+            player.getPacketSender().sendString(1, "http://Scythia-rsps.online");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Website");
         }
         if (wholeCommand.equalsIgnoreCase("vote") || wholeCommand.equalsIgnoreCase("Vote")) {
-            player.getPacketSender().sendString(1, "http://solara.everythingrs.com/services/vote");
+            player.getPacketSender().sendString(1, "http://Scythia.everythingrs.com/services/vote");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Vote");
         }
         if (wholeCommand.equalsIgnoreCase("store") || wholeCommand.equalsIgnoreCase("Store")) {
-            player.getPacketSender().sendString(1, "http://solara.gamepayments.net/");
+            player.getPacketSender().sendString(1, "http://Scythia.gamepayments.net/");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Store");
         }
         if (wholeCommand.equalsIgnoreCase("ghost") || wholeCommand.equalsIgnoreCase("ghostrsps")) {
@@ -1035,13 +1035,13 @@ public class CommandPacketListener implements PacketListener {
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Discord");
         }
         if (wholeCommand.equalsIgnoreCase("website") || wholeCommand.equalsIgnoreCase("site")) {
-            player.getPacketSender().sendString(1, "http://solara-rsps.com");
+            player.getPacketSender().sendString(1, "http://Scythia-rsps.com");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Website");
         }
 
         if (wholeCommand.equalsIgnoreCase("hiscores") || wholeCommand.equalsIgnoreCase("Hiscores")) {
             player.getPacketSender()
-                    .sendString(1, "https://solara.everythingrs.com/services/hiscores");
+                    .sendString(1, "https://Scythia.everythingrs.com/services/hiscores");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Hiscores");
         }
 
@@ -1243,7 +1243,7 @@ public class CommandPacketListener implements PacketListener {
             Player playerToKick = World.getPlayerByName(player2);
             if (playerToKick == null) {
                 player.getPacketSender()
-                        .sendConsoleMessage("Player " + player2 + " couldn't be found on Solara.");
+                        .sendConsoleMessage("Player " + player2 + " couldn't be found on Scythia.");
                 return;
             } else if (playerToKick.getLocation() != Location.WILDERNESS) {
                 World.deregister(playerToKick);

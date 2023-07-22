@@ -437,7 +437,7 @@ public class Raids {
     }
 
     public void displayMembers() {
-        player.getPacketSender().sendString(58002, "@whi@Solara's Raiding Party: " + (party == null ? "0" : party.getPlayers().size()));
+        player.getPacketSender().sendString(58002, "@whi@Scythia's Raiding Party: " + (party == null ? "0" : party.getPlayers().size()));
 
         int id = 58017;
         for(int i = 0; i < 12; i++) {

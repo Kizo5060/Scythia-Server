@@ -12,7 +12,7 @@ import com.ruseps.util.Misc;
 import com.ruseps.world.entity.impl.player.Player;
 
 public class GameSettings {
-	public static final String RSPS_NAME = "Solara";
+	public static final String RSPS_NAME = "Scythia";
 	public static final Set<String> CHECKED_IPS = new HashSet<>(Arrays.asList());
 	public static final String[] CLIENT_HASH = { "d41d8cd98f00b204e9800998ecf8427e" };
 	public static boolean DZONEON = false;

@@ -124,7 +124,7 @@ public class AuroraBox
 		if(mysteryPrizeTier >= 2) {
 			plr.sendMessage("<col=FFA500>" + plr.getUsername() + " has just won a " + "@bla@" + name);
 		}else {
-			World.sendMessage("<img=41><col=510000><shad=1>[Solara Mbox]<img=41><col=0b5394><shad=1>" + plr.getUsername() + " won a @red@" + name + " <col=0b5394>from a @red@Aurora MBox");
+			World.sendMessage("<img=41><col=510000><shad=1>[Scythia Mbox]<img=41><col=0b5394><shad=1>" + plr.getUsername() + " won a @red@" + name + " <col=0b5394>from a @red@Aurora MBox");
 		}
 
 		plr.getPA().sendInterfaceRemoval();

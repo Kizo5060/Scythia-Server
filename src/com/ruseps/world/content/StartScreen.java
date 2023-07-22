@@ -21,25 +21,25 @@ public class StartScreen
                         new Item(3024, 10), new Item(15272, 500), new Item(995, 2000000), new Item(10477, 1),
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
                         (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Solara as an Iron man.", "", "", "", "", "", ""),
+                "Play Scythia as an Iron man.", "", "", "", "", "", ""),
         ULTIMATE_IRON("  Ultimate Iron", 52763, -12778, 1, 2,
                 new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
                         new Item(3024, 10), new Item(15272, 600), new Item(995, 2000000), new Item(10477, 1),
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
                         (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Solara as a Ultimate Ironman.", "", "", "", "", "", ""),
+                "Play Scythia as a Ultimate Ironman.", "", "", "", "", "", ""),
         GROUP_IRONMAN("  Group Ironman", 52774, -12763, 1, 3,
                 new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
                         new Item(3024, 10), new Item(15272, 600), new Item(995, 2000000), new Item(10477, 1),
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
                         (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Solara as a Group Ironman.", "", "", "", "", "", ""),
+                "Play Scythia as a Group Ironman.", "", "", "", "", "", ""),
         VETERAN("  Veteran", 52778, -12760, 1, 4,
                 new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
                         new Item(3024, 10), new Item(15272, 600), new Item(995, 2000000), new Item(10477, 1),
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
                         (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Solara as a Veteran.", "", "", "", "", "", ""),
+                "Play Scythia as a Veteran.", "", "", "", "", "", ""),
         ;
 
         private String name;
@@ -124,7 +124,7 @@ public class StartScreen
             player.getPacketSender().sendInterface(3559);
             player.getAppearance().setCanChangeAppearance(true);
             player.setNewPlayer(false);
-           // World.sendMessage("<img=18><shad=1><col=ffca3c>[New Arrival] " + player.getUsername() + " has just logged into @cya@Solara<col=ffca3c> for the first time!");
+           // World.sendMessage("<img=18><shad=1><col=ffca3c>[New Arrival] " + player.getUsername() + " has just logged into @cya@Scythia<col=ffca3c> for the first time!");
             player.getPacketSender().sendRights();
 
             return true;

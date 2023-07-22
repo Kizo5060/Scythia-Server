@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Gabriel || Wolfsdarker
  */
-public class SolaraEvent extends GameEvent {
+public class ScythiaEvent extends GameEvent {
 
     /**
      * The delay between the events in hours.
@@ -43,8 +43,8 @@ public class SolaraEvent extends GameEvent {
     /**
      * Constructor for the event.
      */
-    public SolaraEvent() {
-        super("Solara's Shooter", TimeUnit.HOURS.toMillis(delay));
+    public ScythiaEvent() {
+        super("Scythia's Shooter", TimeUnit.HOURS.toMillis(delay));
     }
 
     @Override
@@ -62,7 +62,7 @@ public class SolaraEvent extends GameEvent {
         AuroraEvent = NPC.of(AuroraLoot.NPC_ID, spawnPos);
         World.register(AuroraEvent);
         lastHitpointsBroadcasted = AuroraEvent.getDefaultConstitution();
-        sendMessage("<col=FFFFCC><shad=1>The Solara's Shooter has begun! Use command ::solara to Teleport to the Event.");
+        sendMessage("<col=FFFFCC><shad=1>The Scythia's Shooter has begun! Use command ::Scythia to Teleport to the Event.");
         return true;
     }
 

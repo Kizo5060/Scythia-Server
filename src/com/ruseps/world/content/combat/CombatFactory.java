@@ -237,7 +237,7 @@ public final class CombatFactory {
         if (item == null)
             return false;
         return item.getDefinition().getName().toLowerCase().contains(
-                "solara's shooter bow");
+                "scythia's shooter bow");
     }
 
     public static boolean soulessBow(Player player) {

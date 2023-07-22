@@ -74,7 +74,7 @@ public class Cows {
 			"Slay them for loot. Let us retrieve the rares!",
 			"I've been slaying these cows since 2006!",
 			"Cook their meat. Bury their bones. Loot their rares!",
-			"Come on Solara players. My sister can hit harder than you noobs!",
+			"Come on Scythia players. My sister can hit harder than you noobs!",
 			"Kill them faster! Clear them out of here once and for all!"
 
 

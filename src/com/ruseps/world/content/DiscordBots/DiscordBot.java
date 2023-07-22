@@ -21,7 +21,7 @@ public class DiscordBot extends ListenerAdapter {
 
 		
 		builder.setToken("75c2b189d1b6915124217a3b75773bc191cb7fb08817d8222f73e583aa05834a");
-		//builder.setGame(Game.of(GameType.STREAMING, "Solara", "https://discordapp.com/api/webhooks/711317393841979411/dQAQcY4ebd6zK2sG1wxiwg8iiC98bG2LNX_YgxmdWOz3XsaMsVVL5EDD_muSFqggOauR"));
+		//builder.setGame(Game.of(GameType.STREAMING, "Scythia", "https://discordapp.com/api/webhooks/711317393841979411/dQAQcY4ebd6zK2sG1wxiwg8iiC98bG2LNX_YgxmdWOz3XsaMsVVL5EDD_muSFqggOauR"));
 		builder.addEventListener(this);
 		try {
 			jda = builder.build();
@@ -47,7 +47,7 @@ public class DiscordBot extends ListenerAdapter {
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "players")) {
 			
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Solara Voting!");
+			embed.setTitle("Scythia Voting!");
 			embed.setColor(Color.DARK_GRAY);
 
 			embed.setDescription("");
@@ -74,7 +74,7 @@ public class DiscordBot extends ListenerAdapter {
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "store")) {
 
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Solara Store");
+			embed.setTitle("Scythia Store");
 			embed.setColor(Color.DARK_GRAY);
 			embed.setDescription("");
 			embed.addField("Do ::donate in-game", "", false);
@@ -87,7 +87,7 @@ public class DiscordBot extends ListenerAdapter {
 
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "website")) {
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Solara Website");
+			embed.setTitle("Scythia Website");
 			embed.setColor(Color.DARK_GRAY);
 			embed.setDescription("");
 			embed.addField(event.getMember().getAsMention() + " http://server.com", "", false);

@@ -3389,7 +3389,7 @@
 }, {
   "id" : 132,
   "name" : "Blitz",
-  "examine" : "A master attacker of Solara.",
+  "examine" : "A master attacker of scythia.",
   "combat" : 913,
   "size" : 2,
   "attackable" : true,
@@ -3411,7 +3411,7 @@
 }, {
   "id" : 133,
   "name" : "Cobra",
-  "examine" : "A master mager of Solara.",
+  "examine" : "A master mager of scythia.",
   "combat" : 903,
   "size" : 2,
   "attackable" : true,
@@ -3455,7 +3455,7 @@
 }, {
   "id" : 135,
   "name" : "Fear",
-  "examine" : "A master ranger of Solara.",
+  "examine" : "A master ranger of scythia.",
   "combat" : 844,
   "size" : 2,
   "attackable" : true,
@@ -6601,7 +6601,7 @@
 }, {
   "id" : 278,
   "name" : "Foods and Potions",
-  "examine" : "The head cook of solara's castle.",
+  "examine" : "The head cook of scythia's castle.",
   "combat" : 0,
   "size" : 1,
   "attackable" : false,
@@ -32912,7 +32912,7 @@
 {
   "id" : 1472,
   "name" : "Death",
-  "examine" : "A master attacker of Solara.",
+  "examine" : "A master attacker of scythia.",
   "combat" : 913,
   "size" : 2,
   "attackable" : true,
@@ -33418,7 +33418,7 @@
   "slayerLevel" : 0
 }, {
   "id" : 1495,
-  "name" : "Deadly solara",
+  "name" : "Deadly scythia",
   "examine" : "Dummy",
   "combat" : 999,
   "size" : 1,
@@ -135787,8 +135787,8 @@
   "slayerLevel" : 0
 }, {
   "id" : 6820,
-  "name" : "Solara's Shooter",
-  "examine" : "solara's Shooter",
+  "name" : "scythia's Shooter",
+  "examine" : "scythia's Shooter",
   "combat" : 999,
   "size" : 1,
   "attackable" : true,
