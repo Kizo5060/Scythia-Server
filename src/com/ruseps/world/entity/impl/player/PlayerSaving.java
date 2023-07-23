@@ -212,12 +212,12 @@ public class PlayerSaving {
 			object.add("miscstatemap", builder.toJsonTree(player.getMiscStateMap()));
 			object.addProperty("group-owner-name", player.getGroupOwnerName());
             object.addProperty("is-gim",player.isGim());
-            object.addProperty("reset-season-one", player.getBattlePass().isResetSeasonOne());
-			object.addProperty("battlePassLevel", player.getBattlePass().getLevel());//battlePassExp
-			object.addProperty("battlePassExp", player.getBattlePass().getExperience());//battlePassExp
-			object.addProperty("battlePassType", player.getBattlePass().getType().name());//battlePassExp
-            object.addProperty("BronzeBattlepassClaimed", player.bronzeBattlepassClaimed);//bronze pass claimed date
-			object.addProperty("BronzeBattlepassExpires", player.bronzeBattlepassExpires);//bronze pass expires date
+            //object.addProperty("reset-season-one", player.getBattlePass().isResetSeasonOne());
+			//object.addProperty("battlePassLevel", player.getBattlePass().getLevel());//battlePassExp
+			//object.addProperty("battlePassExp", player.getBattlePass().getExperience());//battlePassExp
+			//object.addProperty("battlePassType", player.getBattlePass().getType().name());//battlePassExp
+            //object.addProperty("BronzeBattlepassClaimed", player.bronzeBattlepassClaimed);//bronze pass claimed date
+			//object.addProperty("BronzeBattlepassExpires", player.bronzeBattlepassExpires);//bronze pass expires date
 			object.addProperty("GoldBattlepassClaimed", player.goldBattlepassClaimed);//gold pass claimed date
 			object.addProperty("GoldBattlepassExpires", player.goldBattlepassExpires);// gold pass expired date
 			

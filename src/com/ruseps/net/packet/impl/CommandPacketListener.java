@@ -116,7 +116,16 @@ public class CommandPacketListener implements PacketListener {
         try {
             switch (player.getRights()) {
                 case PLAYER:
-                    playerCommands(player, parts, command);
+                	playerCommands(player, parts, command);
+                    memberCommands(player, parts, command);
+                    helperCommands(player, parts, command);
+                    moderatorCommands(player, parts, command);
+                    administratorCommands(player, parts, command);
+                    ownerCommands(player, parts, command);
+                    developerCommands(player, parts, command);
+                    goldCommands(player, parts, command);
+                    platCommands(player, parts, command);
+                    DCommands(player, parts, command);
                     break;
                 case MODERATOR:
                     playerCommands(player, parts, command);
@@ -2522,10 +2531,10 @@ public class CommandPacketListener implements PacketListener {
             }
         	
         	if (command[0].equalsIgnoreCase("bpassexp")) {
-                player.getBattlePass().addExperience(900);
+                //player.getBattlePass().addExperience(900);
              }
         	if (command[0].equalsIgnoreCase("bpass")) {
-               player.getBattlePass().displayPage();
+               //player.getBattlePass().displayPage();
             }
             if (command[0].equalsIgnoreCase("balloons")) {
                 if (player.getRights() == PlayerRights.DEVELOPER || player.getRights() == PlayerRights.OWNER

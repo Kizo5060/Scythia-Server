@@ -172,7 +172,7 @@ public class ButtonClickPacketListener implements PacketListener {
             player.getPlayerOwnedShopManager().handleButton(id);
         }
 
-        player.getBattlePass().handleClick(id);
+        //player.getBattlePass().handleClick(id);
         
         if (id >= -19635 && id <= -19580) {
             if (player.teleports.size() >= (id + 19635) + 1) {

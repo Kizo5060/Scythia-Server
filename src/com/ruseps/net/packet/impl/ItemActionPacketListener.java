@@ -106,10 +106,10 @@ public class ItemActionPacketListener implements PacketListener
 			return;
 		}	
 		if(itemId == 21879) {
-        	player.getBattlePass().unlockBronzePass();
+        	//player.getBattlePass().unlockBronzePass();
         }	
 		if(itemId == 21880) {
-        	player.getBattlePass().unlockGoldPass();
+        	//player.getBattlePass().unlockGoldPass();
         }
 		if(itemId == 19990) {
 			if (!player.getClickDelay().elapsed(3000)) {

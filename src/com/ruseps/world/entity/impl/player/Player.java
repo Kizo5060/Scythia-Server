@@ -9,7 +9,7 @@ import com.ruseps.world.content.customtasks.tasktypes.OtherTask;
 import com.ruseps.world.content.customtasks.tasktypes.SkillingTask;
 import com.ruseps.world.content.mboxes.PetBox;
 import com.ruseps.world.content.skill.impl.prayer.*;
-import com.ruseps.world.content.battle_pass.BattlePass;
+//import com.ruseps.world.content.battle_pass.BattlePass;
 
 import java.util.*;
 import java.util.ArrayList;
@@ -3984,19 +3984,9 @@ public class Player extends Character {
 		gim = state;
 	}
 	
-	@Getter
-	private final BattlePass battlePass = new BattlePass(this);
-	public String bronzeBattlepassExpires;
-	
-	public BattlePass getBattlePass() {
-		return battlePass;
-	}
 	
 	 public String getBronzeBattlepassClaimed() {
 	    	return bronzeBattlepassClaimed;
-	    }
-	    public String getBronzeBattlepassExpires() {
-	    	return bronzeBattlepassExpires;
 	    }
 	    public String getGoldBattlepassClaimed() {
 	    	return goldBattlepassClaimed;
@@ -4006,9 +3996,6 @@ public class Player extends Character {
 	    } 
 	    public void  setbronzeBattlepassClaimed(String bronzeBattlepassClaimed) {
 	        this.bronzeBattlepassClaimed = bronzeBattlepassClaimed;
-	    }
-	    public void  setbronzeBattlepassExpires(String bronzeBattlepassExpires) {
-	        this.bronzeBattlepassExpires = bronzeBattlepassExpires;
 	    }
 	    public void  setgoldBattlepassClaimed(String goldBattlepassClaimed) {
 	        this.goldBattlepassClaimed = goldBattlepassClaimed;

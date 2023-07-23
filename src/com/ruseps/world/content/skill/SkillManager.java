@@ -1,6 +1,6 @@
 package com.ruseps.world.content.skill;
 
-import com.ruseps.world.content.battle_pass.BattlePassType;
+//import com.ruseps.world.content.battle_pass.BattlePassType;
 import com.ruseps.GameLoader;
 import com.ruseps.GameSettings;
 import com.ruseps.engine.task.Task;
@@ -82,22 +82,10 @@ public class SkillManager {
         	if(player.getCombatBuilder().isAttacking() == false) {
         		return this;
         	}
-			if(player.getBattlePass().getType() == BattlePassType.BRONZE
-					|| player.getBattlePass().getType() == BattlePassType.GOLD) {
-				player.getBattlePass().addExperience(experience / 1000);
-				return this;
-		}
-        
+			
         experience *= player.getRights().getExperienceGainModifier();
         experience *= GameLoader.getDoubleEXPWeekend();
         
-        if(player.getBattlePass().getType() == BattlePassType.BRONZE
-				|| player.getBattlePass().getType() == BattlePassType.GOLD) {
-        	if(player.getCombatBuilder().isAttacking() == false) {
-        		return this;
-        	}
-			player.getBattlePass().addExperience(experience / 500);
-		}
         
         player.getGroupIronman().addExperience(experience/256);
         if (WellOfGoodwill.isActive())

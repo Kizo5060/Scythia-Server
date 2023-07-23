@@ -36,7 +36,7 @@ import com.ruseps.world.content.DropLog.DropLogEntry;
 import com.ruseps.world.content.KillsTracker;
 import com.ruseps.world.content.KillsTracker.KillsEntry;
 import com.ruseps.world.content.LoyaltyProgramme.LoyaltyTitles;
-import com.ruseps.world.content.battle_pass.BattlePassType;
+//import com.ruseps.world.content.battle_pass.BattlePassType;
 import com.ruseps.world.content.combat.magic.CombatSpells;
 import com.ruseps.world.content.combat.weapon.FightType;
 import com.ruseps.world.content.grandexchange.GrandExchangeOffer;
@@ -76,22 +76,22 @@ public class PlayerLoading {
 			JsonObject reader = (JsonObject) fileParser.parse(fileReader);
 			
 			if(reader.has("reset-season-one")) {
-				player.getBattlePass().setResetSeasonOne(reader.get("reset-season-one").getAsBoolean());
+				//player.getBattlePass().setResetSeasonOne(reader.get("reset-season-one").getAsBoolean());
 			}
 			if (reader.has("battlePassLevel")) {
-				player.getBattlePass().setLevel(reader.get("battlePassLevel").getAsInt());
+				//player.getBattlePass().setLevel(reader.get("battlePassLevel").getAsInt());
 			}
 			if (reader.has("battlePassExp")) {
-				player.getBattlePass().setExperience(reader.get("battlePassExp").getAsInt());
+				//player.getBattlePass().setExperience(reader.get("battlePassExp").getAsInt());
 			}
 			if (reader.has("battlePassType")) {
-				player.getBattlePass().setType(BattlePassType.valueOf(reader.get("battlePassType").getAsString()));
+				//player.getBattlePass().setType(BattlePassType.valueOf(reader.get("battlePassType").getAsString()));
 			}
 			if (reader.has("BronzeBattlepassClaimed")) {
-				player.setbronzeBattlepassExpires(reader.get("BronzeBattlepassClaimed").getAsString());
+				//player.setbronzeBattlepassExpires(reader.get("BronzeBattlepassClaimed").getAsString());
 			}
 			if (reader.has("BronzeBattlepassExpires")) {
-				player.setbronzeBattlepassExpires(reader.get("BronzeBattlepassExpires").getAsString());
+				//player.setbronzeBattlepassExpires(reader.get("BronzeBattlepassExpires").getAsString());
 			}
 			if (reader.has("GoldBattlepassClaimed")) {
 				player.setgoldBattlepassClaimed(reader.get("GoldBattlepassClaimed").getAsString());
