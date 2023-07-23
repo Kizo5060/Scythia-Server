@@ -167,16 +167,6 @@ public class Locations {
             }
        },
 		
-		WORLD(new int[]  {1167, 3892}, new int[]{2503, 4134}, false, false, true, false, true, true) 
-		{
-              @Override
-              public void enter(Player player) 
-              {
-                  player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 34_000)
-                          .sendTab(GameSettings.ACHIEVEMENT_TAB);
-              }
-        },
-		
 		RAIDS_TWO_ENTRANCE(new int[]  {3029, 3044}, new int[]{2840, 2855}, false, false, true, false, true, true) {
          	 @Override
               public void process(Player player) { 
