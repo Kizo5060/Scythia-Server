@@ -174,7 +174,8 @@
   "defenceRange" : 950,
   "defenceMage" : 950,
   "slayerLevel" : 0
-}, {
+}, 
+{
   "id" : 1506,
   "name" : "Miss Magician",
   "examine" : "Wheres my Yugio",
@@ -33555,7 +33556,7 @@
   "combat" : 999,
   "size" : 1,
   "attackable" : true,
-  "aggressive" : true,
+  "aggressive" : false,
   "retreats" : false,
   "poisonous" : false,
   "respawn" : 5,
@@ -110272,7 +110273,7 @@
   "combat" : 999,
   "size" : 1,
   "attackable" : true,
-  "aggressive" : true,
+  "aggressive" : false,
   "retreats" : false,
   "poisonous" : true,
   "respawn" : 10,
@@ -111372,7 +111373,7 @@
   "combat" : 999,
   "size" : 1,
   "attackable" : true,
-  "aggressive" : true,
+  "aggressive" : false,
   "retreats" : false,
   "poisonous" : false,
   "respawn" : 10,

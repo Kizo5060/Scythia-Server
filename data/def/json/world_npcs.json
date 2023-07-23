@@ -49,6 +49,1238 @@
 },
 {
 "npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2777	,"y":
+3287	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2777	,"y":
+3295	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2778	,"y":
+3305	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2784	,"y":
+3307	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2788	,"y":
+3303	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2788	,"y":
+3299	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2774	,"y":
+3293	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2770	,"y":
+3296	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+190 ,
+"face": EAST,
+"position": {
+"x":
+3359	,"y":
+5224	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+190 ,
+"face": EAST,
+"position": {
+"x":
+3352	,"y":
+5215	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+190 ,
+"face": EAST,
+"position": {
+"x":
+3350	,"y":
+5208	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+190 ,
+"face": EAST,
+"position": {
+"x":
+3362	,"y":
+5208	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+190 ,
+"face": EAST,
+"position": {
+"x":
+3370	,"y":
+5213	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+190 ,
+"face": EAST,
+"position": {
+"x":
+3366	,"y":
+5217	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+190 ,
+"face": EAST,
+"position": {
+"x":
+3366	,"y":
+5229	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2899	,"y":
+3618	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2902	,"y":
+3611	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2910	,"y":
+3617	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2911	,"y":
+3609	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2908	,"y":
+3620	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2914	,"y":
+3617	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2912	,"y":
+3614	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2924	,"y":
+3621	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2918	,"y":
+3621	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2913	,"y":
+3626	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2904	,"y":
+3624	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2907	,"y":
+3617	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2907	,"y":
+3609	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2720	,"y":
+9828	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2714	,"y":
+9832	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2719	,"y":
+9836	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2725	,"y":
+9833	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2728	,"y":
+9826	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2730	,"y":
+9817	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2737	,"y":
+9814	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2731	,"y":
+9813	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2720	,"y":
+9815	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2714	,"y":
+9815	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2708	,"y":
+9837	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2711	,"y":
+9832	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2713	,"y":
+9827	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2720	,"y":
+9833	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2724	,"y":
+9836	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2729	,"y":
+9831	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2729	,"y":
+9821	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2734	,"y":
+9816	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2737	,"y":
+9810	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2731	,"y":
+9810	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2725	,"y":
+9812	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2719	,"y":
+9813	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2716	,"y":
+9818	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2713	,"y":
+9822	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2713	,"y":
+9830	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2709	,"y":
+9835	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2844	,"y":
+4579	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2840	,"y":
+4575	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2835	,"y":
+4574	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2842	,"y":
+4572	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2844	,"y":
+4574	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2846	,"y":
+4580	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2846	,"y":
+4584	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2844	,"y":
+4590	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2850	,"y":
+4586	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2855	,"y":
+4575	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2851	,"y":
+4571	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2850	,"y":
+4576	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2856	,"y":
+4581	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2862	,"y":
+4579	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2863	,"y":
+4574	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2860	,"y":
+4570	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2854	,"y":
+4564	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2852	,"y":
+4563	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3009 ,
+"face": EAST,
+"position": {
+"x":
+2848	,"y":
+4564	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+3010 ,
+"face": EAST,
+"position": {
+"x":
+2705	,"y":
+9840	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+}
+{
+"npc-id":
+3014 ,
+"face": EAST,
+"position": {
+"x":
+2904	,"y":
+3605	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+}
+{
+"npc-id":
+190 ,
+"face": EAST,
+"position": {
+"x":
+3357	,"y":
+5211	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1506 ,
+"face": EAST,
+"position": {
+"x":
+2768	,"y":
+3295	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
 4993 ,
 "face": EAST,
 "position": {
@@ -695,22 +1927,6 @@
 "x":
 3117	,"y":
 4373	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4264 ,
-"face": EAST,
-"position": {
-"x":
-3121	,"y":
-4372	,
 "z":
 0	
 },
@@ -17301,19 +18517,6 @@
         "position": {
         	"x": 2897,
         	"y": 2789,
-        	"z": 0
-        },
-         "walking-policy": {
-        	"coordinate": true,
-        	"radius": 1
-        }
-    },
-     {
-                            "npc-id": 4264,
-		"face": SOUTH,
-        "position": {
-        	"x": 3123,
-        	"y": 4380,
         	"z": 0
         },
          "walking-policy": {
@@ -40221,8 +41424,936 @@
 "face": EAST,
 "position": {
 "x":
-3126	,"y":
-4385	,
+3125	,"y":
+4401	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2719	,"y":
+3877	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2714	,"y":
+3880	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2712	,"y":
+3880	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2710	,"y":
+3881	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2708	,"y":
+3884	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2706	,"y":
+3882	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2704	,"y":
+3882	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2702	,"y":
+3887	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2698	,"y":
+3891	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2704	,"y":
+3895	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2708	,"y":
+3895	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2714	,"y":
+3895	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2722	,"y":
+3889	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2723	,"y":
+3894	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2729	,"y":
+3897	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2732	,"y":
+3891	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2729	,"y":
+3887	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2726	,"y":
+3882	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2729	,"y":
+3876	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2726	,"y":
+3873	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2726	,"y":
+3869	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2728	,"y":
+3865	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2731	,"y":
+3861	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2725	,"y":
+3861	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2718	,"y":
+3865	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2713	,"y":
+3866	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2707	,"y":
+3866	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2709	,"y":
+3873	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2706	,"y":
+3874	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2699	,"y":
+3876	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2696	,"y":
+3879	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2696	,"y":
+3885	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2694	,"y":
+3890	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2707	,"y":
+3868	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2703	,"y":
+3864	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2702	,"y":
+3863	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2708	,"y":
+3863	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2714	,"y":
+3863	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2722	,"y":
+3860	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2722	,"y":
+3856	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2722	,"y":
+3852	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2726	,"y":
+3850	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2732	,"y":
+3848	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2738	,"y":
+3848	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2740	,"y":
+3856	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2736	,"y":
+3861	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2736	,"y":
+3871	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2740	,"y":
+3873	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2745	,"y":
+3876	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2745	,"y":
+3884	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2744	,"y":
+3890	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2716	,"y":
+3873	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2718	,"y":
+3869	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2712	,"y":
+3870	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2723	,"y":
+3870	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2723	,"y":
+3866	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2712	,"y":
+3858	,
+"z":
+0	
+},
+"walking-policy": {
+"coordinate": false,
+"radius": 3
+}
+},
+{
+"npc-id":
+1017 ,
+"face": EAST,
+"position": {
+"x":
+2709	,"y":
+3854	,
 "z":
 0	
 },
@@ -40239,102 +42370,6 @@
 "x":
 3125	,"y":
 4401	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": false,
-"radius": 3
-}
-},
-{
-"npc-id":
-4264 ,
-"face": EAST,
-"position": {
-"x":
-3124	,"y":
-4388	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": false,
-"radius": 3
-}
-},
-{
-"npc-id":
-4264 ,
-"face": EAST,
-"position": {
-"x":
-3129	,"y":
-4400	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": false,
-"radius": 3
-}
-},
-{
-"npc-id":
-4264 ,
-"face": EAST,
-"position": {
-"x":
-3125	,"y":
-4401	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": false,
-"radius": 3
-}
-},
-{
-"npc-id":
-4264 ,
-"face": EAST,
-"position": {
-"x":
-3127	,"y":
-4387	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": false,
-"radius": 3
-}
-},
-{
-"npc-id":
-4264 ,
-"face": EAST,
-"position": {
-"x":
-3125	,"y":
-4381	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": false,
-"radius": 3
-}
-},
-{
-"npc-id":
-4264 ,
-"face": EAST,
-"position": {
-"x":
-3121	,"y":
-4381	,
 "z":
 0	
 },
@@ -40351,22 +42386,6 @@
 "x":
 3119	,"y":
 4385	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": false,
-"radius": 3
-}
-},
-{
-"npc-id":
-4264 ,
-"face": EAST,
-"position": {
-"x":
-3123	,"y":
-4391	,
 "z":
 0	
 },
@@ -45537,70 +47556,6 @@
 	},
 	{
 		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3251	,"y":
-			3057	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3256	,"y":
-			3049	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3256	,"y":
-			3044	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3251	,"y":
-			3035	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
 		1039 ,
 		"face": EAST,
 		"position": {
@@ -45943,166 +47898,6 @@
 			"x":
 			3434	,"y":
 			4001	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3232	,"y":
-			3041	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3236	,"y":
-			3036	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3244	,"y":
-			3035	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3250	,"y":
-			3048	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3250	,"y":
-			3039	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3242	,"y":
-			3051	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3233	,"y":
-			3050	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3237	,"y":
-			3056	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3245	,"y":
-			3058	,
-			"z":
-			0
-		},
-		"walking-policy": {
-			"coordinate": false,
-			"radius": 3
-		}
-	},
-	{
-		"npc-id":
-		1038 ,
-		"face": EAST,
-		"position": {
-			"x":
-			3254	,"y":
-			3056	,
 			"z":
 			0
 		},
@@ -47602,13 +49397,13 @@
 	{
 		"npc-id":
 		1038 ,
-		"face": EAST,
+		"face": NORTH,
 		"position": {
 			"x":
-			1844	,"y":
-			3133	,
+			3231	,"y":
+			3037	,
 			"z":
-			2
+			0
 		},
 		"walking-policy": {
 			"coordinate": false,
@@ -47618,13 +49413,13 @@
 	{
 		"npc-id":
 		1038 ,
-		"face": EAST,
+		"face": NORTH,
 		"position": {
 			"x":
-			1848	,"y":
-			3132	,
+			3223	,"y":
+			3035	,
 			"z":
-			2
+			0
 		},
 		"walking-policy": {
 			"coordinate": false,
@@ -47634,13 +49429,13 @@
 	{
 		"npc-id":
 		1038 ,
-		"face": EAST,
+		"face": NORTH,
 		"position": {
 			"x":
-			1852	,"y":
-			3133	,
+			3227	,"y":
+			3033	,
 			"z":
-			2
+			0
 		},
 		"walking-policy": {
 			"coordinate": false,
@@ -47650,13 +49445,13 @@
 	{
 		"npc-id":
 		1038 ,
-		"face": EAST,
+		"face": NORTH,
 		"position": {
 			"x":
-			1853	,"y":
-			3130	,
+			3231	,"y":
+			3032	,
 			"z":
-			2
+			0
 		},
 		"walking-policy": {
 			"coordinate": false,
@@ -47666,13 +49461,13 @@
 	{
 		"npc-id":
 		1038 ,
-		"face": EAST,
+		"face": NORTH,
 		"position": {
 			"x":
-			1853	,"y":
-			3127	,
+			3238	,"y":
+			3033	,
 			"z":
-			2
+			0
 		},
 		"walking-policy": {
 			"coordinate": false,
@@ -47682,13 +49477,13 @@
 	{
 		"npc-id":
 		1038 ,
-		"face": EAST,
+		"face": NORTH,
 		"position": {
 			"x":
-			1853	,"y":
-			3124	,
+			3239	,"y":
+			3038	,
 			"z":
-			2
+			0
 		},
 		"walking-policy": {
 			"coordinate": false,
@@ -47698,13 +49493,61 @@
 	{
 		"npc-id":
 		1038 ,
-		"face": EAST,
+		"face": NORTH,
 		"position": {
 			"x":
-			1849	,"y":
-			3128	,
+			3235	,"y":
+			3043	,
 			"z":
-			2
+			0
+		},
+		"walking-policy": {
+			"coordinate": false,
+			"radius": 3
+		}
+	},
+	{
+		"npc-id":
+		1038 ,
+		"face": NORTH,
+		"position": {
+			"x":
+			3225	,"y":
+			3040	,
+			"z":
+			0
+		},
+		"walking-policy": {
+			"coordinate": false,
+			"radius": 3
+		}
+	},
+	{
+		"npc-id":
+		1038 ,
+		"face": NORTH,
+		"position": {
+			"x":
+			3230	,"y":
+			3042	,
+			"z":
+			0
+		},
+		"walking-policy": {
+			"coordinate": false,
+			"radius": 3
+		}
+	},
+	{
+		"npc-id":
+		1038 ,
+		"face": NORTH,
+		"position": {
+			"x":
+			3266	,"y":
+			3040	,
+			"z":
+			0
 		},
 		"walking-policy": {
 			"coordinate": false,

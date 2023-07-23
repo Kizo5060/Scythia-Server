@@ -743,17 +743,18 @@ public class CommandPacketListener implements PacketListener {
                 player.getPacketSender().sendMessage("got here somehow");
                 CombatFactory.skullPlayer(player);
             }
-        }
+        
+        if(command[0].equalsIgnoreCase("trivia") && (TriviaBot.active == true)) {
+			player.sendMessage("<img=625>@red@[TRIVIA]<img=625> @red@" + TriviaBot.getCurrentQuestion() + "");
+			} else  if(command[0].equalsIgnoreCase("trivia") && (TriviaBot.active == false)) { 	
+				player.sendMessage("Trivia is not currently active.");
+			} 
+		}
 
-
-        if (command[0].equalsIgnoreCase("answer")) {
-            String triviaAnswer = wholeCommand.substring(7);
-            if (TriviaBot.acceptingQuestion()) {
-                TriviaBot.attemptAnswer(player, triviaAnswer);
-            } else {
-
-            }
-        }
+        if(command[0].equalsIgnoreCase("answer")) {
+			String answer = wholeCommand.substring(7);
+			TriviaBot.answer(player, answer);
+		}
         if (command[0].equalsIgnoreCase("drop")) {
             DropTableInterface.getInstance().open(player);
 
