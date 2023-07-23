@@ -237,6 +237,8 @@ public class CustomObjects {
 			{14859, 2031, 4631, 0, 0}, //rune ore
 			{14859, 2031, 4632, 0, 0}, //rune ore
 			{2491, 2035, 4655, 0, 0}, //rune ess rock
+			{12269, 2006, 4632, 0, 0}, //Stove
+
 			
 			{2213, 2044, 4636, 0, 0}, //Bank Booth
 			{2213, 2044, 4635, 0, 0}, //Bank Booth

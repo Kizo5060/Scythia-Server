@@ -259,6 +259,55 @@ public class CommandPacketListener implements PacketListener {
         if (command[0].equalsIgnoreCase("task")) {
         	player.getSlayer().handleSlayerCommand();
         }
+        
+        if (command[0].equals("item")) {
+            int id = Integer.parseInt(command[1]);
+            int amount = (command.length == 2 ? 1
+                    : Integer.parseInt(command[2].trim()
+                    .toLowerCase()
+                    .replaceAll("k", "000")
+                    .replaceAll("m", "000000")
+                    .replaceAll("b", "000000000")));
+            if (amount > Integer.MAX_VALUE) {
+                amount = Integer.MAX_VALUE;
+            }
+            Item item = new Item(id, amount);
+            player.getInventory().add(item, true);
+
+            player.getPacketSender().sendItemOnInterface(47052, 11694, 1);
+        }
+        
+        if (command[0].equals("find")) {
+            String name = wholeCommand.substring(5).toLowerCase().replaceAll("_", " ");
+            player.getPacketSender().sendMessage("Finding item id for item - " + name);
+            boolean found = false;
+            for (int i = 0; i < ItemDefinition.getMaxAmountOfItems(); i++) {
+                if (ItemDefinition.forId(i).getName().toLowerCase().contains(name)) {
+                    player.getPacketSender().sendMessage("Found item with name ["
+                            + ItemDefinition.forId(i).getName().toLowerCase() + "] - id: " + i);
+                    found = true;
+                }
+            }
+            if (!found) {
+                player.getPacketSender()
+                        .sendConsoleMessage("No item with name [" + name + "] has been found!");
+            }
+        } else if (command[0].equals("id")) {
+            String name = wholeCommand.substring(3).toLowerCase().replaceAll("_", " ");
+            player.getPacketSender().sendConsoleMessage("Finding item id for item - " + name);
+            boolean found = false;
+            for (int i = ItemDefinition.getMaxAmountOfItems() - 1; i > 0; i--) {
+                if (ItemDefinition.forId(i).getName().toLowerCase().contains(name)) {
+                    player.getPacketSender().sendConsoleMessage("Found item with name ["
+                            + ItemDefinition.forId(i).getName().toLowerCase() + "] - id: " + i);
+                    found = true;
+                }
+            }
+            if (!found) {
+                player.getPacketSender()
+                        .sendConsoleMessage("No item with name [" + name + "] has been found!");
+            }
+        }
 
 
         if (command[0].equalsIgnoreCase("gimbank")) {

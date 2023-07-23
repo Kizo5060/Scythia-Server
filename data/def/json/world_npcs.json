@@ -20833,12 +20833,12 @@
         "npc-id": 794,
 		"face": EAST,
         "position": {
-        	"x": 3078,
-        	"y": 3493,
+        	"x": 2006,
+        	"y": 4631,
         	"z": 0
         },
          "walking-policy": {
-        	"coordinate": true,
+        	"coordinate": false,
         	"radius": 2
         }
     },
