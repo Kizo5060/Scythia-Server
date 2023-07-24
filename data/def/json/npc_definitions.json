@@ -14697,8 +14697,8 @@
   "slayerLevel" : 0
 }, {
   "id" : 647,
-  "name" : "Null",
-  "examine" : "Reldo the librarian.",
+  "name" : "Metagross Pet",
+  "examine" : "X2 KC Pet",
   "combat" : 1,
   "size" : 1,
   "attackable" : false,
@@ -15181,8 +15181,8 @@
   "slayerLevel" : 0
 }, {
   "id" : 669,
-  "name" : "Hazelmere",
-  "examine" : "An ancient looking gnome.",
+  "name" : "Metagross (X2 KC Pet)",
+  "examine" : "x2 KC Pet",
   "combat" : 0,
   "size" : 1,
   "attackable" : false,
@@ -138452,6 +138452,29 @@
 },
   {
   "id" : 10000,
+  "name" : "Player Owned Shops",
+  "examine" : "A shopping experience worth paying for.",
+  "combat" : 0,
+  "size" : 1,
+  "attackable" : false,
+  "aggressive" : false,
+  "retreats" : false,
+  "poisonous" : false,
+  "respawn" : 10,
+  "maxHit" : 0,
+  "hitpoints" : 0,
+  "attackSpeed" : 0,
+  "attackAnim" : 0,
+  "defenceAnim" : 0,
+  "deathAnim" : 0,
+  "attackBonus" : 0,
+  "defenceMelee" : 0,
+  "defenceRange" : 0,
+  "defenceMage" : 0,
+  "slayerLevel" : 0
+},
+{
+  "id" : 10001,
   "name" : "Player Owned Shops",
   "examine" : "A shopping experience worth paying for.",
   "combat" : 0,
