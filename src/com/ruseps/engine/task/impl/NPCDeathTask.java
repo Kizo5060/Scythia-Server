@@ -451,7 +451,7 @@ public class NPCDeathTask extends Task {
 						return;
 					}
 					
-					int X2_KC_PET = 13458;
+					int X2_KC_PET = 10001;
 					
 					if (killer.getSummoning() != null && killer.getSummoning().getFamiliar() != null
 							&& killer.getSummoning().getFamiliar().getSummonNpc().getId() ==

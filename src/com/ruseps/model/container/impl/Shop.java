@@ -1078,25 +1078,25 @@ public class Shop extends ItemContainer {
 					return new Object[] { 200, "Donation Points" };
 					//
 				case 18984:
-					return new Object[] { 250, "Donation Points" };
+					return new Object[] { 140, "Donation Points" };
 				case 18985:
-					return new Object[] { 90, "Donation Points" };
+					return new Object[] { 100, "Donation Points" };
 				case 18989:
-					return new Object[] { 60, "Donation Points" };
+					return new Object[] { 140, "Donation Points" };
 				case 18987:
 					return new Object[] { 140, "Donaton Points" };
 					//
 				case 1685:
-					return new Object[] { 180, "Donation Points" };
+					return new Object[] { 60, "Donation Points" };
 				case 11948:
 					return new Object[] { 220, "Donation Points" };
 					//
 				case 18986:
 					return new Object[] { 20, "Donation Points" };
 				case 11949:
-					return new Object[] { 500, "Donation Points" };
+					return new Object[] { 300, "Donation Points" };
 				case 11896:
-					return new Object[] { 30, "Donation Points" };
+					return new Object[] { 100, "Donation Points" };
 				case 18338: 
 					return new Object[] { 20, "Donation Points" };
 				case 20656:

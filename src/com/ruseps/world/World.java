@@ -185,7 +185,7 @@ public class World {
 		PestControl.sequence();
 		ShootingStar.sequence();
 		EvilTrees.sequence();
-		TriviaBot.sequence();
+		TriviaBot.tick();
 		BattleRoyale.meleeLobbySequence();
 		/*BattleRoyale.mageLobbySequence();*/
 		BattleRoyale.rangeLobbySequence();

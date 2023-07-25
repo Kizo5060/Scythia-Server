@@ -739,9 +739,8 @@ public class ButtonClickPacketListener implements PacketListener {
                     return;
                 }
 
-
-                TeleportHandler.teleportPlayer(player, new Position(3450, 3715), player.getSpellbook()
-                        .getTeleportType());
+                player.getPacketSender().sendMessage("<shad=0>@yel@Dungeoneering Is Currenty Disabled.");
+                
                 break;
 
             case -4884:
@@ -928,15 +927,15 @@ public class ButtonClickPacketListener implements PacketListener {
                 DialogueManager.start(player, 86);
                 break;
             case 8659:
-                TeleportHandler.teleportPlayer(player, new Position(3024, 9741), player.getSpellbook()
+                TeleportHandler.teleportPlayer(player, new Position(2035, 4643), player.getSpellbook()
                         .getTeleportType());
                 break;
             case 8664:
-                TeleportHandler.teleportPlayer(player, new Position(3262, 2887), player.getSpellbook()
+                TeleportHandler.teleportPlayer(player, new Position(2035, 4643), player.getSpellbook()
                         .getTeleportType());
                 break;
             case 8666:
-                TeleportHandler.teleportPlayer(player, new Position(3258, 2879), player.getSpellbook()
+                TeleportHandler.teleportPlayer(player, new Position(3037, 2780), player.getSpellbook()
                         .getTeleportType());
                 break;
 
@@ -1011,7 +1010,7 @@ public class ButtonClickPacketListener implements PacketListener {
                         .getTeleportType());
                 break;
             case 28179:
-                TeleportHandler.teleportPlayer(player, new Position(3261, 2855), player.getSpellbook()
+                TeleportHandler.teleportPlayer(player, new Position(2022, 4640), player.getSpellbook()
                         .getTeleportType());
                 break;
             case 28178:

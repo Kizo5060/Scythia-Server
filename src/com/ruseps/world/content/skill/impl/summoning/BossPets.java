@@ -7,7 +7,7 @@ public class BossPets {
 
 	public enum BossPet {
 		
-		X2_KC_PET(13458, 13458, 669),
+		X2_KC_PET(10001, 10001, 669),
 		PET_FOGGY_BOI(3000, 3000, 667),
 		PET_CHAOS_ELEMENTAL(3200, 3033, 11995),
 		PET_KING_BLACK_DRAGON(50, 3030, 11996,false, false),
