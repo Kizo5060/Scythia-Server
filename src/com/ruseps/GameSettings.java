@@ -32,7 +32,7 @@ public class GameSettings {
 	public static final int GAME_PROCESSING_CYCLE_RATE = 600;
 	public static boolean MYSQL_ENABLED = false;
 	public static boolean BONUS_EXP = true;
-	public static final Position DEFAULT_POSITION = new Position(3266, 2872);
+	public static final Position DEFAULT_POSITION = new Position(3033, 2777); //3266, 2872
 	public static final Position RAIDS_TWO_LOBBY = new Position(3034, 2839);
 	public static final Position RAIDS_THREE_LOBBY = new Position(1245, 1246);
 	public static final Position RAIDS_FOUR_LOBBY = new Position(2847, 3103);
@@ -40,8 +40,8 @@ public class GameSettings {
 	public static final Position RAIDS_SIX_LOBBY = new Position(3097, 3938);
 	public static final Position RAIDS_SEVEN_LOBBY = new Position(1823, 3108, 2);
 	public static final Position DONOR_CHEST_ZONE = new Position(2801, 2619, 0);
-	public static final Position NEW_HOME = new Position(3266, 2872, 0);// X Y Z
-	public static final Position NEW_SHOPS = new Position(3275, 2883, 0);// X Y Z
+	public static final Position NEW_HOME = new Position(3033, 2777, 0);// X Y Z
+	public static final Position NEW_SHOPS = new Position(3022, 2777, 0);// X Y Z
 	public static final int MAX_STARTERS_PER_IP = 2;
 	public static int SUS_IP_SCORE = 74;
 	public static boolean HIGH_SECURITY = false;

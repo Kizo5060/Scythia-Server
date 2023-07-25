@@ -733,7 +733,7 @@ public class Misc {
 	}
 
 	private static final String[] BLOCKED_WORDS = new String[]{
-		"devious", "firepk", "ventrilica", "ventrili",
+		"devious", "icycutter", "firepk", "ventrilica", "ventrili",
 		"hade5", "hades5", "pvplegacy", "junglepk", "runeinsanit",
 		"n3t", "n e t", "n et", "ne t", "c  0 m", "c 0 m", "C 0  m",
 		"c  o  m", "runeinsanity", "runeinsanit", "runeinsan",

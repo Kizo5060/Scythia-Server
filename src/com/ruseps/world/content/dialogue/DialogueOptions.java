@@ -1350,7 +1350,7 @@ public class DialogueOptions {
 				player.getPacketSender().sendInterfaceRemoval();
 				break;
 			case 56:
-				TeleportHandler.teleportPlayer(player, new Position(2717, 3499), player.getSpellbook().getTeleportType());
+				TeleportHandler.teleportPlayer(player, new Position(2015, 4616), player.getSpellbook().getTeleportType());
 				break;
 			case 58:
 				DialogueManager.start(player, AgilityTicketExchange.getDialogue(player));
@@ -1462,7 +1462,7 @@ public class DialogueOptions {
 				TeleportHandler.teleportPlayer(player,new Position(2577, 9881), player.getSpellbook().getTeleportType());
 				break;
 			case 47:
-				TeleportHandler.teleportPlayer(player, new Position(3023, 9740), player.getSpellbook().getTeleportType());
+				TeleportHandler.teleportPlayer(player, new Position(2035, 4628), player.getSpellbook().getTeleportType());
 				break;
 			case 48: 
 				if(player.getInteractingObject() != null) {
@@ -1476,7 +1476,7 @@ public class DialogueOptions {
 					player.getPacketSender().sendMessage("You need a Woodcutting level of at least 60 to teleport there.");
 					return;
 				}
-				TeleportHandler.teleportPlayer(player, new Position(2711, 3463), player.getSpellbook().getTeleportType());
+				TeleportHandler.teleportPlayer(player, new Position(1998, 4618), player.getSpellbook().getTeleportType());
 				break;
 			case 58:
 				ShopManager.getShops().get(39).open(player);

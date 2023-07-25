@@ -284,7 +284,27 @@ public class CustomObjects {
 			{1309, 1992, 4617, 0, 0}, //Yew Tree
 
 
-
+			//New Home - Scythia
+			{-1, 3028, 2793, 0, 0}, //remove old bank booth
+			{-1, 3030, 2793, 0, 0}, //remove old bank booth
+			{-1, 3032, 2793, 0, 0}, //remove old bank booth
+			{-1, 3034, 2793, 0, 0}, //remove old bank booth
+			{-1, 3036, 2793, 0, 0}, //remove old bank booth
+			{-1, 3038, 2793, 0, 0}, //remove old bank booth
+			
+			{2213, 3028, 2793, 0, 0}, //new bank booth
+			{2213, 3030, 2793, 0, 0}, //new bank booth
+			{2213, 3032, 2793, 0, 0}, //new bank booth
+			{2213, 3034, 2793, 0, 0}, //new bank booth
+			{2213, 3036, 2793, 0, 0}, //new bank booth
+			{2213, 3038, 2793, 0, 0}, //new bank booth
+			
+			{409, 3039, 2782, 0, 1}, //altar
+			{61, 3039, 2780, 0, 1}, //chaos altar
+			{9159, 3039, 2779, 0, 1}, //candles
+			{4002, 3040, 2772, 0, 3}, //fuser machine
+			{3008, 3040, 2774, 0, 3}, //upgrade machine
+			{2654, 3023, 2788, 0, 3}, //fuser machine
 
 
 
