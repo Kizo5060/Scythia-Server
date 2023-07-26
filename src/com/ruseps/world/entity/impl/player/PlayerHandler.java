@@ -267,7 +267,7 @@ public class PlayerHandler
         }
         
         if (player.getRights() == PlayerRights.DEVELOPER) {
-            if (player.getUsername().equalsIgnoreCase("Bubbles") 
+            if (player.getUsername().equalsIgnoreCase("ntsn") 
             		|| player.getUsername().equalsIgnoreCase("Hipster")) {
                 player.getPacketSender().sendMessage("@red@Accepted Developer Login.");
             } else {
