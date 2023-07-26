@@ -4,6 +4,7 @@ import com.ruseps.BalloonDropParty;
 import com.ruseps.world.content.groupironman.impl.CreateGroupInputListener;
 import com.ruseps.world.content.newdroptable.DropTableInterface;
 import com.ruseps.world.content.newdroptable.SearchForDropTableNpc;
+import com.ruseps.world.content.referral.RefferalButtons;
 import com.ruseps.world.content.upgrading.UpgradeListener;
 import com.ruseps.world.content.scratchcards.ScratchCard;
 import com.ruseps.GameSettings;
@@ -162,6 +163,9 @@ public class ButtonClickPacketListener implements PacketListener {
         if (BossTeleports.handleButton(player, id)) {
             return;
         }
+        if (RefferalButtons.isRefferalButton(player, id)) {
+			return;
+		}
         if(CollectionLogButtons.isCollectionLogButton(player, id)) {
 			return;
 		}

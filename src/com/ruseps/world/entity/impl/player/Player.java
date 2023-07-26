@@ -107,6 +107,7 @@ import com.ruseps.world.content.new_raids_system.RaidsPartyConnector;
 import com.ruseps.world.content.new_raids_system.raids_party.RaidsParty;
 import com.ruseps.world.content.new_raids_system.saving.RaidsSaving;
 import com.ruseps.world.content.pos.PlayerOwnedShopManager;
+import com.ruseps.world.content.referral.RefferalHandler;
 import com.ruseps.world.content.skill.SkillManager;
 import com.ruseps.world.content.skill.impl.construction.ConstructionData.HouseLocation;
 import com.ruseps.world.content.skill.impl.construction.ConstructionData.HouseTheme;
@@ -178,6 +179,14 @@ public class Player extends Character {
     public Map<String, Boolean> getMiscStateMap() {
         return miscStateMap;
     }
+    
+    public String referaledby = "";
+    
+    private RefferalHandler refHandler = new RefferalHandler();
+	
+	public RefferalHandler getRefferalHandler() {
+		return refHandler;
+	}
 
     public void setMiscStateMap(Map<String, Boolean> miscStateMap) {
         this.miscStateMap = miscStateMap;

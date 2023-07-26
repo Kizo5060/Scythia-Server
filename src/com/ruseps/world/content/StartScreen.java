@@ -124,6 +124,7 @@ public class StartScreen
             player.getPacketSender().sendInterface(3559);
             player.getAppearance().setCanChangeAppearance(true);
             player.setNewPlayer(false);
+            player.getRefferalHandler().openRefferal(player);
            // World.sendMessage("<img=18><shad=1><col=ffca3c>[New Arrival] " + player.getUsername() + " has just logged into @cya@Scythia<col=ffca3c> for the first time!");
             player.getPacketSender().sendRights();
 

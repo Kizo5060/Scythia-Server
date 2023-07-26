@@ -516,6 +516,28 @@ public abstract class ItemContainer {
 		}
 		return this;
 	}
+	
+	public boolean addItem(Item item) {
+
+		for (int i = 0; i < items.length; i++)
+			if (items[i] != null) {
+				if (items[i].getAmount() + item.getAmount() < 0)
+					return false;
+			}
+		add(item, true);
+		return true;
+	}
+
+	public boolean addItem(int item, int amount) {
+
+		for (int i = 0; i < items.length; i++)
+			if (items[i] != null) {
+				if (items[i].getAmount() + amount > Integer.MAX_VALUE || items[i].getAmount() + amount < 0)
+					return false;
+			}
+		add(new Item(item, amount));
+		return true;
+	}
 
 	/**
 	 * Sorts this item container's array of items to leave no empty spaces.

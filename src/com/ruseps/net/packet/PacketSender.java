@@ -798,6 +798,29 @@ public class PacketSender {
         return this;
     }
     
+    public PacketSender sendItemContainer2(Item[] container, int interfaceId) {
+    	PacketBuilder out = new PacketBuilder(53, PacketType.SHORT);
+		out.putShort(interfaceId);
+		out.putShort(container.length);
+		for (Item item : container) {
+			if(item == null) {
+				out.put(0);
+				out.putShort(0, ValueType.A, ByteOrder.LITTLE);
+			} else {
+				if (item.getAmount() > 254) {
+					out.put((byte) 255);
+					out.putInt(item.getAmount(), ByteOrder.INVERSE_MIDDLE);
+				} else {
+					out.put(item.getAmount());
+				}
+				out.putShort(item.getId() + 1, ValueType.A, ByteOrder.LITTLE);
+			}
+		}
+		player.getSession().queueMessage(out);
+		return this;
+	}
+
+    
     public void sendItemsOnInterface(final int childId, final int maxItems, final List<Item> items, boolean resetAllItems) {
 		if (items == null || items.isEmpty()) {
 			return;
