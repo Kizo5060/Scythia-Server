@@ -28,15 +28,15 @@ public class StarterProgression {
 	private static Map<Integer, NPCRequirement> tasks = new HashMap<>();
 
 	public static void loadTasks() {
-		tasks.put(0, new NPCRequirement(5049, 100)); // task index, npc id, npc amount
-		tasks.put(1, new NPCRequirement(4990, 150));
-		tasks.put(2, new NPCRequirement(4991, 200));
-		tasks.put(3, new NPCRequirement(4992, 300));
-		tasks.put(4, new NPCRequirement(4999, 400));
-		tasks.put(5, new NPCRequirement(4994, 500));
-		tasks.put(6, new NPCRequirement(4997, 600));
-		tasks.put(7, new NPCRequirement(4993, 700));
-		tasks.put(8, new NPCRequirement(4980, 800));
+		tasks.put(0, new NPCRequirement(5049, 50)); // task index, npc id, npc amount
+		tasks.put(1, new NPCRequirement(4990, 100));
+		tasks.put(2, new NPCRequirement(4991, 150));
+		tasks.put(3, new NPCRequirement(4992, 200));
+		tasks.put(4, new NPCRequirement(4999, 250));
+		tasks.put(5, new NPCRequirement(4994, 300));
+		tasks.put(6, new NPCRequirement(4997, 350));
+		tasks.put(7, new NPCRequirement(4993, 400));
+		tasks.put(8, new NPCRequirement(4980, 500));
 	}
 
 	private final Player player;

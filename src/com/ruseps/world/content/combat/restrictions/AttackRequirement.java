@@ -7,7 +7,7 @@ public enum AttackRequirement {
 	TEST(-1, 0,
             new int[] {1},
             new int[] {0},
-            new int[] {100}
+            new int[] {50}
     ),
 	BEGINNER(4990, 0,
             new int[] {5049},
