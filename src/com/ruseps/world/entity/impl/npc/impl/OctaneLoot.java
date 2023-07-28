@@ -35,7 +35,7 @@ public class OctaneLoot extends NPC {
 	
 	public static int spawnTime = 10;
 	
-	public static int[] COMMONLOOT = { 19992, 14793, 20106, 20108, 20110, 20112, 20114, 20116 };
+	public static int[] COMMONLOOT = { 19994, 14793, 20106, 20108, 20110, 20112, 20114, 20116 };
 	public static int[] MEDIUMLOOT = { 10822, 10824, 10826, 11206, 11208 };
 	public static int[] RARELOOT = { 8860, 8861, 8862, 8871, 798, 799, 894, 895, 896  };
 	public static int[] SUPERRARELOOT = { 15359, 2716, 2717, 2718, 2719, 2720, 2721, 2722, 2723,  };
@@ -134,7 +134,7 @@ public class OctaneLoot extends NPC {
 		int common = COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)];
 		int medium = MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)];
 
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19992, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 
 
 		boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
@@ -223,7 +223,7 @@ public class OctaneLoot extends NPC {
 	public static final void loadDrops() {
 		Map<Integer, NpcDropItem> items = new HashMap<>();
 		
-		items.put(19992, new NpcDropItem(19992, new int[] { 12 }, 0));
+		items.put(19994, new NpcDropItem(19994, new int[] { 12 }, 0));
 		
 		Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
 		Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

@@ -44,13 +44,13 @@ public class GodsRaid extends Raid {
         int[] rare = {2572, 19960,19962,19956,19958,19964,19990}; // 1:333 chance
         int[] ultraRare = {19970,19972,19974,19978,19976,19868}; // 1:1000 chance - should put pets here
         int abba[][] = {
-                {19992,5}, {19992,10}, {19992,4}, {19992,9}, {19992,6}
+                {19994,5}, {19994,10}, {19994,4}, {19994,9}, {19994,6}
         };
 
         for (int i = 0; i < playerIndex; ++i) {
 
                 int random = Misc.random(250);
-                Item reward = new Item(19992, 15);
+                Item reward = new Item(19994, 15);
                 int randomCommon = RandomUtility.getRandom(abba.length - 1);
                 reward = new Item(abba[randomCommon][0]);
                 int amount = abba[randomCommon][1];

@@ -27,7 +27,7 @@ public class GambleAmount extends EnterAmount {
 		player.getPacketSender().sendInterfaceRemoval();
 		int cost = amount;
 		
-		if(player.getInventory().getAmount(19992) < cost) {
+		if(player.getInventory().getAmount(19994) < cost) {
 			player.getPacketSender().sendMessage("You do not have enough money in your @red@inventory@bla@ to gamble that amount.");
 			return;
 		}
@@ -35,7 +35,7 @@ public class GambleAmount extends EnterAmount {
 		player.getPacketSender().sendMessage("Rolling...");
 		player.performAnimation(new Animation(11900));
 		player.performGraphic(new Graphic(2075));
-		player.getInventory().delete(19992, amount);
+		player.getInventory().delete(19994, amount);
 		
 		int roll = Misc.getRandom(100);
 
@@ -44,7 +44,7 @@ public class GambleAmount extends EnterAmount {
 			public void execute() {
 				if (roll >= 55) {
 					player.forceChat("I Rolled A " + roll + " And Have Won!");
-					player.getInventory().add(new Item(19992, amount * 2));
+					player.getInventory().add(new Item(19994, amount * 2));
 				} else {
 					player.forceChat("I Rolled A " + roll + " And Have Lost!");
 				}

@@ -35,7 +35,7 @@ public class WreckedLoot extends NPC {
 	
 	public static int spawnTime = 10;
 	
-	public static int[] COMMONLOOT = {14793, 19992, 20106, 20108, 20110, 20112, 20114, 20116,  };
+	public static int[] COMMONLOOT = {14793, 19994, 20106, 20108, 20110, 20112, 20114, 20116,  };
 	public static int[] MEDIUMLOOT = { 20100, 20102, 20104};
 	public static int[] RARELOOT = { 18448, 18950, 18918, 18936, 18920, };
 	public static int[] SUPERRARELOOT = { 2701, 2702, 2704, 2705, 2706, 2707, 2708, 10942, 18057,};
@@ -139,7 +139,7 @@ public class WreckedLoot extends NPC {
 
 		World.sendMessage("<img=17> @red@<shad=1>"+player.getUsername()+ " @mag@received a loot from the @gre@Wrecked's Girl!");
 
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19992, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 
 		boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
 	
@@ -227,7 +227,7 @@ public class WreckedLoot extends NPC {
 	public static final void loadDrops() {
 		Map<Integer, NpcDropItem> items = new HashMap<>();
 		
-		items.put(19992, new NpcDropItem(19992, new int[] { 5 }, 0));
+		items.put(19994, new NpcDropItem(19994, new int[] { 5 }, 0));
 		
 		Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
 		Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

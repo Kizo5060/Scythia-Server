@@ -191,6 +191,16 @@ public class ItemActionPacketListener implements PacketListener
 			player.addDrBoost(35);
 			player.getInventory().delete(18060, 1);
 			break;
+		case 19994:
+			int amount1 = player.getInventory().getAmount(19994);
+			 amount1 = 0;
+			for(int i = 0; i < player.getInventory().getAmount(19994); i++) {
+				amount1++;
+			}
+			player.getInventory().delete(19994,amount1);
+			player.setMoneyInPouch(player.getMoneyInPouch()+(long)1000000*amount1);
+			player.getPacketSender().sendString(8135, ""+player.getMoneyInPouch());
+			break;
 		case 18061:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
@@ -1050,7 +1060,7 @@ public class ItemActionPacketListener implements PacketListener
 				amount1++;
 			}
 			player.getInventory().delete(19994,amount1);
-			player.setMoneyInPouch(player.getMoneyInPouch()+(long)1000*amount1);
+			player.setMoneyInPouch(player.getMoneyInPouch()+(long)1000000*amount1);
 			player.getPacketSender().sendString(8135, ""+player.getMoneyInPouch());
 			break;
 			

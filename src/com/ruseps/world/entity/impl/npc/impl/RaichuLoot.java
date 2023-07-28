@@ -83,7 +83,7 @@ public class RaichuLoot extends NPC {
 		player.addItemToAny(18338, 1);
 		player.addItemToAny(915, 2);
 		player.addItemToAny(21055, 1);
-		player.addItemToAny(19992, 5 + Misc.getRandom(5));
+		player.addItemToAny(19994, 5 + Misc.getRandom(5));
 	}
 
 	private static void handleDrop(NPC npc, Player player, Long damage) {

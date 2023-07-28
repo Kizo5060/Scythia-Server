@@ -33,7 +33,7 @@ public class SantaLoot extends NPC {
 	
 	public static int spawnTime = 10;
 	
-	public static int[] COMMONLOOT = { 6183, 18338, 19992, 1050, 14595, 14603, 14602, 14605   };
+	public static int[] COMMONLOOT = { 6183, 18338, 19994, 1050, 14595, 14603, 14602, 14605   };
 	public static int[] MEDIUMLOOT = { 5090, 5091, 5092, 11658, 14044, 14046, 14045, 14047, 14048 };
 	public static int[] RARELOOT = { 18689, 951, 621 };
 	public static int[] SUPERRARELOOT = { 19888, 11896, 10942 };
@@ -108,7 +108,7 @@ public class SantaLoot extends NPC {
 		
 		World.sendMessage("<img=469> <col=dbffba><shad=1>"+player.getUsername()+ " received a loot from the @gre@Mighty Santa!");
 		
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19992, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 
 		if (chance > 99) {
 			//super rare
@@ -162,7 +162,7 @@ public class SantaLoot extends NPC {
 	public static final void loadDrops() {
 		Map<Integer, NpcDropItem> items = new HashMap<>();
 		
-		items.put(19992, new NpcDropItem(19992, new int[] { 5 }, 0));
+		items.put(19994, new NpcDropItem(19994, new int[] { 5 }, 0));
 		
 		Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
 		Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

@@ -1,140 +1,12 @@
 
 {
 "npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3031	,"y":
-4522	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3036	,"y":
-4522	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3042	,"y":
-4521	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3047	,"y":
-4518	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3055	,"y":
-4514	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3049	,"y":
-4512	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3043	,"y":
-4516	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3039	,"y":
-4517	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
+10000 ,
 "face": EAST,
 "position": {
 "x":
 3033	,"y":
-4517	,
+2777	,
 "z":
 0	
 },
@@ -145,140 +17,12 @@
 },
 {
 "npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3028	,"y":
-4513	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3032	,"y":
-4513	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3040	,"y":
-4511	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3046	,"y":
-4507	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3050	,"y":
-4507	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3057	,"y":
-4508	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3055	,"y":
-4503	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3051	,"y":
-4503	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
+6139 ,
 "face": EAST,
 "position": {
 "x":
 3044	,"y":
-4502	,
+2777	,
 "z":
 0	
 },
@@ -289,129 +33,65 @@
 },
 {
 "npc-id":
-4275 ,
-"face": EAST,
+741 ,
+"face": WEST,
 "position": {
 "x":
 3039	,"y":
-4507	,
+2774	,
 "z":
 0	
 },
 "walking-policy": {
-"coordinate": true,
+"coordinate": false,
 "radius": 3
 }
 },
 {
 "npc-id":
-4275 ,
-"face": EAST,
+710 ,
+"face": WEST,
 "position": {
 "x":
-3035	,"y":
-4507	,
+3039	,"y":
+2773	,
 "z":
 0	
 },
 "walking-policy": {
-"coordinate": true,
+"coordinate": false,
 "radius": 3
 }
 },
 {
 "npc-id":
-4275 ,
+4341 ,
 "face": EAST,
 "position": {
 "x":
-3029	,"y":
-4508	,
+3267	,"y":
+2880	,
 "z":
 0	
 },
 "walking-policy": {
-"coordinate": true,
+"coordinate": false,
 "radius": 3
 }
 },
 {
 "npc-id":
-4275 ,
+4341 ,
 "face": EAST,
 "position": {
 "x":
-3029	,"y":
-4503	,
+3018	,"y":
+2780	,
 "z":
 0	
 },
 "walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3036	,"y":
-4500	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3040	,"y":
-4499	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3046	,"y":
-4497	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
-"radius": 3
-}
-},
-{
-"npc-id":
-4275 ,
-"face": EAST,
-"position": {
-"x":
-3055	,"y":
-4498	,
-"z":
-0	
-},
-"walking-policy": {
-"coordinate": true,
+"coordinate": false,
 "radius": 3
 }
 },

@@ -246,7 +246,7 @@ public class PlayerOwnedShopManager {
 		if(amount == -1) {
 			if(definiton != null) {
 				String formatPrice = Misc.sendCashToString(item.getPrice());
-				player.sendMessage("<col=FF0000>"+definiton.getName()+"</col> costs "+formatPrice+" Diamond coins each <col=FF0000>"+current.ownerName()+"</col>'s shop.");
+				player.sendMessage("<col=FF0000>"+definiton.getName()+"</col> costs "+formatPrice+" Scythia Coins each <col=FF0000>"+current.ownerName()+"</col>'s shop.");
 			}
 			return;
 		}
@@ -282,7 +282,7 @@ public class PlayerOwnedShopManager {
 			return;
 		}*/
 		
-		long coins = player.getInventory().getAmount(19992);
+		long coins = player.getInventory().getAmount(19994);
 		
 		if(((long) amount * item.getPrice()) > coins) {
 			
@@ -322,19 +322,19 @@ public class PlayerOwnedShopManager {
 				
 			}
 			
-			coins = player.getInventory().getAmount(19992);
+			coins = player.getInventory().getAmount(19994);
 			long total = (long) item.getPrice() * amount;
 			
 			if(coins >= total) {
 			
 				int removed = current.remove(slot, amount);
-				int inventory = player.getInventory().getAmount(19992);
+				int inventory = player.getInventory().getAmount(19994);
 				
 				if(inventory > total) {
 					inventory = (int) total;
 				}
 				
-				player.getInventory().delete(19992, inventory);
+				player.getInventory().delete(19994, inventory);
 				
 				total -= inventory;
 				
@@ -369,7 +369,7 @@ public class PlayerOwnedShopManager {
 		if(amount == -1) {
 			if(definiton != null) {
 				String formatPrice = Misc.sendCashToString(item.getPrice());
-				player.sendMessage("<col=FF0000>"+definiton.getName()+"</col> is set to cost "+formatPrice+" Diamond coins in your shop.");
+				player.sendMessage("<col=FF0000>"+definiton.getName()+"</col> is set to cost "+formatPrice+" Scythia Coins in your shop.");
 			}
 			return;
 		}
@@ -536,7 +536,7 @@ public class PlayerOwnedShopManager {
 		if(price > 0 && price <= Integer.MAX_VALUE) {
 			item.setPrice(price);
 			String formatPrice = Misc.sendCashToString(price);
-			player.sendMessage("You have set <col=FF0000>"+definiton.getName().toLowerCase()+"</col> to cost <col=FF0000>"+formatPrice+"</col> Diamond coins in your shop.");
+			player.sendMessage("You have set <col=FF0000>"+definiton.getName().toLowerCase()+"</col> to cost <col=FF0000>"+formatPrice+"</col> Scythia Coins in your shop.");
 			myShop.save();
 		}
 		
@@ -620,7 +620,7 @@ public class PlayerOwnedShopManager {
 			return;
 		}
 		
-		int coins = player.getInventory().getAmount(19992);
+		int coins = player.getInventory().getAmount(19994);
 		long available = earnings;
 		
 		if((long) (earnings + coins) > Integer.MAX_VALUE) {
@@ -637,7 +637,7 @@ public class PlayerOwnedShopManager {
 		String formatPrice1 = Misc.sendCashToString(available);
 		String formatPrice2 = Misc.sendCashToString(earnings);
 		
-		player.getInventory().add(19992, (int) available);
+		player.getInventory().add(19994, (int) available);
 		statement(player, "You have claimed "+formatPrice1+" coins. This leaves "+formatPrice2+" coins", "left to claim from your shop earnings depository.");
 		PlayerLogs.log(player.getUsername(), "Claiming POS Coins, Amount: "+formatPrice1+" Amount left: "+formatPrice2+" coins");
 	}

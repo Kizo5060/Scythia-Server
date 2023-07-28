@@ -134,7 +134,7 @@ public class DemonLoot extends NPC {
 		int medium = MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)]; 
 		
 		
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19992, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 		
 		boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
 	
@@ -223,7 +223,7 @@ public class DemonLoot extends NPC {
 	public static final void loadDrops() {
 		Map<Integer, NpcDropItem> items = new HashMap<>();
 		
-		items.put(19992, new NpcDropItem(19992, new int[] { 5 }, 0));
+		items.put(19994, new NpcDropItem(19994, new int[] { 5 }, 0));
 		
 		Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
 		Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

@@ -76,9 +76,9 @@ public class MoneyPouch {
 		}
 		if(amount > plr.getMoneyInPouch()/1000000)
 			amount = plr.getMoneyInPouch()/1000000;
-		if ((plr.getInventory().getAmount(19992) + amount) < Integer.MAX_VALUE) {
+		if ((plr.getInventory().getAmount(19994) + amount) < Integer.MAX_VALUE) {
 			plr.setMoneyInPouch(plr.getMoneyInPouch() - amount*1000000);
-			plr.getInventory().add(19992, (int) amount);
+			plr.getInventory().add(19994, (int) amount);
 			plr.getPacketSender().sendString(8135, ""+plr.getMoneyInPouch());
 			plr.getPacketSender().sendMessage("You withdraw "+amount+" M from your pouch.");
 			if(allowWithdraw)

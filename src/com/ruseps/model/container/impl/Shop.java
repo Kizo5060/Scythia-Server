@@ -352,7 +352,7 @@ public class Shop extends ItemContainer {
 		if (getCurrency().getId() != -1) {
 			playerCurrencyAmount = player.getInventory().getAmount(currency.getId());
 			currencyName = ItemDefinition.forId(currency.getId()).getName().toLowerCase();
-			if (currency.getId() == 19992) {
+			if (currency.getId() == 19994) {
 				if (player.getMoneyInPouch() >= value) {
 					playerCurrencyAmount = player.getMoneyInPouchAsInt();
 					if (!(player.getInventory().getFreeSlots() == 0
@@ -771,7 +771,7 @@ public class Shop extends ItemContainer {
 			} else if (shop == GENERAL_STORE) {
 				switch (item) {
 				case 21071:
-					return new Object[] { 45, "Diamond Coins" };
+					return new Object[] { 45, "Scythia Coins" };
 				}
 			} else if (shop == PKING_REWARDS_STORE) {
 				switch (item) {

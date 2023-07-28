@@ -137,7 +137,7 @@ public class ScratchCard {
 	 */
 	public void getBonus() {
 		setBonus(true);
-		int items[] = { 19992 };
+		int items[] = { 19994 };
 		int BonusRewards[] = { 19994 };
 
 		int item = items[random.nextInt(items.length)];

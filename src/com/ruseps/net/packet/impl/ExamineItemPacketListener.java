@@ -12,7 +12,7 @@ public class ExamineItemPacketListener implements PacketListener {
 	@Override
 	public void handleMessage(Player player, Packet packet) {
 		int item = packet.readShort();
-		if(item == 995 || item == 19992) {
+		if(item == 995 || item == 19994) {
 			player.getPacketSender().sendMessage("Mhmm... Shining coins...");
 			return;
 		}

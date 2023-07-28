@@ -37,7 +37,7 @@ public class AuroraLoot extends NPC {
 	
 	public static int spawnTime = 10;
 	
-	public static int[] COMMONLOOT = { 14793, 19992 };
+	public static int[] COMMONLOOT = { 14793, 19994 };
 	public static int[] MEDIUMLOOT = { 8863, 8864, 8865, 79, 81, 82, 83, 8518, 8666 };
 	public static int[] RARELOOT = { 2793, 2791, 2792, 2794, 2797  };
 	public static int[] SUPERRARELOOT = { 19002, 19003, 19004, 19005, 19016 };
@@ -138,7 +138,7 @@ public class AuroraLoot extends NPC {
 
 		World.sendMessage("<img=469> <col=dbffba><shad=1>"+player.getUsername()+ " received a loot from the @gre@Aurora's Shooter!");
 
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19992, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 
 		boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
 
@@ -228,7 +228,7 @@ public class AuroraLoot extends NPC {
 	public static final void loadDrops() {
 		Map<Integer, NpcDropItem> items = new HashMap<>();
 		
-		items.put(19992, new NpcDropItem(19992, new int[] { 5 }, 0));
+		items.put(19994, new NpcDropItem(19994, new int[] { 5 }, 0));
 		
 		Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
 		Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

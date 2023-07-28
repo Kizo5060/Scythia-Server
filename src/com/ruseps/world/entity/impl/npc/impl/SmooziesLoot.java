@@ -38,7 +38,7 @@ public class SmooziesLoot extends NPC {
 
     public static int spawnTime = 10;
 
-    public static int[] COMMONLOOT = { 14793, 19992, 18338  };
+    public static int[] COMMONLOOT = { 14793, 19994, 18338  };
     public static int[] MEDIUMLOOT = { 10822, 10824, 10826, 11206, 11208, 915 };
     public static int[] RARELOOT = { 8860, 8861, 8862, 8871, 798, 799, 894, 895, 896  };
     public static int[] SUPERRARELOOT = { 13016, 21055,  13010, 13011, 13012, 13013, 13014, 15359  };
@@ -139,7 +139,7 @@ public class SmooziesLoot extends NPC {
 
         World.sendMessage("<img=469> <col=006699><shad=1>"+player.getUsername()+ " <col=d5096e><shad=1>received a loot from the <col=006699><shad=1>Smoozies Event!");
 
-        GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19992, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+        GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 
 
         boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
@@ -230,7 +230,7 @@ public class SmooziesLoot extends NPC {
     public static final void loadDrops() {
         Map<Integer, NpcDropItem> items = new HashMap<>();
 
-        items.put(19992, new NpcDropItem(19992, new int[] { 20 }, 0));
+        items.put(19994, new NpcDropItem(19994, new int[] { 20 }, 0));
 
         Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
         Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

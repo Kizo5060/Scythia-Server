@@ -12,14 +12,14 @@ public class StarterProgression {
 	private final int STARTING_POINT = 42001;
 
 	private static final Item[][] REWARDS = { 
-			{ new Item(19992, 5), new Item(15501, 1), new Item(7080, 1) },
-			{ new Item(19992, 10), new Item(15501, 1), new Item(20134, 1) },
-			{ new Item(19992, 15), new Item(18860, 1), new Item(18864, 1) },
+			{ new Item(19994, 5), new Item(15501, 1), new Item(7080, 1) },
+			{ new Item(19994, 10), new Item(15501, 1), new Item(20134, 1) },
+			{ new Item(19994, 15), new Item(18860, 1), new Item(18864, 1) },
 			{ new Item(20106, 1), new Item(20108, 1), new Item(20110, 1) },
-			{ new Item(19992, 20), new Item(15501, 1), new Item(14018, 1) },
-			{ new Item(19992, 50), new Item(18992, 1), new Item(18994, 1) },
-			{ new Item(20521, 1), new Item(15501, 1), new Item(19992, 40) },
-			{ new Item(8788, 1), new Item(15501, 1), new Item(19992, 50) },
+			{ new Item(19994, 20), new Item(15501, 1), new Item(14018, 1) },
+			{ new Item(19994, 50), new Item(18992, 1), new Item(18994, 1) },
+			{ new Item(20521, 1), new Item(15501, 1), new Item(19994, 40) },
+			{ new Item(8788, 1), new Item(15501, 1), new Item(19994, 50) },
 			{ new Item(18057, 1), new Item(10934, 1), new Item(19918, 1) },
 			
 			// indexed rewards, so first column = first task reward

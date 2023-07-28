@@ -205,7 +205,7 @@ public class DialogueOptions {
 			case 277:
 				player.getPA().sendInterfaceRemoval();
 				if(player.getInventory().getAmount(995) >= 1000000) {
-					player.getInventory().add(19992, 1);
+					player.getInventory().add(19994, 1);
 					player.getInventory().delete(995, 1000000);
 					player.getPA().sendMessage("@blu@You have purchased 1x (1m Coin)");
 				} else {
