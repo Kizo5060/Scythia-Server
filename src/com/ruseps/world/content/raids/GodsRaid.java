@@ -41,7 +41,7 @@ public class GodsRaid extends Raid {
 
     @Override
     protected void giveRewards() {
-        int[] rare = {2572, 19960,19962,19956,19958,19964,19990}; // 1:333 chance
+        int[] rare = {2572, 19960,19962,19956,19958,19964}; // 1:333 chance
         int[] ultraRare = {19970,19972,19974,19978,19976,19868}; // 1:1000 chance - should put pets here
         int abba[][] = {
                 {19994,5}, {19994,10}, {19994,4}, {19994,9}, {19994,6}

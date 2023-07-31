@@ -3,9 +3,9 @@ package com.ruseps.world.content.referral;
 import com.ruseps.model.Item;
 
 public enum RefferalOptions {
-	YOUTUBERS(new String[] {"Wr3ckedYou", "Jipy"}, new Item[] {new Item(15003, 1),new Item(989, 1),new Item(19080, 20)}, RefferalType.YOUTUBERS),
-	WEBSITES(new String[] {"Google search", "Reddit", "Rune-server", "Runelocus", "Facebook", "Twitter", "Discord", "",""}, new Item[] {new Item(15003, 1),new Item(989, 1),new Item(19080, 20)}, RefferalType.WEBSITES),
-	OTHER(new String[] {"Word of mouth", "","","","","","","","",""}, new Item[] {new Item(15003, 1),new Item(989, 1),new Item(19080, 20)}, RefferalType.OTHER);
+	YOUTUBERS(new String[] {"Wr3ckedYou", "Jipy"}, new Item[] {new Item(18338, 1),new Item(19994, 10)}, RefferalType.YOUTUBERS),
+	WEBSITES(new String[] {"Google search", "Reddit", "Rune-server", "Runelocus", "Facebook", "Twitter", "Discord", "",""}, new Item[] {new Item(18338, 1),new Item(19994, 10)}, RefferalType.WEBSITES),
+	OTHER(new String[] {"Word of mouth", "","","","","","","","",""}, new Item[] {new Item(18338, 1),new Item(19994, 10)}, RefferalType.OTHER);
 	
 	private String[] options;
 	

@@ -385,10 +385,6 @@ public class CommandPacketListener implements PacketListener {
             player.performGraphic(new Graphic(1207));
             player.moveTo(new Position(2936, 2719), true);
         }
-        if (command[0].equalsIgnoreCase("Wr3cked")) {
-            player.performGraphic(new Graphic(1552));
-            player.moveTo(new Position(3357, 3034), true);
-        }
         if (command[0].equalsIgnoreCase("Scythia")) {
             player.performGraphic(new Graphic(1207));
             player.moveTo(new Position(2311, 3208), true);
@@ -806,7 +802,7 @@ public class CommandPacketListener implements PacketListener {
         }
 
         if (command[0].equalsIgnoreCase("home")) {
-            TeleportHandler.teleportPlayer(player, new Position(3266, 2872), player.getSpellbook()
+            TeleportHandler.teleportPlayer(player, new Position(3033, 2777), player.getSpellbook()
                     .getTeleportType());
         }
         if (command[0].equalsIgnoreCase("Shops")) {

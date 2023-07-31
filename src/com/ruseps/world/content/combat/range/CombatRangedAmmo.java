@@ -41,7 +41,7 @@ public class CombatRangedAmmo {
 		LAZE_TEST(new int[] {19920}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		MP5TACT(new int[] {8871}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		BFG(new int[] {10504}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
-		YEL_BLASTER(new int[] {20523}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
+		YEL_BLASTER(new int[] {20523}, new AmmunitionData[] {AmmunitionData.CRAZY_BOW_AMMO}, RangedWeaponType.CRAZY_BOW),
 		MAG_BLASTER(new int[] {20519}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		ORANGE_BLASTER(new int[] {20521}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		LAVA_AK(new int[] {19921}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
