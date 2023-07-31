@@ -2,6 +2,8 @@ package com.ruseps.world.entity.impl.player;
 
 import com.ruseps.world.content.*;
 import com.ruseps.world.content.bis.BestInSlotInterface;
+import com.ruseps.world.content.instance_manager.InstanceManager;
+
 import com.ruseps.world.content.customtasks.CustomTasks;
 import com.ruseps.world.content.customtasks.tasktypes.MinigameTask;
 import com.ruseps.world.content.customtasks.tasktypes.NPCTask;
@@ -884,6 +886,46 @@ public class Player extends Character {
     public void setViewingCosmeticTab(boolean viewingCosmeticTab) {
         this.viewingCosmeticTab = viewingCosmeticTab;
     }
+    
+    private int praiseTime;
+    
+    private int cleansingTime;
+
+	public int getCleansingTime() {
+		return cleansingTime;
+	}
+
+	public void setCleansingTime(int cleansingTime) {
+		this.cleansingTime = cleansingTime;
+	}
+
+	public void incrementCleansingTime(int cleansingTime) {
+		this.cleansingTime += cleansingTime;
+	}
+
+	public void decrementCleansingTime(int cleansingTime) {
+		this.cleansingTime -= cleansingTime;
+	}
+	
+	public int getPraiseTime() {
+		return praiseTime;
+	}
+
+	public void setPraiseTime(int praiseTime) {
+		this.praiseTime = praiseTime;
+	}
+	
+	public boolean inDragon = false;
+
+	public boolean attackable = true;
+
+	public void incrementPraiseTime(int praiseTime) {
+		this.praiseTime += praiseTime;
+	}
+
+	public void decrementPraiseTime(int praiseTime) {
+		this.praiseTime -= praiseTime;
+	}
 
     @Override
     public int getBaseAttack(CombatType type) {
@@ -1666,12 +1708,21 @@ public class Player extends Character {
             getPacketSender().sendMessage("You must wait a few seconds after being out of combat before doing this.");
             return false;
         }
+        
+        if(getInstanceManager().inInstance == true) {
+			getPacketSender().sendMessage("You cannot log out at the moment.");
+			return false;
+		}
+        
         if (getConstitution() <= 0 || isDying || settingUpCannon || crossingObstacle) {
             getPacketSender().sendMessage("You cannot log out at the moment.");
             return false;
         }
         return true;
+        
     }
+        
+        
 
     public void restart() {
         setFreezeDelay(0);
@@ -3148,6 +3199,7 @@ public class Player extends Character {
     public void setSelectedGeItem(int selectedGeItem) {
         this.selectedGeItem = selectedGeItem;
     }
+    
 
     public int getGeQuantity() {
         return geQuantity;
@@ -3992,6 +4044,14 @@ public class Player extends Character {
 	public void setGim(boolean state) {
 		gim = state;
 	}
+	
+	private InstanceManager instanceManager = new InstanceManager();
+	
+	public InstanceManager getInstanceManager() {
+		return instanceManager;
+		
+	}
+
 	
 	
 	 public String getBronzeBattlepassClaimed() {

@@ -101,6 +101,10 @@ public class PlayerDeathTask extends Task {
 						}
 					}
 					
+					if(player.getInstanceManager().inInstance) {
+	                	player.getInstanceManager().endInstance(player, true);
+	                }
+					
 					boolean spawnItems = loc != Location.NOMAD && !(loc == Location.GODWARS_DUNGEON && player.getMinigameAttributes().getGodwarsDungeonAttributes().hasEnteredRoom());
 					if(killer != null && loc == Location.WILDERNESS && (killer.getGameMode() == GameMode.IRONMAN || killer.getGameMode() == GameMode.HARDCORE_IRONMAN)) {
 						spawnItems = false;

@@ -1,14 +1,19 @@
 package com.ruseps.world.content.transportation;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.ruseps.engine.task.Task;
 import com.ruseps.engine.task.TaskManager;
 import com.ruseps.model.Animation;
 import com.ruseps.model.Graphic;
 import com.ruseps.model.Position;
 import com.ruseps.model.Locations.Location;
+import com.ruseps.world.World;
 import com.ruseps.world.content.Sounds;
 import com.ruseps.world.content.Sounds.Sound;
 import com.ruseps.world.content.skill.impl.dungeoneering.Dungeoneering;
+import com.ruseps.world.entity.impl.npc.NPC;
 import com.ruseps.world.entity.impl.player.Player;
 
 
@@ -19,6 +24,56 @@ public class TeleportHandler {
 			if(!checkReqs(player, targetLocation)) {
 				return;
 			}
+		}
+		if(player.getInstanceManager().inInstance) {
+			List<NPC> npz = World.getNpcs().stream().filter(t -> t != null && t.getPosition().getZ() == player.getPosition().getZ()).collect(Collectors.toList());
+			for(NPC n : npz) {
+				if(n.getConstitution() <= 0) {
+					player.sendMessage("Please wait 5 seconds before leaving");
+					return;
+				}
+			}
+			
+			if(player.getInstanceManager().npcToSpawn1.getConstitution() <= 0) {
+				player.sendMessage("Please wait 5 seconds before leaving");
+				return;
+			}
+			
+			if(player.getInstanceManager().npcToSpawn2.getConstitution() <= 0) {
+				player.sendMessage("Please wait 5 seconds before leaving");
+				return;
+			}
+			
+			if(player.getInstanceManager().npcToSpawn3.getConstitution() <= 0) {
+				player.sendMessage("Please wait 5 seconds before leaving");
+				return;
+			}
+			
+			if(player.getInstanceManager().npcToSpawn4.getConstitution() <= 0) {
+				player.sendMessage("Please wait 5 seconds before leaving");
+				return;
+			}
+			
+			if(player.getInstanceManager().npcToSpawn5.getConstitution() <= 0) {
+				player.sendMessage("Please wait 5 seconds before leaving");
+				return;
+			}
+			
+			if(player.getInstanceManager().npcToSpawn6.getConstitution() <= 0) {
+				player.sendMessage("Please wait 5 seconds before leaving");
+				return;
+			}
+			if(player.getInstanceManager().npcToSpawn7.getConstitution() <= 0) {
+				player.sendMessage("Please wait 5 seconds before leaving");
+				return;
+			}
+			
+			if(player.getInstanceManager().npcToSpawn8.getConstitution() <= 0) {
+				player.sendMessage("Please wait 5 seconds before leaving");
+				return;
+			}
+			
+			player.getInstanceManager().endInstance(player, false);
 		}
 		if(player.getLocation() == Location.CONSTRUCTION) {
 			player.getPacketSender().sendMessage("Please use the portal to exit your house");

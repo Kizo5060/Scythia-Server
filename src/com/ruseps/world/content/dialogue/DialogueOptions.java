@@ -40,6 +40,8 @@ import com.ruseps.world.content.clan.ClanChatManager;
 import com.ruseps.world.content.combat.strategy.zulrah.Zulrah;
 import com.ruseps.world.content.dialogue.impl.AgilityTicketExchange;
 import com.ruseps.world.content.dialogue.impl.Mandrith;
+import com.ruseps.world.content.instance_manager.InstanceTime;
+import com.ruseps.world.content.instance_manager.PaymentType;
 import com.ruseps.world.content.instances.Cerberus;
 import com.ruseps.world.content.instances.KingBlackDragon;
 import com.ruseps.world.content.minigames.impl.Graveyard;
@@ -127,6 +129,7 @@ public class DialogueOptions {
 				player.setDialogueActionId(78);
 				DialogueManager.start(player, 124);
 				break;
+			
 			case 14:
 				TeleportHandler.teleportPlayer(player, new Position(3097 + Misc.getRandom(1), 9869 + Misc.getRandom(1)), player.getSpellbook().getTeleportType());
 				break;
@@ -820,6 +823,18 @@ public class DialogueOptions {
 		} else if(id == FIRST_OPTION_OF_TWO) {
 			
 			switch(player.getDialogueActionId()) {
+			
+			case 5000:
+				player.getInstanceManager().teleportToInstance(player, PaymentType.INSTANCE_TOKEN);
+				player.getPacketSender().closeDialogueOnly(player);
+				break;
+				
+			case 5001:
+				player.getInstanceManager().setTime(InstanceTime.TIME_30MIN);
+				player.getPacketSender().sendMessage("You seleceted 30 minutes of instance");
+				player.getPacketSender().closeDialogueOnly(player);
+				break;
+			
 				case 522:
 					if (player.getLocation() == Location.DZONE_SOUTH) {
 						if (player.crossBridge != true) {
@@ -1156,6 +1171,18 @@ public class DialogueOptions {
 			}
 		} else if(id == SECOND_OPTION_OF_TWO) {
 			switch(player.getDialogueActionId()) {
+			
+			case 5000:
+				player.getInstanceManager().teleportToInstance(player, PaymentType.AOE_VOUCHERS);
+				player.getPacketSender().closeDialogueOnly(player);
+				break;
+				
+			case 5001:
+				player.getInstanceManager().setTime(InstanceTime.TIME_1H);
+				player.getPacketSender().sendMessage("You seleceted 1 hour of instance");
+				player.getPacketSender().closeDialogueOnly(player);
+				break;
+			
 			case 522:
 				player.getPA().sendInterfaceRemoval();
 				break;

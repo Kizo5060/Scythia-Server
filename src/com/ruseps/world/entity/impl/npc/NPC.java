@@ -192,6 +192,16 @@ public class NPC extends Character {
         }
 
     }
+    
+    private boolean respawnNpc = true;
+
+	public boolean shouldRespawnNpc() {
+		return respawnNpc;
+	}
+
+	public void setShouldRespawn(boolean shouldRespawn) {
+		this.respawnNpc = shouldRespawn;
+	}
 
 	/**
 	 * Prepares the dynamic json loader for loading world npcs.

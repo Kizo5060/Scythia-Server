@@ -444,6 +444,36 @@ public class NPCDeathTask extends Task {
 						killer.getAchievementTracker().progress(com.ruseps.world.content.achievements.AchievementData.KILL_A_MONSTER_USING_RANGED, 1);
 						break;
 					}
+					
+					if(killer.getInstanceManager().inInstance && killer.getPosition().getZ() == npc.getPosition().getZ()) {
+						npc.setShouldRespawn(false);
+						if(npc == killer.getInstanceManager().npcToSpawn1) {
+							killer.getInstanceManager().npcToSpawn1 = null;
+							
+						} else if(npc == killer.getInstanceManager().npcToSpawn2) {
+							killer.getInstanceManager().npcToSpawn2 = null;
+								
+						} else if(npc == killer.getInstanceManager().npcToSpawn3) {
+							killer.getInstanceManager().npcToSpawn3 = null;
+							
+						} else if(npc == killer.getInstanceManager().npcToSpawn4) {
+							killer.getInstanceManager().npcToSpawn4 = null;
+							
+						} else if(npc == killer.getInstanceManager().npcToSpawn5) {
+							killer.getInstanceManager().npcToSpawn5 = null;
+							
+						} else if(npc == killer.getInstanceManager().npcToSpawn6) {
+							killer.getInstanceManager().npcToSpawn6 = null;
+							
+						} else if(npc == killer.getInstanceManager().npcToSpawn7) {
+							killer.getInstanceManager().npcToSpawn7 = null;
+							
+						} else if(npc == killer.getInstanceManager().npcToSpawn8) {
+							killer.getInstanceManager().npcToSpawn8 = null;
+						}
+						killer.getInstanceManager().respawnNpc(killer, npc);
+					}
+					
 
 					/** LOCATION KILLS **/
 					if(npc.getLocation().handleKilledNPC(killer, npc)) {

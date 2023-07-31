@@ -81,6 +81,7 @@ import com.ruseps.world.content.goodie_bag.GoodieBagManager;
 import com.ruseps.world.content.grandexchange.GrandExchange;
 import com.ruseps.world.content.groupironman.impl.InvitePlayerInputListener;
 import com.ruseps.world.content.groupironman.impl.KickPlayerInputListener;
+import com.ruseps.world.content.instance_manager.InstanceButtons;
 import com.ruseps.world.content.loot_display.RewardsHandler;
 import com.ruseps.world.content.minigames.impl.Dueling;
 import com.ruseps.world.content.minigames.impl.Nomad;
@@ -147,6 +148,10 @@ public class ButtonClickPacketListener implements PacketListener {
         }
         
         if (player.getAchievementInterface() != null && player.getAchievementInterface().handleButton(id)) {
+			return;
+		}
+        
+        if(InstanceButtons.isInstanceButton(player, id)) {
 			return;
 		}
 
@@ -617,6 +622,10 @@ public class ButtonClickPacketListener implements PacketListener {
             case 25253:
                 DropLog.open(player);
                 break;
+            case 2461:
+    			player.getPacketSender().sendInterfaceRemoval();
+    			player.sendMessage("Clicked it ->");
+    			break;
             case 32602:
                 player.setInputHandling(new PosInput());
                 player.getPacketSender()
@@ -1741,9 +1750,6 @@ public class ButtonClickPacketListener implements PacketListener {
 
         switch (id) {
             case 2461:
-                DialogueOptions.handle(player, id);
-                player.getPacketSender().sendMessage("TESTING");
-                break;
             case 2494:
             case 2495:
             case 2496:

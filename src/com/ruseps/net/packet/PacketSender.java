@@ -53,6 +53,11 @@ public class PacketSender {
         player.getSession().queueMessage(builder);
         return this;
     }
+    
+    public void closeDialogueOnly(Player player) {
+        player.getPA().sendMessage(":packet:closedialogue");
+    }
+
 
 	public void updateInterfaceVisibility(int interfaceId, boolean visible) { // this wasn't implemented client sided either
          PacketBuilder out = new PacketBuilder(232);

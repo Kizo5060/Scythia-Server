@@ -287,6 +287,9 @@ public class CommandPacketListener implements PacketListener {
             RewardsHandler.open(player);
             return;
         }
+        if (command[0].equalsIgnoreCase("instance")) {
+			player. getInstanceManager().openInterface(player);
+		}
         if (command[0].equalsIgnoreCase("Kckills")) {
             player.getPacketSender().sendInterface(55250);
             return;
