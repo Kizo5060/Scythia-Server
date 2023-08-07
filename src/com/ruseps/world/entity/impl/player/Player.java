@@ -1571,6 +1571,10 @@ public class Player extends Character {
         if (weaponId124 == 3497) {
             speed = -7;
         }
+        int weaponId126= equipment.get(Equipment.WEAPON_SLOT).getId();
+        if (weaponId126 == 20523) {
+            speed = 3;
+        }
 
 
 

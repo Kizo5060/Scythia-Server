@@ -14,7 +14,7 @@ public class StartScreen
                 new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
                         new Item(3024, 10), new Item(15272, 300), new Item(995, 2000000), new Item(10477, 1),
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
-                        (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
+                        (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1)), (new Item(5349, 1))},
                 "Play in Normal Mode.", "", "", "", "", "", ""),
         IRONMAN("  Ironman", 52762, -12779, 1, 1,
                 new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
@@ -28,7 +28,7 @@ public class StartScreen
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
                         (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
                 "Play Scythia as a Ultimate Ironman.", "", "", "", "", "", ""),
-        GROUP_IRONMAN("  Group Ironman", 52774, -12763, 1, 3,
+        /**GROUP_IRONMAN("  Group Ironman", 52774, -12763, 1, 3,
                 new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
                         new Item(3024, 10), new Item(15272, 600), new Item(995, 2000000), new Item(10477, 1),
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
@@ -39,7 +39,7 @@ public class StartScreen
                         new Item(3024, 10), new Item(15272, 600), new Item(995, 2000000), new Item(10477, 1),
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
                         (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Scythia as a Veteran.", "", "", "", "", "", ""),
+                "Play Scythia as a Veteran.", "", "", "", "", "", ""),*/
         ;
 
         private String name;
@@ -146,11 +146,6 @@ public class StartScreen
             GameMode.set(player, GameMode.IRONMAN, false);
         } else if (player.selectedGameMode == GameModes.ULTIMATE_IRON) {
             GameMode.set(player, GameMode.HARDCORE_IRONMAN, false);
-        } else if (player.selectedGameMode == GameModes.GROUP_IRONMAN) {
-            GameMode.set(player, GameMode.GROUP_IRONMAN, false);
-            player.setGim(true);
-        } else if (player.selectedGameMode == GameModes.VETERAN) {
-            GameMode.set(player, GameMode.VETERAN, false);
         } else {
             GameMode.set(player, GameMode.NORMAL, false);
         }

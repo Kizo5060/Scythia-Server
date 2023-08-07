@@ -193,6 +193,9 @@ public class ObjectActionPacketListener implements PacketListener {
                     }
                     PokemonRaids.startRaid(player);
                     break;
+				case 65513:
+					World.sendMessage("SCYTHIAAAAAAAAAA");
+					break;
 				case 3000:
 				    if (player.getMinigameAttributes().getRaidsAttributes().getParty() == null) {
                         player.sendMessage("You need to be in a party to do Plat Raids");

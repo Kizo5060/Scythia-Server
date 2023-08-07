@@ -260,6 +260,11 @@
     "interface": "SHORTBOW"
   },
   {
+    "hash": 20523,
+    "item-id": 20523,
+    "interface": "SHORTBOW"
+  },
+  {
     "hash": 3190,
     "item-id": 3190,
     "interface": "HALBERD"
@@ -1148,6 +1153,11 @@
     "hash": 1419,
     "item-id": 1419,
     "interface": "SCYTHE"
+  },
+  {
+    "hash": 10484,
+    "item-id": 10484,
+    "interface": "HALBERD"
   },
   {
     "hash": 1420,

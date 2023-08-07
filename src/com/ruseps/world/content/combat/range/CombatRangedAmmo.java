@@ -29,7 +29,8 @@ public class CombatRangedAmmo {
 		TOXIC_BLOWPIPE(new int[] {12926}, new AmmunitionData[] {AmmunitionData.BLOWPIPE}, RangedWeaponType.BLOWPIPE),
 		ULTIMATE_WINGED_BOW(new int[] {19085}, new AmmunitionData[] { }, RangedWeaponType.RED_BOW),
 		DARK_BOW(new int[] {11235, 13405, 15701, 15702, 15703, 15704}, new AmmunitionData[] {AmmunitionData.BRONZE_ARROW, AmmunitionData.IRON_ARROW, AmmunitionData.STEEL_ARROW, AmmunitionData.MITHRIL_ARROW, AmmunitionData.ADAMANT_ARROW, AmmunitionData.RUNE_ARROW, AmmunitionData.DRAGON_ARROW}, RangedWeaponType.DARK_BOW),
-		CRAZY_BOW(new int[]{1013,21034,21062,2787,2796,2680,2681,2682,2683,2684,2685,2686,2687,2688,2689,2690,2744}, new AmmunitionData[] {AmmunitionData.CRAZY_BOW_AMMO}, RangedWeaponType.CRAZY_BOW),
+		CRAZY_BOW(new int[]{1013,21034,21062,2787,2796,2680,2681,2682,2683,2684,2685,2686,2687,2688,2689,2690,2744,20523}, new AmmunitionData[] {AmmunitionData.CRAZY_BOW_AMMO}, RangedWeaponType.CRAZY_BOW),
+		
 		
 		BRONZE_CROSSBOW(new int[] {9174}, new AmmunitionData[] {AmmunitionData.BRONZE_BOLT}, RangedWeaponType.CROSSBOW),
 		IRON_CROSSBOW(new int[] {9177}, new AmmunitionData[] {AmmunitionData.BRONZE_BOLT, AmmunitionData.OPAL_BOLT, AmmunitionData.IRON_BOLT}, RangedWeaponType.CROSSBOW),
@@ -41,7 +42,7 @@ public class CombatRangedAmmo {
 		LAZE_TEST(new int[] {19920}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		MP5TACT(new int[] {8871}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		BFG(new int[] {10504}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
-		YEL_BLASTER(new int[] {20523}, new AmmunitionData[] {AmmunitionData.CRAZY_BOW_AMMO}, RangedWeaponType.CRAZY_BOW),
+		YEL_BLASTER(new int[] {}, new AmmunitionData[] {AmmunitionData.CRAZY_BOW_AMMO}, RangedWeaponType.CRAZY_BOW),
 		MAG_BLASTER(new int[] {20519}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		ORANGE_BLASTER(new int[] {20521}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		LAVA_AK(new int[] {19921}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
@@ -159,6 +160,7 @@ public class CombatRangedAmmo {
 		
 		CRAZY_BOW_AMMO(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
 		WOLFS_BOW_AMMO(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
+		STARTER_BOW_AMMO(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
 
 
 		BRONZE_BOLT(new int[] {877}, -1, 27, 3, 44, 13, 43, 31),
@@ -184,7 +186,7 @@ public class CombatRangedAmmo {
 		LAZE_TEST(new int[] {19920}, 1123, 226, 3, 33, 25, 45, 37),
 		MP5TACT(new int[] {8871}, 1123, 226, 3, 33, 25, 45, 37),
 		BFG(new int[] {10504}, 1123, 226, 3, 33, 25, 45, 37),
-		YEL_BLASTER(new int[] {20523}, 1123, 226, 3, 33, 25, 45, 37),
+		YEL_BLASTER(new int[] {}, 1123, 226, 3, 33, 25, 45, 37),
 		MAG_BLASTER(new int[] {20519}, 1123, 226, 3, 33, 25, 45, 37),
 		ORANGE_BLASTER(new int[] {20521}, 1123, 226, 3, 33, 25, 45, 37),
 		BLUE_BLASTER(new int[] {20522}, 1123, 226, 3, 33, 25, 45, 37),
@@ -292,6 +294,7 @@ public class CombatRangedAmmo {
 	public enum RangedWeaponType {
 
 		LONGBOW(6, 5),
+		STARTER_BOW(8, 1),
 		SHORTBOW(5, 4),
 		CROSSBOW(5, 5),
 		THROW(4, 3),

@@ -208,6 +208,13 @@ public final class CombatFactory {
         return item.getDefinition().getName().toLowerCase().contains(
                 "crazy bow");
     }
+    public static boolean starterbow(Player player) {
+        Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
+        if (item == null)
+            return false;
+        return item.getDefinition().getName().toLowerCase().contains(
+                "scythia bow");
+    }
     public static boolean linearBow(Player player) {
         Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
         if (item == null)
