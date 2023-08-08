@@ -60,7 +60,7 @@ public enum TeleportEnum
     PokemonRaid(5154,5,"Pokemon Raids",new Position(2297, 3331),"@red@Poke @whi@Raid"),
     AnimeRaid(1500,5,"Anime Raids",new Position(3034, 2839),"@red@Anime @whi@Raid"),
     MortalKombatRaid(1492,5,"Mortal kombat Raids",new Position(2846, 3102),"@red@Mortal @yel@Kombat @whi@Raids"),
-    Wr3ckedYou(1416,2,"Wr3cked You's Boss",new Position(3355,3034),"@or1@Wr3ckedYou Boss"),
+    Wr3ckedYou(1416,2,"The Witch Boss",new Position(3355,3034),"@or1@The Witch Boss"),
     EVENTS(1041,2,"Spawned Events",new Position(3555,3106),"@or1@Spawned Events"),
     WILDERNESS(2253, 6,"Wilderness Level 1", new Position(3093,3528),"@or1@Wilderness Level 1"),
     TZHAAR(2253, 6,"Tzhaar Dungeon", new Position(2445,5178),"@or1@Tzhaar Dungeon"),

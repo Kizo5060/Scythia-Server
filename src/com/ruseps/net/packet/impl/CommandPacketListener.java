@@ -1022,11 +1022,11 @@ public class CommandPacketListener implements PacketListener {
             player.getPacketSender().sendString(1, "http://www.youtube.com/watch?v=GuWjqht1DrM ");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Ghost Rsps");
         }
-        if (wholeCommand.equalsIgnoreCase("wr3cked") || wholeCommand.equalsIgnoreCase("wr3ckedyou")) {
-            player.getPacketSender().sendString(1, "http://www.youtube.com/c/wr3ckedyou/featured");
-            player.getPacketSender()
-                    .sendMessage("<img=10>@blu@Attempting to open: Wr3ckedYou's Stream");
-        }
+      //  if (wholeCommand.equalsIgnoreCase("wr3cked") || wholeCommand.equalsIgnoreCase("wr3ckedyou")) {
+        //    player.getPacketSender().sendString(1, "http://www.youtube.com/c/wr3ckedyou/featured");
+          //  player.getPacketSender()
+            //        .sendMessage("<img=10>@blu@Attempting to open: Wr3ckedYou's Stream");
+        //}
 
         if (wholeCommand.equalsIgnoreCase("guide") || wholeCommand.equalsIgnoreCase("Guide")) {
             player.getPacketSender()
@@ -1042,6 +1042,11 @@ public class CommandPacketListener implements PacketListener {
         if (wholeCommand.equalsIgnoreCase("website") || wholeCommand.equalsIgnoreCase("site")) {
             player.getPacketSender().sendString(1, "http://Scythia-rsps.com");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Website");
+        }
+
+        if (command[0].equalsIgnoreCase("witch")) {
+            player.performGraphic(new Graphic(1207));
+            player.moveTo(new Position(3355, 3034), true);
         }
 
         if (wholeCommand.equalsIgnoreCase("hiscores") || wholeCommand.equalsIgnoreCase("Hiscores")) {

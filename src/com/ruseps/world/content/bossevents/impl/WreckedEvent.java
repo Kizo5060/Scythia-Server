@@ -64,7 +64,7 @@ public class WreckedEvent extends GameEvent {
         Wrecked = NPC.of(WreckedLoot.NPC_ID, spawnPos);
         World.register(Wrecked);
         lastHitpointsBroadcasted = Wrecked.getDefaultConstitution();
-        sendMessage("<col=FFFFCC><shad=1>Wrecked's Girl Boss Event has begun! Use command ::Wr3cked to Teleport to the Event.");
+            sendMessage("<col=FFFFCC><shad=1>The Witch Queen Boss Event has begun! Use command ::witch to Teleport to the Event.");
         return true;
     }
 

@@ -60,7 +60,7 @@ public class Wrecked implements CombatStrategy {
 			boolean barrage = Misc.getRandom(4) <= 2;
 			Wrecked.performAnimation(new Animation(barrage ? 9012 : 9012));
 			Wrecked.performGraphic(new Graphic (1625));
-			Wrecked.forceChat("I only Serve Wr3cked He's Daddy!!");
+			Wrecked.forceChat("I only Serve The Witch Queen shes a Beast!");
 			Wrecked.getCombatBuilder().setContainer(new CombatContainer(Wrecked, victim, 1, 3, CombatType.MAGIC, true));
 			TaskManager.submit(new Task(1, Wrecked, false) {
 				int tick = 0;
@@ -76,12 +76,12 @@ public class Wrecked implements CombatStrategy {
 						}
 						if(barrage && Misc.getRandom(6) <= 3) {
 							Wrecked.performAnimation(new Animation(11589));
-							Wrecked.forceChat("Wr3cked Save Me!!!");
+							Wrecked.forceChat("Witch Save Me!!!");
 							for(Player toAttack : Misc.getCombinedPlayerList((Player)victim)) {
 								if(toAttack != null && Locations.goodDistance(Wrecked.getPosition(), toAttack.getPosition(), 7) && toAttack.getConstitution() > 0) {
 									new CombatHitTask(Wrecked.getCombatBuilder(), new CombatContainer(Wrecked, toAttack, 2, CombatType.MAGIC, false)).handleAttack();
 									toAttack.performGraphic(new Graphic(1390));
-									Wrecked.forceChat("Have you seen Wr3cked I can't Seem To Find Him!!");
+									Wrecked.forceChat("Have you seen The Witch I can't Seem To Find Her!!");
 								}
 							}
 						}

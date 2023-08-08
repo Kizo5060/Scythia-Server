@@ -92,7 +92,7 @@ public enum AchievementData {
 	DEAL_HARD_DAMAGE_USING_MAGIC(43, AchievementType.HARD, 2000000, "Deal 2M Magic Damage",
             new Item[] {new Item(5585, 10),new Item(915, 5)},
             new BossPointReward(250)),
-	DEFEAT_WR3CKED_YOUS_BOSS(44, AchievementType.HARD, 1, "Defeat Wr3ckeds Girl",
+	DEFEAT_WR3CKED_YOUS_BOSS(44, AchievementType.HARD, 1, "Defeat Witches Girl",
             new Item[] {new Item(5585, 10),new Item(915, 5)},
             new BossPointReward(250)),
 	DEFEAT_LAVA_DEMON_BOSS(45, AchievementType.HARD, 1, "Defeat Lava Demon Global Boss",
