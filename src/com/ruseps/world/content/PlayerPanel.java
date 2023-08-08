@@ -228,7 +228,7 @@ public class PlayerPanel {
 				"@or2@<img=585>Obelisk Kills: @gre@" + player.getNpcKillCount(1510),
 				"@or2@<img=586>Blood Queen Kills: @gre@" + player.getNpcKillCount(1508),
 				"@or2@<img=585>Four Arms Kills: @gre@" + player.getNpcKillCount(1509),
-				"@or2@<img=586>Witch You Kills: @gre@" + player.getNpcKillCount(1416),
+				"@or2@<img=586>The Witch Kills: @gre@" + player.getNpcKillCount(1416),
 				"",
 				//"@or2@Overall NPC Kills: @or1@" + player.getNpcKills(),
 
