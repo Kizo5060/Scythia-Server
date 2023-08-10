@@ -8,7 +8,7 @@ import com.ruseps.GameSettings;
 import com.ruseps.model.container.impl.Equipment;
 
 
-public class AuroraBox 
+public class ScythiaBox 
 {
 	private final Player plr;
 	private final int BOX = 21055;
@@ -24,7 +24,7 @@ public class AuroraBox
 	public int getMysteryPrize() { return mysteryPrize; }
 	public int getMysteryPrizeTier() { return mysteryPrizeTier; }
 
-	public AuroraBox(Player plr) {
+	public ScythiaBox(Player plr) {
 		this.plr = plr;
 	}
 

@@ -80,6 +80,7 @@ public class DropUtils {
 		{ 18963, 75 },//ruby
 		{ 18958, 10 },// bronze
 		{ 2821, 325 },
+		{ 705, 10 }, //Beta Tester Aura
 
 	};
 

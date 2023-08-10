@@ -95801,7 +95801,7 @@
   "maxHit" : 100,
   "hitpoints" : 90000000,
   "attackSpeed" : 2,
-  "attackAnim" : 422,
+  "attackAnim" : 8266,
   "defenceAnim" : 404,
   "deathAnim" : 2304,
   "attackBonus" : 11126,

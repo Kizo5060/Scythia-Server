@@ -268,6 +268,11 @@ public class CommandPacketListener implements PacketListener {
             player.getGroupIronmanGroup().openBank(player);
         }
         
+        if (command[0].equalsIgnoreCase("raidparty")) {
+        	player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 58000)
+            .sendTab(GameSettings.ACHIEVEMENT_TAB);
+        }
+        
         if (command[0].equalsIgnoreCase("test1234")) {
         	AchievementInterface.open(player);
         }

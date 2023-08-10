@@ -98,7 +98,7 @@ import com.ruseps.world.content.groupironman.GroupIronman;
 import com.ruseps.world.content.groupironman.GroupIronmanGroup;
 import com.ruseps.world.content.interface_timers.OverloadTimer;
 import com.ruseps.world.content.interface_timers.x2DamageTimer;
-import com.ruseps.world.content.mboxes.AuroraBox;
+import com.ruseps.world.content.mboxes.ScythiaBox;
 import com.ruseps.world.content.mboxes.MysteryBox;
 import com.ruseps.world.content.mboxes.OwnerBox;
 import com.ruseps.world.content.minigames.Minigame;
@@ -361,10 +361,10 @@ public class Player extends Character {
         return ownerBox;
     }
 
-    private AuroraBox auroraBox = new AuroraBox(this);
+    private ScythiaBox scythiaBox = new ScythiaBox(this);
 
-    public AuroraBox getAuroraBox() {
-        return auroraBox;
+    public ScythiaBox getAuroraBox() {
+        return scythiaBox;
     }
 
     private PetBox petBox = new PetBox(this);
