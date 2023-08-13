@@ -116,7 +116,7 @@ public class CommandPacketListener implements PacketListener {
         try {
             switch (player.getRights()) {
                 case PLAYER:
-                	playerCommands(player, parts, command);
+                    playerCommands(player, parts, command);
                     break;
                 case MODERATOR:
                     playerCommands(player, parts, command);
@@ -260,17 +260,13 @@ public class CommandPacketListener implements PacketListener {
         	player.getSlayer().handleSlayerCommand();
         }
 
+
         if (command[0].equalsIgnoreCase("gimbank")) {
             if (player.getGroupIronmanGroup() == null) { // this check is enough because a non-group ironman can't have a group anyway
                 player.sendMessage("You are not in a ironman group");
                 return;
             }
             player.getGroupIronmanGroup().openBank(player);
-        }
-        
-        if (command[0].equalsIgnoreCase("raidparty")) {
-        	player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 58000)
-            .sendTab(GameSettings.ACHIEVEMENT_TAB);
         }
         
         if (command[0].equalsIgnoreCase("test1234")) {
@@ -292,9 +288,6 @@ public class CommandPacketListener implements PacketListener {
             RewardsHandler.open(player);
             return;
         }
-        if (command[0].equalsIgnoreCase("instance")) {
-			player. getInstanceManager().openInterface(player);
-		}
         if (command[0].equalsIgnoreCase("Kckills")) {
             player.getPacketSender().sendInterface(55250);
             return;
@@ -344,7 +337,7 @@ public class CommandPacketListener implements PacketListener {
         }
 		
         if (command[0].equalsIgnoreCase("events")) {
-            String title = "@whi@Scythia World Boss Events (" + GameEventManager.getEvents()
+            String title = "@whi@scythia World Boss Events (" + GameEventManager.getEvents()
                     .size() + ")";
             List<String> events = new ArrayList<>();
             int index = 0;
@@ -370,12 +363,6 @@ public class CommandPacketListener implements PacketListener {
             player.performGraphic(new Graphic(1176));
             player.moveTo(new Position(2317, 3891), true);
         }
-        
-        if (command[0].equalsIgnoreCase("afk")) {
-                TeleportHandler.teleportPlayer(player, new Position(2016, 4635), player.getSpellbook()
-                        .getTeleportType());
-            }
-        
 
         if (command[0].equalsIgnoreCase("raidsdeath")) {
             player.forceChat("I have died a total of "
@@ -393,7 +380,11 @@ public class CommandPacketListener implements PacketListener {
             player.performGraphic(new Graphic(1207));
             player.moveTo(new Position(2936, 2719), true);
         }
-        if (command[0].equalsIgnoreCase("Scythia")) {
+        if (command[0].equalsIgnoreCase("witch")) {
+            player.performGraphic(new Graphic(1552));
+            player.moveTo(new Position(3357, 3034), true);
+        }
+        if (command[0].equalsIgnoreCase("scythia")) {
             player.performGraphic(new Graphic(1207));
             player.moveTo(new Position(2311, 3208), true);
         }
@@ -496,8 +487,8 @@ public class CommandPacketListener implements PacketListener {
                             player.sendMessage("@blu@You now have " + player.getAmountDonated() + " total Donated");
                         }
                         player.getPacketSender()
-                                .sendMessage("<img=10>@blu@Thank you " + player.getUsername() + " for donating on Scythia!");
-                        World.sendMessage(player.getUsername() + "has just donated to support Scythia!");
+                                .sendMessage("<img=10>@blu@Thank you " + player.getUsername() + " for donating on scythia!");
+                        World.sendMessage(player.getUsername() + "has just donated to support scythia!");
                     } catch (Exception e) {
                         player.getPacketSender()
                                 .sendMessage("<img=10>@red@Donating Services are currently offline. Please check back shortly!");
@@ -688,13 +679,13 @@ public class CommandPacketListener implements PacketListener {
                 player.getPacketSender().sendMessage("got here somehow");
                 CombatFactory.skullPlayer(player);
             }
+        }
         
-        if(command[0].equalsIgnoreCase("trivia") && (TriviaBot.active == true)) {
-			player.sendMessage("<img=625>@red@[TRIVIA]<img=625> @red@" + TriviaBot.getCurrentQuestion() + "");
-			} else  if(command[0].equalsIgnoreCase("trivia") && (TriviaBot.active == false)) { 	
-				player.sendMessage("Trivia is not currently active.");
-			} 
-		}
+        if (command[0].equalsIgnoreCase("raidparty")) {
+        	player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 58000)
+            .sendTab(GameSettings.ACHIEVEMENT_TAB);
+        }
+
 
         if(command[0].equalsIgnoreCase("answer")) {
 			String answer = wholeCommand.substring(7);
@@ -810,8 +801,10 @@ public class CommandPacketListener implements PacketListener {
         }
 
         if (command[0].equalsIgnoreCase("home")) {
-            TeleportHandler.teleportPlayer(player, new Position(3033, 2777), player.getSpellbook()
-                    .getTeleportType());
+        	player.performAnimation(new Animation(866));
+            player.performGraphic(new Graphic(2009));
+        	player.moveTo(GameSettings.DEFAULT_POSITION.copy());
+        	
         }
         if (command[0].equalsIgnoreCase("Shops")) {
             player.performAnimation(new Animation(1331));
@@ -1012,26 +1005,26 @@ public class CommandPacketListener implements PacketListener {
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Discord");
         }
         if (wholeCommand.equalsIgnoreCase("website") || wholeCommand.equalsIgnoreCase("Website")) {
-            player.getPacketSender().sendString(1, "http://Scythia-rsps.online");
+            player.getPacketSender().sendString(1, "http://scythia-rsps.online");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Website");
         }
         if (wholeCommand.equalsIgnoreCase("vote") || wholeCommand.equalsIgnoreCase("Vote")) {
-            player.getPacketSender().sendString(1, "http://Scythia.everythingrs.com/services/vote");
+            player.getPacketSender().sendString(1, "http://scythia.everythingrs.com/services/vote");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Vote");
         }
         if (wholeCommand.equalsIgnoreCase("store") || wholeCommand.equalsIgnoreCase("Store")) {
-            player.getPacketSender().sendString(1, "http://Scythia.gamepayments.net/");
+            player.getPacketSender().sendString(1, "http://scythia.gamepayments.net/");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Store");
         }
         if (wholeCommand.equalsIgnoreCase("ghost") || wholeCommand.equalsIgnoreCase("ghostrsps")) {
             player.getPacketSender().sendString(1, "http://www.youtube.com/watch?v=GuWjqht1DrM ");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Ghost Rsps");
         }
-      //  if (wholeCommand.equalsIgnoreCase("wr3cked") || wholeCommand.equalsIgnoreCase("wr3ckedyou")) {
-        //    player.getPacketSender().sendString(1, "http://www.youtube.com/c/wr3ckedyou/featured");
-          //  player.getPacketSender()
-            //        .sendMessage("<img=10>@blu@Attempting to open: Wr3ckedYou's Stream");
-        //}
+        if (wholeCommand.equalsIgnoreCase("wr3cked") || wholeCommand.equalsIgnoreCase("wr3ckedyou")) {
+            player.getPacketSender().sendString(1, "http://www.youtube.com/c/wr3ckedyou/featured");
+            player.getPacketSender()
+                    .sendMessage("<img=10>@blu@Attempting to open: Wr3ckedYou's Stream");
+        }
 
         if (wholeCommand.equalsIgnoreCase("guide") || wholeCommand.equalsIgnoreCase("Guide")) {
             player.getPacketSender()
@@ -1045,18 +1038,13 @@ public class CommandPacketListener implements PacketListener {
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Discord");
         }
         if (wholeCommand.equalsIgnoreCase("website") || wholeCommand.equalsIgnoreCase("site")) {
-            player.getPacketSender().sendString(1, "http://Scythia-rsps.com");
+            player.getPacketSender().sendString(1, "http://scythia-rsps.com");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Website");
-        }
-
-        if (command[0].equalsIgnoreCase("witch")) {
-            player.performGraphic(new Graphic(1207));
-            player.moveTo(new Position(3355, 3034), true);
         }
 
         if (wholeCommand.equalsIgnoreCase("hiscores") || wholeCommand.equalsIgnoreCase("Hiscores")) {
             player.getPacketSender()
-                    .sendString(1, "https://Scythia.everythingrs.com/services/hiscores");
+                    .sendString(1, "https://scythia.everythingrs.com/services/hiscores");
             player.getPacketSender().sendMessage("<img=10>@blu@Attempting to open: Hiscores");
         }
 
@@ -1258,7 +1246,7 @@ public class CommandPacketListener implements PacketListener {
             Player playerToKick = World.getPlayerByName(player2);
             if (playerToKick == null) {
                 player.getPacketSender()
-                        .sendConsoleMessage("Player " + player2 + " couldn't be found on Scythia.");
+                        .sendConsoleMessage("Player " + player2 + " couldn't be found on scythia.");
                 return;
             } else if (playerToKick.getLocation() != Location.WILDERNESS) {
                 World.deregister(playerToKick);
@@ -2481,12 +2469,6 @@ public class CommandPacketListener implements PacketListener {
         		AchievementInterface.open(player);
             }
         	
-        	if (command[0].equalsIgnoreCase("bpassexp")) {
-                //player.getBattlePass().addExperience(900);
-             }
-        	if (command[0].equalsIgnoreCase("bpass")) {
-               //player.getBattlePass().displayPage();
-            }
             if (command[0].equalsIgnoreCase("balloons")) {
                 if (player.getRights() == PlayerRights.DEVELOPER || player.getRights() == PlayerRights.OWNER
                         || player.getRights() == PlayerRights.MODERATOR
