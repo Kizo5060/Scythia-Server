@@ -121,7 +121,7 @@ public class OwnerBox
 		if(mysteryPrizeTier >= 2) {
 			plr.sendMessage("<col=FFA500>" + plr.getUsername() + " you just won a " + "@bla@" + name);
 		}else {
-			World.sendMessage("<img=40><col=63dcd1><shad=1>[Owner Mbox]<img=40><col=63dcd1><shad=1>" + plr.getUsername() + " @red@won a <col=63dcd1>" + name + " @red@from a <col=63dcd1>Owner MBox");		}
+			World.sendMessage("<img=40>@red@[RARE DROP]@bla@" + plr.getUsername() + " @bla@Recieved a " + name + " from@red@<shad=1> Owner Box");		}
 	
 		plr.getPA().sendInterfaceRemoval();
 		
