@@ -188,9 +188,17 @@ public class CommandPacketListener implements PacketListener {
                     memberCommands(player, parts, command);
                     sCommands(player, parts, command);
                     break;
-
                 case RUBY_MEMBER:
                 case DIAMOND_MEMBER:
+                    platCommands(player, parts, command);
+                    playerCommands(player, parts, command);
+                    memberCommands(player, parts, command);
+                    goldCommands(player, parts, command);
+                    bronzeCommands(player, parts, command);
+                    sCommands(player, parts, command);
+                    DCommands(player, parts, command);
+                    break;
+                case DRAGONSTONE_MEMBER:
                     platCommands(player, parts, command);
                     playerCommands(player, parts, command);
                     memberCommands(player, parts, command);
@@ -816,8 +824,8 @@ public class CommandPacketListener implements PacketListener {
             TeleportHandler.teleportPlayer(player, new Position(3261, 2871), player.getSpellbook()
                     .getTeleportType());
         }
-        if (command[0].equalsIgnoreCase("mydr")) {
-            player.getPA().sendMessage("You'r Drop Rate Is" + DropUtils.drBonus(player));
+        if (command[0].equalsIgnoreCase("dr")) {
+            player.getPA().sendMessage("Your Drop Rate Is Now! @red@" + DropUtils.drBonus(player));
 
         }
 

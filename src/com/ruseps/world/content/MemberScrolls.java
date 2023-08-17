@@ -37,7 +37,7 @@ public class MemberScrolls {
 			rights = PlayerRights.DIAMOND_MEMBER;
 		if(player.getAmountDonated() >= 1000)
 			rights = PlayerRights.RUBY_MEMBER;
-		if(player.getAmountDonated() >= 2000)
+		if(player.getAmountDonated() >= 1500)
 			rights = PlayerRights.DRAGONSTONE_MEMBER;
 		if(rights != null && rights != player.getRights()) {
 			player.getPacketSender().sendMessage("You've become a "+Misc.formatText(rights.toString().toLowerCase())+"! Congratulations!");
