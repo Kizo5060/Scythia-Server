@@ -100,7 +100,7 @@ public class GoodieBagManager {
 
         if(rare || superRare) {
             String text = player.getUsername() + " received a " + item.getDefinition().getName() + " "
-                    + (item.getAmount() > 1 ? ("x" + item.getAmount() + " ") : "") + "from ::vote!";
+                    + (item.getAmount() > 1 ? ("x" + item.getAmount() + " ") : "") + "from a Goodiebag!";
             sendAnnouncement("<img=464><shad=CA7936>" + text);
         }
 
@@ -108,7 +108,7 @@ public class GoodieBagManager {
 
         if(superRare) {
             sendAnnouncement(alert + " :n:" + player.getUsername()
-                    + " received a " + ItemDefinition.forId(item.getId()).getName() + " from ::vote! ");
+                    + " received a " + ItemDefinition.forId(item.getId()).getName() + " from a Goodiebag! ");
         }
 
         if(!openAll)
