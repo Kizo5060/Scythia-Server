@@ -188,6 +188,7 @@ public class CommandPacketListener implements PacketListener {
                     memberCommands(player, parts, command);
                     sCommands(player, parts, command);
                     break;
+                    
                 case RUBY_MEMBER:
                 case DIAMOND_MEMBER:
                     platCommands(player, parts, command);
@@ -198,7 +199,7 @@ public class CommandPacketListener implements PacketListener {
                     sCommands(player, parts, command);
                     DCommands(player, parts, command);
                     break;
-                case DRAGONSTONE_MEMBER:
+               /* case DRAGONSTONE_MEMBER:
                     platCommands(player, parts, command);
                     playerCommands(player, parts, command);
                     memberCommands(player, parts, command);
@@ -206,7 +207,7 @@ public class CommandPacketListener implements PacketListener {
                     bronzeCommands(player, parts, command);
                     sCommands(player, parts, command);
                     DCommands(player, parts, command);
-                    break;
+                    break;*/
                 case PLATINUM_MEMBER:
                     platCommands(player, parts, command);
                     playerCommands(player, parts, command);
@@ -460,7 +461,7 @@ public class CommandPacketListener implements PacketListener {
             new java.lang.Thread() {
                 public void run() {
                     try {
-                        final GamePaymentsResponse gamepaymentsResponse = Transaction.getResponse("il9A59dbtTD9IDT4aJuVVgYUdLQFJfeYnv89FaO8i1aphG2zEPnWcBW9JXB1DflLzCghgyBK", player.getUsername());
+                        final GamePaymentsResponse gamepaymentsResponse = Transaction.getResponse("2K3FgU5eECQbsqKKCXTSraeDjXwonboWZzVJ5T51Hz8hCQet6kyCz1DJfCAhKka8evd7hbX0", player.getUsername());
                         Transaction[] transaction = gamepaymentsResponse.getTransactions();
                         if (!gamepaymentsResponse.getMessage().equalsIgnoreCase("SUCCESS")) {
                             player.getPacketSender()
