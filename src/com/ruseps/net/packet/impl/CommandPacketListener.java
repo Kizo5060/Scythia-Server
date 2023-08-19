@@ -434,7 +434,7 @@ public class CommandPacketListener implements PacketListener {
                     try {
                         int id = Integer.parseInt(command[1]);
                         String playerName = player.getUsername();
-                        final String request = com.everythingrs.vote.Vote.validate("JV2QnAieyhwTxWxRpnRV0iLibcUnCZq2ORXOtpc56KLxXM0FsTqkmCtN85u86EyCHP6LvqFc", playerName, id);
+                        final String request = com.everythingrs.vote.Vote.validate("RjuE6HA87pULT3po2AC8iVSs05QD24GsAFbTVP2ykVA3iQqoS725L8NLaoOmMQWSmpTrUprj", playerName, id);
                         String[][] errorMessage = {
                                 {"error_invalid", "There was an error processing your request."},
                                 {"error_non_existent_server", "This server is not registered at EverythingRS."},
@@ -480,7 +480,7 @@ public class CommandPacketListener implements PacketListener {
             new java.lang.Thread() {
                 public void run() {
                     try {
-                        final GamePaymentsResponse gamepaymentsResponse = Transaction.getResponse("U4UZuNi5QxduxTWWHvEVj4KD1nUdvcGAWCylzzLDploHkQI8SZjqAHSlElsv2ndU0V1lv0LY", player.getUsername());
+                        final GamePaymentsResponse gamepaymentsResponse = Transaction.getResponse("2K3FgU5eECQbsqKKCXTSraeDjXwonboWZzVJ5T51Hz8hCQet6kyCz1DJfCAhKka8evd7hbX0", player.getUsername());
                         Transaction[] transaction = gamepaymentsResponse.getTransactions();
                         if (!gamepaymentsResponse.getMessage().equalsIgnoreCase("SUCCESS")) {
                             player.getPacketSender()
