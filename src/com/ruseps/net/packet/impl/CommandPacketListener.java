@@ -427,60 +427,40 @@ public class CommandPacketListener implements PacketListener {
             FuserHandler.openInterface(FuserEnum.TEST, player);
         }
 
-        if (command[0].equalsIgnoreCase("reward")) {
+        if (command[0].startsWith("reward")) {
+            if (command.length == 1) {
+                player.getPacketSender().sendMessage("Please use [::reward id], [::reward id amount], or [::reward id all].");
+                return;
+            }
+            final String playerName = player.getUsername();
+            final String id = command[1];
+            final String amount = command.length == 3 ? command[2] : "1";
 
-            new Thread() {
+            com.everythingrs.vote.Vote.service.execute(new Runnable() {
+                @Override
                 public void run() {
                     try {
-                        int id = Integer.parseInt(command[1]);
-                        String playerName = player.getUsername();
-                        final String request = com.everythingrs.vote.Vote.validate("RjuE6HA87pULT3po2AC8iVSs05QD24GsAFbTVP2ykVA3iQqoS725L8NLaoOmMQWSmpTrUprj", playerName, id);
-                        String[][] errorMessage = {
-                                {"error_invalid", "There was an error processing your request."},
-                                {"error_non_existent_server", "This server is not registered at EverythingRS."},
-                                {"error_invalid_reward", "The reward you're trying to claim doesn't exist"},
-                                {"error_non_existant_rewards", "This server does not have any rewards set up yet."},
-                                {"error_non_existant_player", "There is not record of user " + playerName + " make sure to vote first"},
-                                {"not_enough", "You do not have enough vote points to recieve this item"}};
-                        for (String[] message : errorMessage) {
-                            if (request.equalsIgnoreCase(message[0])) {
-                                player.getPacketSender().sendMessage(message[1]);
-                                return;
-                            }
+                        com.everythingrs.vote.Vote[] reward = com.everythingrs.vote.Vote.reward("il9A59dbtTD9IDT4aJuVVgYUdLQFJfeYnv89FaO8i1aphG2zEPnWcBW9JXB1DflLzCghgyBK",
+                            playerName, id, amount);
+                        if (reward[0].message != null) {
+                            player.getPacketSender().sendMessage(reward[0].message);
+                            return;
                         }
-
-                        VOTES++;
-                        
-                        if (VOTES >= 50) {
-                            for (Player target : World.getPlayers()) 
-                            {
-                                if (target == null) 
-                                {
-                                    continue;
-                                }
-                                
-                                //target.getInventory().add(915, 1);
-                            }
-                            
-                            VOTES = 0;
-                        }
-
-                        if (request.startsWith("complete")) {
-                            Voted(player);
-                        }
+                        player.getInventory().add(reward[0].reward_id, reward[0].give_amount);
+                        player.getPacketSender().sendMessage("Thank you for voting! You now have " + reward[0].vote_points + " vote points.");
                     } catch (Exception e) {
-                        player.getPacketSender()
-                                .sendMessage("Our API services are currently offline. We are working on bringing it back up");
+                        player.getPacketSender().sendMessage("Api Services are currently offline. Please check back shortly");
                         e.printStackTrace();
                     }
                 }
-            }.start();
+
+            });
         }
         if (command[0].startsWith("claim")) {
             new java.lang.Thread() {
                 public void run() {
                     try {
-                        final GamePaymentsResponse gamepaymentsResponse = Transaction.getResponse("2K3FgU5eECQbsqKKCXTSraeDjXwonboWZzVJ5T51Hz8hCQet6kyCz1DJfCAhKka8evd7hbX0", player.getUsername());
+                        final GamePaymentsResponse gamepaymentsResponse = Transaction.getResponse("il9A59dbtTD9IDT4aJuVVgYUdLQFJfeYnv89FaO8i1aphG2zEPnWcBW9JXB1DflLzCghgyBK", player.getUsername());
                         Transaction[] transaction = gamepaymentsResponse.getTransactions();
                         if (!gamepaymentsResponse.getMessage().equalsIgnoreCase("SUCCESS")) {
                             player.getPacketSender()
