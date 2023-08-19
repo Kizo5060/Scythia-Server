@@ -12,7 +12,7 @@ public class Raichu
 {
     public static void startRaichuEvent(final Player p) {
         p.getPacketSender().sendInterfaceRemoval();
-        p.moveTo(new Position(2334, 3208, 0));
+        p.moveTo(new Position(2335, 3229, 0));
         TaskManager.submit(new Task(1, p, false) {
             int tick = 0;
             @Override
@@ -20,17 +20,17 @@ public class Raichu
             {
             	if(tick == 50)
             	{
-            		World.sendMessage("@blu@<img=10>The Voting Event will begin in 15 seconds @ ::voteboss!");
+            		World.sendMessage("@blu@<img=10>[Vote Boss]: Pinata will begin in 15 seconds!");
             	}
             	if(tick == 25) 
             	{
-            		World.sendMessage("@blu@<img=10>The Voting Event will begin in 30 seconds @ ::voteboss!");
+            		World.sendMessage("@blu@<img=10>[Vote Boss]: Pinata will begin in 30 seconds!");
             	}
                 if(tick >= 100)
                 {
                     NPC n = new NPC(4340, new Position(p.getPosition().getX(), p.getPosition().getY() - 2, p.getPosition().getZ()));
                     p.getRegionInstance().spawnNPC(new NPC(4340, new Position(2897, 3230, 0)));
-                    World.sendMessage("@blu@<img=10>The Voting Event has begun! Join @ ::voteboss!");
+                    World.sendMessage("@blu@<img=10>[Vote Boss]: Pinata has just Respawned");
                     n.getCombatBuilder().attack(p);
                     n.performGraphic(new Graphic(2009));
                     stop();

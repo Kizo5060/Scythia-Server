@@ -1,6 +1,33 @@
 [
 {
   "npcIds": [
+    4340
+  ],
+  "drops": [
+    {
+      "id": 19994,
+      "count": [
+        50
+      ],
+      "chance": 1
+    },
+    {
+      "id": 19,
+      "count": [
+        1
+      ],
+      "chance": 15
+    },
+    {
+      "id": 19670,
+      "count": [
+        2
+      ],
+      "chance": 3
+    },
+    
+{
+  "npcIds": [
     5049
   ],
   "drops": [

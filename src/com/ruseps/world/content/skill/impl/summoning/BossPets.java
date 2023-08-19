@@ -26,6 +26,7 @@ public class BossPets {
 		PET_YODA(4271, 5277, 18985,false,false),
 		PET_THANOS(4263, 5279, 18984,false,false),
 		PET_CHARIZARD(4981, 5276, 18987,false,false),
+		VOTE_BOSS(4340, 10002, 19, false, false),
 		PET_SQUIRTLE(5274, 5278, 18989,false,false),
 		PET_PIKACHU(89, 5281, 18986,false,false),
 		PET_GENERAL_GRAARDOR(6260, 3031, 11997),

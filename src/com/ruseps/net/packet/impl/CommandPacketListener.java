@@ -319,7 +319,7 @@ public class CommandPacketListener implements PacketListener {
             player.getPacketSender().sendWalkableInterface(42001, true);
         }
         if (command[0].equalsIgnoreCase("voteboss")) {
-            player.moveTo(new Position(2334, 3208, 0));
+            player.moveTo(new Position(2335, 3229, 0));
         }
 
         if (command[0].equalsIgnoreCase("players")) {
