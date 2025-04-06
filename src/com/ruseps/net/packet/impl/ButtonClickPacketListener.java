@@ -980,7 +980,7 @@ public class ButtonClickPacketListener implements PacketListener {
 			player.getPacketSender().sendMessage("HighScores Coming Soon");
 			break;
 
-			
+
 		case 26750:
 			RecipeForDisaster.openQuestLog(player);
 			break;
