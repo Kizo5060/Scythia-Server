@@ -867,7 +867,6 @@ public class CommandPacketListener implements PacketListener {
 			player.getPacketSender().sendMessage("::vote - opens vote page");
 			player.getPacketSender().sendMessage("::donate - opens donate page");
 			player.getPacketSender().sendMessage("::auth (code) - claims voting auth");
-			player.getPacketSender().sendMessage("::discord - opens discord");
 			player.getPacketSender().sendMessage("::save - saves your progress");
 			player.getPacketSender().sendMessage("::dr - shows your DR");
 			player.getPacketSender().sendMessage("::claim - claims a donation");

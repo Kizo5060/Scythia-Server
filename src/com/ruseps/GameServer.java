@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import com.ruseps.util.RSAKeyGenerator;
 import com.ruseps.util.ShutdownHook;
 import com.ruseps.world.content.Cows;
-import com.ruseps.world.content.DiscordBot.DiscordBot;
+
 
 public class GameServer {
 

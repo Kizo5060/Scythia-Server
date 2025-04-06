@@ -967,10 +967,7 @@ public class ButtonClickPacketListener implements PacketListener {
 			player.getPacketSender().sendString(1, "https://nexarch.teamgames.io/services/vote");
 			player.getPacketSender().sendMessage("<shad=0>@blu@Attempting to open: NexArch Voting Site");
 			break;
-		case -26332:
-			player.getPacketSender().sendString(1, "https://discord.gg/4kD323uNwZ");
-			player.getPacketSender().sendMessage("Rules Can Be Found On Discord");
-			break;
+
 		case -26331:
 			player.getPacketSender().sendString(1, "https://nexarch.teamgames.io/services/store");
 			player.getPacketSender().sendMessage("<shad=0>@blu@Attempting to open: NexArch Store");
@@ -982,9 +979,8 @@ public class ButtonClickPacketListener implements PacketListener {
 		case -26329:
 			player.getPacketSender().sendMessage("HighScores Coming Soon");
 			break;
-		case -26328:
-			player.getPacketSender().sendMessage("Send Reports Through Discord.");
-			break;
+
+			
 		case 26750:
 			RecipeForDisaster.openQuestLog(player);
 			break;
