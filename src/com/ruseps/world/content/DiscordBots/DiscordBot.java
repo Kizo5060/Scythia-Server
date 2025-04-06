@@ -20,7 +20,7 @@ public class DiscordBot extends ListenerAdapter {
 		builder.setStatus(OnlineStatus.ONLINE);
 
 		
-		builder.setToken("75c2b189d1b6915124217a3b75773bc191cb7fb08817d8222f73e583aa05834a");
+		builder.setToken("");
 		//builder.setGame(Game.of(GameType.STREAMING, "NexArch", "https://discordapp.com/api/webhooks/711317393841979411/dQAQcY4ebd6zK2sG1wxiwg8iiC98bG2LNX_YgxmdWOz3XsaMsVVL5EDD_muSFqggOauR"));
 		builder.addEventListener(this);
 		try {
@@ -127,7 +127,7 @@ public class DiscordBot extends ListenerAdapter {
 	
 	public void runBot() {
 		try {
-			JDA builder = new JDABuilder(AccountType.BOT).setToken("NDc5MDU5MDUyNDE2OTkxMjQ0.Xqusqw.7F0xLow_NgOode-LC7ohocMRq_g").build();
+			JDA builder = new JDABuilder(AccountType.BOT).setToken("").build();
 			 builder.addEventListener(this);
 			
 		} catch (LoginException e) {

@@ -29,7 +29,7 @@ public class DropBot extends ListenerAdapter {
 		JDABuilder builder = new JDABuilder(AccountType.BOT);
 		builder.setStatus(OnlineStatus.ONLINE);
 		WebSocketFactory test = new WebSocketFactory();
-		WebhookClient client = new WebhookClientBuilder("https://discordapp.com/api/webhooks/668707198171480065/sYXIpFC0tpfy5t8z8H-E7D-Q1i-kbHAPWanJ0f6nvJFejE2jlazNHVuyWFqNxHDEpi_E").build();
+		WebhookClient client = new WebhookClientBuilder("").build();
 
 		DropBot.test = new WebSocketFactory();
 		DropBot.Client = client;
@@ -42,7 +42,7 @@ public class DropBot extends ListenerAdapter {
 		DropBot.Client.send(message);
 
 		try {
-			DropBot.test.createSocket("https://discordapp.com/api/webhooks/668707198171480065/sYXIpFC0tpfy5t8z8H-E7D-Q1i-kbHAPWanJ0f6nvJFejE2jlazNHVuyWFqNxHDEpi_E");
+			DropBot.test.createSocket("");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -54,13 +54,13 @@ public class DropBot extends ListenerAdapter {
 		MessageEmbed firstEmbed = new EmbedBuilder().setColor(Color.MAGENTA).setTitle("Rare Drop").setTitle(":mega: "+player.getUsername()+" has encountered a "+npc.getDefinition().getName()+"!").build();
 
 		builder5.addEmbeds(firstEmbed)
-				.setUsername("Viah-Ps Town Crier").setAvatarUrl("https://runesuite.org/uploads/monthly_2019_09/rune_full_helm_icon_by_rs_legendarts-dby332b.png.90b85639e5e01905ada3045c37f3f12d.png");
+				.setUsername("Viah-Ps Town Crier").setAvatarUrl("");
 		WebhookMessage message = builder5.build();
 		DropBot.Client.send(message);
 
 
 		try {
-			DropBot.test.createSocket("https://discordapp.com/api/webhooks/668707198171480065/sYXIpFC0tpfy5t8z8H-E7D-Q1i-kbHAPWanJ0f6nvJFejE2jlazNHVuyWFqNxHDEpi_E");
+			DropBot.test.createSocket("");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -74,13 +74,13 @@ public class DropBot extends ListenerAdapter {
 		MessageEmbed firstEmbed = new EmbedBuilder().setColor(Color.MAGENTA).setTitle(":mega: NexArch has been Updated and is back online!").build();
 
 		builder5.addEmbeds(firstEmbed)
-				.setUsername("Scythia Town Crier").setAvatarUrl("https://runesuite.org/uploads/monthly_2019_09/rune_full_helm_icon_by_rs_legendarts-dby332b.png.90b85639e5e01905ada3045c37f3f12d.png");
+				.setUsername("Scythia Town Crier").setAvatarUrl("");
 		WebhookMessage message = builder5.build();
 		DropBot.Client.send(message);
 
 
 		try {
-			DropBot.test.createSocket("https://discordapp.com/api/webhooks/668707198171480065/sYXIpFC0tpfy5t8z8H-E7D-Q1i-kbHAPWanJ0f6nvJFejE2jlazNHVuyWFqNxHDEpi_E");
+			DropBot.test.createSocket("");
 
 		} catch (IOException e) {
 			e.printStackTrace();
