@@ -47,7 +47,7 @@ public class DonationBox {
 		 * Adds 5m + a random amount up to 100m every box
 		 * Max cash reward = 105m
 		 */
-		player.getInventory().add(995, 10000000 + RandomUtility.RANDOM.nextInt(100000000));
+		player.getInventory().add(19994, 10 + RandomUtility.RANDOM.nextInt(30));
 	}
 
 }

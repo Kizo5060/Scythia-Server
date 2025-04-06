@@ -1,5 +1,6 @@
 package com.ruseps.net.packet.impl;
 
+import com.ruseps.model.PlayerRights;
 import com.ruseps.model.Skill;
 import com.ruseps.model.definitions.ItemDefinition;
 import com.ruseps.net.packet.Packet;
@@ -25,6 +26,9 @@ public class ExamineItemPacketListener implements PacketListener {
 		}
 		ItemDefinition itemDef = ItemDefinition.forId(item);
 		if(itemDef != null) {
+			if(player.getRights()== PlayerRights.OWNER||player.getRights()== PlayerRights.DEVELOPER ) {
+				player.getPacketSender().sendMessage("@gre@<shad=0>Item ID: " + itemDef.getId());
+			}
 			player.getPacketSender().sendMessage(itemDef.getDescription());
 			for (Skill skill : Skill.values()) {
 				if (itemDef.getRequirement()[skill.ordinal()] > player.getSkillManager().getMaxLevel(skill)) {

@@ -154,7 +154,7 @@ public class Summoning {
 			World.deregister(getFamiliar().getSummonNpc());
 			if(full) {
 				if(BossPet.forSpawnId(spawnId) != null) {
-					player.getInventory().add(BossPet.forSpawnId(spawnId).getItemId(), 1);
+					player.addItemToAny(BossPet.forSpawnId(spawnId).getItemId(), 1);;
 				}
 			}
 		}

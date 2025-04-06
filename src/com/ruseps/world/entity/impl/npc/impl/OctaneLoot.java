@@ -19,6 +19,8 @@ import com.ruseps.model.definitions.NPCDrops.NpcDropItem;
 import com.ruseps.util.Misc;
 import com.ruseps.world.World;
 import com.ruseps.world.content.combat.CombatBuilder.CombatDamageCache;
+import com.ruseps.world.content.DropLog;
+import com.ruseps.world.content.DropLog.DropLogEntry;
 import com.ruseps.world.content.combat.CombatFactory;
 import com.ruseps.world.entity.impl.GroundItemManager;
 import com.ruseps.world.entity.impl.npc.NPC;
@@ -35,11 +37,11 @@ public class OctaneLoot extends NPC {
 	
 	public static int spawnTime = 10;
 	
-	public static int[] COMMONLOOT = { 19994, 14793, 20106, 20108, 20110, 20112, 20114, 20116 };
-	public static int[] MEDIUMLOOT = { 10822, 10824, 10826, 11206, 11208 };
-	public static int[] RARELOOT = { 8860, 8861, 8862, 8871, 798, 799, 894, 895, 896  };
-	public static int[] SUPERRARELOOT = { 15359, 2716, 2717, 2718, 2719, 2720, 2721, 2722, 2723,  };
-	
+	public static int[] COMMONLOOT = { 19994};
+	public static int[] MEDIUMLOOT = { 11208, 799, 894, 895, 896};
+	public static int[] RARELOOT = { 8860, 8861, 8862, 8871, 798, };
+	public static int[] SUPERRARELOOT = {2716, 2717, 2718, 2719, 2720, 2721, 2722, 2723,  };
+	public static int [][] allLoot = {RARELOOT, SUPERRARELOOT };
 	/**
 	 * The npc id.
 	 */
@@ -128,64 +130,68 @@ public class OctaneLoot extends NPC {
 	 *            The position.
 	 */
 	public static void giveLoot(Player player, NPC npc, Position pos) {
-		int chance = Misc.getRandom(2000);
+		int chance = Misc.getRandom(100);
 		int superrare = SUPERRARELOOT[Misc.getRandom(SUPERRARELOOT.length - 1)];
 		int rare = RARELOOT[Misc.getRandom(RARELOOT.length - 1)];
 		int common = COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)];
 		int medium = MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)];
 
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
-
-
 		boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
+		if(isWearingCollector) {
+			player.addItemToAny(19994, Misc.inclusiveRandom(5, 10));
+		}else
+			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+
+
+		
 	
-		if (chance > 1999) {
-			//super rare
-			if (isWearingCollector)
-			{
-				player.addItemToAny(SUPERRARELOOT[Misc.getRandom(SUPERRARELOOT.length - 1)], 1);
-				player.addItemToAny(RARELOOT[Misc.getRandom(RARELOOT.length - 1)], 1);
-				player.addItemToAny(COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)], 1);
+		if (chance > 99) {
+			// super rare
+			player.getCollectionLogManager().addDrop(npc, new Item(superrare));
+			if (isWearingCollector) {
+				player.addItemToAny(superrare, 1);
 				return;
 			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(superrare), pos, player.getUsername(), false, 150, true, 200));
+			GroundItemManager.spawnGroundItem(player,
+					new GroundItem(new Item(superrare), pos, player.getUsername(), false, 150, true, 200));
 			return;
+		} else {
+			if (chance > 90) {
+				// rare
+				player.getCollectionLogManager().addDrop(npc, new Item(rare));
+				if (isWearingCollector) {
+					player.addItemToAny(rare, 1);
+					return;
+				}
+				GroundItemManager.spawnGroundItem(player,
+						new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
+				return;
+			} else {
+
+				if (chance > 50) {
+					if (isWearingCollector) {
+						player.addItemToAny(medium, 1);
+						return;
+					}
+					// medium
+					GroundItemManager.spawnGroundItem(player,
+							new GroundItem(new Item(medium), pos, player.getUsername(), false, 150, true, 200));
+					return;
+				} else {
+					if (chance >= 0) {
+						// common
+						
+						if (isWearingCollector) {
+							player.addItemToAny(common, 1);
+							return;
+						}
+						GroundItemManager.spawnGroundItem(player,
+								new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
+						return;
+					}
+				}
+			}
 		}
-		
-		if (chance > 1950) {
-			//rare
-			if (isWearingCollector)
-			{
-				player.addItemToAny(RARELOOT[Misc.getRandom(RARELOOT.length - 1)], 1);
-				return;
-			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		}
-		
-		if (chance > 1500) {
-			if (isWearingCollector)
-			{
-				player.addItemToAny(MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)], 1);
-				return;
-			}
-			//medium
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(medium), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		}
-		
-		if (chance >= 0) {
-			//common
-			if (isWearingCollector)
-			{
-				player.addItemToAny(COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)], 1);
-				return;
-			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		} 
 	}
 	
 	/**
@@ -237,4 +243,3 @@ public class OctaneLoot extends NPC {
 	}
 	
 }
-

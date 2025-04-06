@@ -755,7 +755,8 @@ public class RaidsParty {
 					|| member.getLocation().equals(Locations.Location.RAIDS_FIVE_PHASE_THREE)
 					|| member.getLocation().equals(Locations.Location.RAIDS_FIVE_PHASE_FOUR)
 					|| member.getLocation().equals(Locations.Location.RAIDS_SIX_PHASE_ONE)
-					|| member.getLocation().equals(Locations.Location.RAIDS_SEVEN_PHASE_ONE))
+					|| member.getLocation().equals(Locations.Location.RAIDS_SEVEN_PHASE_ONE)
+					|| member.getLocation().equals(Locations.Location.RAIDS_EIGHT_PHASE_ONE))
 					
 			{	
 				inRaids++;

@@ -10,6 +10,7 @@ import com.ruseps.model.RegionInstance.RegionInstanceType;
 import com.ruseps.model.Skill;
 import com.ruseps.util.Misc;
 import com.ruseps.world.World;
+import com.ruseps.world.content.achievements.AchievementData;
 import com.ruseps.world.content.combat.prayer.CurseHandler;
 import com.ruseps.world.content.combat.prayer.PrayerHandler;
 import com.ruseps.world.content.dialogue.DialogueManager;
@@ -17,6 +18,7 @@ import com.ruseps.world.content.new_raids_system.raids_party.RaidsParty;
 import com.ruseps.world.content.new_raids_system.raids_system.RaidsConstants;
 import com.ruseps.world.entity.impl.npc.NPC;
 import com.ruseps.world.entity.impl.player.Player;
+import com.ruseps.world.content.new_raids_system.instances.*;
 
 public class AnimeRaids 
 {
@@ -47,6 +49,25 @@ public class AnimeRaids
             p.getPacketSender().sendMessage("Only the party leader can start the Anime Raid.");
             return;
         }
+        boolean kcFlag = false;
+        if(party.getOwner() == p) {
+        for (Player member : party.getPlayers()){
+        		if(member.getPokemonRaidsOpened() < 50) {
+        			kcFlag = true;
+        			if(member == party.getOwner()) {
+        				member.getPacketSender().sendMessage("You need 50 Pokemon Raids completion to start Anime Raid");
+        				continue;
+        			}
+        			member.getPacketSender().sendMessage(member.getUsername()+" needs 50 Pokemon Raids completion to start Anime Raid");
+        			p.getPacketSender().sendMessage(member.getUsername()+" needs 50 Pokemon Raids completion to start Anime Raid");
+        		}
+        	}
+        	if(kcFlag) {
+        		return;
+        	}
+        }
+     
+    
         party.enteredDungeon(true);
         for (Player member : party.getPlayers())
         {
@@ -274,8 +295,8 @@ public class AnimeRaids
     			partyMember.getPacketSender().sendDungeoneeringTabIcon(false);
     			partyMember.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
     			partyMember.getEquipment().refreshItems();
-    		  	partyMember.getPointsHandler().incrementRaidsTwoPoints(50);
-    			partyMember.getPacketSender().sendMessage("<img=10>@blu@"+partyMember.getUsername()+" you have received Raids Two Points!");
+    		  	partyMember.getPointsHandler().incrementRaidsOnePoints(10);
+    			partyMember.getPacketSender().sendMessage("<img=10>@blu@"+partyMember.getUsername()+" you have received Raid Points!");
                 partyMember.getMinigameAttributes().getRaidsAttributes().setKillcount(0);
                 partyMember.getMinigameAttributes().getRaidsAttributes().incrementCompleted();
     			partyMember.getPacketSender().sendMessage("You have completed the Anime Raids and earned yourself and your team a Raids Key! Congrats!");
@@ -287,3 +308,4 @@ public class AnimeRaids
     	   }
       }
  }
+

@@ -36,7 +36,12 @@ public class RegionInstance {
 		RAIDS_FIVE_PHASE_FOUR_INSTANCE,
 		RAIDS_SIX_PHASE_ONE_INSTANCE,
 		RAIDS_SEVEN_PHASE_ONE_INSTANCE,
+		RAIDS_EIGHT_PHASE_ONE_INSTANCE,
 		CASH_ZONE_INSTANCE,
+		RAIDS_DD_PHASE_ONE_INSTANCE,
+		RAIDS_DD_PHASE_TWO_INSTANCE,
+		RAIDS_DD_PHASE_THREE_INSTANCE,
+		RAIDS_DS_PHASE_ONE_INSTANCE,
 		WARRIORS_GUILD,
 		NOMAD,
 		BUNNY,
@@ -154,4 +159,12 @@ public class RegionInstance {
 		World.register(npc);
 		getNpcsList().add(npc);
 	}
+	
+	public NPC spawnAoeNPC(NPC npc) {
+		System.out.println("spawning NPCID="+npc.getId()+" from = "+new Throwable().getStackTrace()[1].toString());
+		World.register(npc);
+		getNpcsList().add(npc);
+		return npc;
+	}
 }
+	

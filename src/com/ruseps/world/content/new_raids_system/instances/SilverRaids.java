@@ -50,6 +50,18 @@ public class SilverRaids
             p.getPacketSender().sendMessage("Only the party leader can start the Silver Raid.");
             return;
         }
+        
+        final int MIN_DONATION_AMOUNT = 100; // Replace this with your actual threshold
+
+        // Check if all party members have donated the required amount or have allowed roles
+        for (Player member : party.getPlayers()) {
+            int donatedAmount = member.getAmountDonated(); // Replace with the actual method to get the donated amount
+            if (donatedAmount < MIN_DONATION_AMOUNT) {
+                p.getPacketSender().sendMessage("All party members need to be Silver Members or higher to start the raid.");
+                return;
+            }
+        }
+        
         party.enteredDungeon(true);
         for (Player member : party.getPlayers())
         {
@@ -96,7 +108,7 @@ public class SilverRaids
             @Override
             public void execute() 
             {
-                if (tick == 10) 
+                if (tick == 3) 
                 {
                     startTask(party, height);
              
@@ -105,7 +117,7 @@ public class SilverRaids
                     memberr.getPacketSender().sendCameraNeutrality();
                 }
             }
-                if(tick == 20) {
+                if(tick == 10) {
                 	 for (NPC npc : World.getNpcs()) 
                      {
                      	if (npc != null && npc.getPosition().getZ() == party.getHeight()) 
@@ -115,7 +127,7 @@ public class SilverRaids
                          }
                      }
                 }
-                if(tick == 15) {
+                if(tick == 5) {
                 	p.setRegionInstance(new RegionInstance(p, RegionInstanceType.RAIDS_THREE_PHASE_ONE_INSTANCE));
                 	p.getRegionInstance().spawnNPC(new NPC(RaidsConstants.R3P1_FIRST_NPC_ID, new Position(3370, 3919, height)));
                 }
@@ -351,7 +363,8 @@ public class SilverRaids
     			partyMember.getPacketSender().sendDungeoneeringTabIcon(false);
     			partyMember.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
     			partyMember.getEquipment().refreshItems();
-    			partyMember.getPacketSender().sendMessage("<img=10>@blu@"+partyMember.getUsername()+" you have received Raids Two Points!");
+    			partyMember.getPointsHandler().incrementRaidsOnePoints(15);
+    			partyMember.getPacketSender().sendMessage("<img=10>@blu@"+partyMember.getUsername()+" you have received Raid Points!");
                 partyMember.getMinigameAttributes().getRaidsAttributes().setKillcount(0);
                 partyMember.getMinigameAttributes().getRaidsAttributes().incrementCompleted();
     			partyMember.getPacketSender().sendMessage("You have completed the Silver Raids and earned yourself and your team a Raids Key! Congrats!");

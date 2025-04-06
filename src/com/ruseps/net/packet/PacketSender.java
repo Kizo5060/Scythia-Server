@@ -55,7 +55,9 @@ public class PacketSender {
     }
     
     public void closeDialogueOnly(Player player) {
-        player.getPA().sendMessage(":packet:closedialogue");
+     //   player.getPA().sendMessage(":packet:closedialogue");
+        player.getPA().sendChatboxInterface(-1);
+        player.getPA().sendInterface(player.getInterfaceId());
     }
 
 
@@ -1208,7 +1210,7 @@ public class PacketSender {
     }
     
     public void setInterfaceClicked(int parentInterfaceId, int interfaceId, boolean clicked) {
-        sendMessage(":packet:setclicked " + parentInterfaceId + " " + interfaceId + " " + clicked);
+  //      sendMessage(":packet:setclicked " + parentInterfaceId + " " + interfaceId + " " + clicked);
     }
 
     public PacketSender sendGraphic(Graphic graphic, Position position) {
@@ -1425,7 +1427,7 @@ public class PacketSender {
 
 	public void closeDialogueOnly() {
         player.setInterfaceId(-1);
-        sendString(1, "closedialogue");
+       // sendString(1, "closedialogue");
     }
 
 	public void checkDateAndTime() {

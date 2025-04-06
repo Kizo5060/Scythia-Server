@@ -3,7 +3,11 @@ package com.ruseps.world.content.chestsystem;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ruseps.model.Item;
+import com.ruseps.model.container.ItemContainer;
+import com.ruseps.model.definitions.ItemDefinition;
 import com.ruseps.util.RandomUtility;
+import com.ruseps.world.World;
 import com.ruseps.world.entity.impl.player.Player;
 
 public class ChestViewer {
@@ -58,34 +62,58 @@ public class ChestViewer {
 
 	public void open(int boxId, int[] common, int[] uncommon, int[] rare) {
 		int reward = -1;
-		int chance = RandomUtility.inclusiveRandom(0, 100);
-
-		if (chance > 90) {
+		int chance = RandomUtility.inclusiveRandom(0, 1000);
+	   //player.sendMessage("chance: " + Integer.toString(chance));
+ 		/*if (chance > 90) {
 			reward = common[RandomUtility.exclusiveRandom(0, common.length)];
 		} else if (chance > 35) {
 			reward = uncommon[RandomUtility.exclusiveRandom(0, uncommon.length)];
 		} else if (chance > 0) {
 			reward = rare[RandomUtility.exclusiveRandom(0, rare.length)];
-		}
+		}*/
+		if(chance > 985 && chance <= 1000) {
+	       	reward = rare[RandomUtility.exclusiveRandom(0, rare.length)];
+	     	World.sendMessage("<shad=1>@cya@" + player.getUsername() +"<shad=1>@whi@ Recieved A @cya@" + ItemDefinition.forId(reward).getName()+ "@whi@ From Opening @cya@"+ ItemDefinition.forId(boxId).getName() + "@whi@!");
+	       }
+	       else 
+	       	if(chance > 650 && chance <= 985) {
+	       		reward = uncommon[RandomUtility.exclusiveRandom(0, uncommon.length)];
+	       	}
+	       	else 
+        		reward = common[RandomUtility.exclusiveRandom(0, common.length)];
+		
+		player.getCollectionLogManager().addItem(boxId, new Item(reward));
 
 		player.getInventory().delete(boxId);
-		player.getInventory().add(reward, 1);
+		player.addItemToAny(reward, 1);
 	}
 
 	public void openAll(int boxId, int[] common, int[] uncommon, int[] rare) {
-		int amount = player.getInventory().getAmount(boxId);
-		Map<Integer, Integer> rewards = new HashMap<>();
-		for (int i = 0; i < amount; i++) {
-			int reward = -1;
-			int chance = RandomUtility.inclusiveRandom(0, 100);
-
-			if (chance > 90) { // OH LOL
-				reward = common[RandomUtility.exclusiveRandom(0, common.length)];
-			} else if (chance > 35) {
-				reward = uncommon[RandomUtility.exclusiveRandom(0, uncommon.length)];
-			} else if (chance > 0) {
-				reward = rare[RandomUtility.exclusiveRandom(0, rare.length)];
-			}
+	    int amount = player.getInventory().getAmount(boxId);
+	    Map<Integer, Integer> rewards = new HashMap<>();
+	    for (int i = 0; i < amount; i++) {
+	        int reward = -1;
+	        int chance = RandomUtility.inclusiveRandom(1, 1000); // Using a larger range for precision
+	       // player.sendMessage("chance: " + Integer.toString(chance));
+	       /* if (chance <= 650) { // Common rewards (65% chance)
+	            reward = common[RandomUtility.exclusiveRandom(0, common.length)];
+	        } else if (chance > 650 && chance <= 985) { // Uncommon rewards (35% chance)
+	            reward = uncommon[RandomUtility.exclusiveRandom(0, uncommon.length)];
+	        } else if (chance > 985 && chance <= 1000) { // Rare rewards (1% chance)
+	            reward = rare[RandomUtility.exclusiveRandom(0, rare.length)];
+	        }*/
+	        
+	        if(chance > 985 && chance <= 1000) {
+		       	reward = rare[RandomUtility.exclusiveRandom(0, rare.length)];
+		     	World.sendMessage("<shad=1>@cya@" + player.getUsername() +"<shad=1>@whi@ Recieved A @cya@" + ItemDefinition.forId(reward).getName()+ "@whi@ From Opening @cya@"+ ItemDefinition.forId(boxId).getName()+"@whi@!");
+		       }
+		       else 
+		       	if(chance > 650 && chance <= 985) {
+		       		reward = uncommon[RandomUtility.exclusiveRandom(0, uncommon.length)];
+		       	}
+		       	else 
+	        		reward = common[RandomUtility.exclusiveRandom(0, common.length)];
+	        		
 
 			rewards.merge(reward, 1, Integer::sum);
 
@@ -93,10 +121,11 @@ public class ChestViewer {
 		player.getInventory().delete(boxId, amount);
 		boolean bank = amount <= player.getInventory().getFreeSlots();
 		rewards.entrySet().forEach(r -> {
+			player.getCollectionLogManager().addItem(boxId, new Item(r.getKey(),r.getValue()));
 			if (bank) {
 				player.getInventory().add(r.getKey(), r.getValue());
 			} else {
-				player.getBank(0).add(r.getKey(), r.getValue());
+				player.addItemToAny(r.getKey(), r.getValue());
 			}
 		});
 

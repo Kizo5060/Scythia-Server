@@ -14,7 +14,7 @@ public abstract class Raid extends Minigame2 {
 	protected int currentStage = -1;
 
 
-	protected Position endPos = new Position(3266, 2872, 0);
+	protected Position endPos = new Position(3038, 2785, 0);
 
 	// delays
 	public static final int START_DELAY = 30; // 120 seconds

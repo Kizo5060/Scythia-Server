@@ -27,8 +27,44 @@ public class Defenderz {
 	}
 	
 	public static void handleDrop(Player player, NPC npc) {
-			if(Misc.getRandom(150) == 1) {
-				GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(getDefender(player)), npc.getPosition().copy(), player.getUsername(), false, 100, false, -1));
-		}
+	    if (Misc.getRandom(150) == 1) {
+	        int defenderId = getDefender(player);
+	        GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(defenderId), npc.getPosition().copy(), player.getUsername(), false, 100, false, -1));
+	        switch (defenderId) {
+	            case 2822:
+	                player.sendMessage("A @red@T1 Defenderz has been dropped!");
+	                break;
+	            case 2823:
+	                player.sendMessage("An @red@T2 Defenderz has been dropped!");
+	                break;
+	            case 2824:
+	                player.sendMessage("A @red@T3 Defenderz has been dropped!");
+	                break;
+	            case 2825:
+	                player.sendMessage("A @red@T4 Defenderz has been dropped!");
+	                break;
+	            case 2826:
+	                player.sendMessage("A @red@T5 Defenderz has been dropped!");
+	                break;
+	            case 2827:
+	                player.sendMessage("An @red@T6 Defenderz has been dropped!");
+	                break;
+	            case 2828:
+	                player.sendMessage("A @red@T7 Defenderz has been dropped!");
+	                break;
+	            case 2829:
+	                player.sendMessage("A @red@T8 Defenderz has been dropped!");
+	                break;
+	            case 2830:
+	                player.sendMessage("A @red@T9 Defenderz has been dropped!");
+	                break;
+	            case 2831:
+	                player.sendMessage("The @red@Final Defenderz has been dropped!");
+	                break;
+	            default:
+	                break;
+	        }
+	    }
 	}
-}
+	}	    
+	    

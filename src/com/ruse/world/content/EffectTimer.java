@@ -4,7 +4,7 @@ public enum EffectTimer {
 
 	OVERLOAD(15332),
     X2_DDR_1HR(15356),
-    X2_DMG_1HR(15357),
+    X2_DMG_1HR(600),
     X2_DR_30MIN(15358),
     X2_DMG_30MIN(15359),
     T1_INF_OVERLOAD(23124),

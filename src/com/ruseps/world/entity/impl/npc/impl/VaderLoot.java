@@ -36,10 +36,10 @@ public class VaderLoot extends NPC {
 	public static int spawnTime = 10;
 	
 	public static int[] COMMONLOOT = {14793};
-	public static int[] MEDIUMLOOT = { 8518, 10505, 7085, 20100, 20102, 20104, 941, 944, 20106, 20108, 20110, 20112, 20114, 20116};
-	public static int[] RARELOOT = {11067, 937, 11658, 11068, 11071, 11078, 11087, 5082, 5083, 5084, 18944, 18444, 18912};
-	public static int[] SUPERRARELOOT = {2542, 18440, 18914, 18946, 20527, 20528, 20529, 2546};
-	
+	public static int[] MEDIUMLOOT = { 8518, 10505, 7085, 20100, 20102, 20104, 941, 944, 20106, 20108, 20110, 20112, 20114, 20116, 915};
+	public static int[] RARELOOT = {11067, 937, 11658, 11068, 11071, 11078, 11087, 5082, 5083, 5084, 18944, 18444, 18912, 18057, 10942};
+	public static int[] SUPERRARELOOT = {2542, 18440, 18914, 18946, 20527, 20528, 20529, 2546, 10934, 13016};
+	public static int [][] allLoot = {SUPERRARELOOT,RARELOOT };
 	/**
 	 * The npc id.
 	 */
@@ -136,60 +136,70 @@ public class VaderLoot extends NPC {
 		int rare = RARELOOT[Misc.getRandom(RARELOOT.length - 1)];
 		int common = COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)];
 		int medium = MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)]; 
-		
+		player.getDailyTaskManager().submitProgressToIdentifier(21, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(20, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(17, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(16, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(40, 1);
 		World.sendMessage("<img=39> @bla@<shad=1>"+player.getUsername()+ " @red@received a loot from the @bla@Mighty Vader!");
 		
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+		//GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 
 		boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
+		if(isWearingCollector) {
+			player.addItemToAny(19990, Misc.inclusiveRandom(5, 16));
+		}else
+			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19990, Misc.inclusiveRandom(5, 16)), pos, player.getUsername(), false, 150, true, 200));
+
+
 	
 		if (chance > 99) {
-			//super rare
-			if (isWearingCollector)
-			{
-				player.addItemToAny(SUPERRARELOOT[Misc.getRandom(SUPERRARELOOT.length - 1)], 1);
-				player.addItemToAny(RARELOOT[Misc.getRandom(RARELOOT.length - 1)], 1);
-				player.addItemToAny(COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)], 1);
+			// super rare
+			player.getCollectionLogManager().addDrop(npc, new Item(superrare));
+			if (isWearingCollector) {
+				player.addItemToAny(superrare, 1);
 				return;
 			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(superrare), pos, player.getUsername(), false, 150, true, 200));
+			GroundItemManager.spawnGroundItem(player,
+					new GroundItem(new Item(superrare), pos, player.getUsername(), false, 150, true, 200));
 			return;
+		} else {
+			if (chance > 90) {
+				// rare
+				player.getCollectionLogManager().addDrop(npc, new Item(rare));
+				if (isWearingCollector) {
+					player.addItemToAny(rare, 1);
+					return;
+				}
+				GroundItemManager.spawnGroundItem(player,
+						new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
+				return;
+			} else {
+
+				if (chance > 50) {
+					if (isWearingCollector) {
+						player.addItemToAny(medium, 1);
+						return;
+					}
+					// medium
+					GroundItemManager.spawnGroundItem(player,
+							new GroundItem(new Item(medium), pos, player.getUsername(), false, 150, true, 200));
+					return;
+				} else {
+					if (chance >= 0) {
+						// common
+						
+						if (isWearingCollector) {
+							player.addItemToAny(common, 1);
+							return;
+						}
+						GroundItemManager.spawnGroundItem(player,
+								new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
+						return;
+					}
+				}
+			}
 		}
-		
-		if (chance > 95) {
-			//rare
-			if (isWearingCollector)
-			{
-				player.addItemToAny(RARELOOT[Misc.getRandom(RARELOOT.length - 1)], 1);
-				return;
-			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		}
-		
-		if (chance > 50) {
-			if (isWearingCollector)
-			{
-				player.addItemToAny(MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)], 1);
-				return;
-			}
-			//medium
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(medium), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		}
-		
-		if (chance >= 0) {
-			//common
-			if (isWearingCollector)
-			{
-				player.addItemToAny(COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)], 1);
-				return;
-			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		} 
 	}
 	
 	/**
@@ -227,7 +237,7 @@ public class VaderLoot extends NPC {
 	public static final void loadDrops() {
 		Map<Integer, NpcDropItem> items = new HashMap<>();
 		
-		items.put(19994, new NpcDropItem(19994, new int[] { 5 }, 0));
+		items.put(19990, new NpcDropItem(19990, new int[] { 5 }, 0));
 		
 		Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
 		Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

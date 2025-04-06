@@ -64,8 +64,9 @@ public class CollectionLogInterfaceHandler
 	    {
 	        NPCDrops.NpcDropItem drop = drops[i - 1];
 	        int item = drop.getItem().getId();
-	        int collectedAmount = collectedItems.getOrDefault(item, 0);
-
+	        int collectedAmount = collectedItems.getOrDefault(item, 0);	   
+	        collectedAmount = (collectedAmount > 255) ?  254 : collectedAmount;
+	        
 	        player.getPacketSender().sendItemOnInterface(30375, item, slot++, collectedAmount);
 	    }
 	}
@@ -106,20 +107,25 @@ public class CollectionLogInterfaceHandler
 		return player.getCollectedItems().get(bossId).get(itemId);
 	}
 
-	public void handleDrop(Player player, int npcId, Item item)
-	{
+	public void handleDrop(Player player, int npcId, Item item) {
 	    player.handleCollectedItem(npcId, item);
-
-	    int collectedAmount = getCollectedAmount(player, npcId, item.getId());
-	    Map<Integer, Integer> npcItems = player.getCollectedItems().computeIfAbsent(npcId, k -> new HashMap<>());
-	    npcItems.put(item.getId(), collectedAmount + 1);
-
-	    if (hasCollectedAllItems(player, npcId))
-	    {
-	    	//player.getInventory().add(995, 5_000_000);
-	    }
 	    
-	    selectNpc(player, CollectionLogNpcs.getNpcById(npcId));
+	    int collectedAmount = getCollectedAmount(player, npcId, item.getId());
+	 	Map<Integer, Integer> npcItems = player.getCollectedItems().computeIfAbsent(npcId, k -> new HashMap<>());
+	    npcItems.put(item.getId(), (collectedAmount == 1) ? 2 : collectedAmount);
+	   if (hasCollectedAllItems(player, npcId)) {
+	        //player.getInventory().add(19992, 10);
+	    }
+
+	    CollectionLogNpcs npc = CollectionLogNpcs.getNpcById(npcId);
+	    if (npc != null) {
+	        selectNpc(player, npc);
+	    } else {
+	        System.out.println("NPC with ID " + npcId + " not found.");
+	        // Handle the case where 'npc' is null
+	        // You can choose to throw an exception, log an error, or handle it accordingly
+	    }
+
 	    saveCollectionLogs(player);
 	}
 

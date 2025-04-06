@@ -3,7 +3,14 @@ package com.ruseps.world.content;
 import com.ruseps.util.Misc;
 import com.ruseps.world.content.EvilTrees;
 import com.ruseps.world.content.ShootingStar;
+import com.ruseps.world.content.bossevents.GameEvent;
+import com.ruseps.world.content.bossevents.GameEventManager;
 import com.ruseps.world.entity.impl.player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import com.ruseps.model.definitions.DropUtils;
 
 public class PlayerPanel {
@@ -56,6 +63,20 @@ public class PlayerPanel {
 	public static void sendQuestTabLogin(Player player) {
 		
 	}
+    public static String getFormatedTime(GameEvent event) {
+
+        long timeLeft = event.getLastEventInstant() + event.getDelayBetweenEvents() - System.currentTimeMillis();
+        int hoursLeft = (int) TimeUnit.MILLISECONDS.toHours(timeLeft);
+        int minutesLeft = (int) TimeUnit.MILLISECONDS.toMinutes(timeLeft) - (hoursLeft * 60);
+        int secondsLeft = (int) TimeUnit.MILLISECONDS.toSeconds(timeLeft) - (hoursLeft * 60 * 60) - (minutesLeft * 60);
+
+        if (hoursLeft < 0 || minutesLeft < 0 || secondsLeft < 0) {
+            return "Soon";
+        }
+
+        return (hoursLeft < 10 ? "0" : "") + hoursLeft + ":" + (minutesLeft < 10 ? "0" : "") + minutesLeft + ":" + (secondsLeft < 10 ? "0" : "") + secondsLeft;
+    }
+
 
 	public static void handleSwitch(Player player, int index, boolean fromCurrent) {
 		if (!fromCurrent) {
@@ -99,7 +120,7 @@ public class PlayerPanel {
 				"@or2@Exp Lock: @gre@" + (player.experienceLocked() ? "@red@Locked" : "@gre@Unlocked"),
 				"@or2@Game Mode: @gre@"+ (Misc.formatText(player.getGameMode().name().toLowerCase())),
 				 "",
-				"@yel@Slayer Data:", "", "@or2@Slayer Master: @gre@" + player.getSlayer().getSlayerMaster(),
+				"@or1@Slayer Data:", "", "@or2@Slayer Master: @gre@" + player.getSlayer().getSlayerMaster(),
 				"@or2@Duo Partner: @gre@" + player.getSlayer().getDuoPartner(),
 				"@or2@Slayer Task: @gre@" + player.getSlayer().getSlayerTask(),
 				"@or2@Task Amount: @gre@" + player.getSlayer().getAmountToSlay(),
@@ -119,18 +140,33 @@ public class PlayerPanel {
 	}
 
 	private static void sendSecondTab(Player player) {
+		List<String> events = new ArrayList<>();
+        int index = 0;
 
-		String[] Messages = new String[] { "  ", "@or2@World Events", "",
-				"@or2@Evil Tree: @gre@"
+        for (GameEvent event : GameEventManager.getEvents().values()) {
+            player.getPacketSender()
+                    .sendString((index > 50 ? 12174 : 8145) + index++, event.name());
+            if (index == 1) {
+                index++;
+            }
+            events.add("@whi@" + event.name());
+            if (event.isActive()) {
+                events.add("The event is currently @gre@[ Active ]");
+            } else {
+                events.add("The event will start in:");
+                events.add("@yel@"+ getFormatedTime(event));
+            }
+        }
+
+		String[] Messages = new String[] { "                 @bla@World Events",
+				/*"@or2@Evil Tree: @gre@"
 						+ (EvilTrees.getRandom() != null ? EvilTrees.getRandom().playerPanelFrame : "N/A"),
 				"",
 				"@or2@Crashed Star:@gre@"
 						+ (ShootingStar.getRandom() != null ? ShootingStar.getRandom().playerPanelFrame : "N/A"),
-				
-						};
-
-
-		for (int i = 0; i < Messages.length; i++) {
+						*/} ;
+		int i = 0;
+		for (i = 0; i < Messages.length; i++) {
 			if (i + FIRST_STRING > LAST_STRING) {
 				System.out.println("2PlayerPanel(" + player.getUsername() + "): " + i + " is larger than max string: "
 						+ LAST_STRING + ". Breaking.");
@@ -140,6 +176,15 @@ public class PlayerPanel {
 			player.getPacketSender().sendString(i + FIRST_STRING, Messages[i]);
 
 		}
+		for(String toAdd: events) {
+			player.getPacketSender().sendString(i + FIRST_STRING, toAdd);
+			i++;
+			if (i + FIRST_STRING > LAST_STRING) {
+				System.out.println("1PlayerPanel(" + player.getUsername() + "): " + i + " is larger than max string: "
+						+ LAST_STRING + ". Breaking.");
+				break;
+			}
+		}
 
 	}
 
@@ -148,10 +193,12 @@ public class PlayerPanel {
 		String[] Messages = new String[] { "  ", "@or2@Points @or1@& @or2@Statistics", "",
 
 				"@or2@Loyalty Points: @gre@" + player.getPointsHandler().getLoyaltyPoints(),
+				
+				"@or2@Boss Points: @gre@" + player.getBossPoints(),
 
 				"@or2@Prestige Points: @gre@" + player.getPointsHandler().getPrestigePoints(),
 				
-				"@or2@Raids One Points: @gre@" + player.getPointsHandler().getRaidsOnePoints(),
+				"@or2@Raid Points: @gre@" + player.getPointsHandler().getRaidsOnePoints(),
 
 				"@or2@Trivia Points: @gre@" + player.getPointsHandler().getTriviaPoints(),
 
@@ -159,13 +206,11 @@ public class PlayerPanel {
 
 				"@or2@Donation Points:  @gre@" + player.getPointsHandler().getDonationPoints(),
 
-				"@or2@Dung. Tokens: @gre@" + player.getPointsHandler().getDungeoneeringTokens(),
+				"@or2@Commendation Points: @gre@" + player.getPointsHandler().getCommendations(),
 				
 				"@or2@Slayer Points: @gre@" + player.getPointsHandler().getSlayerPoints(),
 				
-				"@or2@Raids One Points: @gre@" + player.getPointsHandler().getRaidsOnePoints(),
-				
-				"@or2@Raids Two Points: @gre@" + player.getPointsHandler().getRaidsTwoPoints(),
+				//"@or2@Raids Two Points: @gre@" + player.getPointsHandler().getRaidsTwoPoints(),
 				
 		
 
@@ -189,48 +234,56 @@ public class PlayerPanel {
 
 	private static void sendForthTab(Player player) {
 
-		String[] Messages = new String[] { "", "@or2@Killtracker", "",
-
-				"@or2@<img=585>Snowman Kills: @gre@" + player.getNpcKillCount(5049),
-				"@or2@<img=586>Ryuk Kills: @gre@" + player.getNpcKillCount(4990),
-				"@or2@<img=585>Jesus Kills: @gre@" + player.getNpcKillCount(4991),
-				"@or2@<img=586>Simba Kills: @gre@" + player.getNpcKillCount(4992),
-				"@or2@<img=585>Kid Sora Kills: @gre@" + player.getNpcKillCount(4999),
-				"@or2@<img=586>Sully Kills: @gre@" + player.getNpcKillCount(4994),
-				"@or2@<img=585>Charizard Kills: @gre@" + player.getNpcKillCount(4981),
-				"@or2@<img=586>Sauron Kills: @gre@" + player.getNpcKillCount(4997),
-				"@or2@<img=585>Squidward Kills: @gre@" + player.getNpcKillCount(4993),
-				"@or2@<img=586>Ice Demon Kills: @gre@" + player.getNpcKillCount(4980),
-				"@or2@<img=585>Eve Kills: @gre@" + player.getNpcKillCount(4271),
-				"@or2@<img=585>Gimlee Kills: @gre@" + player.getNpcKillCount(4265),
-				"@or2@<img=586>Blood Ele Kills: @gre@" + player.getNpcKillCount(4267),
-				"@or2@<img=585>Tiki Demon Kills: @gre@" + player.getNpcKillCount(4268),
-				"@or2@<img=586>Aragorn Kills: @gre@" + player.getNpcKillCount(4270),
-				"@or2@<img=585>Rayquaza Kills: @gre@" + player.getNpcKillCount(4275),
-				"@or2@<img=586>Legolas Kills: @gre@" + player.getNpcKillCount(3008),
-				"@or2@<img=586>Darth Maul Kills: @gre@" + player.getNpcKillCount(5048),
-				"@or2@<img=585>Diamond Head Kills: @or1@" + player.getNpcKillCount(4998),
-				"@or2@<img=586>Darius Nex Kills: @gre@" + player.getNpcKillCount(4263),
-				"@or2@<img=585>Deadly Robot Kills: @gre@" + player.getNpcKillCount(4264),
-				"@or2@<img=586>Zeldorado Kills: @gre@" + player.getNpcKillCount(4606),
-				"@or2@<img=585>Heatblast Kills: @gre@" + player.getNpcKillCount(4266),
-				"@or2@<img=586>Kevin Four Arms Kills: @or1@" + player.getNpcKillCount(4269),
-				"@or2@<img=585>Sun God Kills: @gre@" + player.getNpcKillCount(4272),
-				"@or2@<img=586>Dark Knight Kills: @gre@" + player.getNpcKillCount(3009),
-				"@or2@<img=585>Bad Bitch Kills: @gre@" + player.getNpcKillCount(4274),
-				"@or2@<img=586>Cannonbolt Kills: @gre@" + player.getNpcKillCount(3010),
-				"@or2@<img=585>Red Assasin Kills: @gre@" + player.getNpcKillCount(3011),
-				"@or2@<img=586>Evil Ass Clown Kills: @gre@" + player.getNpcKillCount(3014),
-				"@or2@<img=585>Yvaltal Kills: @gre@" + player.getNpcKillCount(190),
-				"@or2@<img=586>Upgrade Kills: @gre@" + player.getNpcKillCount(185),
-				"@or2@<img=585>Mountain Dweller Kills: @gre@" + player.getNpcKillCount(4387),
-				"@or2@<img=586>Dark Magician Kills: @gre@" + player.getNpcKillCount(1506),
-				"@or2@<img=585>Obelisk Kills: @gre@" + player.getNpcKillCount(1510),
-				"@or2@<img=586>Blood Queen Kills: @gre@" + player.getNpcKillCount(1508),
-				"@or2@<img=585>Four Arms Kills: @gre@" + player.getNpcKillCount(1509),
-				"@or2@<img=586>The Witch Kills: @gre@" + player.getNpcKillCount(1416),
-				"",
-				//"@or2@Overall NPC Kills: @or1@" + player.getNpcKills(),
+		String[] Messages = new String[] {"                 @bla@KillTracker", "",
+				"@or2@Snowman Kills: @gre@" + player.getNpcKillCount(5049),
+				"@or2@Ryuk Kills: @gre@" + player.getNpcKillCount(4990),
+				"@or2@Jesus Kills: @gre@" + player.getNpcKillCount(4991),
+				"@or2@Simba Kills: @gre@" + player.getNpcKillCount(4992),
+				"@or2@Kid Sora Kills: @gre@" + player.getNpcKillCount(4999),
+				"@or2@Sully Kills: @gre@" + player.getNpcKillCount(4994),
+				"@or2@Charizard Kills: @gre@" + player.getNpcKillCount(4981),
+				"@or2@Sauron Kills: @gre@" + player.getNpcKillCount(4997),
+				"@or2@Squidward Kills: @gre@" + player.getNpcKillCount(4993),
+				"@or2@Ice Demon Kills: @gre@" + player.getNpcKillCount(4980),
+				"@or2@Eve Kills: @gre@" + player.getNpcKillCount(4271),
+				"@or2@Gimlee Kills: @gre@" + player.getNpcKillCount(4265),
+				"@or2@Blood Ele Kills: @gre@" + player.getNpcKillCount(4267),
+				"@or2@Tiki Demon Kills: @gre@" + player.getNpcKillCount(4268),
+				"@or2@Aragorn Kills: @gre@" + player.getNpcKillCount(4270),
+				"@or2@Rayquaza Kills: @gre@" + player.getNpcKillCount(4275),
+				"@or2@Legolas Kills: @gre@" + player.getNpcKillCount(3008),
+				"@or2@Darth Maul Kills: @gre@" + player.getNpcKillCount(5048),
+				"@or2@Diamond Head Kills: @gre@" + player.getNpcKillCount(4998),
+				"@or2@Darius Nex Kills: @gre@" + player.getNpcKillCount(4263),
+				"@or2@Deadly Robot Kills: @gre@" + player.getNpcKillCount(4264),
+				"@or2@Zeldorado Kills: @gre@" + player.getNpcKillCount(4606),
+				"@or2@Heatblast Kills: @gre@" + player.getNpcKillCount(4266),
+				"@or2@Kevin Four Arms Kills: @gre@" + player.getNpcKillCount(4269),
+				"@or2@Golden Knights Kills: @gre@" + player.getNpcKillCount(4272),
+				"@or2@Dark Knight Kills: @gre@" + player.getNpcKillCount(3009),
+				"@or2@Bad Bitch Kills: @gre@" + player.getNpcKillCount(4274),
+				"@or2@Cannonbolt Kills: @gre@" + player.getNpcKillCount(3010),
+				"@or2@Red Assasin Kills: @gre@" + player.getNpcKillCount(3011),
+				"@or2@Evil Ass Clown Kills: @gre@" + player.getNpcKillCount(3014),
+				"@or2@Yvaltal Kills: @gre@" + player.getNpcKillCount(190),
+				"@or2@Dooms Day Kills: @gre@" + player.getNpcKillCount(185),
+				"@or2@Mountain Dweller Kills: @gre@" + player.getNpcKillCount(4387),
+				"@or2@Dark Magician Kills: @gre@" + player.getNpcKillCount(1506),
+				"@or2@Obelisk Kills: @gre@" + player.getNpcKillCount(1510),
+				"@or2@Blood Queen Kills: @gre@" + player.getNpcKillCount(1508),
+				"@or2@Four Arms Kills: @gre@" + player.getNpcKillCount(1509),
+				"@or2@Galaxy Titans Kills: @gre@" + player.getNpcKillCount(1016),
+				"@or2@Octane: @gre@" + player.getNpcKillCount(1417),
+				"@or2@Limes: @gre@" + player.getNpcKillCount(1017),
+				"@or2@Slifer: @gre@" + player.getNpcKillCount(1018),
+				"@or2@Fallen God: @gre@" + player.getNpcKillCount(1039),
+				"@or2@Torment: @gre@" + player.getNpcKillCount(1038),
+				"@or2@Litch: @gre@" + player.getNpcKillCount(1494),
+				"@or2@Spuderman: @gre@" + player.getNpcKillCount(3012),
+				"@or2@Dr. Strange: @gre@" + player.getNpcKillCount(3007),
+				"@or2@Gods Ruler: @gre@" + player.getNpcKillCount(1511),
+				"@or2@Golden Freeza: @gre@" + player.getNpcKillCount(5148),
+				"@dre@ Overall NPC Kills: @whi@" + player.getNpcKills(),
 
 		};
 

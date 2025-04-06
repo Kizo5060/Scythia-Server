@@ -36,9 +36,12 @@ import com.ruseps.world.content.DropLog.DropLogEntry;
 import com.ruseps.world.content.KillsTracker;
 import com.ruseps.world.content.KillsTracker.KillsEntry;
 import com.ruseps.world.content.LoyaltyProgramme.LoyaltyTitles;
+import com.ruseps.world.content.battle_pass.BattlePassType;
+import com.ruseps.world.content.collectionLogs.CollectionLogManager;
 //import com.ruseps.world.content.battle_pass.BattlePassType;
 import com.ruseps.world.content.combat.magic.CombatSpells;
 import com.ruseps.world.content.combat.weapon.FightType;
+import com.ruseps.world.content.dailytasks.DailyTaskSlot;
 import com.ruseps.world.content.grandexchange.GrandExchangeOffer;
 import com.ruseps.world.content.grandexchange.GrandExchangeSlot;
 import com.ruseps.world.content.grandexchange.GrandExchangeSlotState;
@@ -48,15 +51,14 @@ import com.ruseps.world.content.skill.impl.slayer.SlayerTasks;
 
 import com.ruseps.world.content.skill.impl.construction.ConstructionSave;
 
-
 public class PlayerLoading {
 
 	public static int getResult(Player player) {
 		return getResult(player, false);
 	}
-	
+
 	public static int getResult(Player player, boolean force) {
-			System.out.println("called result");
+		System.out.println("called result");
 		// Create the path and file objects.
 		Path path = Paths.get("./data/saves/characters/", player.getUsername() + ".json");
 		File file = path.toFile();
@@ -71,27 +73,26 @@ public class PlayerLoading {
 		// Now read the properties from the json parser.
 		try (FileReader fileReader = new FileReader(file)) {
 			JsonParser fileParser = new JsonParser();
-			Gson builder = new GsonBuilder().registerTypeAdapter(Perk.class, new InterfaceAdapter<Perk>())
-					.create();
+			Gson builder = new GsonBuilder().registerTypeAdapter(Perk.class, new InterfaceAdapter<Perk>()).create();
 			JsonObject reader = (JsonObject) fileParser.parse(fileReader);
-			
-			if(reader.has("reset-season-one")) {
-				//player.getBattlePass().setResetSeasonOne(reader.get("reset-season-one").getAsBoolean());
+
+			if (reader.has("reset-season-one")) {
+				player.getBattlePass().setResetSeasonOne(reader.get("reset-season-one").getAsBoolean());
 			}
 			if (reader.has("battlePassLevel")) {
-				//player.getBattlePass().setLevel(reader.get("battlePassLevel").getAsInt());
+				player.getBattlePass().setLevel(reader.get("battlePassLevel").getAsInt());
 			}
 			if (reader.has("battlePassExp")) {
-				//player.getBattlePass().setExperience(reader.get("battlePassExp").getAsInt());
+				player.getBattlePass().setExperience(reader.get("battlePassExp").getAsInt());
 			}
 			if (reader.has("battlePassType")) {
-				//player.getBattlePass().setType(BattlePassType.valueOf(reader.get("battlePassType").getAsString()));
+				player.getBattlePass().setType(BattlePassType.valueOf(reader.get("battlePassType").getAsString()));
 			}
 			if (reader.has("BronzeBattlepassClaimed")) {
-				//player.setbronzeBattlepassExpires(reader.get("BronzeBattlepassClaimed").getAsString());
+				player.setbronzeBattlepassExpires(reader.get("BronzeBattlepassClaimed").getAsString());
 			}
 			if (reader.has("BronzeBattlepassExpires")) {
-				//player.setbronzeBattlepassExpires(reader.get("BronzeBattlepassExpires").getAsString());
+				player.setbronzeBattlepassExpires(reader.get("BronzeBattlepassExpires").getAsString());
 			}
 			if (reader.has("GoldBattlepassClaimed")) {
 				player.setgoldBattlepassClaimed(reader.get("GoldBattlepassClaimed").getAsString());
@@ -100,15 +101,16 @@ public class PlayerLoading {
 			if (reader.has("GoldBattlepassExpires")) {
 				player.setgoldBattlepassExpires(reader.get("GoldBattlepassExpires").getAsString());
 			}
-			
+
 			if (reader.has("starterprogressioncompletions")) {
-                player.setStarterProgressionCompletions(builder.fromJson(reader.get("starterprogressioncompletions"), boolean[].class));
-            }
-			
+				player.setStarterProgressionCompletions(
+						builder.fromJson(reader.get("starterprogressioncompletions"), boolean[].class));
+			}
+
 			if (reader.has("total-play-time-ms")) {
 				player.setTotalPlayTime(reader.get("total-play-time-ms").getAsLong());
 			}
-			
+
 			if (reader.has("last-teleport-time")) {
 				player.setLastTeleportTime(reader.get("last-teleport-time").getAsLong());
 			}
@@ -117,32 +119,32 @@ public class PlayerLoading {
 				player.setUsername(reader.get("username").getAsString());
 			}
 
-
 			if (reader.has("password")) {
 				String password = reader.get("password").getAsString();
-				if(!force) {
+				if (!force) {
 					if (!player.getPassword().equals(password)) {
 						return LoginResponses.LOGIN_INVALID_CREDENTIALS;
 					}
 				}
 				player.setPassword(password);
 			}
-			
+
 			if (reader.has("referral")) {
 				player.hasReferral = reader.get("referral").getAsBoolean();
 			}
-			
+
 			if (reader.has("boss-points")) {
 				player.setBossPoints(reader.get("boss-points").getAsInt());
 			}
-			
+
 			if (reader.has("dr-boost")) {
 				player.setDrBoost(reader.get("dr-boost").getAsInt());
 			}
 
 			if (reader.has("perks")) {
-				List<Perk> perks = builder.fromJson(reader.get("perks"), new com.google.gson.reflect.TypeToken<List<Perk>>() {
-				}.getType());
+				List<Perk> perks = builder.fromJson(reader.get("perks"),
+						new com.google.gson.reflect.TypeToken<List<Perk>>() {
+						}.getType());
 				player.setPerks(perks);
 				player.recomputeAttributes();
 			}
@@ -192,24 +194,26 @@ public class PlayerLoading {
 			}
 
 			if (reader.has("miscamountmap")) {
-				Map<String, Integer> miscAmountMap = builder.fromJson(reader.get("miscamountmap"), new com.google.gson.reflect.TypeToken<Map<String, Integer>>() {
-				}.getType());
+				Map<String, Integer> miscAmountMap = builder.fromJson(reader.get("miscamountmap"),
+						new com.google.gson.reflect.TypeToken<Map<String, Integer>>() {
+						}.getType());
 				player.setMiscAmountMap(miscAmountMap);
 			}
 
 			if (reader.has("miscstatemap")) {
-				Map<String, Boolean> miscStateMap = builder.fromJson(reader.get("miscstatemap"), new com.google.gson.reflect.TypeToken<Map<String, Boolean>>() {
-				}.getType());
+				Map<String, Boolean> miscStateMap = builder.fromJson(reader.get("miscstatemap"),
+						new com.google.gson.reflect.TypeToken<Map<String, Boolean>>() {
+						}.getType());
 				player.setMiscStateMap(miscStateMap);
 			}
 
 			if (reader.has("skillingdata")) {
-				Map<Skill, Map<Integer, Integer>> skillingData = builder.fromJson(reader.get("skillingdata"), new com.google.gson.reflect.TypeToken<Map<Skill, Map<Integer, Integer>>>() {
-				}.getType());
+				Map<Skill, Map<Integer, Integer>> skillingData = builder.fromJson(reader.get("skillingdata"),
+						new com.google.gson.reflect.TypeToken<Map<Skill, Map<Integer, Integer>>>() {
+						}.getType());
 				player.setSkillingData(skillingData);
 			}
 
-			
 			if (reader.has("npc-kc-data")) {
 				@SuppressWarnings("serial")
 				Map<Integer, Integer> kcData = builder.fromJson(reader.get("npc-kc-data"),
@@ -218,12 +222,28 @@ public class PlayerLoading {
 				player.setNpcKillCount(kcData);
 			}
 
-			if (reader.has("collected-items")) {
-				Map<Integer, Map<Integer, Integer>> collectedItems = builder.fromJson(reader.get("collected-items"), new com.google.gson.reflect.TypeToken<Map<Integer, Map<Integer, Integer>>>() {
-				}.getType());
-				player.setCollectedItems(collectedItems);
+			/*
+			 * if (reader.has("collected-items")) { Map<Integer, Map<Integer, Integer>>
+			 * collectedItems = builder.fromJson(reader.get("collected-items"), new
+			 * com.google.gson.reflect.TypeToken<Map<Integer, Map<Integer, Integer>>>() {
+			 * }.getType()); player.setCollectedItems(collectedItems); }
+			 */
+
+			if (reader.has("collection-log")) {
+				CollectionLogManager.LogProgress[] logs = builder.fromJson(
+						reader.get("collection-log").getAsJsonArray(), CollectionLogManager.LogProgress[].class);
+				for (CollectionLogManager.LogProgress l : logs) {
+					player.getCollectionLogManager().addLogProgress(l);
+				}
 			}
-			
+
+			if (reader.has("claimed-logs")) {
+				String[] logs = builder.fromJson(reader.get("claimed-logs").getAsJsonArray(), String[].class);
+				for (String l : logs) {
+					player.getCollectionLogManager().getClaimedCollectionRewards().add(l);
+				}
+			}
+
 			if (reader.has("password-reset")) {
 				player.setPasswordPlayer(reader.get("password-reset").getAsInt());
 			}
@@ -250,6 +270,9 @@ public class PlayerLoading {
 
 			if (reader.has("position")) {
 				player.getPosition().setAs(builder.fromJson(reader.get("position"), Position.class));
+				if (player.getPosition().getZ() >= 4) {
+					player.getPosition().setZ(0);
+				}
 			}
 
 			if (reader.has("online-status")) {
@@ -265,13 +288,13 @@ public class PlayerLoading {
 				player.setReceivedStarter(reader.get("given-starter").getAsBoolean());
 			}
 
-			if(reader.has("is-instanced")) {
+			if (reader.has("is-instanced")) {
 				player.setPlayerInstanced(reader.get("is-instanced").getAsBoolean());
 			}
 			if (reader.has("donated")) {
 				player.incrementAmountDonated(reader.get("donated").getAsInt());
 			}
-			
+
 			if (reader.has("minutes-bonus-exp")) {
 				player.setMinutesBonusExp(reader.get("minutes-bonus-exp").getAsInt(), false);
 			}
@@ -280,7 +303,6 @@ public class PlayerLoading {
 				player.getSkillManager().setTotalGainedExp(reader.get("total-gained-exp").getAsInt());
 			}
 
-		
 			if (reader.has("dung-tokens")) {
 				player.getPointsHandler().setDungeoneeringTokens(reader.get("dung-tokens").getAsInt(), false);
 			}
@@ -302,15 +324,14 @@ public class PlayerLoading {
 			if (reader.has("loyalty-points")) {
 				player.getPointsHandler().setLoyaltyPoints(reader.get("loyalty-points").getAsInt(), false);
 			}
-			
+
 			if (reader.has("raids-one-points")) {
 				player.getPointsHandler().setRaidsOnePoints(reader.get("raids-one-points").getAsInt());
 			}
-			
+
 			if (reader.has("raids-two-points")) {
 				player.getPointsHandler().setRaidsTwoPoints(reader.get("raids-two-points").getAsInt());
 			}
-
 
 			if (reader.has("voting-points")) {
 				player.getPointsHandler().setVotingPoints(reader.get("voting-points").getAsInt(), false);
@@ -319,7 +340,7 @@ public class PlayerLoading {
 			if (reader.has("slayer-points")) {
 				player.getPointsHandler().setSlayerPoints(reader.get("slayer-points").getAsInt(), false);
 			}
-			
+
 			if (reader.has("hide-player")) {
 				player.setHidePlayer(reader.get("hide-player").getAsBoolean());
 			}
@@ -340,7 +361,7 @@ public class PlayerLoading {
 			if (reader.has("cluescomplted")) {
 				ClueScrolls.setCluesCompleted(reader.get("cluescompleted").getAsInt(), false);
 			}
-			
+
 			if (reader.has("player-kills")) {
 				player.getPlayerKillingAttributes().setPlayerKills(reader.get("player-kills").getAsInt());
 			}
@@ -492,38 +513,38 @@ public class PlayerLoading {
 			if (reader.has("dfs-charges")) {
 				player.incrementDfsCharges(reader.get("dfs-charges").getAsInt());
 			}
-			
+
 			if (reader.has("kills")) {
 				Deque<KillsEntry> filter = new ArrayDeque<>();
-                Stream<KillsEntry> asStream = Arrays.stream(builder.fromJson(reader.get("kills").getAsJsonArray(), KillsEntry[].class));
-                asStream.filter(Objects::nonNull).forEach(object -> {
-                    if(object.getId() > 0)
-                        filter.add(object);
-                });
-                KillsTracker.submit(player, filter.toArray(new KillsEntry[filter.size()]));
-            }
+				Stream<KillsEntry> asStream = Arrays
+						.stream(builder.fromJson(reader.get("kills").getAsJsonArray(), KillsEntry[].class));
+				asStream.filter(Objects::nonNull).forEach(object -> {
+					if (object.getId() > 0)
+						filter.add(object);
+				});
+				KillsTracker.submit(player, filter.toArray(new KillsEntry[filter.size()]));
+			}
 
 			if (reader.has("drops")) {
 				DropLog.submit(player, builder.fromJson(reader.get("drops").getAsJsonArray(), DropLogEntry[].class));
 			}
-			
-			if(reader.has("shop-updated")) {
+
+			if (reader.has("shop-updated")) {
 				player.setShopUpdated(reader.get("shop-updated").getAsBoolean());
 			}
-			
-			if(reader.has("shop-earnings")) {
+
+			if (reader.has("shop-earnings")) {
 				player.getPlayerOwnedShopManager().setEarnings(reader.get("shop-earnings").getAsLong());
-			}		
-			
+			}
+
 			if (reader.has("slayer-master")) {
 				player.getSlayer().setSlayerMaster(SlayerMaster.valueOf(reader.get("slayer-master").getAsString()));
 			}
-			
 
 			if (reader.has("slayer-task")) {
 				try {
 					player.getSlayer().setSlayerTask(SlayerTasks.valueOf(reader.get("slayer-task").getAsString()));
-				} catch(IllegalArgumentException e) {
+				} catch (IllegalArgumentException e) {
 					player.getSlayer().setSlayerTask(null);
 				}
 			}
@@ -566,7 +587,6 @@ public class PlayerLoading {
 				player.getPlayerKillingAttributes().setKilledPlayers(list);
 			}
 
-
 			if (reader.has("barrows-brother")) {
 				player.getMinigameAttributes().getBarrowsMinigameAttributes().setBarrowsData(
 						builder.fromJson(reader.get("barrows-brother").getAsJsonArray(), int[][].class));
@@ -586,7 +606,7 @@ public class PlayerLoading {
 				player.getMinigameAttributes().getNomadAttributes()
 						.setQuestParts(builder.fromJson(reader.get("nomad").getAsJsonArray(), boolean[].class));
 			}
-			
+
 			if (reader.has("valentines")) {
 				player.getMinigameAttributes().getValentinesAttributes()
 						.setQuestParts(builder.fromJson(reader.get("valentines").getAsJsonArray(), boolean[].class));
@@ -742,39 +762,81 @@ public class PlayerLoading {
 						builder.fromJson(reader.get("loyalty-titles").getAsJsonArray(), boolean[].class));
 			}
 
-			
 			if (reader.has("max-cape-colors")) {
 				int[] colors = builder.fromJson(reader.get("max-cape-colors").getAsJsonArray(), int[].class);
 				player.setMaxCapeColors(colors);
 			}
-			
+
 			if (reader.has("comp-cape-colors")) {
 				int[] colors = builder.fromJson(reader.get("comp-cape-colors").getAsJsonArray(), int[].class);
 				player.setCompCapeColors(colors);
 			}
-			
+
 			if (reader.has("player-title")) {
 				player.setTitle(reader.get("player-title").getAsString());
 			}
-			
-			if (reader.has("group-owner-name")) {
-                player.setGroupOwnerName(reader.get("group-owner-name").getAsString());
-            }
 
-            if (reader.has("is-gim")) {
-                player.setGim(reader.get("is-gim").getAsBoolean());
+			if (reader.has("group-owner-name")) {
+				player.setGroupOwnerName(reader.get("group-owner-name").getAsString());
+			}
+
+			if (reader.has("is-gim")) {
+				player.setGim(reader.get("is-gim").getAsBoolean());
+			}
+			if (reader.has("AnimeRaidCompletion")) {
+				player.setAnimeRaidsOpened(reader.get("AnimeRaidCompletion").getAsInt());
+			}
+			if (reader.has("PokemonRaidCompletion")) {
+				player.setPokemonRaidsOpened(reader.get("PokemonRaidCompletion").getAsInt());
+			}
+			if (reader.has("MKRaidCompletion")) {
+				player.setMkRaidsOpened(reader.get("MKRaidCompletion").getAsInt());
+			}
+			if (reader.has("SilverRaidCompletion")) {
+				player.setSilverRaidsOpened(reader.get("SilverRaidCompletion").getAsInt());
+			}
+			if (reader.has("GoldRaidCompletion")) {
+				player.setGoldRaidsOpened(reader.get("GoldRaidCompletion").getAsInt());
+			}
+			if (reader.has("PlatRaidCompletion")) {
+				player.setPlatRaidsOpened(reader.get("PlatRaidCompletion").getAsInt());
+			}
+			if (reader.has("DiamondRaidCompletion")) {
+				player.setDiamondRaidsOpened(reader.get("DiamondRaidCompletion").getAsInt());
+			}
+			if (reader.has("RubyRaidCompletion")) {
+				player.setRubyRaidsOpened(reader.get("RubyRaidCompletion").getAsInt());
+			}
+			if (reader.has("darkDementionRaidCompletion")) {
+				player.setDarkDementionRaidsOpened(reader.get("darkDementionRaidCompletion").getAsInt());
+			}
+			if (reader.has("dsRaidCompletion")) {
+				player.setDragonstoneRaidsOpened(reader.get("dsRaidCompletion").getAsInt());
+			}
+
+			if (reader.has("daily-task-slots")) {
+				player.getDailyTaskManager().setTaskSlots(
+						builder.fromJson(reader.get("daily-task-slots").getAsJsonArray(), DailyTaskSlot[][].class));
+			}
+
+			if (reader.has("daily-tasks-completed")) {
+				player.setDailyTasksCompleted(reader.get("daily-tasks-completed").getAsInt());
+			}
+
+			if (reader.has("daily-date")) {
+                player.getDailyTaskManager().setDailyDate(reader.get("daily-date").getAsLong());
             }
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return LoginResponses.LOGIN_SUCCESSFUL;
 		}
-try {
-			
+		try {
+
 			Path path2 = Paths.get("./data/saves/construction/", player.getUsername() + ".obj");
 			File file2 = path2.toFile();
-			
-			if(file2.exists()) {
+
+			if (file2.exists()) {
 				FileInputStream fileIn = new FileInputStream(file2);
 				ObjectInputStream in = new ObjectInputStream(fileIn);
 				ConstructionSave save = (ConstructionSave) in.readObject();
@@ -784,12 +846,12 @@ try {
 				in.close();
 				fileIn.close();
 			}
-			
-		} catch(Throwable t) {
-			//t.printStackTrace();
+
+		} catch (Throwable t) {
+			// t.printStackTrace();
 			return LoginResponses.LOGIN_COULD_NOT_COMPLETE;
 		}
 		return LoginResponses.LOGIN_SUCCESSFUL;
 	}
-		
+
 }

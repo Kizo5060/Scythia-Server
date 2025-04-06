@@ -1,9 +1,11 @@
 package com.ruseps.world.content.mboxes;
 
 import com.ruseps.GameSettings;
+import com.ruseps.model.Item;
 import com.ruseps.model.container.impl.Equipment;
 import com.ruseps.model.definitions.ItemDefinition;
 import com.ruseps.util.Misc;
+import com.ruseps.util.RandomUtility;
 import com.ruseps.world.World;
 import com.ruseps.world.entity.impl.player.Player;
 
@@ -22,6 +24,9 @@ public class OwnerBox
 	public boolean canMysteryBox() { return canMysteryBox; }
 	public int getMysteryPrize() { return mysteryPrize; }
 	public int getMysteryPrizeTier() { return mysteryPrizeTier; }
+	public static int loot[][] = {
+			{ 405, 18982, 18983, 18993, 19021, 2545, 18974, 18975, 18976, 10935 },
+			{ 6832, 7960, 21056, 6831, 2542, 6830, 18977, 18978, 18979, 19014, 19015, 1413, 19671, 18062, 10943, } };
 
 	public OwnerBox(Player plr) {
 		this.plr = plr;
@@ -50,21 +55,38 @@ public class OwnerBox
 						{ 11067, 11068, 11071, 11078, 11087, 1007, 1002, 1005, 965, 1000  },//Common, 0
 						{ 902, 903, 904, 905, 906, 15246, 897, 898, 899, 900, 901, 21027, 21018, 21019, 21020, 21021, 21022  },
 						{ 18440, 18914, 18946, 20527, 20528, 20529, 15246, 21034, 21000, 21001, 21002, 21003 },
-						{ 2544, 2546, 2547, 2548, 2549,21048, 21049, 21050, 21051, 21052, 21053, 21054 },
+						{ 2544, 2546, 2547, 2548, 2549,21048, 21049, 21050, 21051, 21052, 21053, 21054, 18059, 10934 },
 						{ 18968, 18969, 18970, 18971, 18972, 18973, 21040, 21041, 21042, 21043, 21044, 21045, 21046, 2104 },
-						{ 405, 18982, 18983, 18993, 19021, 2545, 18974, 18975, 18976, },
-						{ 6832, 7960, 21056, 6831, 2542, 6830, 18977, 18978, 18979, 19014, 19015, 1413, 19671, } };
+						{ 405, 18982, 18983, 18993, 19021, 2545, 18974, 18975, 18976, 10935 },
+						{ 6832, 7960, 21056, 6831, 2542, 6830, 18977, 18978, 18979, 19014, 19015, 1413, 19671, 18062, 10943, } };
 				
 		int[] common = { 11067, 11068, 11071, 11078, 11087, 1007, 1002, 1005, 965, 1000 };
 		int[] uncommon = { 902, 903, 904, 905, 906, 15246, 897, 898, 899, 900, 901, 21027, 21018, 21019, 21020, 21021, 21022 };
 		int[] veryUncommon = { 18440, 18914, 18946, 20527, 20528, 20529, 15246, 21034, 21000, 21001, 21002, 21003 };
-		int[] rare = { 2544, 2546, 2547, 2548, 2549,21048, 21049, 21050, 21051, 21052, 21053, 21054 };
+		int[] rare = { 2544, 2546, 2547, 2548, 2549,21048, 21049, 21050, 21051, 21052, 21053, 21054, 18059, 10934 };
 		int[] veryRare = { 18968, 18969, 18970, 18971, 18972, 18973, 21040, 21041, 21042, 21043, 21044, 21045, 21046, 21047};
-		int[] extremelyRare = { 405, 18982, 18983, 18993, 19021, 2545, 18974, 18975, 18976 };
-		int[] legendary = { 6832, 7960, 21056, 6831, 2542, 6830, 18977, 18978, 18979, 19014, 19015, 1413, 19671  };
+		int[] extremelyRare = { 405, 18982, 18983, 18993, 19021, 2545, 18974, 18975, 18976, 10935 };
+		int[] legendary = { 6832, 7960, 21056, 6831, 2542, 6830, 18977, 18978, 18979, 19014, 19015, 1413, 19671, 18062, 10943, };
 
 		int[][] all = {common, uncommon, veryUncommon, rare, veryRare, extremelyRare, legendary};
-		int[] tier = all[Misc.random(6)];
+		int[] tier;
+
+		   int random = RandomUtility.exclusiveRandom(0, 100); // Generates a random number between 0 and 99
+		   if (random < 40) {
+	        	tier = all[0]; // Common (40% probability)
+	        } else if (random < 65) {
+	        	tier = all[1]; // Uncommon (25% probability)
+	        } else if (random < 75) {
+	        	tier = all[2]; // Very Uncommon (10% probability)
+	        } else if (random < 85) {
+	        	tier = all[3]; // Rare (5% probability)
+	        } else if (random < 90) {
+	        	tier = all[4]; // Very Rare (5% probability)
+	        } else if (random < 95) {
+	        	tier = all[5]; // Extremely Rare (5% probability)
+	        } else {
+	        	tier = all[6]; // Legendary (5% probability)
+	        }
 		int PRIZE_ID = tier[Misc.random(tier.length -1)];
 
 		//final int PRIZE_ID = 1040; // TODO: Add box prize logic here, use mysteryPrizeTier too (0-6) for different coloured reward text
@@ -101,7 +123,7 @@ public class OwnerBox
 		if (mysteryPrize == -1) {
 			return;
 		}
-		
+		plr.getCollectionLogManager().addItem(BOX, new Item(mysteryPrize,1));
 		plr.getInventory().add(mysteryPrize, 1);
 		plr.ownerBoxx = false;
 		// Reward text colour

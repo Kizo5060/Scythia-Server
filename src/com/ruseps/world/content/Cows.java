@@ -74,7 +74,7 @@ public class Cows {
 			"Slay them for loot. Let us retrieve the rares!",
 			"I've been slaying these cows since 2006!",
 			"Cook their meat. Bury their bones. Loot their rares!",
-			"Come on Scythia players. My sister can hit harder than you noobs!",
+			"Come on NexArch players. My sister can hit harder than you noobs!",
 			"Kill them faster! Clear them out of here once and for all!"
 
 
@@ -145,7 +145,7 @@ public class Cows {
 				} else {
 					player.getCombatBuilder().cooldown(true);
 					player.getMovementQueue().reset();
-					player.moveTo(new Position(3094, 3503, 0));
+					player.moveTo(new Position(3038, 2785, 0));
 					player.getPacketSender().sendMessage("You have run out of coins and teleport out!");
 					this.stop();
 				}

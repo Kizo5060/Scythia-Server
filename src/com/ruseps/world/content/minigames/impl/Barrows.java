@@ -211,20 +211,17 @@ public class Barrows {
 					return true;
 				}
 				resetBarrows(player);
-				player.getInventory().add(randomRunes(),  25 + Misc.getRandom(70));
-				if (Misc.getRandom(100) >= 60) {
+				player.getInventory().add(randomRunes(),  5 + Misc.getRandom(20));
+				if (Misc.getRandom(100) >= 70) {
 					int b = randomBarrows();
 					int s = randomSets();
-					if(Misc.getRandom(40) == 4) {
-						player.getInventory().add(s, 1);
-					}
-					if (player.getAmountDonated() > 19) {
-						player.getInventory().add(b, 2);
-					}
-					if (player.getRights() == PlayerRights.PLAYER || player.getRights() == PlayerRights.VETERAN) {
-					player.getInventory().add(b, 1);
-					}
-					World.sendMessage("@blu@[BARROWS] @bla@"+player.getUsername()+" has just received "+ItemDefinition.forId(b).getName()+" from the Barrows!");
+					if (Misc.getRandom(40) == 4) {
+				        player.getInventory().add(b, 1);  
+				        World.sendMessage("@blu@[BARROWS] @bla@"+player.getUsername()+" has just received "+ItemDefinition.forId(b).getName()+" from the Barrows!");                 
+				    } else {
+				        player.getInventory().add(s, 1);                    
+				    }
+					World.sendMessage("@blu@[BARROWS] @bla@"+player.getUsername()+" has just received "+ItemDefinition.forId(s).getName()+" from the Barrows!");
 				}
 				player.getPacketSender().sendCameraShake(3, 2, 3, 2);
 				player.getPacketSender().sendMessage("The cave begins to collapse!");
@@ -432,13 +429,11 @@ public class Barrows {
 			player.getInventory().delete(995, totalCost);
 	}
 
-	public static int runes[] = {4740, 558, 560, 565};
+	public static int runes[] = {4740, 19992, 19994, 8788};
 
-	public static int barrows[] = {4708, 4710, 4712, 4714, 4708, 4710, 4712, 4714, 4716, 4718, 4720,
-			4722, 4724, 4718, 4720,
-			4722, 4724, 4718, 4720,
-			4722, 4724, 4726, 4728, 4730, 4732, 4734, 4736, 4738, 4745, 4747,
-			4749, 4751, 4753, 4755, 4757, 4759};
+	public static int barrows[] = {4708, 4710, 4712, 4714, 4716, 4718, 4720,
+			4722, 4724, 4726, 4728, 4730, 4732, 4734, 
+			4736, 4738, 4745, 4747, 4749, 4751, 4753, 4755, 4757, 4759, 12001};
 	
 	public static int sets[] = {11846, 11848, 11850, 11852, 11854, 11856};
 

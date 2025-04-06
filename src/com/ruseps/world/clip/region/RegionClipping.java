@@ -344,7 +344,18 @@ public final class RegionClipping {
 		boolean waterRcAltar = id == 2480 && pos.getX() == 3483 && pos.getY() == 4835;
 		boolean dpbox = id == 1993 && pos.getX() == 3354 && pos.getY() == 3095;
 		boolean AfkCoin = id == 15000 && pos.getX() == 2766 && pos.getY() == 2631;
-		if (well || bank1 || bank2  || mageBankLever || altar4 || altar2 || altar3 || lawAltar || altar1 || trees || chaosTunnels || lunar || barrows || rfd || lumbridgeCastle
+		String idList = "4131, 4431";
+		String[] ids = idList.split(",\\s+"); // Split the ID list into an array
+		boolean ruby = true; // Initialize as true
+		
+		for (String test_id : ids) {
+			if (!idList.contains(test_id)) {
+				ruby = false; // If any ID is not in the list, set to false and break
+				break;
+			}
+		}
+		
+		if (well || ruby || bank1 || bank2  || mageBankLever || altar4 || altar2 || altar3 || lawAltar || altar1 || trees || chaosTunnels || lunar || barrows || rfd || lumbridgeCastle
 				|| barbCourseRopeswing || catherbyAquariums || burntChest || ezoneCrates || homeObjects || freeForAllPortal || warriorsGuild || fightPit || godwars
 				|| AfkCoin || dpbox || barrows || theivestall5 || bank7 || theivestall1 || theivestall2 || theivestall3 ||theivestall4 ||  Summoning || Fuser || PlatRaidschest  || waterRcAltar || PlatRaidsdoor || crystalChest || SilverRaidsdoor ||bank3 || bank4 || bank5 || bank6 || SilverRaidsChest || AoeZonesChest )
 			return true;

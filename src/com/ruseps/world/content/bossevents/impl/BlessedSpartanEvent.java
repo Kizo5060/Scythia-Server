@@ -19,12 +19,12 @@ public class BlessedSpartanEvent extends GameEvent {
     /**
      * The delay between the events in hours.
      */
-    private static final int delay = 4;
+    private static final int delay = 2;
 
     /**
      * The spawn position for the Madara.
      */
-    private static final Position spawnPos = new Position(2326, 3235);
+    private static final Position spawnPos = new Position(2318, 3229);
     
     /**
      * The Madara NPC.
@@ -63,7 +63,7 @@ public class BlessedSpartanEvent extends GameEvent {
         BlessedSpartan = NPC.of(BlessedSpartanLoot.NPC_ID, spawnPos);
         World.register(BlessedSpartan);
         lastHitpointsBroadcasted = BlessedSpartan.getDefaultConstitution();
-        sendMessage("<col=FFFFCC><shad=1>The Blessed Spartan Boss Event has begun! Use command ::Spartan to Teleport to the Event.");
+        sendMessage("<col=FFFFCC><shad=1>The Blessed Spartan Boss Event has begun! Use command ::Spartan to Teleport, look West.");
         return true;
     }
 
@@ -92,7 +92,7 @@ public class BlessedSpartanEvent extends GameEvent {
         } else if (secondsLeft == 300) {
             sendMessage("The Blessed Spartan Boss Event will start in less than 5 minutes! Get ready!");
         } else if (secondsLeft == 60) {
-            sendMessage("The Blessed Spartan Boss Event is about to begin! Use command ::BlessedSpartan to join!");
+            sendMessage("The Blessed Spartan Boss Event is about to begin! Use command ::Spartan to join!");
         }
     }
 

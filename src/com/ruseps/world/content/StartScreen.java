@@ -12,34 +12,34 @@ public class StartScreen
     public enum GameModes {
         NORMAL("Normal", 52761, -12780, 1, 0,
                 new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
-                        new Item(3024, 10), new Item(15272, 300), new Item(995, 2000000), new Item(10477, 1),
-                        new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
-                        (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1)), (new Item(5349, 1))},
+                        new Item(3025, 10), new Item(15272, 300), new Item(10477, 1), new Item(19888, 1),
+                        new Item(10479, 1), new Item(10478, 1), (new Item(4391, 1)), (new Item(5349, 1)),
+                        (new Item(20523, 1)), (new Item(21014, 1)), (new Item(10484, 1)),new Item(20531, 1), (new Item(11896, 1))},
                 "Play in Normal Mode.", "", "", "", "", "", ""),
         IRONMAN("  Ironman", 52762, -12779, 1, 1,
-                new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
-                        new Item(3024, 10), new Item(15272, 500), new Item(995, 2000000), new Item(10477, 1),
-                        new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
-                        (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Scythia as an Iron man.", "", "", "", "", "", ""),
+        		new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), 
+                        new Item(3025, 10), new Item(15272, 500), new Item(10481, 1), new Item(913, 1),
+                        new Item(19024, 1), (new Item(914, 1)), (new Item(916, 1)), (new Item(10483, 1)),new Item(19888, 1), (new Item(11896, 1)), (new Item(4391, 1)), (new Item(10484, 1)),
+                        (new Item(20523, 1)),  new Item(21014, 1), (new Item(20531, 1))},
+                "Play NexArch as an Iron man.", "", "", "", "", "", ""),
         ULTIMATE_IRON("  Ultimate Iron", 52763, -12778, 1, 2,
+        		new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), 
+                        new Item(3025, 10), new Item(15272, 500), new Item(10481, 1), new Item(913, 1),
+                        new Item(19024, 1), (new Item(914, 1)), (new Item(916, 1)), (new Item(10483, 1)),new Item(19888, 1), (new Item(11896, 1)), (new Item(4391, 1)), (new Item(10484, 1)),
+                        (new Item(20523, 1)),  new Item(21014, 1), (new Item(20531, 1))},
+                "Play NexArch as a Ultimate Ironman.", "", "", "", "", "", ""),
+        /**(GROUP_IRONMAN("  Group Ironman", 52774, -12763, 1, 3,
+                new Item[] new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
+                        new Item(3024, 10), new Item(15272, 600), new Item(10481, 1), new Item(19888, 1),
+                        new Item(913, 1), new Item(19024, 1), (new Item(10484, 1)), (new Item(4391, 1)), (new Item(11896, 1)),
+                        (new Item(20523, 1)), (new Item(914, 1)), (new Item(916, 1)), (new Item(10483, 1)), (new Item(21014, 1))},
+                "Play NexArch as a Group Ironman.", "", "", "", "", "", ""),
+        /**VETERAN("  Veteran", 52778, -12760, 1, 4,
                 new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
                         new Item(3024, 10), new Item(15272, 600), new Item(995, 2000000), new Item(10477, 1),
                         new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
                         (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Scythia as a Ultimate Ironman.", "", "", "", "", "", ""),
-        /**GROUP_IRONMAN("  Group Ironman", 52774, -12763, 1, 3,
-                new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
-                        new Item(3024, 10), new Item(15272, 600), new Item(995, 2000000), new Item(10477, 1),
-                        new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
-                        (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Scythia as a Group Ironman.", "", "", "", "", "", ""),
-        VETERAN("  Veteran", 52778, -12760, 1, 4,
-                new Item[]{new Item(2440, 10), new Item(14793, 250), new Item(2436, 10), new Item(2442, 10),
-                        new Item(3024, 10), new Item(15272, 600), new Item(995, 2000000), new Item(10477, 1),
-                        new Item(10479, 1), new Item(10478, 1), (new Item(10484, 1)), (new Item(4391, 1)),
-                        (new Item(1478, 1)), (new Item(20523, 1)), (new Item(21014, 1)), (new Item(21015, 1))},
-                "Play Scythia as a Veteran.", "", "", "", "", "", ""),*/
+                "Play NexArch as a Veteran.", "", "", "", "", "", ""),*/
         ;
 
         private String name;
@@ -125,7 +125,7 @@ public class StartScreen
             player.getAppearance().setCanChangeAppearance(true);
             player.setNewPlayer(false);
             player.getRefferalHandler().openRefferal(player);
-           // World.sendMessage("<img=18><shad=1><col=ffca3c>[New Arrival] " + player.getUsername() + " has just logged into @cya@Scythia<col=ffca3c> for the first time!");
+           // World.sendMessage("<img=18><shad=1><col=ffca3c>[New Arrival] " + player.getUsername() + " has just logged into @cya@NexArch<col=ffca3c> for the first time!");
             player.getPacketSender().sendRights();
 
             return true;

@@ -66,6 +66,9 @@ public class DefaultRangedCombatStrategy implements CombatStrategy {
 		if (CombatFactory.crazyBow(player)) {
 			return true;
 		}
+		if (CombatFactory.NexArchBeginnerBow(player)) {
+			return true;
+		}
 		if (CombatFactory.linearBow(player)) {
 			return true;
 		}
@@ -75,10 +78,13 @@ public class DefaultRangedCombatStrategy implements CombatStrategy {
 		if (CombatFactory.rangemonsterBow(player)) {
 			return true;
 		}
-		if (CombatFactory.aurorasBow(player)) {
+		if (CombatFactory.NexArchShooterBow(player)) {
 			return true;
 		}
 		if (CombatFactory.soulessBow(player)) {
+			return true;
+		}
+		if (CombatFactory.RangeMasterBow(player)) {
 			return true;
 		}
 		if (CombatFactory.tribridBow(player)) {
@@ -96,7 +102,12 @@ public class DefaultRangedCombatStrategy implements CombatStrategy {
 		if (CombatFactory.LazerGun(player)) {
 			return true;
 		}
-
+		if (CombatFactory.mortalBow(player)) {
+			return true;
+		}
+		if (CombatFactory.dragonDestroyerBow(player)) {
+			return true;
+		}
 		if (Dueling.checkRule(player, DuelRule.NO_RANGED)) {
 			player.getPacketSender().sendMessage("Ranged-attacks have been turned off in this duel!");
 			player.getCombatBuilder().reset(true);
@@ -171,7 +182,7 @@ public class DefaultRangedCombatStrategy implements CombatStrategy {
 					decrementAmmo(player, victim.getPosition());
 				if (dBow || player.getRangedWeaponData() == RangedWeaponData.MAGIC_SHORTBOW
 						&& player.isSpecialActivated() && player.getCombatSpecial() != null
-						&& player.getCombatSpecial() == CombatSpecial.MAGIC_SHORTBOW) {
+						&& player.getCombatSpecial() == CombatSpecial.DRAGON_DAGGER) {
 					decrementAmmo(player, victim.getPosition());
 				}
 				if (!CombatFactory.LazerGun(player)) {
@@ -273,6 +284,15 @@ public class DefaultRangedCombatStrategy implements CombatStrategy {
 	 *         <code>false</code> otherwise.
 	 */
 	private boolean checkAmmo(Player player) {
+		if (CombatFactory.mortalBow(player)) {
+			return true;
+		}
+		if (CombatFactory.dragonDestroyerBow(player)) {
+			return true;
+		}
+		if (CombatFactory.berusBow(player)) {
+			return true;
+		}
 		if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 4706) {
 			if (player.getEquipment().get(Equipment.AMMUNITION_SLOT).getId() >= 1) {
 				player.getPacketSender().sendMessage("You can't use ammunition with this bow.");
@@ -301,10 +321,7 @@ public class DefaultRangedCombatStrategy implements CombatStrategy {
 		
 		Item ammunition = player.getEquipment().getItems()[data.getType() == RangedWeaponType.THROW
 				? Equipment.WEAPON_SLOT : Equipment.AMMUNITION_SLOT];
-		boolean darkBow = data.getType() == RangedWeaponType.DARK_BOW && ammunition.getAmount() < 2
-				|| data == RangedWeaponData.MAGIC_SHORTBOW && player.isSpecialActivated()
-						&& player.getCombatSpecial() != null
-						&& player.getCombatSpecial() == CombatSpecial.MAGIC_SHORTBOW && ammunition.getAmount() < 2;
+		boolean darkBow = data.getType() == RangedWeaponType.DARK_BOW && ammunition.getAmount() < 2;
 		if (ammunition.getId() == -1 || ammunition.getAmount() < 1 || darkBow) {
 			player.getPacketSender().sendMessage(darkBow ? "You need at least 2 arrows to fire this bow."
 					: "You don't have any ammunition to fire.");
@@ -342,6 +359,12 @@ public class DefaultRangedCombatStrategy implements CombatStrategy {
 	 *            the player to decrement ammo for.
 	 */
 			public static void decrementAmmo(Player player, Position pos) {
+				if (CombatFactory.mortalBow(player)) {
+					return ;
+				}
+				if (CombatFactory.dragonDestroyerBow(player)) {
+					return ;
+				}
 					if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 8871) {
 						return;
 					}

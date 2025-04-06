@@ -191,9 +191,10 @@ public class NPCOptionPacketListener implements PacketListener {
 					ShopManager.getShops().get(28).open(player);
 					//DialogueManager.start(player, ExplorerJack.getDialogue(player));
 					break;
-					case 1597:
+				case 1597:
 				case 8275:
 				case 9085:
+				case 1598:	
 				case 7780:
 					if(npc.getId() != player.getSlayer().getSlayerMaster().getNpcId()) {
 						player.getPacketSender().sendMessage("This is not your current Slayer master.");
@@ -410,7 +411,7 @@ public class NPCOptionPacketListener implements PacketListener {
 					break;
 				case 454:
 					ShopManager.getShops().get(100).open(player);
-					player.getPacketSender().sendMessage("<col=255>You currently have "+player.getPointsHandler().getRaidsOnePoints()+" Raids One points!");
+					player.getPacketSender().sendMessage("<col=255>You currently have "+player.getPointsHandler().getRaidsOnePoints()+" Raid Points!");
 				}
 				if(!(npc.getId() >= 8705 && npc.getId() <= 8710)) {
 					npc.setPositionToFace(player.getPosition());
@@ -475,7 +476,7 @@ public class NPCOptionPacketListener implements PacketListener {
 				/** RAIDS ONE SHOP **/
 				case 454:
 					ShopManager.getShops().get(100).open(player);
-					player.getPacketSender().sendMessage("<col=255>You currently have "+player.getPointsHandler().getRaidsOnePoints()+" Raids One points!");
+					player.getPacketSender().sendMessage("<col=255>You currently have "+player.getPointsHandler().getRaidsOnePoints()+" Raid Points!");
 					break;
 				case 3535:
 					ShopManager.getShops().get(46).open(player);
@@ -525,7 +526,9 @@ public class NPCOptionPacketListener implements PacketListener {
 					//MySQLController.getStore().claim(player);
 					break;
 				case 1597:
+				case 8275:
 				case 9085:
+				case 1598:	
 				case 7780:
 					if(npc.getId() != player.getSlayer().getSlayerMaster().getNpcId()) {
 						player.getPacketSender().sendMessage("This is not your current Slayer master.");
@@ -596,6 +599,7 @@ public class NPCOptionPacketListener implements PacketListener {
 				case 1597:
 				case 8275:
 				case 9085:
+				case 1598:		
 				case 7780:
 					ShopManager.getShops().get(40).open(player);
 					break;
@@ -692,6 +696,7 @@ public class NPCOptionPacketListener implements PacketListener {
 				case 1597:
 				case 9085:
 				case 8275:
+				case 1598:		
 				case 7780:
 					player.getPacketSender().sendString(36030, "Current Points:   "+player.getPointsHandler().getSlayerPoints());
 					player.getPacketSender().sendInterface(36000);

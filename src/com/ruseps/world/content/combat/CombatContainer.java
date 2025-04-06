@@ -130,7 +130,7 @@ public class CombatContainer {
 		/** SPECS **/
 		
 		if(attacker.isPlayer() && ((Player)attacker).isSpecialActivated()) {
-			if(((Player)attacker).getCombatSpecial() == CombatSpecial.DRAGON_CLAWS && hitAmount == 4) {
+			if(((Player)attacker).getCombatSpecial() == CombatSpecial.DRAGON_DAGGER && hitAmount == 4) {
 				int first = array[0].getHit().getDamage();
 				if(first > 360) {
 					first = 360 + Misc.getRandom(10);
@@ -142,7 +142,7 @@ public class CombatContainer {
 				array[1].getHit().setDamage(second);
 				array[2].getHit().setDamage(third);
 				array[3].getHit().setDamage(fourth);
-			} else if(((Player)attacker).getCombatSpecial() == CombatSpecial.DARK_BOW && hitAmount == 2) {
+			} else if(((Player)attacker).getCombatSpecial() == CombatSpecial.DRAGON_DAGGER && hitAmount == 2) {
 				for(int i = 0; i < hitAmount; i++) {
 					if(array[i].getHit().getDamage() < 80) {
 						array[i].getHit().setDamage(80);

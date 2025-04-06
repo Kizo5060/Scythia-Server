@@ -19,7 +19,8 @@ public class CustomMagicStaff {
         OBLIVIONSTAFF(new int[] { 7082 }, CombatSpells.OBLIVION.getSpell()),
         WATER_STAFF(new int[] {11653 }, CombatSpells.KRYPTIC_SPELL.getSpell()),
     	FAST_STAFF(new int[] { 20656 }, CombatSpells.OBLIVION2.getSpell()),
-        LORIEN(new int[] { 3510 }, CombatSpells.LORIENSTAFF.getSpell()),
+        LORIEN(new int[] { 3510 }, CombatSpells.LORIENSTAFF.getSpell()), // Mystic Star Staff
+        SOUL(new int[] { 19078 }, CombatSpells.SOULSTAFF.getSpell()),
     	THANOSI(new int[] { 13084 }, CombatSpells.THANOSI.getSpell()),
     	INFUSEDTHANOS(new int[] { 13080 }, CombatSpells.TINFUSED.getSpell()),
     	DEADLY_STAFF(new int[] { 2764 }, CombatSpells.DEADLYSPELL.getSpell()),

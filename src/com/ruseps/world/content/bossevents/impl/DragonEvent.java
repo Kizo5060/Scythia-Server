@@ -63,7 +63,7 @@ public class DragonEvent extends GameEvent {
         Dragon = NPC.of(DragonLoot.BLUE_NPC_ID, spawnPos);
         World.register(Dragon);
         lastHitpointsBroadcasted = Dragon.getDefaultConstitution();
-        sendMessage("<col=FFFFCC><shad=1>The Dragon Boss Event has begun! Use command ::Dragon to Teleport to the Event.");
+        sendMessage("@blu@<shad=1>The Dragon Boss Event has begun! Use command ::Dragon to Teleport to the Event.");
         return true;
     }
 

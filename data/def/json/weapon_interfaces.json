@@ -260,6 +260,26 @@
     "interface": "SHORTBOW"
   },
   {
+    "hash": 19012,
+    "item-id": 19012,
+    "interface": "SHORTBOW"
+  },
+  {
+    "hash": 10946,
+    "item-id": 10946,
+    "interface": "SHORTBOW"
+  },
+  {
+    "hash": 2680,
+    "item-id": 2680,
+    "interface": "SHORTBOW"
+  },
+  {
+    "hash": 2732,
+    "item-id": 2732,
+    "interface": "SHORTBOW"
+  },
+  {
     "hash": 20523,
     "item-id": 20523,
     "interface": "SHORTBOW"
@@ -573,7 +593,17 @@
     "hash": 13083,
     "item-id": 13083,
     "interface": "SWORD"
-  },  
+  },
+  {
+    "hash": 7083,
+    "item-id": 7083,
+    "interface": "SWORD"
+  },
+  {
+    "hash": 8670,
+    "item-id": 8670,
+    "interface": "SWORD"
+  },     
   {
     "hash": 2708,
     "item-id": 2708,
@@ -1952,11 +1982,6 @@
   {
     "hash": 19920,
     "item-id": 19920,
-    "interface": "CROSSBOW"
-  },
-    {
-    "hash": 20523,
-    "item-id": 20523,
     "interface": "CROSSBOW"
   },
     {

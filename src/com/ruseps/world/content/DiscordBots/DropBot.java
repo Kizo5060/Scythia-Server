@@ -71,7 +71,7 @@ public class DropBot extends ListenerAdapter {
 	public static void sendMessageOnline(){
 
 		WebhookMessageBuilder builder5 = new WebhookMessageBuilder();
-		MessageEmbed firstEmbed = new EmbedBuilder().setColor(Color.MAGENTA).setTitle(":mega: Scythia has been Updated and is back online!").build();
+		MessageEmbed firstEmbed = new EmbedBuilder().setColor(Color.MAGENTA).setTitle(":mega: NexArch has been Updated and is back online!").build();
 
 		builder5.addEmbeds(firstEmbed)
 				.setUsername("Scythia Town Crier").setAvatarUrl("https://runesuite.org/uploads/monthly_2019_09/rune_full_helm_icon_by_rs_legendarts-dby332b.png.90b85639e5e01905ada3045c37f3f12d.png");

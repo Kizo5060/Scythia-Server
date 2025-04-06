@@ -59,6 +59,7 @@ public class DesolaceFormulas {
 			
 			if(plr.getEquipment().getItems()[Equipment.WEAPON_SLOT].getId() == 20061) {
 				base *= 1.15;
+				
 			}
 			if(plr.x2DMG = true) {
 				base *= 10.00;
@@ -94,46 +95,215 @@ public class DesolaceFormulas {
 					base += (int) ((0.30) * (base));
 				}
 
-				/** BOOSTS **///Slayer
+				// Upgraded Slayer
+				if (plr.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2858 
+						&& plr.getEquipment().get(Equipment.BODY_SLOT).getId() == 2869 
+						&& plr.getEquipment().get(Equipment.LEG_SLOT).getId() == 2859 
+						&& plr.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2857 
+						&& plr.getEquipment().get(Equipment.CAPE_SLOT).getId() == 2867) {
+					base *= .50;					
+				} // Upgraded Slayer
 				if (plr.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2858 
 						&& plr.getEquipment().get(Equipment.BODY_SLOT).getId() == 2869 
 						&& plr.getEquipment().get(Equipment.LEG_SLOT).getId() == 2859 
 						&& plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 2856 
-						&& plr.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2857 
-						&& plr.getEquipment().get(Equipment.CAPE_SLOT).getId() == 2867) {
-					base *= .70;
-				}//Obsidian's Upgraded
-				if (plr.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2711
-						&& plr.getEquipment().get(Equipment.BODY_SLOT).getId() == 2712 
-						&& plr.getEquipment().get(Equipment.LEG_SLOT).getId() == 2713 
-						&& plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 2715 
-						&& plr.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2714 ) {
-					base *= 1.40;
-				}// montreal
-				if (plr.getEquipment().get(Equipment.HEAD_SLOT).getId() == 3511
-						&& plr.getEquipment().get(Equipment.BODY_SLOT).getId() == 3512
-						&& plr.getEquipment().get(Equipment.LEG_SLOT).getId() == 3513
-						&& plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 3514
-						&& plr.getEquipment().get(Equipment.HANDS_SLOT).getId() == 3515) {
-					base *= 2.45;
+						&& plr.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2857) {
+					base *= .50;
+					
 				}
+				//Obsidian's Upgraded
+				//if (plr.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2711){
+					base *= 1;		
+				//}
+				//if (plr.getEquipment().get(Equipment.BODY_SLOT).getId() == 2712){
+					base *= 1;		
+				//}
+				//if (plr.getEquipment().get(Equipment.LEG_SLOT).getId() == 2713){
+					base *= 1;		
+				//}
+				//if (plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 2715){
+					base *= 1;		
+				//}
+				//if (plr.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2714){
+					base *= 1;		
+				//}
+					
+				//NexArch Owner Set
+				if (plr.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19005
+						&& plr.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19002
+						&& plr.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19003
+						&& plr.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 19016
+						&& plr.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19004 ) {
+					base *= 7.5;	
+					
+				}//Of the Gods			
+				if (plr.getEquipment().get(Equipment.HEAD_SLOT).getId() == 21043){
+					base *= 1.25;		
+				}
+				if (plr.getEquipment().get(Equipment.BODY_SLOT).getId() == 21045){
+					base *= 1.25;		
+				}
+				if (plr.getEquipment().get(Equipment.LEG_SLOT).getId() == 21044){
+					base *= 1.25;		
+				}
+				if (plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 21041){
+					base *= 1.25;		
+				}
+				if (plr.getEquipment().get(Equipment.CAPE_SLOT).getId() == 21047){
+					base *= 1.25;		
+				}
+				if (plr.getEquipment().get(Equipment.HANDS_SLOT).getId() == 21042){
+					base *= 1.25;		
+				}
+				//Meliodas Set
+				if (plr.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 8676) {
+					base *= 1.5;		
+				}
+				if (plr.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 8680) {
+					base *= 1.5;		
+				}
+				if (plr.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 8678){
+					base *= 1.5;		
+				}
+				if (plr.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 8672){
+					base *= 1.5;		
+				}
+				if (plr.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 8668){
+					base *= 1.5;		
+				}
+				if (plr.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 8674){
+					base *= 1.5;		
+				}
+				
+				//Soul Master Set
+				if (plr.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 2724) {
+					base *= 1.7;		
+				}
+				if (plr.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 2725) {
+					base *= 1.7;		
+				}
+				if (plr.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 2726){
+					base *= 1.7;		
+				}
+				if (plr.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 2729){
+					base *= 1.7;				
+				}
+				if (plr.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 2727){
+					base *= 1.7;		
+				}
+				
+				//Master of Slayer set
+				if (plr.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13026
+						&& plr.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 13024
+						&& plr.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 13025
+						&& plr.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13027 
+						&& plr.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 13029) {
+					base *= 1.5;	
+					
+				}//Master of Slayer set
+				if (plr.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13026
+						&& plr.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 13024
+						&& plr.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 13025
+						&& plr.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 13028
+						&& plr.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13027) {
+					base *= 1.5;		
+				
+				}//Slayer God Set
+				if (plr.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19030
+						&& plr.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19031
+						&& plr.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19032
+						&& plr.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19033 
+						&& plr.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 10598) {
+					base *= 3.25;	
+					
+				}//Slayer God Set
+				if (plr.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19030
+						&& plr.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19031
+						&& plr.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19032
+						&& plr.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 19034
+						&& plr.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19033) {
+					base *= 3.25;		
+					
+				}
+				// montreal
+				//if (plr.getEquipment().get(Equipment.HEAD_SLOT).getId() == 3511){
+					base *= 1.15;
+				//}
+				//if (plr.getEquipment().get(Equipment.BODY_SLOT).getId() == 3512){
+					base *= 1.15;
+				//}
+				//if (plr.getEquipment().get(Equipment.LEG_SLOT).getId() == 3513){
+					base *= 1.15;
+				//}
+				//if (plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 3514){
+					base *= 1.15;
+				//}
+				if (plr.getEquipment().get(Equipment.HANDS_SLOT).getId() == 3515){
+					base *= 0.1;
+					
+				}//Owner Cape
 				if (plr.getEquipment().get(Equipment.CAPE_SLOT).getId() == 1413 ){
-					base *= 5.00;
+					base *= 1.25;
+				}// Slayer Owner Cape
+				if (plr.getEquipment().get(Equipment.CAPE_SLOT).getId() == 2728 ){
+					base *= 1.75;		
+				}
+				if (plr.getEquipment().get(Equipment.SHIELD_SLOT).getId() == 13742 ){
+					base *= 1;	
 				}
 				//opSEt
 				if (plr.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996
 						&& plr.getEquipment().get(Equipment.RING_SLOT).getId() == 965
 						&& plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007 ) {
-					base *= 2.70;
+					base *= 1.75;
+				}	
+			
+				if (plr.getEquipment().get(Equipment.RING_SLOT).getId() == 965
+					&& plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007) {
+				base *= 2;
+				}	
+			
+				if (plr.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996
+					&& plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007) {
+				base *= 2;
 				}
+					
+				if (plr.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996
+						&& plr.getEquipment().get(Equipment.RING_SLOT).getId() == 965) {
+					base *= 2;		
+				}
+				
+				if(plr.getEquipment().get(Equipment.WEAPON_SLOT).getId() ==  3497) {
+					base *= 1.50;
+				}
+				
+				if(plr.getEquipment().get(Equipment.WEAPON_SLOT).getId() ==  8670) {
+					base *= 1.50;
+				}
+				
+				if (plr.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996) {
+					base *= 1;
+				} 
+				
+				if (plr.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007) {
+					base *= 1;
+				} 
+				
+				if (plr.getEquipment().get(Equipment.RING_SLOT).getId() == 965) {
+					base *= 1;
+				} 
+				
 				if (plr.getGameMode() == GameMode.GROUP_IRONMAN) {
 					base /= 25.00;
 				}
 				if (plr.getEquipment().get(Equipment.BOOSTER).getId() == 18941) {
-					base *= 1.70;
+					base *= 2;
+				} 
+				if (plr.getEquipment().get(Equipment.BOOSTER).getId() == 3527) {
+					base *= .50;
 				} 
 				if(plr.getEquipment().get(Equipment.BOOSTER).getId() ==  18948) {
-					base *= 1.70;
+					base *= 1.50;
 				}
 				/** SLAYER HELMET **/
 				if(npc.getId() == plr.getSlayer().getSlayerTask().getNpcId()) {
@@ -512,50 +682,220 @@ public class DesolaceFormulas {
 		}
 		if(p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 8469) {
 			damageMultiplier += .10;
+		}	
+		
+			if (p.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996
+					&& p.getEquipment().get(Equipment.RING_SLOT).getId() == 965
+					&& p.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007 ) {
+				damageMultiplier += 1.5;
+				
+			}	
+			
+			if (p.getEquipment().get(Equipment.RING_SLOT).getId() == 965
+					&& p.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007) {
+				damageMultiplier += 2;
+				
+			}	
+			
+			if (p.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996
+					&& p.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007) {
+				damageMultiplier += 2;
+				
+			}	
+				
+			if (p.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996
+					&& p.getEquipment().get(Equipment.RING_SLOT).getId() == 965) {
+				damageMultiplier += 2;	
 		}
+		
+		if (p.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996) {
+				damageMultiplier += 1;
+		} 
+			
+		if (p.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007) {
+			damageMultiplier += 1;
+		} 
+			
+		if (p.getEquipment().get(Equipment.RING_SLOT).getId() == 965) {
+			damageMultiplier += 1;
+		} 
+			
 		if(p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 1413) {
-			damageMultiplier += 8.10;
+			damageMultiplier += 1.25;
 		}
-		if (p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 2799
-				&& p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 2800
-				&& p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 2801
-				&& p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 2803
-				&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 2802) {
-			damageMultiplier += 25.45;
+		if(p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 2728) {
+			damageMultiplier += 1.75;	
+			
 		}
-
+		if(p.getEquipment().getItems()[Equipment.SHIELD_SLOT].getId() == 13022) {
+			damageMultiplier += 1;
+			
+		}//No Fucks
+		if(p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 2799) {
+			damageMultiplier += 1.2;
+		}if(p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 2800) {
+			damageMultiplier += 1.2;
+		}if(p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 2801) {
+			damageMultiplier += 1.2;
+		}if(p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 2803) {
+			damageMultiplier += 1.2;
+		}if(p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 2802) {
+			damageMultiplier += 1.2;
+			
+		}
 		if (p.getGameMode() == GameMode.GROUP_IRONMAN) {
 			damageMultiplier /= 25.00;
+			
 		}
-		if (p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 2745
-				&& p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 2734
-				&& p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 2735
-				&& p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 2737
-				&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 2736
-				&& p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 2738 ) {
-			damageMultiplier += 1.45;
-		}//mdma set
+		//Raging Set
+		//if(p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 2745) {
+			damageMultiplier += 1.12;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 2734) {
+			damageMultiplier += 1.12;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 2735) {
+			damageMultiplier += 1.12;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 2737) {
+			damageMultiplier += 1.12;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 2738) {
+			damageMultiplier += 1.12;;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 2736) {
+			damageMultiplier += 1.12;
+		//}
+			
+		//Master Slayer set
 			if (p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13026
 					&& p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 13024
 					&& p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 13025
 					&& p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 13028
-					&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13027
-					&& p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 13029 ) {
-				damageMultiplier += 7.45;
-
+					&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13027) {
+				damageMultiplier += 1.5;
+			
+		}// Upgraded Slayer
+			if (p.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2858 
+					&& p.getEquipment().get(Equipment.BODY_SLOT).getId() == 2869 
+					&& p.getEquipment().get(Equipment.LEG_SLOT).getId() == 2859 
+					&& p.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2857 
+					&& p.getEquipment().get(Equipment.FEET_SLOT).getId() == 2856) {
+				damageMultiplier += 1.5;		
+				
+		}// Upgraded Slayer
+			if (p.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2858 
+					&& p.getEquipment().get(Equipment.BODY_SLOT).getId() == 2869 
+					&& p.getEquipment().get(Equipment.LEG_SLOT).getId() == 2859 
+					&& p.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2857 
+					&& p.getEquipment().get(Equipment.CAPE_SLOT).getId() == 2867) {
+				damageMultiplier += 1.5;		
+				
+		}//Master Slayer set
+			if (p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13026
+					&& p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 13024
+					&& p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 13025
+					&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13027 
+					&& p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 2728) {
+				damageMultiplier += 1.5;		
+				
+		}//Slayer God Set
+			if (p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19030
+					&& p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19031
+					&& p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19032
+					&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19033 
+					&& p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 10598) {
+				damageMultiplier += 3.5;		
+				
+		}//Slayer God Set
+			if (p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19030
+					&& p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19031
+					&& p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19032
+					&& p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 19034
+					&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19033) {
+				damageMultiplier += 3.5;				
+				
+		}//NexArch Owner Set
+			if (p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19005
+					&& p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19002
+					&& p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19003
+					&& p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 19016
+					&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19004 ) {
+				damageMultiplier += 25;
+				
+		}//Mystic Star Set	
+		if(p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13034) {
+			damageMultiplier += 1.15;
+		}if(p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 13030) {
+			damageMultiplier += 1.15;
+		}if(p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 13031) {
+			damageMultiplier += 1.15;
+		}if(p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 13032) {
+			damageMultiplier += 1.15;
+		}if(p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 13035) {
+			damageMultiplier += 1.15;
+		}if(p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13033) {
+			damageMultiplier += 1.15;
+			
+		}//Soul Lord Set	
+		if(p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 2724) {
+			damageMultiplier += 1.5;
+		}if(p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 2725) {
+			damageMultiplier += 1.5;
+		}if(p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 2726) {
+			damageMultiplier += 1.5;
+		}if(p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 2729) {
+			damageMultiplier += 1.5;
+		}if(p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 2727) {
+			damageMultiplier += 1.5;
+			
 		}
-		if (p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13034
-				&& p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 13030
-				&& p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 13031
-				&& p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13033 ) {
-			damageMultiplier += 7.45;
-
+		// Death Reaper Set
+		//if(p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 21049) {
+			damageMultiplier += 1;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 21050) {
+			damageMultiplier += 1;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 21051) {
+			damageMultiplier += 1;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 21052) {
+			damageMultiplier += 1;
+		//}
+		//if(p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 21053) {
+			damageMultiplier += 1;
+			
+		//}
+			
+		// Superior Magic Set
+		if(p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 3501) {
+			damageMultiplier += 0.5;
 		}
+		if(p.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 3502) {
+			damageMultiplier += 0.5;
+		}
+		if(p.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 3503) {
+			damageMultiplier += 0.5;
+		}
+		if(p.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 3499) {
+			damageMultiplier += 0.5;
+		}
+		if(p.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 3500) {
+			damageMultiplier += 0.5;
+		}
+		if(p.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 3504) {
+			damageMultiplier += 0.5;
+		}
+
 		if(p.getEquipment().getItems()[Equipment.BOOSTER].getId() == 18941) {
-			damageMultiplier += 2.10;
+			damageMultiplier += 2.25;
+		}
+		if(p.getEquipment().getItems()[Equipment.BOOSTER].getId() == 3527) {
+			damageMultiplier += 1.5;
 		}
 		if(p.getEquipment().getItems()[Equipment.BOOSTER].getId() == 18947) {
-			damageMultiplier += 2.10;
+			damageMultiplier += .50;
 		}
 		if(p.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() ==  8465) {
 			damageMultiplier += .10;

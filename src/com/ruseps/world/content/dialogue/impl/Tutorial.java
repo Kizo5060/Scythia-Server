@@ -69,7 +69,7 @@ public class Tutorial {
 
 				@Override
 				public String[] dialogue() {
-					return new String[]{"You can earn money doing many different things in", "Scythia. For example, see those Thieving stalls infront of ", "you? You can steal items from them and sell them to the", "merchant whose standing over there."};
+					return new String[]{"You can earn money doing many different things in", "NexArch. For example, see those Thieving stalls infront of ", "you? You can steal items from them and sell them to the", "merchant whose standing over there."};
 				};
 
 				@Override
@@ -242,7 +242,7 @@ public class Tutorial {
 
 				@Override
 				public String[] dialogue() {
-					return new String[]{"Enough of the boring stuff, let's show you some creatures!", "There are a bunch of bosses to fight in Scythia.", "Every boss drops unique and good gear when killed.", "One example is the mighty Pohenix!"};
+					return new String[]{"Enough of the boring stuff, let's show you some creatures!", "There are a bunch of bosses to fight in NexArch.", "Every boss drops unique and good gear when killed.", "One example is the mighty Pohenix!"};
 				};
 
 				@Override
@@ -310,7 +310,7 @@ public class Tutorial {
 
 				@Override
 				public String[] dialogue() {
-					return new String[]{"Scythia also has a lot of enjoyable minigames.", "This is the Graveyard Arena, an area that's been run over", "by Zombies. Your job is to simply to kill them all.", "Sounds like fun, don't you think?"};
+					return new String[]{"NexArch also has a lot of enjoyable minigames.", "This is the Graveyard Arena, an area that's been run over", "by Zombies. Your job is to simply to kill them all.", "Sounds like fun, don't you think?"};
 				};
 
 				@Override
@@ -378,7 +378,7 @@ public class Tutorial {
 
 				@Override
 				public String[] dialogue() {
-					return new String[]{"To receive a member rank, you'd need to claim", "scrolls worth at least $20 (for the Bronze Member rank).", "Scrolls and other items can be purchased from the store", "which can be opened using the ::store command." };
+					return new String[]{"To receive a member rank, you'd need to claim", "scrolls worth at least $50 (for the Bronze Member rank).", "Scrolls and other items can be purchased from the store", "which can be opened using the ::store command." };
 				};
 
 				@Override
@@ -412,7 +412,7 @@ public class Tutorial {
 
 				@Override
 				public String[] dialogue() {
-					return new String[]{"Scythia is a competitive game. Next to you is a scoreboard", "which you can use to track other players and their progress."};
+					return new String[]{"NexArch is a competitive game. Next to you is a scoreboard", "which you can use to track other players and their progress."};
 				};
 
 				@Override
@@ -482,7 +482,7 @@ public class Tutorial {
 
 				@Override
 				public String[] dialogue() {
-					return new String[]{"If you have any more questions, simply use the ::help", "command and a staff member should get back to you.", "You can also join the clanchat channel 'help' and ask", "other players for help there too. Have fun playing Scythia!"};
+					return new String[]{"If you have any more questions, simply use the ::help", "command and a staff member should get back to you.", "You can also join the clanchat channel 'help' and ask", "other players for help there too. Have fun playing NexArch!"};
 				};
 
 				@Override
@@ -511,7 +511,7 @@ public class Tutorial {
 
 				@Override
 				public String[] dialogue() {
-					return new String[]{"If you have any more questions, simply use the ::help", "command and a staff member should get back to you.", "You can also join the clanchat channel 'help' and ask", "other players for help there too. Have fun playing Scythia!"};
+					return new String[]{"If you have any more questions, simply use the ::help", "command and a staff member should get back to you.", "You can also join the clanchat channel 'help' and ask", "other players for help there too. Have fun playing NexArch!"};
 				};
 
 				@Override
@@ -538,7 +538,7 @@ public class Tutorial {
 					p.getAppearance().setCanChangeAppearance(true);
 					p.setPlayerLocked(false);
 					ClanChatManager.join(p, "help");
-					World.sendMessage("<img=10> <col=6600CC>[NEW PLAYER]: "+p.getUsername()+" has logged into Scythia for the first time!");
+					World.sendMessage("<img=10> <col=6600CC>[NEW PLAYER]: "+p.getUsername()+" has logged into NexArch for the first time!");
 
 					//reset interface?
 					//resetInterface(player);

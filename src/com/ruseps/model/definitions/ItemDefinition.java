@@ -1,8 +1,10 @@
 package com.ruseps.model.definitions;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -194,6 +196,40 @@ public class ItemDefinition {
         return definitions;
     }
 
+
+    public static void printAll() throws IOException {
+    	File newStats = new File("./data/def/txt/hovers.txt");  
+    	BufferedWriter writer = new BufferedWriter(new FileWriter(newStats));
+    	writer.append(Integer.toString(22694) + "\n"); //total
+    	for(ItemDefinition item : definitions) {
+    		if(item == null || item.getName().equalsIgnoreCase("null"))
+    			continue;
+    		if(item.equipmentType == EquipmentType.AMULET ||
+    				item.equipmentType == EquipmentType.AURA||
+    				item.equipmentType == EquipmentType.BOOSTER ||
+    				item.equipmentType == EquipmentType.RING ||
+    				item.equipmentType == EquipmentType.CAPE ||
+    				item.equipmentType == EquipmentType.BOOTS ||
+    				item.equipmentType == EquipmentType.PLATEBODY ||
+    				item.equipmentType == EquipmentType.GLOVES ||
+    				item.equipmentType == EquipmentType.LEGS ||
+    				item.equipmentType == EquipmentType.AMULET ||
+    				item.equipmentType == EquipmentType.FULL_HELMET ||
+    				item.equipmentType == EquipmentType.FULL_MASK
+    				||item.equipmentType == EquipmentType.LEGS||
+    				item.equipmentType == EquipmentType.BODY ||
+    				item.equipmentType == EquipmentType.SHIELD||
+    				item.equipmentType == EquipmentType.HAT ||
+    				item.isWeapon()) { //only adds equibable
+    			writer.append(Integer.toString(item.getId()) + "\n"); //item id
+    			for(int i =0; i< 14; i++) {
+    				writer.append(Integer.toString((int)item.bonus[i]) + "\n"); //its 14 bonuses there is 2 more but idk wtf
+    			}
+    			
+    		}
+    	}
+    	writer.close();
+    }
     /**
      * Gets the item definition correspondent to the id.
      *

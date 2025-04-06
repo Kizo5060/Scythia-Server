@@ -336,9 +336,9 @@ public class Shop extends ItemContainer {
 		if (amountBuying == 0)
 			return this;
 
-		if (amountBuying > 5000) {
+		if (amountBuying > 100000) {
 			player.getPacketSender().sendMessage(
-					"You can only buy 5000 " + ItemDefinition.forId(item.getId()).getName() + "s at a time.");
+					"You can only buy 100000 " + ItemDefinition.forId(item.getId()).getName() + "s at a time.");
 			return this;
 		}
 		
@@ -597,6 +597,45 @@ public class Shop extends ItemContainer {
 		return StackType.STACKS;
 	}
 
+    @Override
+    public ItemContainer delete(Item item, int slot, boolean refresh, ItemContainer toContainer) {
+        if (item == null || slot < 0)
+            return this;
+
+        boolean leavePlaceHolder = this instanceof Shop && id != GENERAL_STORE;
+        if (item.getAmount() > getAmount(item.getId()))
+            item.setAmount(getAmount(item.getId()));
+        if (item.getDefinition().isStackable() || stackType() == StackType.STACKS) {
+            if (toContainer != null && !item.getDefinition().isStackable()
+                    && item.getAmount() > toContainer.getFreeSlots() && !(this instanceof Shop))
+                item.setAmount(toContainer.getFreeSlots());
+
+            getItems()[slot].setAmount(getItems()[slot].getAmount() - item.getAmount());
+
+            if (getItems()[slot].getAmount() < 1) {
+                getItems()[slot].setAmount(0);
+                if (!leavePlaceHolder) {
+                    getItems()[slot].setId(-1);
+                }
+            }
+        } else {
+            int amount = item.getAmount();
+            while (amount > 0) {
+                if (slot == -1 || (toContainer != null && toContainer.isFull()))
+                    break;
+                if (!leavePlaceHolder) {
+                    getItems()[slot].setId(-1);
+                }
+                getItems()[slot].setAmount(0);
+                slot = getSlot(item.getId());
+                amount--;
+            }
+        }
+        if (refresh)
+            refreshItems();
+        return this;
+    }
+
 	@Override
 	public Shop refreshItems() {
 		if (id == RECIPE_FOR_DISASTER_STORE) {
@@ -726,7 +765,7 @@ public class Shop extends ItemContainer {
 				case 21055:
 					return new Object[] { 100, "Voting Points" };
 				case 21056: 
-					return new Object[] { 750, "Voting Points" };
+					return new Object[] { 400, "Voting Points" };
 				case 10835:
 					return new Object[] { 50, "Voting Points" };
 				case 19888:
@@ -771,7 +810,7 @@ public class Shop extends ItemContainer {
 			} else if (shop == GENERAL_STORE) {
 				switch (item) {
 				case 21071:
-					return new Object[] { 45, "Scythia Coins" };
+					return new Object[] { 45, "NexArch Coins" };
 				}
 			} else if (shop == PKING_REWARDS_STORE) {
 				switch (item) {
@@ -859,19 +898,6 @@ public class Shop extends ItemContainer {
 				}
 			} else if (shop == BATTLE_ROYAL_STORE) {
 				switch (item) {
-				case 19030:
-				case 19031:
-				case 19032:
-				case 19033:
-				case 19034:
-					return new Object[] { 250, "Battle Royal Points" };
-					
-				case 19035:
-				case 19036:
-				case 19037:
-				case 19038:
-					return new Object[] { 300, "Battle Royal Points" };
-					
 				case 19039:
 					return new Object[] { 500, "Battle Royal Points" };
 				case 19040:
@@ -946,62 +972,80 @@ public class Shop extends ItemContainer {
 				}
 			} else if (shop == RAIDS1) {
 				switch (item) {
-				case 19098:
-					return new Object[] { 10000, "Raids One Points" };
-				case 19099:
-					return new Object[] { 10000, "Raids One Points" };
-				case 19100:
-					return new Object[] { 10000, "Raids One Points" };
-				case 19094:
-					return new Object[] { 7000, "Raids One Points" };
-				case 19095:
-					return new Object[] { 7000, "Raids One Points" };
-				case 19097:	
-					return new Object[] { 7000, "Raids One Points" };
-				case 19096:
-					return new Object[] { 10000, "Raids One Points" };
-				case 19093:
-					return new Object[] { 7000, "Raids One Points" };
-				case 20650:
-					return new Object[] { 4000, "Raids One Points" };
-				case 20651:
-					return new Object[] { 4000, "Raids One Points" };
-				case 20652:
-					return new Object[] { 4000, "Raids One Points" };
-				case 20653:
-					return new Object[] { 4000, "Raids One Points" };
-				case 20654:
-					return new Object[] { 4000, "Raids One Points" };
-				case 20658:
-					return new Object[] { 4000, "Raids One Points" };
-				case 20659:
-					return new Object[] { 4000, "Raids One Points" };
-				case 20660:
-					return new Object[] { 4000, "Raids One Points" };
-				case 8871:
-					return new Object[] { 6000, "Raids One Points" };
-				case 8860:
-					return new Object[] { 6000, "Raids One Points" };
-				case 8861:
-					return new Object[] { 6000, "Raids One Points" };
-				case 8862:
-					return new Object[] { 6000, "Raids One Points" };
-				case 999:
-					return new Object[] { 6000, "Raids One Points" };
-				case 15501:
-					return new Object[] { 3000, "Raids One Points" };
+				case 2774:
+					return new Object[] { 750, "Raid Points" }; 
+				case 2778:
+					return new Object[] { 750, "Raid Points" };
+				case 2780:
+					return new Object[] { 750, "Raid Points" };
+				case 2776:
+					return new Object[] { 750, "Raid Points" };
+				case 2782:
+					return new Object[] { 1000, "RaidPoints" };
+				case 21056:
+					return new Object[] { 5000, "Raid Points" };
+				case 21055:	
+					return new Object[] { 3500, "Raid Points" };
+				case 6855:
+					return new Object[] { 2500, "Raid Points" };
+				case 6856:
+					return new Object[] { 3000, "Raid Points" };
+				case 11724:
+					return new Object[] { 5500, "Raid Points" };
+				case 11726:
+					return new Object[] { 5500, "Raid Points" };
+				case 11718:
+					return new Object[] { 5500, "Raid Points" };
+				case 11720:
+					return new Object[] { 5500, "Raid Points" };
+				case 11722:
+					return new Object[] { 5500, "Raid Points" };
+				case 3486:
+					return new Object[] { 5500, "Raid Points" };
+				case 3481:
+					return new Object[] { 5500, "Raid Points" };
+				case 3483:
+					return new Object[] { 5500, "Raid Points" };
+				case 3485:
+					return new Object[] { 5500, "Raid Points" };
+				case 12002:
+					return new Object[] { 10500, "Raid Points" };
+				case 12502:
+					return new Object[] { 10500, "Raid Points" };
 					
 				}
 			} else if (shop == BOSS_POINT_STORE) {
 				switch (item) {
 				case 669:
-					return new Object[] { 1_000_000, "Boss Points"};
+					return new Object[] { 15000, "Boss Points"};
+				case 952:
+					return new Object[] { 10, "Boss Points"};
+				case 18902:
+					return new Object[] { 40000, "Boss Points"};
+				case 18904:
+					return new Object[] { 40000, "Boss Points"};
+				case 14010:
+					return new Object[] { 40000, "Boss Points"};
+				case 19111:
+					return new Object[] { 40000, "Boss Points"};
+				case 19990:
+					return new Object[] { 300, "Boss Points"};
+				case 20002:
+					return new Object[] { 40000, "Boss Points"};
+				case 7028:
+					return new Object[] { 40000, "Boss Points"};
+				case 12502:
+					return new Object[] { 35000, "Boss Points"};
+				case 18337:
+					return new Object[] { 2500, "Boss Points"};
+				case 1503:
+					return new Object[] { 150000, "Boss Points"};
 				case 21055:
-					return new Object[] { 500000, "Boss Points"};
-				case 12852:
-					return new Object[] { 500, "Boss Points" };
-				case 11180:
-					return new Object[] { 300, "Boss Points" };
+					return new Object[] { 35000, "Boss Points"};
+				case 21056:
+					return new Object[] { 75000, "Boss Points"};	
+				case 1002:
+					return new Object[] { 55000, "Boss Points"};		
 				case 19888:
 					return new Object[] { 700, "Boss Points" };
 				case 11948:
@@ -1033,121 +1077,121 @@ public class Shop extends ItemContainer {
 				case 15332:
 					return new Object[] { 2, "Donation Points" };	
 				case 11142:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 180, "Donation Points" };
 				case 11143:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 180, "Donation Points" };
 				//
 				case 11144:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 180, "Donation Points" };
 				case 11145:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 180, "Donation Points" };
 				case 11146:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 180, "Donation Points" };
 				case 11978:
-					return new Object[] { 75, "Donation Points" };	
+					return new Object[] { 500, "Donation Points" };	
 				case 9850:
-					return new Object[] { 120, "Donation Points" };	
+					return new Object[] { 600, "Donation Points" };	
 				case 19972:
-					return new Object[] { 20, "Donation Points" };
+					return new Object[] { 140, "Donation Points" };
 				case 19976:
-					return new Object[] { 20, "Donation Points" };
+					return new Object[] { 140, "Donation Points" };
 				//
 				case 19974:
-					return new Object[] { 20, "Donation Points" };
+					return new Object[] { 140, "Donation Points" };
 				case 19970:
-					return new Object[] { 20, "Donation Points" };
+					return new Object[] { 140, "Donation Points" };
 				case 19978:
-					return new Object[] { 20, "Donation Points" };
+					return new Object[] { 140, "Donation Points" };
 				case 1002:
-					return new Object[] { 40, "Donation Points" };
+					return new Object[] { 250, "Donation Points" };
 				case 996:
-					return new Object[] { 60, "Donation Points" }; 
+					return new Object[] { 500, "Donation Points" }; 
 				}
 
 			} else if (shop == DONATOR_STORE_2) {
 				switch (item) {
 				case 621:
-					return new Object[] { 2, "Donation Points" };
+					return new Object[] { 5, "Donation Points" };
 				case 10942:
-					return new Object[] { 20, "Donation Points" };
+					return new Object[] { 30, "Donation Points" };
 				case 10934:
-					return new Object[] { 40, "Donation Points" };
+					return new Object[] { 60, "Donation Points" };
 				case 10935:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 150, "Donation Points" };
 				case 10943:
-					return new Object[] { 200, "Donation Points" };
+					return new Object[] { 300, "Donation Points" };
 					//
 				case 18984:
-					return new Object[] { 140, "Donation Points" };
+					return new Object[] { 400, "Donation Points" };
 				case 18985:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 120, "Donation Points" };
 				case 18989:
-					return new Object[] { 140, "Donation Points" };
+					return new Object[] { 200, "Donation Points" };
 				case 18987:
-					return new Object[] { 140, "Donaton Points" };
+					return new Object[] { 200, "Donaton Points" };
 					//
 				case 1685:
-					return new Object[] { 60, "Donation Points" };
-				case 11948:
-					return new Object[] { 220, "Donation Points" };
+					return new Object[] { 80, "Donation Points" };
 					//
 				case 18986:
-					return new Object[] { 20, "Donation Points" };
+					return new Object[] { 120, "Donation Points" };
 				case 11949:
-					return new Object[] { 300, "Donation Points" };
+					return new Object[] { 400, "Donation Points" };
 				case 11896:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 40, "Donation Points" };
 				case 18338: 
 					return new Object[] { 20, "Donation Points" };
 				case 20656:
 					return new Object[] { 60, "Donation Points" };
 				case 2545: 
 					return new Object[] { 60, "Donation Points" };
-				case 937:
-					return new Object[] { 100, "Donation Points" };
+				case 666: 
+					return new Object[] { 500, "Donation Points" };	
+				case 1215: 
+					return new Object[] { 1, "Donation Points" };		
 				case 938:
 					return new Object[] { 150, "Donation Points" };
 				}
 			} else if (shop == DONATOR_STORE_3) {
 				switch (item) {
-				case 12852:
-					return new Object[] { 5, "Donation Points" };
 				case 6830:
-					return new Object[] { 150, "Donation Points" };
+					return new Object[] { 650, "Donation Points" };
 				case 6828:
-					return new Object[] { 800, "Donation Points" };
+					return new Object[] { 750, "Donation Points" };
 				case 6832:
-					return new Object[] { 200, "Donation Points" };
+					return new Object[] { 800, "Donation Points" };
 				case 6833:
-					return new Object[] { 120, "Donation Points" };
+					return new Object[] { 2000, "Donation Points" };
 				case 7960:
-					return new Object[] { 500, "Donation Points" };
+					return new Object[] { 1000, "Donation Points" };
 				case 8610:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 350, "Donation Points" };
 				case 9850:
-					return new Object[] { 150, "Donation Points" };
-				case 15246:
-					return new Object[] { 300, "Donation Points" };
-				case 19671:
 					return new Object[] { 700, "Donation Points" };
-				case 6829:
+				case 15246:
 					return new Object[] { 600, "Donation Points" };
+				case 19671:
+					return new Object[] { 3000, "Donation Points" };
+				case 6829:
+					return new Object[] { 750, "Donation Points" };
 				case 1000:
 					return new Object[] { 100, "Donation Points" };
 				case 19990:
 					return new Object[] { 100, "Donation Points" };
 				case 1005:
-					return new Object[] { 65, "Donation Points" };
+					return new Object[] { 250, "Donation Points" };
 				case 965:
-					return new Object[] { 100, "Donation Points" };
+					return new Object[] { 500, "Donation Points" };
 				case 1002:
-					return new Object[] { 30, "Donation Points" };
+					return new Object[] { 300, "Donation Points" };
 				case 1007:
-					return new Object[] { 50, "Donation Points" };
+					return new Object[] { 500, "Donation Points" };
 				case 10482:
-					return new Object[] { 20, "Donation Points" };
+					return new Object[] { 300, "Donation Points" };
 				case 1413:
-					return new Object[] { 1000, "Donation Points" };
+					return new Object[] { 4500, "Donation Points" };
+				case 669:
+					return new Object[] { 500, "Donation Points" };	
 				case 2572:
 					return new Object[] { 30, "Donation Points" };
 				}
@@ -1210,11 +1254,7 @@ public class Shop extends ItemContainer {
 				case 7236:
 					return new Object[] { 1000000, "Plat Mini Game Token"};
 				case 10835:
-					return new Object[] { 2000, "Plat Mini Game Token" };
-				case 11180: 
-					return new Object[] { 2000, "Plat Mini Game Token" };
-				case 12852:
-					return new Object[] { 2000, "Plat Mini Game Token" };
+					return new Object[] { 50000, "Plat Mini Game Token" };
 				case 15332: 
 					return new Object[] { 200, "Plat Mini Game Token" };
 				case 2765:
@@ -1242,11 +1282,7 @@ public class Shop extends ItemContainer {
 					case 7236:
 						return new Object[] { 1000000, "Diamond Mini Game Token"};
 					case 10835:
-						return new Object[] { 2000, "Diamond Mini Game Token" };
-					case 11180:
-						return new Object[] { 2000, "Diamond Mini Game Token" };
-					case 12852:
-						return new Object[] { 2000, "Diamond Mini Game Token" };
+						return new Object[] { 50000, "Diamond Mini Game Token" };
 					case 15332:
 						return new Object[] { 200, "Diamond Mini Game Token" };
 					case 13017:
@@ -1265,38 +1301,64 @@ public class Shop extends ItemContainer {
 						return new Object[] { 300000, "Diamond Mini Game Token" };
 					case 13014:
 						return new Object[] { 300000, "Diamond Mini Game Token" };
-					case 13021:
-						return new Object[] { 1000000, "Diamond Mini Game Token" };
 
 				}
 			} else if (shop == AFK_TREE_STORE) {
 				switch (item) {
 				case 21055:
-					return new Object[] {1000000, "AFK Ticket"};
+					return new Object[] {125000, "AFK Ticket"};
+				case 18782:
+					return new Object[] {5000, "AFK Ticket"};
 				case 19888:
-					return new Object[] {50000, "AFK Ticket"};
+					return new Object[] {10000, "AFK Ticket"};
 				case 11981:
-					return new Object[] { 70000, "AFK Ticket" };
+					return new Object[] { 17000, "AFK Ticket" };
 				case 11982:
-					return new Object[] { 70000, "AFK Ticket" };
+					return new Object[] { 17000, "AFK Ticket" };
 				case 11983:
-					return new Object[] { 70000, "AFK Ticket" };
+					return new Object[] { 17000, "AFK Ticket" };
 				case 11984:
-					return new Object[] { 80000, "AFK Ticket" };
+					return new Object[] { 18000, "AFK Ticket" };
 				case 11987:
-					return new Object[] { 100000, "AFK Ticket" };
+					return new Object[] { 30000, "AFK Ticket" };
 				case 11988:
-					return new Object[] { 120000, "AFK Ticket" };
+					return new Object[] { 32000, "AFK Ticket" };
 				case 11989:
-					return new Object[] { 150000, "AFK Ticket" };
+					return new Object[] { 35000, "AFK Ticket" };
 				case 11990:
-					return new Object[] { 175000, "AFK Ticket" };
+					return new Object[] { 37500, "AFK Ticket" };
 				case 11993:
-					return new Object[] { 200000, "AFK Ticket" };
+					return new Object[] { 50000, "AFK Ticket" };
 				case 11994:
-					return new Object[] { 250000, "AFK Ticket" };
-				case 11995:
-					return new Object[] { 300000, "AFK Ticket" };
+					return new Object[] { 55000, "AFK Ticket" };
+				case 19341:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 19342:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 19343:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 19345:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 13462:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 19314:
+					return new Object[] { 35000, "AFK Ticket" };
+				case 19317:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 19320:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 19308:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 19311:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 10350:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 10348:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 10346:
+					return new Object[] { 50000, "AFK Ticket" };
+				case 13555:
+					return new Object[] { 50000, "AFK Ticket" };
 				}
 			} else if (shop == DUNGEONEERING_STORE) {
 				switch (item) {
@@ -1378,9 +1440,29 @@ public class Shop extends ItemContainer {
 				case 15501: 
 					return new Object[] { 30, "Slayer Points" };
 				case 10835:
-					return new Object[] { 8000, "Slayer Points" };
+					return new Object[] { 25000, "Slayer Points" };
+				case 17654:
+					return new Object[] { 25000, "Slayer points" };	
+				case 915:
+					return new Object[] { 6000, "Slayer points" };
+				case 19992:
+					return new Object[] { 50, "Slayer points" };
+				case 7236:
+					return new Object[] { 75000, "Slayer points" };
+				case 19647:
+					return new Object[] { 20000, "Slayer points" };
+				case 10876:
+					return new Object[] { 20000, "Slayer points" };	
+				case 18337:
+					return new Object[] { 2500, "Slayer points" };	
+				case 19990:
+					return new Object[] { 100, "Slayer points" };	
+				case 2709:
+					return new Object[] { 10000, "Slayer points" };		
+				case 1002:
+					return new Object[] { 75000, "Slayer points" };		
 				case 19888:
-					return new Object[] { 500, "Slayer points" };
+					return new Object[] { 500, "Slayer points" };	
 				case 2572:
 					return new Object[] { 300, "Slayer points" };
 				case 19087:

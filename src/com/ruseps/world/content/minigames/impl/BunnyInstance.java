@@ -18,7 +18,7 @@ public class BunnyInstance
 		p.getInventory().delete(12852, 1);
 		p.moveTo(new Position(2608, 9672, p.getIndex() * 4));
 		p.setRegionInstance(new RegionInstance(p, RegionInstanceType.BUNNY));
-		p.sendMessage("@blu@Welcome to your private B00NY Instance. Stay as long as you like!");
+		p.sendMessage("@red@Welcome to K'rils house! Good luck!");
 		TaskManager.submit(new Task(1, p, false)
 		{
 			int tick = 0;

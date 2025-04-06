@@ -1,6 +1,6 @@
-package com.ruseps.world.content.instance_manager;
+//package com.ruseps.world.content.instance_manager;
 
-public enum PaymentType {
-	INSTANCE_TOKEN,
-	AOE_VOUCHERS;
-}
+//public enum PaymentType {
+	//INSTANCE_TOKEN,
+	//AOE_VOUCHERS;
+//}

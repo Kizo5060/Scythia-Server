@@ -1,5 +1,6 @@
 package com.ruseps.net.packet.impl;
 
+import com.ruseps.model.PlayerRights;
 import com.ruseps.model.definitions.NpcDefinition;
 import com.ruseps.net.packet.Packet;
 import com.ruseps.net.packet.PacketListener;
@@ -17,7 +18,12 @@ public class ExamineNpcPacketListener implements PacketListener {
         }
         //NPCDropTableChecker.getSingleton().showNPCDropTable(player, npc);
         NpcDefinition def = NpcDefinition.forId(npc);
+        if(player.getRights() == PlayerRights.DEVELOPER || player.getRights() == PlayerRights.DEVELOPER) {
+        	player.sendMessage("NpcID: " + def.getId());
+        	player.def = null;
+        }
         if (def != null && def.getCombatLevel() > 0) {
+        	player.def = def;
             DropTableInterface.getInstance().select(player, def);
             player.getMovementQueue().reset();
         }

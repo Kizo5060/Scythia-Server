@@ -29,9 +29,10 @@ public class CombatRangedAmmo {
 		TOXIC_BLOWPIPE(new int[] {12926}, new AmmunitionData[] {AmmunitionData.BLOWPIPE}, RangedWeaponType.BLOWPIPE),
 		ULTIMATE_WINGED_BOW(new int[] {19085}, new AmmunitionData[] { }, RangedWeaponType.RED_BOW),
 		DARK_BOW(new int[] {11235, 13405, 15701, 15702, 15703, 15704}, new AmmunitionData[] {AmmunitionData.BRONZE_ARROW, AmmunitionData.IRON_ARROW, AmmunitionData.STEEL_ARROW, AmmunitionData.MITHRIL_ARROW, AmmunitionData.ADAMANT_ARROW, AmmunitionData.RUNE_ARROW, AmmunitionData.DRAGON_ARROW}, RangedWeaponType.DARK_BOW),
-		CRAZY_BOW(new int[]{1013,21034,21062,2787,2796,2680,2681,2682,2683,2684,2685,2686,2687,2688,2689,2690,2744,20523}, new AmmunitionData[] {AmmunitionData.CRAZY_BOW_AMMO}, RangedWeaponType.CRAZY_BOW),
-		
-		
+		CRAZY_BOW(new int[]{1013, 21034 ,21062, 2787, 2796, 2681, 2682, 2683, 2684, 2685, 2686, 2687, 2688, 2689, 2690, 2744, 20523}, new AmmunitionData[] {AmmunitionData.CRAZY_BOW_AMMO}, RangedWeaponType.CRAZY_BOW),
+		NexArch_BEGINNER_BOW(new int[]{20523}, new AmmunitionData[] {AmmunitionData.NexArch_BEGINNER_BOW_AMMO}, RangedWeaponType.NexArch_BEGINNER_BOW),
+		RANGE_MASTER_BOW(new int[]{2680, 10946}, new AmmunitionData[] {AmmunitionData.RANGE_MASTER_BOW_AMMO}, RangedWeaponType.RANGE_MASTER_BOW),
+		DRAGON_DESTROYER_BOW(new int[]{19012, 2732}, new AmmunitionData[] {AmmunitionData.DRAGON_DESTROYER_BOW}, RangedWeaponType.DRAGON_DESTROYER_BOW),
 		BRONZE_CROSSBOW(new int[] {9174}, new AmmunitionData[] {AmmunitionData.BRONZE_BOLT}, RangedWeaponType.CROSSBOW),
 		IRON_CROSSBOW(new int[] {9177}, new AmmunitionData[] {AmmunitionData.BRONZE_BOLT, AmmunitionData.OPAL_BOLT, AmmunitionData.IRON_BOLT}, RangedWeaponType.CROSSBOW),
 		STEEL_CROSSBOW(new int[] {9179}, new AmmunitionData[] {AmmunitionData.BRONZE_BOLT, AmmunitionData.OPAL_BOLT, AmmunitionData.IRON_BOLT, AmmunitionData.JADE_BOLT, AmmunitionData.STEEL_BOLT, AmmunitionData.PEARL_BOLT}, RangedWeaponType.CROSSBOW),
@@ -47,7 +48,7 @@ public class CombatRangedAmmo {
 		ORANGE_BLASTER(new int[] {20521}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		LAVA_AK(new int[] {19921}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		MP5SUB(new int[] {19919}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
-		AR_15(new int[] {19918, 19915, 19012 }, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
+		AR_15(new int[] {19918, 19915 }, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		M16INF(new int[] {997}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		PRP_BLASTER(new int[] {20520}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
 		BLUE_BLASTER(new int[] {20522}, new AmmunitionData[] {AmmunitionData.DRAGON_DART}, RangedWeaponType.THROW),
@@ -160,7 +161,9 @@ public class CombatRangedAmmo {
 		
 		CRAZY_BOW_AMMO(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
 		WOLFS_BOW_AMMO(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
-		STARTER_BOW_AMMO(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
+		RANGE_MASTER_BOW_AMMO(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
+		DRAGON_DESTROYER_BOW(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
+		NexArch_BEGINNER_BOW_AMMO(new int[] { }, 256, 256, 3, 44, 200, 43, 31),
 
 
 		BRONZE_BOLT(new int[] {877}, -1, 27, 3, 44, 13, 43, 31),
@@ -192,7 +195,7 @@ public class CombatRangedAmmo {
 		BLUE_BLASTER(new int[] {20522}, 1123, 226, 3, 33, 25, 45, 37),
 		LAVA_AK(new int[] {19921}, -1, 27, 3, 44, 20, 43, 31),
 		MP5SUB(new int[] {19919}, 1123, 226, 3, 33, 25, 45, 37),
-		AR_15(new int[] {19918, 19012, 19915}, 1123, 226, 3, 33, 25, 45, 37),
+		AR_15(new int[] {19918, 19915}, 1123, 226, 3, 33, 25, 45, 37),
 		M16INF(new int[] {997}, 1123, 226, 3, 33, 25, 45, 37),
 		PRP_BLASTER(new int[] {20520,3495}, 1123, 226, 3, 33, 25, 45, 37),
 		M15(new int[] {19914}, 1123, 226, 3, 33, 25, 45, 37),
@@ -294,11 +297,13 @@ public class CombatRangedAmmo {
 	public enum RangedWeaponType {
 
 		LONGBOW(6, 5),
-		STARTER_BOW(8, 1),
+		NexArch_BEGINNER_BOW(8, 1),
 		SHORTBOW(5, 4),
 		CROSSBOW(5, 5),
 		THROW(4, 3),
 		CRAZY_BOW(8,1),
+		RANGE_MASTER_BOW(8,1),
+		DRAGON_DESTROYER_BOW(8,1),
 		WOLFS_BOW(7,1),
 		MORR(5, 4),
 		DARK_BOW(5, 5),

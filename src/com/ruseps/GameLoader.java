@@ -79,17 +79,20 @@ public final class GameLoader {
 			//events for each day
 	public static String getSpecialDay() {
 		switch (getDay()) {
-		case MONDAY:
+		case MONDAY: 
 			return "Double Vote Points";
 		case TUESDAY:
 			return "Double Slayer Points";
 		case WEDNESDAY:
-			return "Double Slayer Points";
+			return "Double Vote Points";
 		case THURSDAY:
+			return "Double Exp & Double Slayer Points";
 		case FRIDAY:
+			return "Double Exp";
 		case SATURDAY:
+			return "Double Exp";
 		case SUNDAY:
-			return "Double Exp\\Double Slayer Points";
+			return "Double Exp & Double Slayer Points";
 		}
 		return "Double Exp\\nDouble Lottery";
 	}

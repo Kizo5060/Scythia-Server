@@ -94,7 +94,13 @@ public class Raids {
                 	|| partyMember.getLocation() != Locations.Location.RAIDS_SIX_ENTRANCE
                 	|| partyMember.getLocation() != Locations.Location.RAIDS_SIX_PHASE_ONE
                     || partyMember.getLocation() != Locations.Location.RAIDS_SEVEN_ENTRANCE
-                    || partyMember.getLocation() != Locations.Location.RAIDS_SEVEN_PHASE_ONE) {
+                    || partyMember.getLocation() != Locations.Location.RAIDS_SEVEN_PHASE_ONE
+                    || partyMember.getLocation() != Locations.Location.RAIDS_DD_ENTRANCE
+                    || partyMember.getLocation() != Locations.Location.RAIDS_DD_PHASE_TWO
+                    || partyMember.getLocation() != Locations.Location.RAIDS_DD_PHASE_THREE
+                    || partyMember.getLocation() != Locations.Location.RAIDS_DD_PHASE_ONE
+                    || partyMember.getLocation() != Locations.Location.RAIDS_DD_PHASE_ONE
+                    || partyMember.getLocation() != Locations.Location.RAIDS_DD_ENTRANCE) {
 
                 kickMember = true;
             } else if(!partyMember.isRegistered()) {
@@ -292,6 +298,32 @@ public class Raids {
             refreshAll();
         }
     }
+    public void leaveRaidsEightEntrance() {
+        if (player.getLocation() == Locations.Location.RAIDS_EIGHT_ENTRANCE) {
+            player.getPacketSender().sendCameraNeutrality();
+            player.getMovementQueue().setLockMovement(false);
+            player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 27601);
+            player.getPacketSender().sendDungeoneeringTabIcon(false);
+            player.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
+            player.getEquipment().refreshItems();
+            refreshAll();
+        }
+    }
+    
+    public void leaveRaidsDDEntrance() {
+    	if (player.getLocation() == Locations.Location.RAIDS_DD_ENTRANCE) {
+    		player.getPacketSender().sendCameraNeutrality();
+    		player.getMovementQueue().setLockMovement(false);
+    		player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 26601);
+    		player.getPacketSender().sendDungeoneeringTabIcon(false);
+    		player.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
+    		player.moveTo(GameSettings.RAIDS_DD_LOBBY.copy());
+    		player.getEquipment().refreshItems();
+    		party = null;
+    		refreshAll();
+    	}
+    }
+    
     public void leaveOther(Player player) {
     	player.getPacketSender().sendCameraNeutrality();
 		player.getMovementQueue().setLockMovement(false);
@@ -380,6 +412,46 @@ public class Raids {
     		refreshAll();
     	}
     }
+    
+    public void leaveRaidsEight() {
+    	if (player.getLocation() == Locations.Location.RAIDS_EIGHT_PHASE_ONE) {
+    		player.getPacketSender().sendCameraNeutrality();
+    		player.getMovementQueue().setLockMovement(false);
+    		player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 26601);
+    		player.getPacketSender().sendDungeoneeringTabIcon(false);
+    		player.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
+    		player.moveTo(new Position(3285, 4000, 0));
+    		player.getEquipment().refreshItems();
+    		party = null;
+    		refreshAll();
+    	}
+    }
+    
+    public void leaveRaidsDS() {
+    	if (player.getLocation() == Locations.Location.RAIDS_DS_PHASE_ONE) {
+    		player.getPacketSender().sendCameraNeutrality();
+    		player.getMovementQueue().setLockMovement(false);
+    		//player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 26601);
+    		//player.getPacketSender().sendDungeoneeringTabIcon(false);
+    		//player.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
+    		player.moveTo(GameSettings.RAIDS_DS_LOBBY.copy());
+    		player.getEquipment().refreshItems();
+    		party = null;
+    		refreshAll();
+    	}
+    }
+    public void leaveRaidsDSEntrance() {
+        if (player.getLocation() == Locations.Location.RAIDS_DS_ENTRANCE) {
+        	   player.getPacketSender().sendCameraNeutrality();
+               player.getMovementQueue().setLockMovement(false);
+              //player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 27601);
+              // player.getPacketSender().sendDungeoneeringTabIcon(false);
+              // player.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
+               player.getEquipment().refreshItems();
+               refreshAll();
+        }
+    }
+    
     public void leaveRaidsSix() {
     	if (player.getLocation() == Locations.Location.RAIDS_SIX_PHASE_ONE) {
     		player.getPacketSender().sendCameraNeutrality();
@@ -406,6 +478,21 @@ public class Raids {
             refreshAll();
         }
     }
+    
+    public void leaveRaidsDD() {
+    	if (player.getLocation() == Locations.Location.RAIDS_DD_PHASE_THREE) {
+    		player.getPacketSender().sendCameraNeutrality();
+    		player.getMovementQueue().setLockMovement(false);
+    	//	player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 26601);
+    	//	player.getPacketSender().sendDungeoneeringTabIcon(false);
+    	//	player.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
+    		player.moveTo(GameSettings.RAIDS_DD_LOBBY.copy());
+    		player.getEquipment().refreshItems();
+    		party = null;
+    		refreshAll();
+    	}
+    }
+    
     public void forceOut(int memberIndex) {
         if(party == null)
             return;
@@ -437,7 +524,7 @@ public class Raids {
     }
 
     public void displayMembers() {
-        player.getPacketSender().sendString(58002, "@whi@Scythia's Raiding Party: " + (party == null ? "0" : party.getPlayers().size()));
+        player.getPacketSender().sendString(58002, "@whi@NexArch's Raiding Party: " + (party == null ? "0" : party.getPlayers().size()));
 
         int id = 58017;
         for(int i = 0; i < 12; i++) {
@@ -593,6 +680,10 @@ public class Raids {
         return player.getLocation() == Locations.Location.RAIDS_ONE_PHASE_ONE;
     }
 
+    public boolean inEntranceDD() {
+        return player.getLocation() == Locations.Location.RAIDS_DD_ENTRANCE;
+    }
+    
     public boolean inPhaseTwo() {
         return player.getLocation() == Locations.Location.RAIDS_ONE_PHASE_TWO;
     }
@@ -658,11 +749,23 @@ public class Raids {
     public boolean inRaidsSevenP1() {
         return player.getLocation() == Locations.Location.RAIDS_SEVEN_PHASE_ONE;
     }
+    public boolean inRaidsDD() {
+        return player.getLocation() == Locations.Location.RAIDS_DD_PHASE_ONE;
+    }
+    
+    public boolean inRaidsDDP2() {
+        return player.getLocation() == Locations.Location.RAIDS_DD_PHASE_TWO;
+    }
+    
+    public boolean inRaidsDDP3() {
+        return player.getLocation() == Locations.Location.RAIDS_DD_PHASE_THREE;
+    }
+    
  
 
     public boolean inArea() {
         return inEntrance() || inPhaseOne() || inPhaseTwo() || inPhaseThree() || inRaidsTwo() || inEntrance2() || inRaidsTwoP2() || inRaidsTwoP3() || inEntrance3() || inRaidsThreeP2() || inRaidsThreeP3() || inRaidsThreeP4() || inRaidsThreeP5() || inEntrance4() || inEntrance5() || inRaidsFourP1() || inRaidsFourP2() || inRaidsFourP3() || inRaidsFiveP1() || inRaidsFiveP2() || inRaidsFiveP3() || inRaidsFiveP4() || inEntrance6() || inRaidsSixP1()
-                || inEntrance7() || inRaidsSevenP1();
+                || inEntrance7() || inRaidsSevenP1() || inRaidsDD() || inEntranceDD() || inRaidsDDP2() || inRaidsDDP3();
     }
 
 }

@@ -21,7 +21,7 @@ public class DiscordBot extends ListenerAdapter {
 
 		
 		builder.setToken("75c2b189d1b6915124217a3b75773bc191cb7fb08817d8222f73e583aa05834a");
-		//builder.setGame(Game.of(GameType.STREAMING, "Scythia", "https://discordapp.com/api/webhooks/711317393841979411/dQAQcY4ebd6zK2sG1wxiwg8iiC98bG2LNX_YgxmdWOz3XsaMsVVL5EDD_muSFqggOauR"));
+		//builder.setGame(Game.of(GameType.STREAMING, "NexArch", "https://discordapp.com/api/webhooks/711317393841979411/dQAQcY4ebd6zK2sG1wxiwg8iiC98bG2LNX_YgxmdWOz3XsaMsVVL5EDD_muSFqggOauR"));
 		builder.addEventListener(this);
 		try {
 			jda = builder.build();
@@ -47,7 +47,7 @@ public class DiscordBot extends ListenerAdapter {
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "players")) {
 			
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Scythia Voting!");
+			embed.setTitle("NexArch");
 			embed.setColor(Color.DARK_GRAY);
 
 			embed.setDescription("");
@@ -60,11 +60,11 @@ public class DiscordBot extends ListenerAdapter {
 		
 			
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle(" Voting!");
+			embed.setTitle("Voting!");
 			embed.setColor(Color.DARK_GRAY);
 			embed.setDescription("");
-			embed.addField("Do ::vote in-game", "", false);
-			embed.addField("Or head too LINK_HERE to vote", "", false);
+			embed.addField("Do ::vote in-game", "https://nexarch.teamgames.io/services/vote", false);
+			embed.addField("Or head too LINK_HERE to vote", "https://nexarch.teamgames.io/services/vote", false);
 			embed.addField("Vote on all the sites", "", false);
 			embed.addField("Do ::reward 1 all", "", false);
 			event.getChannel().sendMessage(embed.build()).queue();
@@ -74,10 +74,10 @@ public class DiscordBot extends ListenerAdapter {
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "store")) {
 
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Scythia Store");
+			embed.setTitle("NexArch Store");
 			embed.setColor(Color.DARK_GRAY);
 			embed.setDescription("");
-			embed.addField("Do ::donate in-game", "", false);
+			embed.addField("Do ::donate in-game", "https://nexarch.teamgames.io/services/store", false);
 			embed.addField("Or head too LINK_HERE", "", false);
 			embed.addField("Purchase whatever you would like", "", false);
 			embed.addField("Do ::claim in-game!", "", false);
@@ -87,7 +87,7 @@ public class DiscordBot extends ListenerAdapter {
 
 		if (command[0].equalsIgnoreCase(DO_COMMAND + "website")) {
 			EmbedBuilder embed = new EmbedBuilder();
-			embed.setTitle("Scythia Website");
+			embed.setTitle("NexArch Website");
 			embed.setColor(Color.DARK_GRAY);
 			embed.setDescription("");
 			embed.addField(event.getMember().getAsMention() + " http://server.com", "", false);
@@ -105,6 +105,7 @@ public class DiscordBot extends ListenerAdapter {
 			embed.addField("::players - tells you how many players are in-game.", "", false);
 			embed.addField("::vote - links you to our voting page", "", false);
 			embed.addField("::website - links you to our website", "", false);
+			embed.addField("::highscore - links you to our highscores", "", false);
 			embed.addField("::osrs - displays information about donating RS Gold", "", false);
 
 			event.getChannel().sendMessage(embed.build()).queue();

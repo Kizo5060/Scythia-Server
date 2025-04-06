@@ -11,23 +11,23 @@ public class TriviaBot {
 		QUESION_1("what is the max skill level", "150"),
 		QUESION_2("Re-arrange these letters to make a npc.  'stvaneneR'", "Revenants"), 
 		QUESION_3("Re-arrange these letters to make a city.  'rorckVa'", "Varrock"), 
-		QUESION_4("What drop rate bonus does godzilla armour give individually", "4%"),
+		QUESION_4("Where do you dig to fight bosses?", "Barrows"),
 		QUESION_6("How many vote points does $10 bond cost from vote store", "200"), 
-		QUESION_7("How many easy achievements are on Scythia", "18"),
+		QUESION_7("How many easy achievements are on NexArch", "18"),
 		QUESION_8("Re-arrange these letters to make a place.  'tnDoar ozne'", "Donator zone"), 
 		QUESION_9("Which osrs barrows brother hits through prayer?", "Verac"), 
-		QUESION_10("How many blood bags are required to unlock blood slayer?", "10k"), 
-		QUESION_11("How many taxbags does it cost to forge a supreme herbal bow?", "250k"), 
-		QUESION_12("Who can you purchase a max cape from?", "Sir Percival"), 
-		QUESION_13("what is the name of the final boss in Yu-Gi-Oh raids?", "Yugi Moto"), 
+		QUESION_10("Who's the Multi Boss Slayer Master?", "Chaeldar"), 
+		QUESION_11("How many votes do you need to fight Vote Boss", "25"), 
+		QUESION_12("Who can you purchase a max cape from?", "Max"), 
+		QUESION_13("Who's the main boss in Chambers of Xeric?", "Olm"), 
 		QUESION_14("What is the lightest chemical element", "Hydrogen"), 
 		QUESION_15("Which planet is nearest the sun", "Mercury"), 
 		QUESION_16( " Which river flows through London?", "The Thames" ),
 		QUESION_17("  Which Italian city is famous for its leaning tower?", "Pisa"),
-		QUESION_18("  Pls say Scythia", "Scythia"),
-		QUESION_19("  Pls say Scythia backwards", "aihtycS"),
-		QUESION_20("  eBn", "Ben"),
-		QUESION_21(" ioMl", "Scythia"),
+		QUESION_18("  Pls say NexArch", "NexArch"),
+		QUESION_19("  Pls say Reaper backwards", "repaeR"),
+		QUESION_20("  igbereb", "bigbree"),
+		QUESION_21(" How much is needed to spawn Donor boss?", "$50"),
 		QUESION_22("  esnRi rnSie", "Risen Siren"),
 		QUESION_23("   What is the Aloha State?", "Hawaii"),
 		QUESION_24("  What weapon do Jedi Knights use?", "Light saber"),
@@ -39,8 +39,7 @@ public class TriviaBot {
 		QUESION_30("  What is Carambola?", "Starfruit"),
 		QUESION_33("  Thalassophobia is a fear of what?", "The Sea"),
 		QUESION_34("  If you freeze water, what do you get?", "Ice"),
-		QUESION_35("  What colors are the stars on the American flag?",
-				"White"),
+		QUESION_35("  What colors are the stars on the American flag?", "White"),
 		QUESION_36("  How many planets are in our solar system?", "Eight"),
 		QUESION_37("  What city is the most populated city on earth?", "Tokyo"),
 		QUESION_38("  Which state is famous for Hollywood?", "California"),
@@ -161,7 +160,7 @@ public class TriviaBot {
 		}
 		if(answer.equalsIgnoreCase(currentQuestion.getAnswer())) {
 			player.getInventory().add(621, 1);
-			player.getPointsHandler().getTriviaPoints();
+			player.getPointsHandler().incrementTriviaPoints(10);
 			active = false;
 			World.sendMessage("<shad=1>@red@[TRIVIA]: <shad=1>@blu@" + player.getUsername() + "<shad=1>@bla@ has recieved @red@10 points and $1 bond @bla@from Trivia");
 			World.sendMessage("<shad=1>@red@[TRIVIA]: <shad=1>@bla@ The answer for the trivia to the question was @red@" + currentQuestion.answer);

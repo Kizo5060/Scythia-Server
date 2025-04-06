@@ -48,14 +48,17 @@ public class GoodieBagManager {
     }
 
     public static void openAll(Player player) {
-        for(Item item : player.getInventory().getItems()) {
+       /*for(Item item : player.getInventory().getItems()) {
             if(item == null)
                 continue;
 
             if(item.getId() == GOODIE_BAG_ITEM) {
                 selectBox(player, 1, true);
             }
-        }
+        }*/
+    	while(player.getInventory().contains(GOODIE_BAG_ITEM)) {
+    		selectBox(player, 1, true);
+    	}
     }
 
     public static void selectBox(Player player, int boxSelected, boolean openAll) {
@@ -66,16 +69,16 @@ public class GoodieBagManager {
         int minutes = player.getGameMode() == GameMode.NORMAL ? 20 : 10;
         BonusExperienceTask.addBonusXp(player, minutes);
 
-        player.getPointsHandler().setDungeoneeringTokens(10_000, true);
+       // player.getPointsHandler().setDungeoneeringTokens(10_000, true);
 
-        int totalPoints = 1;
+       // int totalPoints = 1;
 
 
-        if(GameSettings.DOUBLE_POINTS) {
-            totalPoints *= 2;
-        }
+        //if(GameSettings.DOUBLE_POINTS) {
+          //  totalPoints *= 2;
+        //}
 
-        player.getPointsHandler().setVotingPoints(totalPoints, true);
+      //  player.getPointsHandler().setVotingPoints(totalPoints, true);
 
         player.getInventory().delete(GOODIE_BAG_ITEM, 1);
 
@@ -114,9 +117,9 @@ public class GoodieBagManager {
         if(!openAll)
             sendRandomItems(player, boxSelected, item);
 
-        player.getInventory().add(item);
+        player.addItemToAny(item.getId(), 1);
 
-        player.sendMessage("<img=464><shad=CA7936>You open the goodie bag and receive 1 vote point, 10k dungeoneering tokens");
+        player.sendMessage("<img=464><shad=CA7936>You open the goodie bag 10k dungeoneering tokens");
         player.sendMessage("<img=464><shad=CA7936> ... and "+item.getAmount()+"x "+item.getDefinition().getName()+"!");
 
         int itemIdDisplay = item.getId();

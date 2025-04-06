@@ -27,8 +27,42 @@ public class Magicz {
 	}
 	
 	public static void handleDrop(Player player, NPC npc) {
-			if(Misc.getRandom(150) == 1) {
-				GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(getMagic(player)), npc.getPosition().copy(), player.getUsername(), false, 100, false, -1));
-		}
-	}
-}
+	    if (Misc.getRandom(150) == 1) {
+	        int itemId = getMagic(player);
+	        GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(itemId), npc.getPosition().copy(), player.getUsername(), false, 100, false, -1));
+	        switch (itemId) {
+	            case 2691:
+	                player.sendMessage("A @red@T1 Magic Weapon has been dropped!");
+	                break;
+	            case 2692:
+	                player.sendMessage("A @red@T2 Magic Weapon has been dropped!");
+	                break;
+	            case 2693:
+	                player.sendMessage("A @red@T3 Magic Weapon has been dropped!");
+	                break;
+	            case 2694:
+	                player.sendMessage("A @red@T4 Magic Weapon has been dropped!");
+	                break;
+	            case 2695:
+	                player.sendMessage("A @red@T5 Magic Weapon has been dropped!");
+	                break;
+	            case 2696:
+	                player.sendMessage("A @red@T6 Magic Weapon has been dropped!");
+	                break;
+	            case 2697:
+	                player.sendMessage("A @red@T7 Magic Weapon has been dropped!");
+	                break;
+	            case 2698:
+	                player.sendMessage("A @red@T8 Magic Weapon has been dropped!");
+	                break;
+	            case 2699:
+	                player.sendMessage("A @red@T9 Magic Weapon has been dropped!");
+	                break;
+	            case 2700:
+	                player.sendMessage("The @red@Final Magic Weapon has been dropped!");
+	                break;
+	            default:
+	                break;
+	        }
+	    }
+	}}

@@ -55,7 +55,7 @@ public class CrystalChest {
 				p.getInventory().delete(989, 1);
 			}
 		}
-		if (p.getRights() == PlayerRights.PLAYER || p.getRights() == PlayerRights.VETERAN) {
+		if (p.getRights() == PlayerRights.PLAYER || p.getRights() == PlayerRights.YOUTUBER) {
 			p.getInventory().delete(989, 1);
 		}
 		p.getPacketSender().sendMessage("You open the chest..");

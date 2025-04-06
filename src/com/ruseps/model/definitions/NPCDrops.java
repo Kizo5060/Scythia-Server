@@ -189,6 +189,16 @@ public class NPCDrops {
                     return DropChance.LEGENDARY_4;
                 case 10:
                     return DropChance.LEGENDARY_5;
+                case 11:
+                    return DropChance.LEGENDARY_6; 
+                case 12:
+                    return DropChance.LEGENDARY_7; 
+                case 13:
+                    return DropChance.LEGENDARY_8; 
+                case 14:
+                    return DropChance.LEGENDARY_9; 
+                case 15:
+                    return DropChance.LEGENDARY_10; 
                 default:
                     return DropChance.ALWAYS; // 100% <-> 1/1
             }
@@ -240,7 +250,8 @@ public class NPCDrops {
 
     public enum DropChance {
         ALWAYS(0), ALMOST_ALWAYS(2), VERY_COMMON(50), COMMON(100), UNCOMMON(150), NOTTHATRARE(75), RARE(200),
-        LEGENDARY(1000), LEGENDARY_2(2500), LEGENDARY_3(3500), LEGENDARY_4(4500), LEGENDARY_5(5500);
+        LEGENDARY(1000), LEGENDARY_2(2500), LEGENDARY_3(3500), LEGENDARY_4(4500), LEGENDARY_5(5500), LEGENDARY_6(6500),LEGENDARY_7(7500),
+        LEGENDARY_8(8500),LEGENDARY_9(9500),LEGENDARY_10(15000);
 
         DropChance(int randomModifier) {
             this.random = randomModifier;
@@ -297,6 +308,10 @@ public class NPCDrops {
         if (npc.getDefaultConstitution() > 10000) {
             System.out.println("DROPPING");
             dropScratchcard(p, p.getPosition());
+            dropInstanceToken(p,p.getPosition());
+        }
+        if(p.getSlayer().getSlayerTask().getNpcId() == npc.getId()) {
+        	dropSlayerKey(p,p.getPosition());
         }
 
         rollDropTable(false, p, drops.getDropList().clone(), npc, npcPos, goGlobal);
@@ -424,9 +439,10 @@ public class NPCDrops {
                 }
             }
 
-            player.addItemToAny(itemIdd, amountt);
-            
-            DropLog.submit(toGive, new DropLogEntry(itemIdd, amountt));
+           player.addItemToAny(itemIdd, amountt);
+         //   player.getCollectionLog().handleDrop(player, npc.getId(), item);
+            player.getCollectionLogManager().addDrop(npc, item);
+          //  DropLog.submit(toGive, new DropLogEntry(itemIdd, amountt));
             return;
         }
 		/*if (isWearingCollectorPet) 
@@ -500,7 +516,7 @@ public class NPCDrops {
                     + " @red@received <col=5c26e5>" + itemMessage + "<col=960a02><shad=1> from <col=5c26e5>" + npcName + "!"
                     + " @bla@(@red@" + kills + " Kills@bla@)";
             if (player.kcMessage != false) {
-                World.sendMessage(message);
+                player.sendMessage(message);
             }
             PlayerLogs.log(toGive.getUsername(),
                     "" + toGive.getUsername() + " received "
@@ -512,8 +528,9 @@ public class NPCDrops {
         
         GroundItemManager.spawnGroundItem(toGive,
                 new GroundItem(item, pos, toGive.getUsername(), false, 150, goGlobal, 200));
-        player.getCollectionLog().handleDrop(player, npc.getId(), item);
-        DropLog.submit(toGive, new DropLogEntry(itemId, item.getAmount()));
+       // player.getCollectionLog().handleDrop(player, npc.getId(), item);
+      //  DropLog.submit(toGive, new DropLogEntry(itemId, item.getAmount()));
+        player.getCollectionLogManager().addDrop(npc, item);
     }
 
     public static void casketDrop(Player player, int combat, Position pos) {
@@ -529,6 +546,38 @@ public class NPCDrops {
                     new GroundItem(new Item(915), pos, player.getUsername(), false, 150, true, 200));
         }
     }
+    
+    private static void dropInstanceToken(Player player, Position pos) {
+        int chance = RandomUtility.inclusiveRandom(0, 50);
+        boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
+        if (chance <= 49) {
+            return;
+        }
+        if(isWearingCollector) {
+        	player.addItemToAny(19990, 1);
+        }else
+        	GroundItemManager.spawnGroundItem(player,
+                new GroundItem(new Item(19990, 1), pos, player.getUsername(), false, 150, true, 200));
+
+        player.sendMessage("@red@Congrats, you have gotten an Instance Token!");
+    }
+    
+    
+    private static void dropSlayerKey(Player player, Position pos) {
+        int chance = RandomUtility.inclusiveRandom(0, 50);
+
+        if (chance <= 49) {
+            return;
+        }
+        boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
+        if(isWearingCollector) {
+        	player.addItemToAny(14471, 1);
+       }else
+    	   GroundItemManager.spawnGroundItem(player,
+                new GroundItem(new Item(14471, 1), pos, player.getUsername(), false, 150, true, 200));
+
+        player.sendMessage("@gre@Congrats, you have gotten a Slayer Key!");
+    }
 
     private static void dropScratchcard(Player player, Position pos) {
         int chance = RandomUtility.inclusiveRandom(0, 1000);
@@ -536,8 +585,11 @@ public class NPCDrops {
         if (chance <= 999) {
             return;
         }
-
-        GroundItemManager.spawnGroundItem(player,
+        boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
+        if(isWearingCollector) {
+        	player.addItemToAny(455, 1);
+       }else
+    	   GroundItemManager.spawnGroundItem(player,
                 new GroundItem(new Item(455, 1), pos, player.getUsername(), false, 150, true, 200));
 
         player.sendMessage("@red@Congrats, you have gotten a scratchcard, good luck!");
@@ -548,7 +600,7 @@ public class NPCDrops {
         private static List<Integer> VALENTINES_ITEM_LIST;
 
         private static final int[] VALENTINES_TO_ANNOUNCE = new int[]{
-                2731, 2732
+                2731,
         };
 
         private static void init() {
@@ -577,8 +629,11 @@ public class NPCDrops {
                 12279, 18448, 18920, 18926, 18950, 6659, 6661, 6663,
                 18446, 18910, 18942, 13045, 19085,
                 18944, 18912, 18444, 13047, 8421,
+                2716, 2717, 2718, 2719, 2720, 2721, 2722, 2723, 
                 5079, 5080, 5081, 13235, 7671, 6763, 10903, 10905, 10906, 19918, 11005,
-                13239, 19921, 10503, 11000, 11654,
+                13239, 19921, 10503, 11654, 2788, 2804, 
+                19025, 19028, 19027, 19026, 19029,
+                10907, 18906, 10908, 10946,
                 10682, 10683, 10684, 10685, 11659, 11653,
                 11147, 11148, 11149, 11614, 11650, 7081,
                 11039, 11040, 11041, 11042, 11004, 20146, 15485,

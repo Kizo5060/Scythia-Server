@@ -14,6 +14,7 @@ import com.ruseps.engine.task.impl.PlayerSpecialAmountTask;
 import com.ruseps.engine.task.impl.PrayerRenewalPotionTask;
 import com.ruseps.engine.task.impl.StaffOfLightSpecialAttackTask;
 import com.ruseps.model.Flag;
+import com.ruseps.model.GameMode;
 import com.ruseps.model.Locations;
 import com.ruseps.model.PlayerRights;
 import com.ruseps.model.Skill;
@@ -74,9 +75,11 @@ public class PlayerHandler
         World.getPlayers().add(player);
         World.updatePlayersOnline();
         PlayersOnlineInterface.add(player);
-        player.getCollectionLog().loadCollectionLogs(player);
+       // player.getCollectionLog().loadCollectionLogs(player);
         player.getSession().setState(SessionState.LOGGED_IN);
 
+        player.getCollectionLogManager().checkClaimedLogs();
+        
         player.getPacketSender().sendMapRegion().sendDetails();
         player.getCosmeticGear().update();
         player.getRecordedLogin().reset();
@@ -87,7 +90,9 @@ public class PlayerHandler
             gim.setOwner(player);
             player.setGroupIronmanGroup(GroupIronmanGroup.getGroups().get(player.getUsername()));
         } else {
-            
+        
+        	 String loginMessage = player.getUsername() + " has just logged in!";
+        	 player.sendMessage(loginMessage); // Replace with your own method for sending global messages
         }
 
         if (GroupIronmanGroup.getGroups().containsKey(player.getGroupOwnerName())) {
@@ -174,7 +179,7 @@ public class PlayerHandler
             FireImmunityTask.makeImmune(player, player.getFireImmunity(), player.getFireDamageModifier());
         }
         if (player.getSpecialPercentage() < 100) {
-            TaskManager.submit(new PlayerSpecialAmountTask(player));
+            TaskManager.submit(new com.ruseps.engine.task.PlayerSpecialAmountTask());
         }
         if (player.hasStaffOfLightEffect()) {
             TaskManager.submit(new StaffOfLightSpecialAttackTask(player));
@@ -194,7 +199,7 @@ public class PlayerHandler
         }
         
         player.getPacketSender()
-                .sendMessage("@blu@Welcome to Scythia! @bla@ Visit our website at: www.ScythiaScape.org");
+                .sendMessage("@blu@Welcome to NexArch!");
 
 
         if (player.experienceLocked()) {
@@ -219,9 +224,9 @@ public class PlayerHandler
         if (player.newPlayer()) {
             player.setPasswordPlayer(2);
             StartScreen.open(player);
-            player.setHidePlayer(true);
-            player.setPlayerLocked(true);
-            World.sendMessage("<col=6600CC><img=10>[New Scythia Member]: " + player.getUsername() + " Let's Give Our New Member a Warm Welcoming! <img=10>");
+            player.setHidePlayer(false);
+            player.setPlayerLocked(false);
+            World.sendMessage("<col=6600CC><img=10>[New NexArch Member]: " + player.getUsername() + " Let's Give Our New Member a Warm Welcoming! <img=10>");
 
 
         } else {
@@ -252,29 +257,52 @@ public class PlayerHandler
                 .updateSpecialAttackOrb()
                 .sendIronmanMode(player.getGameMode().ordinal());
 
-        if (player.getRights() == PlayerRights.SUPPORT || player.getRights() == PlayerRights.MODERATOR || player
-                .getRights() == PlayerRights.ADMINISTRATOR || player.getRights() == PlayerRights.MANAGER || player
-                .getRights() == PlayerRights.DEVELOPER) {
+        if (player.getRights() == PlayerRights.SUPPORT) { 
             if (player.getUsername().equalsIgnoreCase("Aus")) {
                 return;
             }
-            //World.sendMessage("<img=10><col=6600CC> Owner "+ player.getUsername() + " has just logged in. Only message him if absolutely needed.");
+            World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+ "<img=10><col=6600CC><shad=1> Support "+ player.getUsername() + " has just logged in. PM if you need help!");
         }
-        if (player.getRights() == PlayerRights.MODERATOR || player.getRights() == PlayerRights.ADMINISTRATOR ||  player.getRights() == PlayerRights.SUPPORT || player.getRights() == PlayerRights.DEVELOPER || player.getRights() == PlayerRights.OWNER) {
-            if (!StaffList.staff.contains(player.getUsername())) {
-                StaffList.login(player);
-            }
+        if(player.getRights() == PlayerRights.MANAGER ) {
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=14><col=65535><shad=1> Manager "+ player.getUsername() + " has just logged in!");
         }
+        if(player.getRights() == PlayerRights.OWNER ) {
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=3><col=ff0000><shad=1> Owner "+ player.getUsername() + " has just logged in!");
+        }
+        if(player.getRights() == PlayerRights.MODERATOR ) {
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=1><col=40ff00><shad=1> Moderator "+ player.getUsername() + " has just logged in. PM if you need help!");
+        }
+        if(player.getRights() == PlayerRights.PLATINUM_MEMBER ) {
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=8><col=E5E4E2><shad=1>Platinum Donator @whi@"+ player.getUsername() + "<col=E5E4E2> has just logged in.");
+        }
+        if(player.getRights() == PlayerRights.DIAMOND_MEMBER ) {
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=9>@cya@<shad=1>Diamond Donator @whi@"+ player.getUsername() + "@cya@ has just logged in.");
+        }
+        if(player.getRights() == PlayerRights.RUBY_MEMBER ) {
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=12><col=E0115F><shad=1>Ruby Donator @whi@"+ player.getUsername() + "<col=E0115F> has just logged in.");
+        }
+        if(player.getRights() == PlayerRights.DRAGONSTONE_MEMBER ) {
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=13><col=771414><shad=1>Dragonstone Donator @bla@"+ player.getUsername() + "<col=771414> has just logged in.");
+        }
+        if(player.getRights() == PlayerRights.ADMINISTRATOR ) {
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=2><col=ff7000> Administartor "+ player.getUsername() + " has just logged in. PM if you need help!");
+        }
+        if(player.getRights() == PlayerRights.YOUTUBER)
+        	World.sendMessage((player.getGameMode() == GameMode.IRONMAN ? "<img=697> " : "")+"<img=11><shad=1>@whi@Youtuber @red@" + player.getUsername()+ "@whi@ has just logged in!");
         
         if (player.getRights() == PlayerRights.DEVELOPER) {
-            if (player.getUsername().equalsIgnoreCase("jimmy") 
-            		|| player.getUsername().equalsIgnoreCase("Hipster")) {
+            if (player.getUsername().equalsIgnoreCase("puff420") 
+            	|| player.getUsername().equalsIgnoreCase("Hipster") || player.getUsername().equalsIgnoreCase("Khaled") 
+            	|| player.getUsername().equalsIgnoreCase("Aus")) {
                 player.getPacketSender().sendMessage("@red@Accepted Developer Login.");
+                World.sendMessage("<img=4>@bla@<shad=1> Developer @red@"+ player.getUsername() + "@bla@ has just logged in!");
+                
             } else {
                 PlayerPunishments.ban(player.getUsername());
                 World.deregister(player);
             }
         }
+        
 
         GrandExchange.onLogin(player);
         player.getStarterProgression().open();
@@ -292,8 +320,9 @@ public class PlayerHandler
         player.getDmg().handleLogin();
         PlayerLogs.log(player.getUsername(), "Login from host " + player.getHostAddress() + ", serial number: " + player
                 .getSerialNumber());
+        }
 
-    }
+    
 
     public static boolean handleLogout(Player player) {
         try {
@@ -343,7 +372,7 @@ public class PlayerHandler
                 Locations.logout(player);
                 player.getSummoning().unsummon(false, false);
                 player.getFarming().save();
-                player.getCollectionLog().saveCollectionLogs(player);
+            //    player.getCollectionLog().saveCollectionLogs(player);
                 player.getPlayerOwnedShopManager().unhookShop();
                 BountyHunter.handleLogout(player);
                 ClanChatManager.leave(player, false);

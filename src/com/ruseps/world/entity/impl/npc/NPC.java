@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.ruseps.engine.task.TaskManager;
 import com.ruseps.engine.task.impl.NPCDeathTask;
 import com.ruseps.model.Direction;
+import com.ruseps.model.Locations;
 import com.ruseps.model.Locations.Location;
 import com.ruseps.model.Position;
 import com.ruseps.model.definitions.NPCDrops;
@@ -23,6 +24,7 @@ import com.ruseps.world.content.combat.strategy.CombatStrategies;
 import com.ruseps.world.content.combat.strategy.CombatStrategy;
 import com.ruseps.world.content.combat.strategy.impl.KalphiteQueen;
 import com.ruseps.world.content.combat.strategy.impl.Nex;
+import com.ruseps.world.content.new_raids_system.raids_loot.raids_eight.RaidsEightLoot;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_one.phase_one.R1P1NPC1;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_one.phase_one.R1P1NPC2;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_one.phase_three.R1P3NPC1;
@@ -37,15 +39,15 @@ import com.ruseps.world.content.skill.impl.summoning.BossPets.BossPet;
 import com.ruseps.world.entity.impl.Character;
 import com.ruseps.world.entity.impl.npc.NPCMovementCoordinator.Coordinator;
 import com.ruseps.world.entity.impl.npc.click_type.NpcClickType;
-import com.ruseps.world.entity.impl.npc.impl.AuroraLoot;
 import com.ruseps.world.entity.impl.npc.impl.BlessedSpartanLoot;
 import com.ruseps.world.entity.impl.npc.impl.DemonLoot;
+import com.ruseps.world.entity.impl.npc.impl.OwnerBossLoot;
 import com.ruseps.world.entity.impl.npc.impl.DragonLoot;
-/*import com.ruseps.world.entity.impl.npc.impl.SantaLoot;*/
+import com.ruseps.world.entity.impl.npc.impl.ReaperLoot;
+import com.ruseps.world.entity.impl.npc.impl.SantaLoot;
 import com.ruseps.world.entity.impl.npc.impl.TelosLoot;
 import com.ruseps.world.entity.impl.npc.impl.VaderLoot;
-import com.ruseps.world.entity.impl.npc.impl.WreckedLoot;
-import com.ruseps.world.entity.impl.npc.impl.AuroraLoot;
+import com.ruseps.world.entity.impl.npc.impl.InheritedLoot;
 import com.ruseps.world.entity.impl.npc.summoning.TestPet;
 import com.ruseps.world.entity.impl.player.Player;
 import com.ruseps.world.entity.impl.player.PlayerProcess;
@@ -196,7 +198,7 @@ public class NPC extends Character {
     private boolean respawnNpc = true;
 
 	public boolean shouldRespawnNpc() {
-		return respawnNpc;
+		return respawnNpc;//(getLocation() == Location.INSTANCE_MANAGER_ZONE) ? false : respawnNpc; 
 	}
 
 	public void setShouldRespawn(boolean shouldRespawn) {
@@ -255,7 +257,7 @@ public class NPC extends Character {
 		if(getLocation() == Location.DUNGEONEERING) {
 			return true;
 		}
-		return id == 6263 || id == 6265 || id == 6203 || id == 6208 || id == 6206 || id == 6247 || id == 6250 || id == 3200 || id == 4540 || id == 1158 || id == 1160 || id == 8133 || id == 13447 || id == 13451 || id == 13452 || id == 13453 || id == 13454 || id == 2896 || id == 2882 || id == 2881 || id == 6260;
+		return id == 6263 || id == 6265 || id == 6208 || id == 6206 || id == 6247 || id == 6250 || id == 3200 || id == 4540 || id == 1158 || id == 1160 || id == 8133 || id == 13447 || id == 13451 || id == 13452 || id == 13453 || id == 13454 || id == 2896 || id == 2882 || id == 2881 || id == 6260;
 	}
 
 	public int getAggressionDistance() {
@@ -462,12 +464,14 @@ public class NPC extends Character {
 			return new TestPet(id, position);
 			case VaderLoot.NPC_ID:
 				return new VaderLoot(position);
-			case AuroraLoot.NPC_ID:
-				return new AuroraLoot(position);
-			case WreckedLoot.NPC_ID:
-				return new WreckedLoot(position);
+			case ReaperLoot.NPC_ID:
+				return new ReaperLoot(position);
+			case InheritedLoot.NPC_ID:
+				return new InheritedLoot(position);
 			case DemonLoot.NPC_ID:
 				return new DemonLoot(position);
+			case OwnerBossLoot.NPC_ID:
+				return new OwnerBossLoot(position);	
 			case DragonLoot.BLUE_NPC_ID:
 				return new DragonLoot(position);
 			case DragonLoot.GREEN_NPC_ID:
@@ -501,8 +505,8 @@ public class NPC extends Character {
 			case 5158:
 			case 5159:
 				return new R1P3NPC3(position);
-			/*case 8540:
-				return new SantaLoot(position);*/
+			case 8540:
+				return new SantaLoot(position);
 				
 		}
 		
@@ -524,6 +528,8 @@ public class NPC extends Character {
 			&& getId() != 4867
 			&& getId() != 1417
 			&& getId() != 1041
+			&& getId() != 7286 //ownerBoss
+			&& getId() != 704 // DonatorBoss
 			/** RAIDS 1 **/
 			&& getId() != 5151
 			&& getId() != 5156
@@ -563,7 +569,7 @@ public class NPC extends Character {
 			&& getId() != 1499
 			&& getId() != 4862
 			&& getId() != 1416
-			
+			&& getId() != 701
 				;
 	}
 	

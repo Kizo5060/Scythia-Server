@@ -60,7 +60,7 @@ public class Demon implements CombatStrategy {
 			boolean barrage = Misc.getRandom(4) <= 2;
 			vader.performAnimation(new Animation(barrage ? 10961 : 10961));
 			vader.performGraphic(new Graphic (1886));
-			vader.forceChat("I serve Scythia!");
+			vader.forceChat("I serve NexArch!");
 			vader.getCombatBuilder().setContainer(new CombatContainer(vader, victim, 1, 3, CombatType.MAGIC, true));
 			TaskManager.submit(new Task(1, vader, false) {
 				int tick = 0;

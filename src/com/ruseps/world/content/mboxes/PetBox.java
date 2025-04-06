@@ -2,9 +2,11 @@ package com.ruseps.world.content.mboxes;
 
 import com.ruseps.model.definitions.ItemDefinition;
 import com.ruseps.util.Misc;
+import com.ruseps.util.RandomUtility;
 import com.ruseps.world.World;
 import com.ruseps.world.entity.impl.player.Player;
 import com.ruseps.GameSettings;
+import com.ruseps.model.Item;
 import com.ruseps.model.container.impl.Equipment;
 
 
@@ -18,6 +20,14 @@ public class PetBox
     private boolean canMysteryBox = true;
     public static int mysteryPrize;
     private int mysteryPrizeTier;
+    public static int loot[][] = {
+            { 11981, 11982, 11983, 18986, },//Common, 0
+            { 11984, 11985, 11986, 18989, },
+            { 11987, 11988, 11989, 18985, },
+            { 11990, 11991, 11992, 11993, 18987 },
+            { 11896, 11979, 11994, 11997, 18984, 12004 },
+            { 12655, 13247, 11995, 11996, 19868 },
+            { 2703, 11949, 1685, 2542, 2546, 11978 } };
 
     public int getSpinNum() { return spinNum; }
     public boolean canMysteryBox() { return canMysteryBox; }
@@ -66,7 +76,24 @@ public class PetBox
 
 
         int[][] all = {common, uncommon, veryUncommon, rare, veryRare, extremelyRare, legendary};
-        int[] tier = all[Misc.random(6)];
+        int[] tier;
+
+		   int random = RandomUtility.exclusiveRandom(0, 100); // Generates a random number between 0 and 99
+		   if (random < 40) {
+	        	tier = all[0]; // Common (40% probability)
+	        } else if (random < 65) {
+	        	tier = all[1]; // Uncommon (25% probability)
+	        } else if (random < 75) {
+	        	tier = all[2]; // Very Uncommon (10% probability)
+	        } else if (random < 85) {
+	        	tier = all[3]; // Rare (5% probability)
+	        } else if (random < 90) {
+	        	tier = all[4]; // Very Rare (5% probability)
+	        } else if (random < 95) {
+	        	tier = all[5]; // Extremely Rare (5% probability)
+	        } else {
+	        	tier = all[6]; // Legendary (5% probability)
+	        }
         int PRIZE_ID = tier[Misc.random(tier.length -1)];
 
         //final int PRIZE_ID = 1040; // TODO: Add box prize logic here, use mysteryPrizeTier too (0-6) for different coloured reward text
@@ -105,6 +132,7 @@ public class PetBox
         }
 
         plr.getInventory().add(mysteryPrize, 1);
+        plr.getCollectionLogManager().addItem(BOX, new Item(mysteryPrize,1));
         plr.petBoxx = false;
         // Reward text colour
         String tier = "";
@@ -121,11 +149,12 @@ public class PetBox
         // Reward message
         String name = ItemDefinition.forId(mysteryPrize).getName();
 
-        if(mysteryPrizeTier < 3) {
-            plr.sendMessage("<col=FFA500>" + plr.getUsername() + " has just won a " + "@bla@" + name);
-        }else {
+        if (mysteryPrizeTier >= 0) {
+            plr.sendMessage("<col=FFA500>" + plr.getUsername() + " you just won a " + "@bla@" + name);
+        } else {
             World.sendMessage("<img=41><col=510000><shad=1>[Pet box]<img=41><col=0b5394><shad=1>" + plr.getUsername() + " won a @red@" + name + " <col=0b5394>from a @red@Pet Box");
         }
+        
         plr.getPA().sendInterfaceRemoval();
 
         // Can now spin again

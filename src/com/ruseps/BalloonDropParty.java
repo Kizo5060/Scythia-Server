@@ -16,7 +16,7 @@ public class BalloonDropParty {
     private static final int STARTING_POINT = 37500;
 
     private static int amountDonated = 0;
-    private static int requiredAmount = 300;
+    private static int requiredAmount = 50;
     private static final List<Item> items = new ArrayList<>();
 
     public static void open(Player player) {
@@ -32,6 +32,10 @@ public class BalloonDropParty {
         requiredAmount = amount;
     }
 
+    public static int getDonation() {
+        return amountDonated;
+    }
+    
     private static void updateInterface(Player player) {
         player.getPacketSender().sendInterface(STARTING_POINT);
         player.getPacketSender().sendInterfaceSet(STARTING_POINT, 3321);
@@ -97,14 +101,14 @@ public class BalloonDropParty {
     }
 
     public static boolean pop(Player player, GameObject object) {
-        if (object.getId() < 115 || object.getId() > 121) {
+        if (object.getId() < 115 || object.getId() > 122) {
             return false;
         }
         if(items.size() == 0) {
             CustomObjects.globalObjectRemovalTask(object, 1);
             return false;
         }
-        player.performGraphic(new Graphic(111));
+        player.performGraphic(new Graphic(524));
         boolean gotReward = ThreadLocalRandom.current().nextInt(100) > 65;
         if (!gotReward) {
             return true;
@@ -112,8 +116,8 @@ public class BalloonDropParty {
         int randomIndex = ThreadLocalRandom.current().nextInt(items.size());
         Item reward = items.remove(randomIndex);
         GroundItemManager.spawnGroundItem(player,
-                new GroundItem(reward, object.getPosition(), player.getUsername(), true, 75, false, 100));
-        CustomObjects.globalObjectRemovalTask(object, 1);
+                new GroundItem(reward, object.getPosition(), player.getUsername(), false, 75, false, 100));
+        CustomObjects.deleteGlobalObject(object);
         return true;
     }
 }

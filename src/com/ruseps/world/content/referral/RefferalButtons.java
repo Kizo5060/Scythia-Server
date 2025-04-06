@@ -4,43 +4,42 @@ import com.ruseps.world.entity.impl.player.Player;
 
 public class RefferalButtons {
 
-	public static boolean isRefferalButton(Player player, int buttonId) {
-		switch (buttonId) {
-		
-		case -7773:
-			player.getRefferalHandler().setRefferalType(RefferalType.YOUTUBERS);
-			player.getRefferalHandler().sendOptions(player);
-			player.getRefferalHandler().sendRewards(player);
-			return true;
-			
-		case -7772:
-			player.getRefferalHandler().setRefferalType(RefferalType.WEBSITES);
-			player.getRefferalHandler().sendOptions(player);
-			player.getRefferalHandler().sendRewards(player);
-			return true;
-			
-		case -7771:
-			player.getRefferalHandler().setRefferalType(RefferalType.OTHER);
-			player.getRefferalHandler().sendOptions(player);
-			player.getRefferalHandler().sendRewards(player);
-			return true;
-			
-		case -7783: // Close button
-			player.getPA().closeAllWindows();
-			return true;
-			
-		case -7777: // Confirm
-			player.getRefferalHandler().confirmOption(player);
-			return true;
-			
-		case -7768: // Option #1
-			for(RefferalOptions options : RefferalOptions.values()) {
-				if(options.getType() == player.getRefferalHandler().getRefferalType()) {
-					player.getRefferalHandler().setOptionSelected(options.getOptions()[0]);
-					player.getPA().sendMessage("Option selected: " + options.getOptions()[0]);
-				}
-			}
-			return true;
+    public static boolean isRefferalButton(Player player, int buttonId) {
+        switch (buttonId) {
+            case -7773:
+                player.getRefferalHandler().setRefferalType(RefferalType.YOUTUBERS);
+                player.getRefferalHandler().sendOptions(player);
+                player.getRefferalHandler().sendRewards(player);
+                return true;
+
+            case -7772:
+                player.getRefferalHandler().setRefferalType(RefferalType.WEBSITES);
+                player.getRefferalHandler().sendOptions(player);
+                player.getRefferalHandler().sendRewards(player);
+                return true;
+
+            case -7771:
+                player.getRefferalHandler().setRefferalType(RefferalType.OTHER);
+                player.getRefferalHandler().sendOptions(player);
+                player.getRefferalHandler().sendRewards(player);
+                return true;
+
+            case -7783: // Close button
+                player.getPA().closeAllWindows();
+                return true;
+
+            case -7777: // Confirm
+                player.getRefferalHandler().confirmOption(player, player.getHostAddress());
+                return true;
+
+            case -7768: // Option #1
+                for (RefferalOptions options : RefferalOptions.values()) {
+                    if (options.getType() == player.getRefferalHandler().getRefferalType()) {
+                        player.getRefferalHandler().setOptionSelected(options.getOptions()[0]);
+                        player.getPA().sendMessage("Option selected: " + options.getOptions()[0]);
+                    }
+                }
+                return true;
 			
 		case -7766: // Option #2
 			for(RefferalOptions options : RefferalOptions.values()) {

@@ -7,9 +7,9 @@ import java.util.Arrays;
 
 public enum MinigameTask {
 
-	POKEMON_RAIDS("Pokemon Raids", 0, "pokemon_raids", 500, new TaskReward(new Item(6199, 5)), "Complete 500 Pokemon Raids"),
-	ANIME_RAIDS("Anime Raids", 1, "anime_raids", 1000, new TaskReward(new Item(6199, 5)), "Complete 1000 Anime Raids"), 
-	MORTAL_KOMBAT_RAIDS("Mortal Kombat Raids", 2, "kombat_raids", 1500, new TaskReward(new Item(6199, 5)), "Complete 1500 Mortal Kombat Raids"),
+	POKEMON_RAIDS("Pokemon Raids", 0, "pokemon_raids", 500, new TaskReward(new Item(915, 5)), "Complete 500 Pokemon Raids"),
+	ANIME_RAIDS("Anime Raids", 1, "anime_raids", 1000, new TaskReward(new Item(915, 5)), "Complete 1000 Anime Raids"), 
+	MORTAL_KOMBAT_RAIDS("Mortal Kombat Raids", 2, "kombat_raids", 1500, new TaskReward(new Item(915, 5)), "Complete 1500 Mortal Kombat Raids"),
 	;
 
     private final String name;

@@ -26,7 +26,7 @@ public class BonusExperienceTask extends Task {
 			player.getPacketSender().sendMessage("<img=10> <col=330099>Your bonus experience has run out.");
 			player.setMinutesBonusExp(-1, false);
 			stop();
-		} else if(msg == 2) {
+		} else if(msg == 10) {
 			player.getPacketSender().sendMessage("<img=10> <col=330099>You have "+player.getMinutesBonusExp()+" minutes of bonus experience left.");
 			msg = 0;
 		}

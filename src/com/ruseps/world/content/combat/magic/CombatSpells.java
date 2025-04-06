@@ -43,7 +43,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 29;
+			return 5000;
 		}
 
 		@Override
@@ -171,7 +171,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 49;
+			return 5000;
 		}
 
 		@Override
@@ -224,7 +224,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 49;
+			return 5000;
 		}
 
 		@Override
@@ -383,7 +383,7 @@ public enum CombatSpells {
 
 			@Override
 			public int maximumHit() {
-				return 50;
+				return 5000;
 			}
 
 			@Override
@@ -435,7 +435,7 @@ public enum CombatSpells {
 
 			@Override
 			public int maximumHit() {
-				return 1500000;
+				return 500000;
 			}
 
 			@Override
@@ -487,7 +487,7 @@ public enum CombatSpells {
 
 			@Override
 			public int maximumHit() {
-				return 1900000;
+				return 700000;
 			}
 
 			@Override
@@ -544,7 +544,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 2500000;
+			return 1200000;
 		}
 
 		@Override
@@ -648,7 +648,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 3000000;
+			return 2000000;
 		}
 
 		@Override
@@ -704,7 +704,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 2500000;
+			return 1500000;
 		}
 
 		@Override
@@ -755,7 +755,58 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 20000000;
+			return 23000000;
+		}
+
+		@Override
+		public Optional<Graphic> startGraphic() {
+			return Optional.of(new Graphic(1266));
+		}
+
+		@Override
+		public int baseExperience() {
+			return 800000;
+		}
+
+		@Override
+		public Optional<Item[]> equipmentRequired(Player player) {
+			return Optional.empty();
+		}
+
+		@Override
+		public Optional<Item[]> itemsRequired(Player player) {
+			return Optional.of(new Item[] {  });
+		}
+
+		@Override
+		public int levelRequired() {
+			return 0;
+		}
+
+		@Override
+		public int spellId() {
+			return 1156;
+		}}),
+	SOULSTAFF(new CombatNormalSpell() {
+		@Override
+		public Optional<Animation> castAnimation() {
+			return Optional.of(new Animation(12002));
+		}
+
+		@Override
+		public Optional<Projectile> castProjectile(Character cast, Character castOn) {
+			return Optional.of(new Projectile(cast, castOn, 683, 44, 3, 43, 31,
+					0));
+		}
+
+		@Override
+		public Optional<Graphic> endGraphic() {
+			return Optional.of(new Graphic(1548, GraphicHeight.MIDDLE));
+		}
+
+		@Override
+		public int maximumHit() {
+			return 35000000;
 		}
 
 		@Override
@@ -806,7 +857,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 2500000;
+			return 10000000;
 		}
 
 		@Override
@@ -857,7 +908,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 1500000;
+			return 7500000;
 		}
 
 		@Override
@@ -908,7 +959,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 30000000;
+			return 13000000;
 		}
 
 		@Override
@@ -959,7 +1010,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 8000000;
+			return 16000000;
 		}
 
 		@Override
@@ -1010,7 +1061,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 1700000;
+			return 500000;
 		}
 
 		@Override
@@ -1571,7 +1622,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 200000;
+			return 7000000;
 		}
 
 		@Override
@@ -1622,7 +1673,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 180000;
+			return 9000000;
 		}
 
 		@Override
@@ -1673,7 +1724,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 650000;
+			return 9000000;
 		}
 
 		@Override
@@ -1724,7 +1775,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 2500000;
+			return 13000000;
 		}
 
 		@Override
@@ -1877,7 +1928,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 7500000;
+			return 1000000;
 		}
 
 		@Override
@@ -1927,7 +1978,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 10000000;
+			return 37500000;
 		}
 
 		@Override
@@ -1977,7 +2028,7 @@ public enum CombatSpells {
 
 		@Override
 		public int maximumHit() {
-			return 20000000;
+			return 10000000;
 		}
 
 		@Override

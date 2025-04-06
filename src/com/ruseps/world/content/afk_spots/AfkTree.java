@@ -1,10 +1,12 @@
 package com.ruseps.world.content.afk_spots;
  
 import com.ruseps.model.Item;
+import com.ruseps.model.PlayerRights;
 import com.ruseps.engine.task.Task;
 import com.ruseps.engine.task.TaskManager;
 import com.ruseps.model.Animation;
 import com.ruseps.model.Skill;
+import com.ruseps.model.Locations.Location;
 import com.ruseps.model.container.impl.Equipment;
 import com.ruseps.model.GameObject;
 import com.ruseps.model.Graphic;
@@ -116,29 +118,38 @@ public class AfkTree {
             @Override
             protected void execute() {
           
-            	/*if (player.getEquipment().get(Equipment.CAPE_SLOT).getId() == 51401)  { 
-               	 player.getSkillManager().addExperience(Skill.RUNECRAFTING, BLOODY_CAPE_EXP);  
-        		}*/
             	
                if(player.getSkillManager().getCurrentLevel(Skill.WOODCUTTING) < LEVEL_REQ) {
                     player.sendMessage("@red@The AFK Tree requires " + LEVEL_REQ + " Woodcutting.");
                     stop();
                     return;
                 }
-
-               /* if (!player.getInventory().contains(6932)) { 
-                	 player.sendMessage("@red@You do not have any more Blood Essence to fill the Well.");
-                	 player.sendMessage("@red@You may mine some from the Blood Essence Lair.");
-                	 stop();
-                	 return;
-                }*/
-             
+            
                 	player.performAnimation(new Animation(875));
                 	player.performGraphic(new Graphic(1177));
                     SPAWNED_POOL.health -= 1;
                     player.getSkillManager().addExperience(Skill.WOODCUTTING, WC_XP);
             	 	player.getInventory().add(5022, 1);
             	 	bloodBottle(player);
+            	 	
+            	 	if (Misc.getRandom(50000) == 0) {
+            	 	    player.getInventory().add(18782, 1);
+            	 	    World.sendMessage("@blu@<img=10>[Rare Item] " + player.getUsername() + " has received a Dragonkin Lamp!");
+            	 	}
+            	 	if (Misc.getRandom(14000) == 3) {
+                        player.getInventory().add(13016, 1);
+                        World.sendMessage("@blu@<img=10>[Skilling Pets] " + player.getUsername() + " has received a Pet Box!");
+                        player.getPacketSender().sendMessage("@red@Good luck on the pet!");
+                    } else if (player.getRights() == PlayerRights.GOLD_MEMBER || player.getRights() == PlayerRights.MODERATOR) {
+                        player.getInventory().add(5022, 3);
+                    } else if (player.getRights() == PlayerRights.PLATINUM_MEMBER || player.getRights() == PlayerRights.DIAMOND_MEMBER
+                    	|| player.getRights() == PlayerRights.ADMINISTRATOR) {
+                        player.getInventory().add(5022, 5);
+                    } else if (player.getRights() == PlayerRights.RUBY_MEMBER || player.getRights() == PlayerRights.DRAGONSTONE_MEMBER 
+                    	|| player.getRights() == PlayerRights.OWNER){
+                        player.getInventory().add(5022, 10);
+                    
+                    }
             	}
                    
             @Override

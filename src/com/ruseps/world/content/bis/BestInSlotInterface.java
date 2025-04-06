@@ -24,7 +24,9 @@ public class BestInSlotInterface {
     private int classIndex = 0;
     private int categoryIndex = 0;
     private int viewedIndex = 0;
-
+    public static void open(Player player) {
+        player.getPacketSender().sendInterface(27245); // adjust interface ID if needed
+    }
     private final int[] categoryItemIds = {2774, 2788, 2778, 2785, 2776, 2786, 2782, 2790, 2780, 2783};
 
     private static Map<ItemDefinition.EquipmentType, List<ItemDefinition>> items;

@@ -42,14 +42,16 @@ public class NPCDropTableChecker {
                 getDropTableNpcIds().add(npcId);
             }
         }
-        /*SantaLoot.loadDrops();*/
+        SantaLoot.loadDrops();
         BlessedSpartanLoot.loadDrops();
         DragonLoot.loadDrops();
         TelosLoot.loadDrops();
         VaderLoot.loadDrops();
-        AuroraLoot.loadDrops();
+        ReaperLoot.loadDrops();
         DemonLoot.loadDrops();
-        WreckedLoot.loadDrops();
+        OwnerBossLoot.loadDrops();
+        InheritedLoot.loadDrops();
+        DonationBossLoot.loadDrops();
         OctaneLoot.loadDrops();
         SmooziesLoot.loadDrops();
 
@@ -59,9 +61,10 @@ public class NPCDropTableChecker {
         getDropTableNpcIds().add(DragonLoot.BLUE_NPC_ID);
         getDropTableNpcIds().add(TelosLoot.GREEN_NPC_ID);
         getDropTableNpcIds().add(VaderLoot.NPC_ID);
-        getDropTableNpcIds().add(AuroraLoot.NPC_ID);
+        getDropTableNpcIds().add(ReaperLoot.NPC_ID);
         getDropTableNpcIds().add(DemonLoot.NPC_ID);
-        getDropTableNpcIds().add(WreckedLoot.NPC_ID);
+        getDropTableNpcIds().add(OwnerBossLoot.NPC_ID);
+        getDropTableNpcIds().add(InheritedLoot.NPC_ID);
         getDropTableNpcIds().add(OctaneLoot.NPC_ID);
         getDropTableNpcIds().add(SmooziesLoot.NPC_ID);
         Collections.sort(getDropTableNpcIds(), (Integer s1, Integer s2) -> getNPCName(s1).compareTo(getNPCName(s2)));

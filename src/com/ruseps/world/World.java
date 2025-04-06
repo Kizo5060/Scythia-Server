@@ -33,6 +33,7 @@ import com.ruseps.world.content.battle_royale.rotators.melee.ChestRotator2;
 import com.ruseps.world.content.battle_royale.rotators.nightmare.NightmareRotator;
 import com.ruseps.world.content.battle_royale.rotators.nightmare.NightmareRotator2;
 import com.ruseps.world.content.Cows;
+import com.ruseps.world.content.DonationBoss;
 import com.ruseps.world.content.DonationYeller;
 import com.ruseps.world.content.Reminders;
 import com.ruseps.world.content.SecurityYeller;
@@ -77,9 +78,16 @@ public class World {
     private static Queue<Player> voteRewards = new ConcurrentLinkedQueue<>();
 
 	public static MinigameHandler2 minigameHandler;
+	
+	/** Donated Amount For Donation Boss Spawn **/
+	
+	public static int donated;
+	
+	/**Double Vote Active **/
+	public static boolean doubleVotes;
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public static void initPlayersOnline() {
+/*	public static void initPlayersOnline() {
 		com.everythingrs.playersonline.PlayersOnline.service.scheduleAtFixedRate(new Runnable() {
 		    @Override
 		    public void run() {
@@ -89,10 +97,10 @@ public class World {
 		                online += 1;
 		            }
 		        }
-		        com.everythingrs.playersonline.PlayersOnline.insert("vulcanps", online, false);
+		        com.everythingrs.playersonline.PlayersOnline.insert("NexArch", online, false);
 		    }
 		}, 0, 30, TimeUnit.SECONDS);
-	}
+	}*/
     
     public static void register(Entity entity) {
 		EntityHandler.register(entity);
@@ -187,6 +195,7 @@ public class World {
 		EvilTrees.sequence();
 		TriviaBot.tick();
 		BattleRoyale.meleeLobbySequence();
+		DonationBoss.sequence();
 		/*BattleRoyale.mageLobbySequence();*/
 		BattleRoyale.rangeLobbySequence();
 		ChestRotator.sequence();

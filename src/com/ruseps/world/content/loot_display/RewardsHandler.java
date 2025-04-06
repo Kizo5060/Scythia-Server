@@ -118,6 +118,44 @@ public class RewardsHandler {
 			ResetFrame34();
 			ItemGroup(17);
 			break;
+		case 17668:
+			ResetFrame34();
+			ItemGroup(18);
+			break;
+			
+		case 17669:
+			ResetFrame34();
+			ItemGroup(19);
+			break;	
+		case 17670:
+			ResetFrame34();
+			ItemGroup(20);
+			break;
+		case 17671:
+			ResetFrame34();
+			ItemGroup(21);
+			break;
+		case 17672:
+			ResetFrame34();
+			ItemGroup(22);
+			break;	
+		case 17673:
+			ResetFrame34();
+			ItemGroup(23);
+			break;
+		case 17674:
+			ResetFrame34();
+			ItemGroup(24);
+			break;
+		case 17675:
+			ResetFrame34();
+			ItemGroup(25);
+			break;
+		case 17676:
+			ResetFrame34();
+			ItemGroup(26);
+			break;
+
 		}
 	return false;
 	}

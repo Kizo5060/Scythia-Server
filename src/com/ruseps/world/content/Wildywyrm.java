@@ -44,10 +44,10 @@ public class Wildywyrm extends NPC {
 	 * 
 	 */
 	public static final WildywyrmLocation[] LOCATIONS = {
-			new WildywyrmLocation(3303, 3931, 0, "Rogue's Castle"),
-			new WildywyrmLocation(3237, 3750, 0, "Bone Yard"),
-			new WildywyrmLocation(3157, 3887, 0, "Spider Hill"),
-			new WildywyrmLocation(3193, 3677, 0, "Graveyard")
+			new WildywyrmLocation(2652, 2654, 0, "Pest Control"),
+			new WildywyrmLocation(2448, 5169, 0, "Tzhaar Dungeon"),
+			new WildywyrmLocation(3560, 3098, 0, "Spawned Events"),
+			new WildywyrmLocation(3566, 3319, 0, "Barrows")
 	};
 	
 	/**

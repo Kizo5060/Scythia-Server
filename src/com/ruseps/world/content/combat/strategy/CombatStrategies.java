@@ -89,12 +89,14 @@ import com.ruseps.world.content.combat.strategy.world_boss.Aurora;
 import com.ruseps.world.content.combat.strategy.world_boss.BlueTelos;
 import com.ruseps.world.content.combat.strategy.world_boss.Demon;
 import com.ruseps.world.content.combat.strategy.world_boss.DiamondDragon;
+import com.ruseps.world.content.combat.strategy.world_boss.DonatorBossAttack;
+import com.ruseps.world.content.combat.strategy.world_boss.DragonStoneStrat;
 import com.ruseps.world.content.combat.strategy.world_boss.EmeraldDragon;
 import com.ruseps.world.content.combat.strategy.world_boss.Octane;
 import com.ruseps.world.content.combat.strategy.world_boss.PurpleDragonFormula;
 import com.ruseps.world.content.combat.strategy.world_boss.RubyDragon;
 import com.ruseps.world.content.combat.strategy.world_boss.VaderFormula;
-import com.ruseps.world.content.combat.strategy.world_boss.Wrecked;
+import com.ruseps.world.content.combat.strategy.world_boss.Inherited;
 import com.ruseps.world.content.combat.strategy.zulrah.npc.Blue;
 import com.ruseps.world.content.combat.strategy.zulrah.npc.Green;
 import com.ruseps.world.content.combat.strategy.zulrah.npc.Red;
@@ -141,8 +143,9 @@ public class CombatStrategies {
 		
 		/*STRATEGIES.put(1509,  new LavaDragon());*/
 		STRATEGIES.put(1417,  new Octane());
+		STRATEGIES.put(701,  new RubyRedDragon());
 		STRATEGIES.put(1037,  new FallenLord());
-		STRATEGIES.put(1416,  new Wrecked());
+		STRATEGIES.put(1416,  new Inherited());
 		STRATEGIES.put(1495,  new DeadlyAurora());
 		STRATEGIES.put(4862,  new SharkBeast());
 		STRATEGIES.put(1496,  new Shild());
@@ -303,9 +306,15 @@ public class CombatStrategies {
 		STRATEGIES.put(1018, new Witch());
 		STRATEGIES.put(6766, new LizardMan());
 		STRATEGIES.put(499, new Thermonuclear());
-		STRATEGIES.put(7286, new Skotizo());
+		STRATEGIES.put(7286, demonStrategy); //owner boss
 		STRATEGIES.put(5886, new Sire());
 		STRATEGIES.put(10126, new UnholyCursebearer());
+		DonatorBossAttack dBossStartegy = new DonatorBossAttack();
+		STRATEGIES.put(704, dBossStartegy);
+		
+		STRATEGIES.put(706, new DragonStoneStrat());
+		
+		
 	}
 	
 	public static CombatStrategy getStrategy(int npc) {

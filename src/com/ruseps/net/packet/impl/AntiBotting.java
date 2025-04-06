@@ -17,7 +17,7 @@ public class AntiBotting {
 	private static String currentAnswer;
 	
 	private static final String[][] QUESTION_DATA = {
-			{"What is the name of this server", "Scythia"}
+			{"What is the name of this server", "NexArch"}
 	};
 	
 	

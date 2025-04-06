@@ -19,12 +19,12 @@ public class TelosEvent extends GameEvent {
     /**
      * The delay between the events in hours.
      */
-    private static final int delay = 5;
+    private static final int delay = 1;
 
     /**
      * The spawn position for the Madara.
      */
-    private static final Position spawnPos = new Position(2352, 3223);
+    private static final Position spawnPos = new Position(2335, 3246);
     
     /**
      * The Madara NPC.
@@ -63,7 +63,7 @@ public class TelosEvent extends GameEvent {
         Telos = NPC.of(TelosLoot.BLUE_NPC_ID, spawnPos);
         World.register(Telos);
         lastHitpointsBroadcasted = Telos.getDefaultConstitution();
-        sendMessage("<col=FFFFCC><shad=1>The Telos Boss Event has begun! Use command ::Telos to Teleport to the Event.");
+        sendMessage("@gre@<shad=1>The Telos Boss Event has begun! Use command ::Telos to Teleport, look North.");
         return true;
     }
 

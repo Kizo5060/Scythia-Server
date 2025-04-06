@@ -44,6 +44,17 @@ public class DiamondRaids
         }
         if (party.getOwner() != p)
         {
+        	final int MIN_DONATION_AMOUNT = 850; // Replace this with your actual threshold
+
+            // Check if all party members have donated the required amount or have allowed roles
+            for (Player member : party.getPlayers()) {
+                int donatedAmount = member.getAmountDonated(); // Replace with the actual method to get the donated amount
+                if (donatedAmount < MIN_DONATION_AMOUNT) {
+                    p.getPacketSender().sendMessage("All party members need to be Diamond Members or higher to start the Diamond Raid");
+                    return;
+                }
+            }
+        	
             p.getPacketSender().sendMessage("Only the party leader can start the Diamond Raid.");
             return;
         }
@@ -89,7 +100,7 @@ public class DiamondRaids
             @Override
             public void execute()
             {
-                if (tick == 10)
+                if (tick == 3)
                 {
                     startTask(party, height);
 
@@ -98,7 +109,7 @@ public class DiamondRaids
                         memberr.getPacketSender().sendCameraNeutrality();
                     }
                 }
-                if(tick == 20 ) {
+                if(tick == 10 ) {
                     for (NPC npc : World.getNpcs())
                     {
                         if (npc != null && npc.getPosition().getZ() == party.getHeight())
@@ -108,7 +119,7 @@ public class DiamondRaids
                     }
                 }
 
-                if(tick == 15) {
+                if(tick == 5) {
                     p.setRegionInstance(new RegionInstance(p, RegionInstanceType.RAIDS_SEVEN_PHASE_ONE_INSTANCE));
                     p.getRegionInstance().spawnNPC(new NPC(RaidsConstants.R7P1_FIRST_NPC_ID, new Position(2784, 2983, height)));
                 }
@@ -160,7 +171,7 @@ public class DiamondRaids
 
         if (party.getOwner() != p)
         {
-            p.getPacketSender().sendMessage("Only the party leader can exit the Silver Raid.");
+            p.getPacketSender().sendMessage("Only the party leader can exit the Diamond Raid.");
             return;
         }
         party.enteredDungeon(false);
@@ -183,6 +194,7 @@ public class DiamondRaids
             partyMember.getPacketSender().sendDungeoneeringTabIcon(false);
             partyMember.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
             partyMember.getEquipment().refreshItems();
+            partyMember.getPointsHandler().incrementRaidsOnePoints(40);
             partyMember.getMinigameAttributes().getRaidsAttributes().setKillcount(0);
             partyMember.getMinigameAttributes().getRaidsAttributes().incrementCompleted();
             partyMember.getPacketSender().sendMessage("You have completed the Diamond Raids and earned yourself and your team a Raids Key! Congrats!");

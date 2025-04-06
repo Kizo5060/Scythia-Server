@@ -2086,10 +2086,10 @@ public class Consumables {
 				player.getPacketSender().sendMessage("You have finished your potion.");
 			}
 			if(player.getOverloadPotionTimer() > 0) {  // Prevents decreasing stats
-				Consumables.overloadIncrease(player, Skill.ATTACK, 0.27);
-				Consumables.overloadIncrease(player, Skill.STRENGTH, 0.27);
-				Consumables.overloadIncrease(player, Skill.DEFENCE, 0.27);
-				Consumables.overloadIncrease(player, Skill.RANGED, 0.235);
+				Consumables.overloadIncrease(player, Skill.ATTACK, 0.2);
+				Consumables.overloadIncrease(player, Skill.STRENGTH, 0.2);
+				Consumables.overloadIncrease(player, Skill.DEFENCE, 0.2);
+				Consumables.overloadIncrease(player, Skill.RANGED, 0.2);
 				player.getSkillManager().setCurrentLevel(Skill.MAGIC, player.getSkillManager().getMaxLevel(Skill.MAGIC) + 7);
 			}
 			Sounds.sendSound(player, Sound.DRINK_POTION);

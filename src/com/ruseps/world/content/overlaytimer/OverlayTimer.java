@@ -15,16 +15,16 @@ public class OverlayTimer {
 
     public static void sendOverlayTimer(Player player, int overlaySpriteId, int secondsDurationLeft) {
         if (secondsDurationLeft > 0) {
-            player.getPA().sendMessage(":packet:startoverlaytimer " + overlaySpriteId + " " + secondsDurationLeft);
+           // player.getPA().sendMessage(":packet:startoverlaytimer " + overlaySpriteId + " " + secondsDurationLeft);
         }
     }
 
     public static void stopAllOverlayTimers(Player player) {
-        player.getPA().sendMessage(":packet:stopalloverlaytimers");
+      //  player.getPA().sendMessage(":packet:stopalloverlaytimers");
     }
 
     public static void stopOverlayTimer(Player player, int overlaySpriteId) {
-        player.getPA().sendMessage(":packet:stopoverlaytimer " + overlaySpriteId);
+   //     player.getPA().sendMessage(":packet:stopoverlaytimer " + overlaySpriteId);
     }
 
 }

@@ -171,7 +171,7 @@ public class PlayersOnlineInterface {
 		case SUPPORT:
 			value = 9;
 			break;
-		case VETERAN:
+		case YOUTUBER:
 			value = 8;
 			break;
 		}

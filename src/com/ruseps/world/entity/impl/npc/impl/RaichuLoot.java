@@ -79,11 +79,12 @@ public class RaichuLoot extends NPC {
 	}
 	
 	public static void giveLoot(Player player, NPC npc, Position pos) {
-		World.sendMessage("<img=469> <col=dbffba><shad=1>"+player.getUsername()+ " received a loot from the @gre@Raichu Voting Event!");
+		World.sendMessage("<img=469> <col=dbffba><shad=1>"+player.getUsername()+ " received a loot from the @gre@Voting Boss!");
 		player.addItemToAny(18338, 1);
-		player.addItemToAny(915, 2);
+		player.addItemToAny(6199, 1);
+		player.addItemToAny(621, 1);
 		player.addItemToAny(21055, 1);
-		player.addItemToAny(19994, 5 + Misc.getRandom(5));
+		player.addItemToAny(19992, 1 + Misc.getRandom(10));
 	}
 
 	private static void handleDrop(NPC npc, Player player, Long damage) {

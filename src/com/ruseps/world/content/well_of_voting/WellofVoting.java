@@ -20,7 +20,7 @@ import com.ruseps.world.entity.impl.player.Player;
 
 public class WellofVoting {
 
-	private static final int AMOUNT_NEEDED = 50; // 50 VOTES
+	private static final int AMOUNT_NEEDED = 20; // 20 VOTES
 	private static final int LEAST_DONATE_AMOUNT_ACCEPTED = 1; // 1 VOTE
 
 	private static CopyOnWriteArrayList<Player> VOTING_DONATORS = new CopyOnWriteArrayList<Player>();
@@ -52,7 +52,7 @@ public class WellofVoting {
 		VOTES_IN_WELL += amount;
 		amount = player.getPointsHandler().getVotingPoints();
 		if (amount > 5) {
-			DialogueManager.sendStatement(player, "We need a total of 50 votes to spawn the Boss!");
+			DialogueManager.sendStatement(player, "We need a total of 20 votes to spawn the Boss!");
 			World.sendMessage("<img=5> <col=6666FF>" + player.getUsername() + " has donated "
 					+ Misc.insertCommasToNumber("" + amount + "") + " Votes to the Well of Voting Bosses!");
 		}

@@ -6,8 +6,8 @@ import com.ruseps.world.content.skill.impl.slayer.SlayerTasks;
 import com.ruseps.world.entity.impl.player.Player;
 
 public enum GameMode 
-{
-	NORMAL, HARDCORE_IRONMAN, IRONMAN, GROUP_IRONMAN, VETERAN;
+{ 
+	NORMAL, HARDCORE_IRONMAN, IRONMAN, GROUP_IRONMAN,VETERAN;
 
 	public static void set(Player player, GameMode newMode, boolean death)
 	{

@@ -29,48 +29,9 @@ public class TeleportHandler {
 			List<NPC> npz = World.getNpcs().stream().filter(t -> t != null && t.getPosition().getZ() == player.getPosition().getZ()).collect(Collectors.toList());
 			for(NPC n : npz) {
 				if(n.getConstitution() <= 0) {
-					player.sendMessage("Please wait 5 seconds before leaving");
+					player.sendMessage("<shad=1>@red@Please do ::leave to leave,then try Again");
 					return;
 				}
-			}
-			
-			if(player.getInstanceManager().npcToSpawn1.getConstitution() <= 0) {
-				player.sendMessage("Please wait 5 seconds before leaving");
-				return;
-			}
-			
-			if(player.getInstanceManager().npcToSpawn2.getConstitution() <= 0) {
-				player.sendMessage("Please wait 5 seconds before leaving");
-				return;
-			}
-			
-			if(player.getInstanceManager().npcToSpawn3.getConstitution() <= 0) {
-				player.sendMessage("Please wait 5 seconds before leaving");
-				return;
-			}
-			
-			if(player.getInstanceManager().npcToSpawn4.getConstitution() <= 0) {
-				player.sendMessage("Please wait 5 seconds before leaving");
-				return;
-			}
-			
-			if(player.getInstanceManager().npcToSpawn5.getConstitution() <= 0) {
-				player.sendMessage("Please wait 5 seconds before leaving");
-				return;
-			}
-			
-			if(player.getInstanceManager().npcToSpawn6.getConstitution() <= 0) {
-				player.sendMessage("Please wait 5 seconds before leaving");
-				return;
-			}
-			if(player.getInstanceManager().npcToSpawn7.getConstitution() <= 0) {
-				player.sendMessage("Please wait 5 seconds before leaving");
-				return;
-			}
-			
-			if(player.getInstanceManager().npcToSpawn8.getConstitution() <= 0) {
-				player.sendMessage("Please wait 5 seconds before leaving");
-				return;
 			}
 			
 			player.getInstanceManager().endInstance(player, false);

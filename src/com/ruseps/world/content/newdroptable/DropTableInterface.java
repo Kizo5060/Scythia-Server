@@ -1,6 +1,7 @@
 package com.ruseps.world.content.newdroptable;
 
 import com.ruseps.model.Item;
+import com.ruseps.model.definitions.DropUtils;
 import com.ruseps.model.definitions.NPCDrops;
 import com.ruseps.model.definitions.NpcDefinition;
 import com.ruseps.util.Misc;
@@ -94,7 +95,15 @@ public class DropTableInterface {
             stringMap.put(NAME_ID + slot, item.getDefinition().getName());
             stringMap.put(AMOUNT_ID + slot, item.getAmount() < 1000 ? (item.getAmount() + "x") : Misc
                     .formatNumber(item.getAmount()));
-            stringMap.put(CHANCE_ID + slot, "1/" + drop.getChance().getRandom());
+            int playerDr = DropUtils.drBonus(player);
+
+            int chance =  drop.getChance().getRandom();
+            int adjustedDr = (int) Math.floor(chance / (playerDr > 0 ? (DropUtils.drBonus(player) / 100.0) + 1 : 1))
+                    + (playerDr > 0 ? 1 : 0);
+            if(player.isApplyDr())
+            	stringMap.put(CHANCE_ID + slot, "1/" + adjustedDr);
+            else
+            	stringMap.put(CHANCE_ID + slot, "1/" + chance);
             int spriteId = getRaritySprite(drop.getChance().getRandom());
             if (spriteId != -1) {
                 player.getPacketSender().sendSpriteChange(SPRITE_COMPONENT_ID + slot, spriteId);
@@ -134,7 +143,14 @@ public class DropTableInterface {
             stringMap.put(NAME_ID + slot, item.getDefinition().getName());
             stringMap.put(AMOUNT_ID + slot, item.getAmount() < 1000 ? (item.getAmount() + "x") : Misc
                     .formatNumber(item.getAmount()));
-            stringMap.put(CHANCE_ID + slot, "1/" + drop.getChance().getRandom());
+            int playerDr = DropUtils.drBonus(player);
+            int chance =  drop.getChance().getRandom();
+            int adjustedDr = (int) Math.floor(chance / (playerDr > 0 ? (DropUtils.drBonus(player) / 100.0) + 1 : 1))
+                    + (playerDr > 0 ? 1 : 0);
+            if(player.isApplyDr())
+            	stringMap.put(CHANCE_ID + slot, "1/" + adjustedDr);
+            else
+            	stringMap.put(CHANCE_ID + slot, "1/" + chance);
             int spriteId = getRaritySprite(drop.getChance().getRandom());
             if (spriteId != -1) {
                 player.getPacketSender().sendSpriteChange(SPRITE_COMPONENT_ID + slot, spriteId);

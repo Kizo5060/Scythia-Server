@@ -1,5 +1,7 @@
 package com.ruseps.world.entity.impl;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import com.ruseps.engine.task.Task;
 import com.ruseps.engine.task.TaskManager;
 import com.ruseps.model.Animation;
@@ -13,11 +15,13 @@ import com.ruseps.model.RegionInstance;
 import com.ruseps.model.UpdateFlag;
 import com.ruseps.model.movement.MovementQueue;
 import com.ruseps.util.Stopwatch;
+import com.ruseps.world.World;
 import com.ruseps.world.content.combat.CombatBuilder;
 import com.ruseps.world.content.combat.CombatType;
 import com.ruseps.world.content.combat.magic.CombatSpell;
 import com.ruseps.world.content.combat.strategy.CombatStrategy;
 import com.ruseps.world.entity.Entity;
+import com.ruseps.world.entity.impl.npc.NPC;
 import com.ruseps.world.entity.impl.player.Player;
 /**
  * A player or NPC
@@ -41,6 +45,7 @@ public abstract class Character extends Entity {
 	/*** LONGS **/
 	
 	/*** INSTANCES ***/
+	private CopyOnWriteArrayList<NPC> npcsList;
 	private Direction direction, primaryDirection = Direction.NONE, secondaryDirection = Direction.NONE, lastDirection = Direction.NONE;
 	private CombatBuilder combatBuilder = new CombatBuilder(this);
 	private MovementQueue movementQueue = new MovementQueue(this);
@@ -137,6 +142,22 @@ public abstract class Character extends Entity {
 	 *            the damage to be dealt.
 	 */
 	public void dealDamage(Hit hit) {
+		NPC subClass = null;
+		  if (this instanceof NPC) {
+	           subClass = (NPC) this; // Casting
+
+	        }
+		 
+		if(hit.getDamage() > 100000000 && this.isNpc()&& subClass != null
+				&& (subClass.getId() == 704 || subClass.getId() == 6820 ||
+						subClass.getId() == 466 ||subClass.getId() == 6820 || subClass.getId() == 4867 ||
+						subClass.getId() == 29 || subClass.getId() == 163 || subClass.getId() == 164
+						|| subClass.getId() == 165 || subClass.getId() == 175 || subClass.getId() == 1416 
+			|| subClass.getId() == 7286  || subClass.getId() == 8540 || subClass.getId() == 1041 
+			|| subClass.getId() == 3167 ||subClass.getId() == 3168 || subClass.getId() == 3169)){
+			hit.setDamage(100000000);
+		}
+		
 		if (getUpdateFlag().flagged(Flag.SINGLE_HIT)) {
 			dealSecondaryDamage(hit);
 			return;
@@ -148,6 +169,22 @@ public abstract class Character extends Entity {
 	}
 
 	public Hit decrementHealth(Hit hit) {
+		NPC subClass = null;
+		  if (this instanceof NPC) {
+	           subClass = (NPC) this; // Casting
+
+	        }
+		 
+		if(hit.getDamage() > 100000000 && this.isNpc()&& subClass != null
+				&& (subClass.getId() == 704 || subClass.getId() == 6820 ||
+						subClass.getId() == 466 ||subClass.getId() == 6820 || subClass.getId() == 4867 ||
+						subClass.getId() == 29 || subClass.getId() == 163 || subClass.getId() == 164
+						|| subClass.getId() == 165 || subClass.getId() == 175 || subClass.getId() == 1416 
+			|| subClass.getId() == 7286  || subClass.getId() == 8540 || subClass.getId() == 1041 
+			|| subClass.getId() == 3167 ||subClass.getId() == 3168 || subClass.getId() == 3169)){
+			hit.setDamage(100000000);
+		}
+		
 		if (getConstitution() <= 0)
 			return hit;
 		if(hit.getDamage() > getConstitution())
@@ -629,4 +666,5 @@ public abstract class Character extends Entity {
 	public boolean sendsBlockAnimation() {
     	return true;
 	}
+	
 }

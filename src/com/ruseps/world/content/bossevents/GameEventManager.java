@@ -5,8 +5,22 @@ import com.ruseps.engine.task.Task;
 import com.ruseps.engine.task.TaskManager;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
+import com.ruseps.world.content.bossevents.impl.DemonEvent;
+import com.ruseps.world.World;
+import com.ruseps.world.content.bossevents.impl.BlessedSpartanEvent;
+import com.ruseps.world.content.bossevents.impl.DragonEvent;
+import com.ruseps.world.content.bossevents.impl.TelosEvent;
+import com.ruseps.world.content.bossevents.impl.VaderEvent;
+import com.ruseps.world.content.bossevents.impl.ReaperEvent;
+import com.ruseps.world.content.bossevents.impl.InheritedEvent;
+import com.ruseps.world.content.bossevents.impl.OwnerBossEvent;
+//import com.ruseps.world.content.bossevents.impl.SantaEvent;
+import com.ruseps.net.packet.impl.CommandPacketListener;
+
+
 
 /**
  * The event manager.
@@ -14,6 +28,7 @@ import java.util.logging.Logger;
  * @author Gabriel || Wolfsdarker
  */
 public class GameEventManager {
+	
 
     /**
      * Logger for the game event manager.
@@ -33,7 +48,7 @@ public class GameEventManager {
     /**
      * The delay to start the events.
      */
-    private static final long startDelay = TimeUnit.SECONDS.toMillis(90);
+    private static final long startDelay = TimeUnit.SECONDS.toMillis(1);
 
     /**
      * The instant the events got loaded
@@ -48,6 +63,14 @@ public class GameEventManager {
     public static HashMap<String, GameEvent> getEvents() {
         return events;
     }
+    
+    public static void startDemonEvent() {
+        GameEvent demonEvent = events.get("Lava Demon");
+        if (!demonEvent.isActive() && demonEvent.canStart() && demonEvent.start()) {
+            demonEvent.setActive(true);
+            demonEvent.setLastEventInstant(System.currentTimeMillis());
+        }
+    }
 
     /**
      * Loads all the events.
@@ -57,16 +80,41 @@ public class GameEventManager {
         try {
             ClassPath cp = ClassPath.from(GameEvent.class.getClassLoader());
             for (ClassPath.ClassInfo ci : cp.getTopLevelClasses(eventsLocation)) {
-                Class c = Class.forName(ci.getName());
+                Class<?> c = Class.forName(ci.getName());
                 if (c != null && c.getSuperclass() == GameEvent.class) {
-                    GameEvent event = (GameEvent) Class.forName(ci.getName()).newInstance();
-              
+                    GameEvent event = (GameEvent) c.getDeclaredConstructor().newInstance();
                     events.put(event.name(), event);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // Explicitly register the DemonEvent
+        events.put("Lava Demon", new DemonEvent());
+        
+        // Explicitly register the BlessedSpartanEvent
+        events.put("Blessed Spartan", new BlessedSpartanEvent());
+        
+        // Explicitly register the DragonEvent
+        events.put("Dragon", new DragonEvent());
+        
+        // Explicitly register the OwnerBossEvent
+        events.put("Owner Boss", new OwnerBossEvent());
+        
+     // Explicitly register the OwnerBossEvent
+     //   events.put("Santa", new SantaEvent());
+        
+        // Explicitly register the TelosEvent
+        events.put("Telos", new TelosEvent());
+        
+        // Explicitly register the VaderEvent
+        events.put("Vader", new VaderEvent());
+        
+     // Explicitly register the VaderEvent
+        events.put("Inherited", new InheritedEvent());
+
+        // Explicitly register the ReaperEvent
+        events.put("NexArch's Shooter", new ReaperEvent());
 
         log.info("Loaded " + events.size() + " game events.");
         log.info("Starting all game events in " + startDelay + " seconds.");
@@ -111,4 +159,79 @@ public class GameEventManager {
             }
         }
     };
+
+    public static void loadEvent(String eventName) {
+        loadInstant = System.currentTimeMillis();
+        try {
+            ClassPath cp = ClassPath.from(GameEvent.class.getClassLoader());
+            for (ClassPath.ClassInfo ci : cp.getTopLevelClasses(eventsLocation)) {
+                World.sendMessage(ci.getName());
+                Class c = Class.forName(ci.getName());
+                if (c != null && c.getSuperclass() == GameEvent.class) {
+                    GameEvent event = (GameEvent) Class.forName(ci.getName()).newInstance();
+                    World.sendMessage(event.getName());
+                    if (event.name().equalsIgnoreCase("DragonEvent")) {
+                        events.put(event.name(), event);   
+                        log.info("Loaded event: " + eventName);
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+        switch(eventName.toLowerCase()){
+        
+        case "lava":
+        	 events.put("Lava Demon", new DemonEvent());
+        	 break;
+        case "blessed":
+             // Explicitly register the BlessedSpartanEvent
+             events.put("Blessed Spartan", new BlessedSpartanEvent());
+             break;
+        case "dragon":
+             // Explicitly register the DragonEvent
+             events.put("Dragon", new DragonEvent());
+             break;
+             
+        case "owner":
+             
+             // Explicitly register the OwnerBossEvent
+             events.put("Owner Boss", new OwnerBossEvent());
+             break;
+        case "santa":
+             
+           //  events.put("Santa", new SantaEvent());
+             break;
+        case "telos":
+             // Explicitly register the TelosEvent
+             events.put("Telos", new TelosEvent());
+             break;
+             
+        case "vader":
+             // Explicitly register the VaderEvent
+             events.put("Vader", new VaderEvent());
+             break;
+             
+          // Explicitly register the VaderEvent
+        case "inherited":
+             events.put("Inherited", new InheritedEvent());
+             break;
+
+        case "shooter":
+             // Explicitly register the ReaperEvent
+             events.put("NexArch's Shooter", new ReaperEvent());
+             break;
+ 
+        }
+        	
+        	
+        
+       
+        log.info("Starting all game events in " + startDelay + " seconds.");
+        TaskManager.submit(eventTask);
+    }
+   
 }

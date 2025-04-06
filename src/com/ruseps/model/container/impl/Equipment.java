@@ -14,13 +14,17 @@ import com.ruseps.world.entity.impl.player.Player;
  */
 
 public class Equipment extends ItemContainer {
+	
+	public Equipment(Player player) {
+		super(player);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * The Equipment constructor.
 	 * @param player	The player who's equipment is being represented.
 	 */
-	public Equipment(Player player) {
-		super(player);
-	}
+
 
 	@Override
 	public int capacity() {
@@ -107,6 +111,8 @@ public class Equipment extends ItemContainer {
 	public static final int AMMUNITION_SLOT = 13;
 	public static final int BOOSTER = 8;
 	public static final int AURA = 6;
+	
+
 
 	public boolean wearingNexAmours() {
 		int head = getPlayer().getEquipment().getItems()[HEAD_SLOT].getId();
@@ -116,6 +122,7 @@ public class Equipment extends ItemContainer {
 		boolean pernix = head == 14011 && body == 14012 && legs == 14013;
 		boolean virtus = head == 14014 && body == 14015 && legs == 14016;
 		return torva || pernix || virtus;
+		
 	}
 
 	public boolean wearingHalberd() {
@@ -155,4 +162,5 @@ public class Equipment extends ItemContainer {
 			}
 		return count;
 	}
+	
 }

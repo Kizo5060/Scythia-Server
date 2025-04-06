@@ -27,8 +27,43 @@ public class Weaponz {
 	}
 	
 	public static void handleDrop(Player player, NPC npc) {
-			if(Misc.getRandom(150) == 1) {
-				GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(getWeaponz(player)), npc.getPosition().copy(), player.getUsername(), false, 100, false, -1));
-		}
-	}
+        if (Misc.getRandom(150) == 1) {
+            int itemId = getWeaponz(player);
+            GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(itemId), npc.getPosition().copy(), player.getUsername(), false, 100, false, -1));
+            switch (itemId) {
+                case 2833:
+                    player.sendMessage("A @red@T1 Weaponz has been dropped!");
+                    break;
+                case 2835:
+                    player.sendMessage("A @red@T2 Weaponz has been dropped!");
+                    break;
+                case 2837:
+                    player.sendMessage("A @red@T3 Weaponz has been dropped!");
+                    break;
+                case 2839:
+                    player.sendMessage("A @red@T4 Weaponz has been dropped!");
+                    break;
+                case 2841:
+                    player.sendMessage("A @red@T5 Weaponz has been dropped!");
+                    break;
+                case 2842:
+                    player.sendMessage("A @red@T6 Weaponz has been dropped!");
+                    break;
+                case 2843:
+                    player.sendMessage("A @red@T7 Weaponz has been dropped!");
+                    break;
+                case 2844:
+                    player.sendMessage("A @red@T8 Weaponz has been dropped!");
+                    break;
+                case 2847:
+                    player.sendMessage("A @red@T9 Weaponz has been dropped!");
+                    break;
+                case 2846:
+                    player.sendMessage("The @red@Final Weaponz has been dropped!");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

@@ -202,7 +202,7 @@ public enum CombatSpecial {
                     };
                 }
             },
-    DRAGON_LONGSWORD(new int[]{19025, 20134}, 25, 1.15, 1.20, CombatType.MELEE, WeaponInterface.LONGSWORD) {
+    DRAGON_LONGSWORD(new int[]{20134}, 25, 1.15, 1.20, CombatType.MELEE, WeaponInterface.LONGSWORD) {
                 @Override
                 public CombatContainer container(Player player, Character target) {
                     player.performAnimation(new Animation(1058));
@@ -728,9 +728,9 @@ public enum CombatSpecial {
         player.setSpecialActivated(false);
         CombatSpecial.updateBar(player);
         if (!player.isRecoveringSpecialAttack()) {
-            TaskManager.submit(new PlayerSpecialAmountTask(player));
+            TaskManager.submit(new PlayerSpecialAmountTask());
         }
-        player.getAchievementTracker().progress(com.ruseps.world.content.achievements.AchievementData.PERFORM_A_SPECIAL_ATTACK, 1);    }
+        player.getAchievementTracker().progress(com.ruseps.world.content.achievements.AchievementData.DEAL_SPECIAL_ATTACK, 1);    }
 
     /**
      * Restores the special bar for the argued {@link Player}.

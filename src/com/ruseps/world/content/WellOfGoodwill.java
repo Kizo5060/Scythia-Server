@@ -18,9 +18,9 @@ import com.ruseps.world.entity.impl.player.Player;
 
 public class WellOfGoodwill {
 
-	private static final int AMOUNT_NEEDED = 100000000; //100m
-	private static final int LEAST_DONATE_AMOUNT_ACCEPTED = 1000000; //1m 
-	private static final int BONUSES_DURATION = 120; //2 hours in minutes
+	private static final int AMOUNT_NEEDED = 1000000000; //1b
+	private static final int LEAST_DONATE_AMOUNT_ACCEPTED = 10000000; //10m 
+	private static final int BONUSES_DURATION = 60; //hours in minutes
 
 	private static CopyOnWriteArrayList<Player> DONATORS = new CopyOnWriteArrayList<Player>();
 	private static WellState STATE = WellState.EMPTY;
@@ -107,7 +107,7 @@ public class WellOfGoodwill {
 
 				@Override
 				public String[] dialogue() {
-					return new String[]{"The well is already full of coins and Saradomin", "has granted players with bonus experience for their", "generosity! There are currently "+getMinutesRemaining()+" minutes", "of bonus experience left."};
+					return new String[]{"The well is already full of coins and NexArch", "Gods have granted players with some bonuses for their", "sacrifice! There are currently "+getMinutesRemaining()+" minutes", "of bonus experience left."};
 				}
 
 				@Override
@@ -131,7 +131,7 @@ public class WellOfGoodwill {
 			return;
 		}
 		if (amount < LEAST_DONATE_AMOUNT_ACCEPTED) {
-			DialogueManager.sendStatement(player, "You must donate at least 1 million coins.");
+			DialogueManager.sendStatement(player, "You must donate at least 10 million coins.");
 			return;
 		}
 		if (amount > getMissingAmount()) {
@@ -153,7 +153,7 @@ public class WellOfGoodwill {
 		}
 		MONEY_IN_WELL += amount;
 		if(amount > 25000000) {
-			World.sendMessage("@red@[EXP WELL]@bla@"+player.getUsername()+" has donated "+Misc.insertCommasToNumber(""+amount+"")+" coins to the Well of Goodwill!");
+			World.sendMessage("@red@[WELL]@bla@"+player.getUsername()+" has donated "+Misc.insertCommasToNumber(""+amount+"")+" coins to the Well of Goodwill!");
 		}
 		DialogueManager.sendStatement(player, "Thank you for your donation.");
 
@@ -161,7 +161,7 @@ public class WellOfGoodwill {
 			STATE = WellState.FULL;
 			START_TIMER = System.currentTimeMillis();
 	
-			World.sendMessage("@red@[EXP WELL]@bla@It is now granting everyone 2 hours of 30% bonus experience.");
+			World.sendMessage("@red@[WELL]@bla@It is now granting 50 DR & 30% bonus experience for an hour.");
 			World.getPlayers().forEach(p -> p.getPacketSender().sendString(26622, "@or2@Well of Goodwill: @gre@Active"));
 		}
 	}
@@ -169,7 +169,7 @@ public class WellOfGoodwill {
 	public static void updateState() {
 		if (STATE == WellState.FULL) {
 			if(getMinutesRemaining() <= 0) {
-				World.sendMessage("<img=10> <col=6666FF>The Well of Goodwill is no longer granting bonus experience.");
+				World.sendMessage("<img=10> <col=6666FF>The Well of Goodwill is no longer granting Bonuses.");
 				World.getPlayers().forEach(p -> p.getPacketSender().sendString(39163, "@or2@Well of Goodwill: @yel@N/A"));
 				setDefaults();
 			}

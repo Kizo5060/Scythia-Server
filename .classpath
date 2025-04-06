@@ -51,7 +51,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/lombok.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Bradl/Downloads/everythingrs-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Bradl/Downloads/jar_files/commons-text-1.10.0.wso2v2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Administrator/Downloads/everythingrs-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

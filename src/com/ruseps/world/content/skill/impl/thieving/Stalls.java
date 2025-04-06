@@ -81,25 +81,25 @@ public class Stalls {
         player.getClickDelay().reset();
 
         if (Misc.getRandom(14000) == 3) {
-            player.getInventory().add(13324, 1);
-            World.sendMessage("@blu@<img=10>[Skilling Pets] " + player.getUsername() + " has received the Rocky pet!");
-            player.getPacketSender().sendMessage("@red@You have received a skilling pet!");
-        } else if (player.getRights() == PlayerRights.BRONZE_MEMBER) {
-            player.getInventory().add(995, 3000);
+            player.getInventory().add(13016, 1);
+            World.sendMessage("@blu@<img=10>[Skilling Pets] " + player.getUsername() + " has received a Pet Box!");
+            player.getPacketSender().sendMessage("@red@Good luck on the pet!");
         } else if (player.getRights() == PlayerRights.SILVER_MEMBER || player.getRights() == PlayerRights.SUPPORT) {
-            player.getInventory().add(995, 5000);
+            player.getInventory().add(19994, 1);
         } else if (player.getRights() == PlayerRights.GOLD_MEMBER || player.getRights() == PlayerRights.MODERATOR) {
-            player.getInventory().add(995, 7500);
-        } else if (player.getRights() == PlayerRights.PLATINUM_MEMBER || player.getRights() == PlayerRights.ADMINISTRATOR) {
-            player.getInventory().add(995, 10000);
-        } else if (player.getRights() == PlayerRights.DIAMOND_MEMBER) {
-            player.getInventory().add(995, 15000);
+            player.getInventory().add(19994, 3);
+        } else if (player.getRights() == PlayerRights.PLATINUM_MEMBER || player.getRights() == PlayerRights.DIAMOND_MEMBER
+        	|| player.getRights() == PlayerRights.ADMINISTRATOR) {
+            player.getInventory().add(19994, 7).add(19992, 1);
+        } else if (player.getRights() == PlayerRights.RUBY_MEMBER || player.getRights() == PlayerRights.DRAGONSTONE_MEMBER 
+        	|| player.getRights() == PlayerRights.OWNER){
+            player.getInventory().add(19994, 15).add(19992, 5);
         }
 
         if (player.getLocation() == Location.DONATOR_ZONE) {
             Item item = new Item(reward);
             int value = item.getDefinition().getValue();
-            player.getInventory().add(995, value);
+            player.getInventory().add(19992, value);
         } else {
             player.getInventory().add(reward, 1);
         }

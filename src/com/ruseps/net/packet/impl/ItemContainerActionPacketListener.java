@@ -75,20 +75,30 @@ public class ItemContainerActionPacketListener implements PacketListener {
 					player.setUpgradeSelection(item);
 					player.getPacketSender().sendItemOnInterface(62210, data.getReward().getId(), data.getReward().getAmount());
 					player.getPacketSender().sendString(62250, "Chance: @gre@" + data.getChance() + "%");
-					player.getPacketSender().sendString(62203, "Coins required: @gre@" + Misc.formatNumberToLetter(coinsRequired));
+					player.getPacketSender().sendString(62203, "Tokens required: @gre@" + Misc.formatNumberToLetter(coinsRequired));
 			}
 		} 
 		break;
 		case -23927:
-			if(player.ownerBoxx == true) {
-				player.getOwnerBox().reward();
-			} else if(player.mboxx == true) {
-				player.getMysteryBox().reward();
-			} else if(player.auroraBoxx == true) {
-				player.getAuroraBox().reward();
-			} else if(player.petBoxx == true) {
-				player.getPetBox().reward();
-			}
+            if (player.ownerBoxx == true) {
+                player.getOwnerBox().reward();
+            } else if (player.mboxx == true) {
+                player.getMysteryBox().reward();
+            } else if (player.auroraBoxx == true) {
+                player.getAuroraBox().reward();
+            } else if (player.petBoxx == true) {
+                player.getPetBox().reward();
+            }else if(player.rubyBoxx == true) {
+            	player.getRubyBox().reward();
+            }else if(player.diamondBoxx == true) {
+            	player.getDiamondBox().reward();
+            }else if (player.goldBoxx == true) {
+            	player.getGoldBox().reward();
+            }else if(player.silverBoxx == true) {
+            	player.getSilverBox().reward();
+            }else if(player.bronzeBoxx == true) {
+            	player.getBronzeBox().reward();
+            }
 			break;
 		case 32621:
 			player.getPlayerOwnedShopManager().handleBuy(slot, id, -1);
@@ -194,6 +204,11 @@ public class ItemContainerActionPacketListener implements PacketListener {
 			}
 			player.getBank(player.getCurrentBankTab()).switchItem(player.getInventory(), item, slot, true, true);
 			player.getBank(player.getCurrentBankTab()).open(player, false);
+			if(player.reSizeable) {
+				player.getPA().closeAllWindows();
+				player.setTempBankTabs(null);
+            	player.getBank(player.getCurrentBankTab()).open();
+            }
 			break;
 		case Bank.INVENTORY_INTERFACE_ID:
 			if (!player.isBanking() || !player.getInventory().contains(item.getId()) || player.getInterfaceId() != 5292)
@@ -204,6 +219,11 @@ public class ItemContainerActionPacketListener implements PacketListener {
 			}
 			player.setCurrentBankTab(Bank.getTabForItem(player, item.getId()));
 			player.getInventory().switchItem(player.getBank(player.getCurrentBankTab()), item, slot, false, true);
+			if(player.reSizeable) {
+				player.getPA().closeAllWindows();
+				player.setTempBankTabs(null);
+            	player.getBank(player.getCurrentBankTab()).open();
+            }
 			break;
 		case Shop.ITEM_CHILD_ID:
 			if(player.getShop() != null)

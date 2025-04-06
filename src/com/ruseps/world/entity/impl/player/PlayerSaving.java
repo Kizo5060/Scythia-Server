@@ -201,7 +201,7 @@ public class PlayerSaving {
 			object.addProperty("ovl", player.getTimeLeft());
 			object.addProperty("dmg", player.getDmgTimeLeft());
 			object.add("cosmetic-equipment", builder.toJsonTree(player.getCosmeticEquipment()));
-			object.add("collected-items", builder.toJsonTree(player.getCollectedItems()));
+			//object.add("collected-items", builder.toJsonTree(player.getCollectedItems()));
 			object.add("perks", builder.toJsonTree(player.getPerks()));
 			object.add("npctaskcompletions", builder.toJsonTree(player.getNpcTaskCompletions()));
 			object.add("skillingtaskcompletions", builder.toJsonTree(player.getSkillingTaskCompletions()));
@@ -212,14 +212,36 @@ public class PlayerSaving {
 			object.add("miscstatemap", builder.toJsonTree(player.getMiscStateMap()));
 			object.addProperty("group-owner-name", player.getGroupOwnerName());
             object.addProperty("is-gim",player.isGim());
-            //object.addProperty("reset-season-one", player.getBattlePass().isResetSeasonOne());
-			//object.addProperty("battlePassLevel", player.getBattlePass().getLevel());//battlePassExp
-			//object.addProperty("battlePassExp", player.getBattlePass().getExperience());//battlePassExp
-			//object.addProperty("battlePassType", player.getBattlePass().getType().name());//battlePassExp
-            //object.addProperty("BronzeBattlepassClaimed", player.bronzeBattlepassClaimed);//bronze pass claimed date
-			//object.addProperty("BronzeBattlepassExpires", player.bronzeBattlepassExpires);//bronze pass expires date
+            object.addProperty("reset-season-one", player.getBattlePass().isResetSeasonOne());
+			object.addProperty("battlePassLevel", player.getBattlePass().getLevel());//battlePassExp
+			object.addProperty("battlePassExp", player.getBattlePass().getExperience());//battlePassExp
+			object.addProperty("battlePassType", player.getBattlePass().getType().name());//battlePassExp
+            object.addProperty("BronzeBattlepassClaimed", player.bronzeBattlepassClaimed);//bronze pass claimed date
+			object.addProperty("BronzeBattlepassExpires", player.bronzeBattlepassExpires);//bronze pass expires date
 			object.addProperty("GoldBattlepassClaimed", player.goldBattlepassClaimed);//gold pass claimed date
 			object.addProperty("GoldBattlepassExpires", player.goldBattlepassExpires);// gold pass expired date
+			
+			object.addProperty("GoldBattlepassClaimed", player.goldBattlepassClaimed);//gold pass claimed date
+			object.addProperty("GoldBattlepassExpires", player.goldBattlepassExpires);// gold pass expired date
+			
+			object.addProperty("AnimeRaidCompletion", player.getAnimeRaidsOpened());// Anime Raids done
+			object.addProperty("MKRaidCompletion", player.getMkRaidsOpened());// MK Raids done
+			object.addProperty("RubyRaidCompletion", player.getRubyRaidsOpened());// Ruby Raids done
+			object.addProperty("GoldRaidCompletion", player.getGoldRaidsOpened());// Gold Raids done
+			object.addProperty("SilverRaidCompletion", player.getSilverRaidsOpened());// silver Raids done
+			object.addProperty("PlatRaidCompletion", player.getPlatRaidsOpened());// Plat Raids done
+			object.addProperty("DiamondRaidCompletion", player.getDiamondRaidsOpened());// Diamond Raids done
+			object.addProperty("PokemonRaidCompletion", player.getPokemonRaidsOpened());// Pokemon Raids done
+			object.addProperty("darkDementionRaidCompletion", player.getDarkDementionRaidsOpened());// Pokemon Raids done dsRaidCompletion
+			object.addProperty("dsRaidCompletion", player.getDragonstoneRaidsOpened());
+			
+			object.add("collection-log", builder.toJsonTree(player.getCollectionLogManager().getLogProgress()));
+			object.add("claimed-logs", builder.toJsonTree(player.getCollectionLogManager().getClaimedCollectionRewards()));
+
+			object.add("daily-task-slots", builder.toJsonTree(player.getDailyTaskManager().getTaskSlots()));
+			object.addProperty("daily-tasks-completed", player.getDailyTasksCompleted());
+			object.addProperty("daily-date", player.getDailyTaskManager().getDailyDate());
+
 			
 			writer.write(builder.toJson(object));
 			writer.close();

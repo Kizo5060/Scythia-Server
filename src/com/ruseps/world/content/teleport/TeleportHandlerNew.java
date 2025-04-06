@@ -54,7 +54,7 @@ public class TeleportHandlerNew {
         player.getPacketSender().sendString(45807, "Name: " + npcdef.getName());
         player.getPacketSender().sendString(45808, "Combat level: " + calculateCombat(npcdef.getCombatLevel(), player) + " " + npcdef.getCombatLevel());
         player.getPacketSender().sendString(45809, "Hp: " + npcdef.getHitpoints());
-        player.getPacketSender().sendString(45810, "Maxhit: " + npcdef.getMaxHit());
+        player.getPacketSender().sendString(45810, "Max Hit: " + npcdef.getMaxHit());
         player.getPacketSender().sendString(45843, "Difficulty: " + teleport.getDifficulty());
 
         int containerId = 45701;

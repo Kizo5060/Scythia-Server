@@ -21,6 +21,11 @@ public class BossPets {
 		EMPEROR(224, 5272, 2546,false, false),
 		EVIL_SAYIAN(3664, 5052, 11948,false, false),
 		RDRAGON(175, 174, 18981,false, false),
+		RDDRAGON(701, 709, 14443,false, false),
+		DSPET(706, 708, 14444,false, false),
+		DONATEPET(704, 5431, 19468,false, false),
+		SHARKY(4862, 703, 14445,false, false),
+		GOLDRPET(1499, 1771, 14446,false, false),
 		DDRAGON(163, 176, 18980,false, false),
 		PET_TRUMP(3016, 5053, 11949,false,false),
 		PET_YODA(4271, 5277, 18985,false,false),
@@ -70,7 +75,7 @@ public class BossPets {
 		HELLPUPY(963, 963, 13247),
 		KRAKEN(6640, 6640, 12655),
 		BABY_MOLE(5781, 5781, 12646),
-		OLMLET(-1, 6731, 13327),
+		OLMLET(-1, 6731, 13327), // Slayer Pet
 		PET_VENENATIS(2000, 3062, 11976);
 		
 		

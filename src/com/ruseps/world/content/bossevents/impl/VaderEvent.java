@@ -19,12 +19,12 @@ public class VaderEvent extends GameEvent {
     /**
      * The delay between the events in hours.
      */
-    private static final int delay = 2;
+    private static final int delay = 1;
 
     /**
      * The spawn position for the Madara.
      */
-    private static final Position spawnPos = new Position(2933, 2720);
+    private static final Position spawnPos = new Position(2356, 3229);
 
     /**
      * The Madara NPC.
@@ -64,7 +64,7 @@ public class VaderEvent extends GameEvent {
         Vader = NPC.of(VaderLoot.NPC_ID, spawnPos);
         World.register(Vader);
         lastHitpointsBroadcasted = Vader.getDefaultConstitution();
-        sendMessage("<col=FFFFCC><shad=1>The Vader Boss Event has begun! Use command ::Vader to Teleport to the Event.");
+        sendMessage("@bla@<shad=1>The Vader Boss Event has begun! Use command ::Vader to Teleport, look East.");
         return true;
     }
 

@@ -420,7 +420,7 @@ public class PrayerHandler {
 				}
 				if((player.getRights() == PlayerRights.SILVER_MEMBER 
 					|| player.getRights() == PlayerRights.GOLD_MEMBER
-					|| player.getRights() == PlayerRights.MODERATOR )) {
+					|| player.getRights() == PlayerRights.PLATINUM_MEMBER)) {
 						player.setDrainingPrayer(false);
 						player.getSkillManager().setCurrentLevel(Skill.PRAYER, (int) (player.getSkillManager().getCurrentLevel(Skill.PRAYER) + (player.getSkillManager().getMaxLevel(Skill.PRAYER) * 0.33)));
 						if(player.getSkillManager().getCurrentLevel(Skill.PRAYER) > player.getSkillManager().getMaxLevel(Skill.PRAYER)) 
@@ -430,7 +430,8 @@ public class PrayerHandler {
 				}
 				if((player.getRights() == PlayerRights.ADMINISTRATOR
 					|| player.getRights() == PlayerRights.RUBY_MEMBER 
-					|| player.getRights() == PlayerRights.DIAMOND_MEMBER)) {
+					|| player.getRights() == PlayerRights.DIAMOND_MEMBER
+					|| player.getRights() == PlayerRights.DRAGONSTONE_MEMBER)) {
 						player.setDrainingPrayer(false);
 						player.getSkillManager().setCurrentLevel(Skill.PRAYER, (int) (player.getSkillManager().getCurrentLevel(Skill.PRAYER) + (player.getSkillManager().getMaxLevel(Skill.PRAYER) * 0.33)));
 						if(player.getSkillManager().getCurrentLevel(Skill.PRAYER) > player.getSkillManager().getMaxLevel(Skill.PRAYER)) 
@@ -438,7 +439,9 @@ public class PrayerHandler {
 							this.stop();
 							return;
 				}
-				if((player.getRights() == PlayerRights.DEVELOPER)) {
+				if((player.getRights() == PlayerRights.DEVELOPER
+						|| player.getRights() == PlayerRights.OWNER 
+						|| player.getRights() == PlayerRights.MODERATOR)) {
 					player.setDrainingPrayer(false);
 					player.getSkillManager().setCurrentLevel(Skill.PRAYER, (int) (player.getSkillManager().getCurrentLevel(Skill.PRAYER) + (player.getSkillManager().getMaxLevel(Skill.PRAYER) * 0.33)));
 					if(player.getSkillManager().getCurrentLevel(Skill.PRAYER) > player.getSkillManager().getMaxLevel(Skill.PRAYER)) 

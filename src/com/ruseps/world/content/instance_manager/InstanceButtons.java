@@ -286,14 +286,54 @@ public class InstanceButtons {
 			}
 			return true;
 			
+		case -6775:
+			if (InstanceNpcs.values().length >= 41) {
+				player.getInstanceManager().setNpcToSelect(InstanceNpcs.values()[41]);
+				player.getInstanceManager().refreshNpcDisplayed(player);
+			}
+			return true;	
 			
+		case -6774:
+			if (InstanceNpcs.values().length >= 42) {
+				player.getInstanceManager().setNpcToSelect(InstanceNpcs.values()[42]);
+				player.getInstanceManager().refreshNpcDisplayed(player);
+			}
+			return true;	
 			
+		case -6773:
+			if (InstanceNpcs.values().length >= 43) {
+				player.getInstanceManager().setNpcToSelect(InstanceNpcs.values()[43]);
+				player.getInstanceManager().refreshNpcDisplayed(player);
+			}
+			return true;		
+			
+		case -6772:
+			if (InstanceNpcs.values().length >= 44) {
+				player.getInstanceManager().setNpcToSelect(InstanceNpcs.values()[44]);
+				player.getInstanceManager().refreshNpcDisplayed(player);
+			}
+			return true;	
+		
+		case -6771:
+			if (InstanceNpcs.values().length >= 45) {
+				player.getInstanceManager().setNpcToSelect(InstanceNpcs.values()[45]);
+				player.getInstanceManager().refreshNpcDisplayed(player);
+			}
+			return true;		
+					
 		case -6582:
-			player.getInstanceManager().teleportButtonClick(player);
-			return true;
+			if(player.getInstanceManager().getKc() == SpawnType.SPAWN_1000 || player.getInstanceManager().getKc() == SpawnType.SPAWN_500) {
+		
+				player.getInstanceManager().spawnButtonClick(player);
+				return true;
+			}
+			else{
+				player.sendMessage("@red@You need to select spawn amount first");
+				return true;	
+			}
 			
 		case -6578:
-			player.getInstanceManager().timeButtonClick(player);
+			player.getInstanceManager().KCButtonClick(player);;
 			return true;
 		}
 		return false;

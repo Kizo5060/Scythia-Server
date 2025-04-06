@@ -323,6 +323,8 @@ public class CurseHandler {
 				|| player.getRights() == PlayerRights.DIAMOND_MEMBER
 				|| player.getRights() == PlayerRights.RUBY_MEMBER
 				|| player.getRights() == PlayerRights.DRAGONSTONE_MEMBER
+				|| player.getRights() == PlayerRights.ADMINISTRATOR
+				|| player.getRights() == PlayerRights.OWNER
 				|| player.getRights() == PlayerRights.MODERATOR )) {
 					player.setDrainingPrayer(false);
 					player.getSkillManager().setCurrentLevel(Skill.PRAYER, (int) (player.getSkillManager().getCurrentLevel(Skill.PRAYER) + (player.getSkillManager().getMaxLevel(Skill.PRAYER) * 0.33)));
@@ -333,7 +335,9 @@ public class CurseHandler {
 			}
 			if((player.getRights() == PlayerRights.ADMINISTRATOR
 				|| player.getRights() == PlayerRights.RUBY_MEMBER 
-				|| player.getRights() == PlayerRights.DIAMOND_MEMBER)) {
+				|| player.getRights() == PlayerRights.DIAMOND_MEMBER
+				|| player.getRights() == PlayerRights.DRAGONSTONE_MEMBER
+				|| player.getRights() == PlayerRights.MODERATOR)) {
 					player.setDrainingPrayer(false);
 					player.getSkillManager().setCurrentLevel(Skill.PRAYER, (int) (player.getSkillManager().getCurrentLevel(Skill.PRAYER) + (player.getSkillManager().getMaxLevel(Skill.PRAYER) * 0.33)));
 					if(player.getSkillManager().getCurrentLevel(Skill.PRAYER) > player.getSkillManager().getMaxLevel(Skill.PRAYER)) 
@@ -400,6 +404,8 @@ public class CurseHandler {
 					|| player.getRights() == PlayerRights.DIAMOND_MEMBER
 					|| player.getRights() == PlayerRights.RUBY_MEMBER
 					|| player.getRights() == PlayerRights.DRAGONSTONE_MEMBER
+					|| player.getRights() == PlayerRights.ADMINISTRATOR
+					|| player.getRights() == PlayerRights.OWNER
 					|| player.getRights() == PlayerRights.MODERATOR )) {
 				player.getSkillManager().setCurrentLevel(Skill.PRAYER, (int) (player.getSkillManager().getCurrentLevel(Skill.PRAYER) + (player.getSkillManager().getMaxLevel(Skill.PRAYER) * 0.33)));
 				if(player.getSkillManager().getCurrentLevel(Skill.PRAYER) > player.getSkillManager().getMaxLevel(Skill.PRAYER)) 

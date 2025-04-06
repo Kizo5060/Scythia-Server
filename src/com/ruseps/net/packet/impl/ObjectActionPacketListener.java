@@ -64,12 +64,15 @@ import com.ruseps.world.content.minigames.impl.PestControl;
 import com.ruseps.world.content.minigames.impl.RecipeForDisaster;
 import com.ruseps.world.content.minigames.impl.WarriorsGuild;
 import com.ruseps.world.content.new_raids_system.instances.PokemonRaids;
+import com.ruseps.world.content.new_raids_system.instances.dark_demention_loot.DarkDementionLoot;
+import com.ruseps.world.content.new_raids_system.instances.dragonstone_raids.DragonstoneRaidsLoot;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_five_loot.RaidsFiveChest;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_four_loot.RaidsFourChest;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_one.RaidsOneChest;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_one.phase_one.R1P1NPC1;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_two_loot.RaidsTwoChest;
 import com.ruseps.world.content.new_raids_system.raids_loot.aoe_zone_chest.AoeChest;
+import com.ruseps.world.content.new_raids_system.raids_loot.raids_eight.RaidsEightLoot;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_three_loot.RaidsThreeChest;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_six_loot.RaidsSixChest;
 import com.ruseps.world.content.new_raids_system.raids_loot.raids_seven_loot.RaidsSevenChest;
@@ -131,7 +134,7 @@ public class ObjectActionPacketListener implements PacketListener {
 		gameObject.setSize(size);
 		if(player.getMovementQueue().isLockMovement())
 			return;
-		if(player.getRights() == PlayerRights.DEVELOPER || player.getRights() == PlayerRights.MANAGER)
+		if(player.getRights() == PlayerRights.DEVELOPER)
 			player.getPacketSender().sendMessage("First click object id; [id, position] : [" + id + ", " + position.toString() + "]");
 		player.setInteractingObject(gameObject).setWalkToTask(new WalkToTask(player, position, gameObject.getSize(), new FinalizedMovementTask() {
 			@SuppressWarnings("static-access")
@@ -181,6 +184,22 @@ public class ObjectActionPacketListener implements PacketListener {
 				case 15_000:
 					IceCoinRock.mineIceCoins(player);
 					break;
+					
+					/** RAIDS DS OBJECTS **/	
+				case 1994:
+					DragonstoneRaidsLoot.openChest(player);
+					break;
+				case 778:
+					if (player.getMinigameAttributes().getRaidsAttributes().getParty() == null) {
+                        player.sendMessage("You need to be in a party to do Dragonstone Raids");
+                        return;
+                    }
+                    if (player.getMinigameAttributes().getRaidsAttributes().getParty().getOwner() != player) {
+                        player.sendMessage("Only the party leader can initiate the Raid");
+                        return;
+                    }
+                    DragonStoneRaids.startRaidsDS(player);
+					break;
 				/** RAIDS 1 OBJECTS **/
 				case 2009:
 				    if (player.getMinigameAttributes().getRaidsAttributes().getParty() == null) {
@@ -194,7 +213,21 @@ public class ObjectActionPacketListener implements PacketListener {
                     PokemonRaids.startRaid(player);
                     break;
 				case 65513:
-					World.sendMessage("SCYTHIAAAAAAAAAA");
+					World.sendMessage("Reapeeeeerrrr");
+					break;
+				case 4431:
+				    if (player.getMinigameAttributes().getRaidsAttributes().getParty() == null) {
+                        player.sendMessage("You need to be in a party to do Ruby Raids");
+                        return;
+                    }
+                    if (player.getMinigameAttributes().getRaidsAttributes().getParty().getOwner() != player) {
+                        player.sendMessage("Only the party leader can initiate the Raid");
+                        return;
+                    }
+                    RubyRaid.startRaidsEight(player);
+					break;
+				case 4131:
+					RaidsEightLoot.openChest(player);
 					break;
 				case 3000:
 				    if (player.getMinigameAttributes().getRaidsAttributes().getParty() == null) {
@@ -263,33 +296,34 @@ public class ObjectActionPacketListener implements PacketListener {
                     MortalKombatRaids.startRaidsFour(player);
 					break;
 				case 3011:
-					if (!player.getClickDelay().elapsed(3000))
-					{
-						player.sendMessage("@red@Please slow your clicking down.");
-						return;
-					}
-					if(player.getInventory().contains(9284))
-					{
-						RaidsTwoChest.openChest(player);
-						player.getInventory().delete(9284, 1);
-					} else {
-						player.sendMessage("@red@You require a Pokemon Raids Key for this chest " + player.getUsername());
-					}
+				    if (player.getMinigameAttributes().getRaidsAttributes().getParty() == null) {
+                        player.sendMessage("You need to be in a party to do Dark Dimension Raids");
+                        return;
+                    }
+                    if (player.getMinigameAttributes().getRaidsAttributes().getParty().getOwner() != player) {
+                        player.sendMessage("Only the party leader can initiate the Raid");
+                        return;
+                    }
+                    DarkDementionRaids.startRaidsTwo(player); 
 					break;
+					
+				case 4123:
+					DarkDementionLoot.openChest(player);
+					break;
+					
 				case 1992:
 					RaidsSevenChest.openChest(player);
 					break;
-					case 1993:
+				case 1993:
 						BalloonDropParty.open(player);
 						break;
 				case 2014:
 					RaidsOneChest.openChest(player);
-					player.getAchievementTracker().progress(com.ruseps.world.content.achievements.AchievementData.COMPLETE_POKEMON_RAIDS, 1);
-					player.getAchievementTracker().progress(com.ruseps.world.content.achievements.AchievementData.COMPLETE_POKEMON_RAIDS_50_TIMES, 1);
 					break;
 				case 4002:
-					FuserHandler.openInterface(FuserEnum.TEST,player);
+					player.getFuserHandler().openInterface();
 					break;
+				
 				case 4001:
 					RaidsSixChest.openChest(player);
 					break;
@@ -298,10 +332,10 @@ public class ObjectActionPacketListener implements PacketListener {
 					break;
 				case 2043:
 					RaidsTwoChest.openChest(player);
-					player.getAchievementTracker().progress(com.ruseps.world.content.achievements.AchievementData.COMPLETE_ANIME_RAIDS, 1);
+					
 					break;
 				case 2044: 
-					RaidsThreeChest.openChest(player);
+					RaidsThreeChest.openChest(player);	
 					break;
 				case 2008:
 					RaidsFourChest.openChest(player);
@@ -317,7 +351,7 @@ public class ObjectActionPacketListener implements PacketListener {
             		player.getPacketSender().sendInterface(62200);
         				for (int i = 0; i < UpgradeData.itemList.length; i++)
         			player.getPacketSender().sendItemOnInterface(62209, UpgradeData.itemList[i], i, 1);
-        			player.getPacketSender().sendMessage("@blu@ This Upgrade Machine accepts Diamond Coins! Currently, you will lose the item on Failure");
+        			player.getPacketSender().sendMessage("@blu@ This Upgrade Machine accepts Upgrade Tokens! Currently, you will lose the item on Failure");
             		break;
 				case 16604:
 					AfkTree.fillBloodEssence(player);
@@ -325,12 +359,15 @@ public class ObjectActionPacketListener implements PacketListener {
 					
 				case 5273:
 					if(player.getInventory().contains(18689)) {
-						int[] common = new int[] {20106, 20108, 20110, 20112, 20114, 20116, 19919, 19920};
-						int[] uncommon = new int[] {14018, 20150, 20154, 20156, 20158, 19918};
-						int[] rare = new int[] {2572, 11005, 14460, 14462, 18896, 18898, 18900};
+						int[] common = new int[] { 18338, 915, 18057, 10942, 18058, 18689, 18958, 8655, 8654, 10902,
+								10900, 10901, 2746, 21043, 12601, 3499, 3502, 6855, 6856, 12502 };
+						int[] uncommon = new int[] { 13016, 6199, 10934, 19111, 18060, 13035, 13034, 8676, 8668, 3523, 19077, 2732,
+								10867, 10869, 19908, 19909, 6853, 12279, 12278 };
+						int[] rare = new int[] { 21056, 21055, 19002, 19003, 18061, 18960, 2996, 18063, 10935, 1413, 2786, 2805,
+								2804, 2800, 19039, 3525, 10537, 2746, 13034};
 							player.getChestViewer().display(6759, " 1", common, uncommon, rare);
 					} else {
-							player.getPacketSender().sendMessage("@blu@You need chest key #1 to open this chest");
+							player.getPacketSender().sendMessage("@blu@You need an Owner Chest Key to open this chest");
 					}
 					break;
 				case 5274:
@@ -357,7 +394,7 @@ public class ObjectActionPacketListener implements PacketListener {
 				case 5278:
 					if(player.getInventory().contains(18647)) {
 						int[] common = new int[] { 20650, 20651, 20652, 20653, 20654, 937, 20658, 20659, 20660};
-						int[] uncommon = new int[] { 996, 965, 5085, 5086, 5087, 5088, 5089, 18876, 11651, 5082, 5083, 5084 };
+						int[] uncommon = new int[] { 996, 965, 5085, 5086, 5087, 5088, 5089, 18876, 5082, 5083, 5084 };
 						int[] rare = new int[] { 799, 894, 895, 896, 798, 938, 8860, 8861, 8862, 8871, 8656, 8657, 8658, 8659, 8660 };
 					
 							player.getChestViewer().display(6759, " 1", common, uncommon, rare);
@@ -367,13 +404,15 @@ public class ObjectActionPacketListener implements PacketListener {
 					break;
 				case 5279:
 					if(player.getInventory().contains(14471)) {
-						int[] common = new int[] {799, 894, 895, 896, 798, 938, 8860, 8861, 8862, 8871, 8656, 8657, 8658, 8659, 8660};
-						int[] uncommon = new int[] { 11068, 11071, 11078, 11087, 11067, 2542, 18440, 18914, 18946, 20527, 20528, 20529 };
-						int[] rare = new int[] { 6830, 6832, 7960, 11949, 405, 18982, 18983, 18993, 19021, 2545, 2544, 2545, 2546, 2547, 2548, 2549};
+						int[] common = new int[] { 19087, 19088, 19089, 19090, 19091, 19092, 6830, 2709, 15492, 19092, 915,
+								935, 1053 };
+						int[] uncommon = new int[] { 14471, 15246, 9850, 7960, 6832, 2856, 2857, 17662, 17666, 2769, 2753, 3491,
+								18057 };
+						int[] rare = new int[] { 6828, 2858, 2869, 2859, 13024, 13025, 3526, 3525, 13327, 1002, 13029, 8467, 8465, 18058 };
 						
 							player.getChestViewer().display(6759, " 1", common, uncommon, rare);
 					} else {
-							player.getPacketSender().sendMessage("@blu@You need chest key #5 to open this chest");
+							player.getPacketSender().sendMessage("@blu@You need a Slayer Key to open this chest");
 					}
 					break;
 					
@@ -405,7 +444,8 @@ public class ObjectActionPacketListener implements PacketListener {
 					if(player.getRights() == PlayerRights.GOLD_MEMBER
 					|| player.getRights() == PlayerRights.RUBY_MEMBER
 					|| player.getRights() == PlayerRights.PLATINUM_MEMBER
-					|| player.getRights() == PlayerRights.DIAMOND_MEMBER) {
+					|| player.getRights() == PlayerRights.DIAMOND_MEMBER
+					|| player.getRights() == PlayerRights.DRAGONSTONE_MEMBER) {
 						player.moveTo(new Position (player.getPosition().getX(), player.getPosition().getY() -1 ));
 					} else {
 						player.sendMessage("@red You must be at least a Gold Member to enter this area!");
@@ -1036,12 +1076,23 @@ public class ObjectActionPacketListener implements PacketListener {
 					}
 					break;
 				case 1738:
+					
 					if(player.getLocation() == Location.LUMBRIDGE && player.getPosition().getZ() == 0) {
 						player.moveTo(new Position(player.getPosition().getX(), player.getPosition().getY(), 1));
 					} else {
-						player.moveTo(new Position(2840, 3539, 2));
+						player.moveTo(new Position(player.getPosition().getX(), player.getPosition().getY(), 1));
 					}
 					break;
+				
+				case 1740:
+					
+					if(player.getLocation() == Location.LUMBRIDGE && player.getPosition().getZ() == 1) {
+						player.moveTo(new Position(player.getPosition().getX(), player.getPosition().getY(), 0));
+					} else {
+						player.moveTo(new Position(player.getPosition().getX(), player.getPosition().getY(), 0));
+					}
+					break;	
+				
 				case 15638:
 					player.moveTo(new Position(2840, 3539, 0));
 					break;
@@ -1266,6 +1317,98 @@ public class ObjectActionPacketListener implements PacketListener {
 						player.getGroupIronman().openLeaderboard();
 						break;
 				case 2646:
+					
+					
+					//OPEN ALL FOR RAIDS
+				case 2014://pokemon raids
+					if(player.getInventory().getAmount(RaidsOneChest.raidsKey) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					}
+					else{while(player.getInventory().contains(RaidsOneChest.raidsKey)) {
+						RaidsOneChest.openChest(player);
+					}}
+					break;
+					
+				case 2043://anime raids
+					if(player.getInventory().getAmount(RaidsTwoChest.raidsKey2) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					}
+					else{while(player.getInventory().contains(RaidsTwoChest.raidsKey2)) {
+						RaidsTwoChest.openChest(player);
+					}}
+					break;
+				case 2044://Silver raids
+					if(player.getInventory().getAmount(RaidsThreeChest.raidsKey3) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					}
+					else{while(player.getInventory().contains(RaidsThreeChest.raidsKey3)) {
+						RaidsThreeChest.openChest(player);
+					}}
+					break;
+				case 2008://MK RAid
+					if(player.getInventory().getAmount(RaidsFourChest.raidsKey4) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					}
+					else{while(player.getInventory().contains(RaidsFourChest.raidsKey4)) {
+						RaidsFourChest.openChest(player);
+					}}
+					break;
+				case 2007://gold
+					if(player.getInventory().getAmount(RaidsFiveChest.raidsKey5) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+						return;
+					}
+					else {	
+						while(player.getInventory().contains(RaidsFiveChest.raidsKey5)){
+							RaidsFiveChest.openChest(player);
+						}
+					}
+					break;
+				case 4001://plat
+					if(player.getInventory().getAmount(RaidsSixChest.raidsKey7) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					}
+					else{	
+						while(player.getInventory().contains(RaidsSixChest.raidsKey7)){
+							RaidsSixChest.openChest(player);
+						}
+					}
+					break;					
+				case 1992: //diamond
+					if(player.getInventory().getAmount(RaidsSevenChest.raidsKey8) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					}
+					else{while(player.getInventory().contains(RaidsSevenChest.raidsKey8)){
+						RaidsSevenChest.openChest(player);
+					}}
+					break;
+				case 4131://ruby
+					if(player.getInventory().getAmount(RaidsEightLoot.raidsKey9) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					}
+					else{while(player.getInventory().contains(RaidsEightLoot.raidsKey9)){
+						RaidsEightLoot.openChest(player);
+					}}
+					break;
+					
+				case 1994: //Ds
+					if(player.getInventory().getAmount(DragonstoneRaidsLoot.raidsKey) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					} else {
+						while(player.getInventory().contains(DragonstoneRaidsLoot.raidsKey)) {
+							DragonstoneRaidsLoot.openChest(player);
+						}
+					}
+					break;
+				case 4123://DD
+					if(player.getInventory().getAmount(DarkDementionLoot.raidsKey) > 100) {
+						player.sendMessage("@red@You can't open more than 100 keys at once");
+					}
+					while(player.getInventory().contains(DarkDementionLoot.raidsKey)){
+						 DarkDementionLoot.openChest(player);
+					}
+					break;  
+					
 				case 312:
 					if(!player.getClickDelay().elapsed(1200))
 						return;
@@ -1303,19 +1446,19 @@ public class ObjectActionPacketListener implements PacketListener {
 					}
 					break;
 				case 4875:
-					Stalls.stealFromStall(player, 1, 5100, 19994, "You steal a ice coin.");
+					Stalls.stealFromStall(player, 1, 5100, 19994, "Making some money.");
 					break;
 				case 4874:
-					Stalls.stealFromStall(player, 30, 6130, 19994, "You steal a ice coin.");
+					Stalls.stealFromStall(player, 30, 6130, 19994, "You steal a coin.");
 					break;
 				case 4876:
-					Stalls.stealFromStall(player, 60, 7370, 19994, "You steal a ice coin.");
+					Stalls.stealFromStall(player, 60, 7370, 19994, "You steal a coin.");
 					break;
 				case 4877:
-					Stalls.stealFromStall(player, 65, 7990, 19994, "You steal a ice coin.");
+					Stalls.stealFromStall(player, 70, 7990, 19994, "You steal a coin.");
 					break;
 				case 4878:
-					Stalls.stealFromStall(player, 80, 9230, 19994, "You steal a ice coin.");
+					Stalls.stealFromStall(player, 85, 9230, 19994, "You steal it all!");
 					break;
 				case 6189:
 				

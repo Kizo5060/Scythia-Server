@@ -1,6 +1,5 @@
 package com.ruseps.world.content.bossevents; 
 
-import com.ruseps.util.Misc;
 import com.ruseps.world.World;
 
 /**

@@ -193,6 +193,28 @@ public final class CombatFactory {
      * @param player the player to determine for.
      * @return true if the player is wielding a crystal bow.
      */
+    
+    public static boolean mortalBow(Player player) {
+        Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
+        if (item == null)
+            return false;
+        return item.getDefinition().getName().toLowerCase().contains(
+                "mortal bow");
+    }
+    public static boolean dragonDestroyerBow(Player player) {
+        Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
+        if (item == null)
+            return false;
+        return item.getDefinition().getName().toLowerCase().contains(
+                "dragon destroyer bow");
+    }
+    public static boolean berusBow(Player player) {
+        Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
+        if (item == null)
+            return false;
+        return item.getDefinition().getName().toLowerCase().contains(
+                "beru's bow");
+    }
     public static boolean crystalBow(Player player) {
         Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
         if (item == null)
@@ -208,12 +230,12 @@ public final class CombatFactory {
         return item.getDefinition().getName().toLowerCase().contains(
                 "crazy bow");
     }
-    public static boolean starterbow(Player player) {
+    public static boolean NexArchBeginnerBow(Player player) {
         Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
         if (item == null)
             return false;
         return item.getDefinition().getName().toLowerCase().contains(
-                "scythia bow");
+                "NexArch beginner bow");
     }
     public static boolean linearBow(Player player) {
         Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
@@ -238,13 +260,21 @@ public final class CombatFactory {
         return item.getDefinition().getName().toLowerCase().contains(
                 "range monster bow");
     }
-
-    public static boolean aurorasBow(Player player) {
+    
+    public static boolean RangeMasterBow(Player player) {
         Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
         if (item == null)
             return false;
         return item.getDefinition().getName().toLowerCase().contains(
-                "scythia's shooter bow");
+                "range master bow");
+    }
+
+    public static boolean NexArchShooterBow(Player player) {
+        Item item = player.getEquipment().get(Equipment.WEAPON_SLOT);
+        if (item == null)
+            return false;
+        return item.getDefinition().getName().toLowerCase().contains(
+                "NexArch's shooter bow");
     }
 
     public static boolean soulessBow(Player player) {
@@ -557,31 +587,31 @@ public final class CombatFactory {
             int chance = RandomUtility.inclusiveRandom(100);
             CombatIcon icon = getIcon(type);
             if (difference == 0 && chance > 50) {
-                System.out.println("Dodged1");
+             //   System.out.println("Dodged1");
                 return new Hit(RandomUtility.inclusiveRandom(0, 20), Hitmask.RED, icon);
             }
 
             if(playerTier > npcTier) {
                 int dodgeChance = 25 + (25 * difference);
                 if(dodgeChance >= 100) {
-                    System.out.println("Dodged2");
+                  //  System.out.println("Dodged2");
                     return new Hit(0, Hitmask.RED, icon);
                 }
 
                 if(dodgeChance > RandomUtility.inclusiveRandom(100)) {
-                    System.out.println("Dodged3");
+                 //   System.out.println("Dodged3");
                     return new Hit(0, Hitmask.RED, icon);
                 }
             }
         }
 
-        System.out.println("Didn't dodge");
+       // System.out.println("Didn't dodge");
 
         switch (type) {
             case MELEE:
                 return new Hit(RandomUtility.inclusiveRandom(1, /*CombatFactory.calculateMaxMeleeHit(entity, victim)*/ DesolaceFormulas.calculateMaxMeleeHit(entity, victim)), Hitmask.RED, CombatIcon.MELEE);
             case RANGED:
-                return new Hit(RandomUtility.inclusiveRandom(1, CombatFactory.calculateMaxRangedHit(entity, victim)), Hitmask.RED, CombatIcon.RANGED);
+                return new Hit(10 * RandomUtility.inclusiveRandom(1, CombatFactory.calculateMaxRangedHit(entity, victim)), Hitmask.RED, CombatIcon.RANGED);
             case MAGIC:
                 return new Hit(RandomUtility.inclusiveRandom(1, DesolaceFormulas.getMagicMaxhit(entity)), Hitmask.RED, CombatIcon.MAGIC);
             case DRAGON_FIRE:
@@ -963,6 +993,7 @@ public final class CombatFactory {
     @SuppressWarnings("incomplete-switch")
     public static int calculateMaxRangedHit(Character entity, Character victim) {
         int maxHit = 0;
+        
         if (entity.isNpc()) {
             NPC npc = (NPC) entity;
             maxHit = npc.getDefinition().getMaxHit();
@@ -984,7 +1015,7 @@ public final class CombatFactory {
         double otherBonusMultiplier = 1;
 
 
-        int rangedStrength = ((int) player.getBonusManager().getAttackBonus()[4] / 10);
+        int rangedStrength = ((int) player.getBonusManager().getAttackBonus()[4] * 2);
         if (player.getRangedWeaponData() != null)
             rangedStrength += (RangedWeaponData.getAmmunitionData(player).getStrength());
         int rangeLevel = player.getSkillManager().getCurrentLevel(Skill.RANGED);
@@ -1046,54 +1077,219 @@ public final class CombatFactory {
                 maxHit += (int) ((0.30) * (maxHit));
             }
             if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13263) {
-                maxHit *= 1.10;
+                maxHit *= .10;
             }
             if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 8469) {
-                maxHit *= 1.10;
+                maxHit *= .10;
             }
             if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 8465) {
-                maxHit *= 1.10;
+                maxHit *= .10;
             }
             if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 8467) {
-                maxHit *= 1.10;
+                maxHit *= .10;
             }
             if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 12282) {
                 maxHit *= 1.10;
             }
             if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 15492) {
-                maxHit *= 1.17;
+                maxHit *= .17;
+            //}
+           // if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2739
+                 //   && player.getEquipment().get(Equipment.BODY_SLOT).getId() == 2740
+          //          && player.getEquipment().get(Equipment.LEG_SLOT).getId() == 2741
+          //          && player.getEquipment().get(Equipment.FEET_SLOT).getId() == 2743
+          //          && player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2742) {
+         //       maxHit *= 4.25;
+                
+             
+            }//Crazy Start  
+            if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 1667) { // Crazy
+            	maxHit *= 1.35;
             }
-            if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2739
-                    && player.getEquipment().get(Equipment.BODY_SLOT).getId() == 2740
-                    && player.getEquipment().get(Equipment.LEG_SLOT).getId() == 2741
-                    && player.getEquipment().get(Equipment.FEET_SLOT).getId() == 2743
-                    && player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2742
-                    && player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 2744 ) {
-                maxHit *= 2.60;
+            if (player.getEquipment().get(Equipment.BODY_SLOT).getId() == 1015) { // Crazy
+            	maxHit *= 1.35;
             }
-            if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 1667
-                    && player.getEquipment().get(Equipment.BODY_SLOT).getId() == 1015
-                    && player.getEquipment().get(Equipment.LEG_SLOT).getId() == 1686
-                    && player.getEquipment().get(Equipment.FEET_SLOT).getId() == 2894
-                    && player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 1009
-                    && player.getEquipment().get(Equipment.CAPE_SLOT).getId() == 1666 ) {
-                maxHit *= 1.70;
+            if (player.getEquipment().get(Equipment.LEG_SLOT).getId() == 1686) { // Crazy
+            	maxHit *= 1.35;
+        	}
+            if (player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 1009) { // Crazy
+            	maxHit *= 1.35;
             }
+            if (player.getEquipment().get(Equipment.CAPE_SLOT).getId() == 1666) { // Crazy
+                maxHit *= 1.35;
+                
+           //Range Master Start
+            }            
+            if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2812) { // Range Master
+            	maxHit *= 1.5;
+            }
+            if (player.getEquipment().get(Equipment.BODY_SLOT).getId() == 2818) { // Range Master
+            	maxHit *= 1.5;
+            }
+            if (player.getEquipment().get(Equipment.LEG_SLOT).getId() == 2814) { // Range Master
+            	maxHit *= 1.5;
+        	}
+            if (player.getEquipment().get(Equipment.FEET_SLOT).getId() == 2816) { // Range Master
+            	maxHit *= 1.5;
+            }
+            if (player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2815) { // Range Master
+            	maxHit *= 1.5;
+            }
+            if (player.getEquipment().get(Equipment.CAPE_SLOT).getId() == 2817 ) { // Range Master
+                maxHit *= 1.5;
+                
+            //Soul Master Set
+            }            
+            if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 2724) { // 
+            	maxHit *= 1.75;
+            }
+            if (player.getEquipment().get(Equipment.BODY_SLOT).getId() == 2725) { // 
+            	maxHit *=  1.75;
+            }
+            if (player.getEquipment().get(Equipment.LEG_SLOT).getId() == 2726) { // 
+            	maxHit *=  1.75;
+        	}
+            if (player.getEquipment().get(Equipment.FEET_SLOT).getId() == 2729) { //
+            	maxHit *=  1.75;
+            }
+            if (player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 2727) { // 
+            	maxHit *=  1.75;  
+   
+            }
+            // Vigilante Start  
+            //if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 3517) { // Vigilante
+            //	maxHit *= 1.05;
+           // }
+           // if (player.getEquipment().get(Equipment.BODY_SLOT).getId() == 3518) { // Vigilante 
+            //	maxHit *= 1.05;
+          //  }
+          //  if (player.getEquipment().get(Equipment.LEG_SLOT).getId() == 3519) { // Vigilante
+            //	maxHit *= 1.05;
+        //	}
+         //   if (player.getEquipment().get(Equipment.FEET_SLOT).getId() == 3520) { // Vigilante
+           // 	maxHit *= 1.05;
+         //   }
+         //   if (player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 3521) { // Vigilante
+           // 	maxHit *= 1.05;
+         //   }
+        //    if (player.getEquipment().get(Equipment.CAPE_SLOT).getId() == 3522) { // Vigilante
+            //    maxHit *= 1.05;
+
+            // Wolfs Bane Start    
+      //      }
+        //    if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 21003) { // Wolfs Bane
+           // 	maxHit *= 1;
+      //      }
+         //   if (player.getEquipment().get(Equipment.BODY_SLOT).getId() == 21000) { // Wolfs Bane 
+          //  	maxHit *= 1;
+          //  }
+         //   if (player.getEquipment().get(Equipment.LEG_SLOT).getId() == 21001) { // Wolfs Bane
+          //  	maxHit *= 1;
+        	//}
+            if (player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 21002) { // Wolfs Bane
+            	maxHit *= 1;
+            	
+             
+            }// Razer Start 
+            if (player.getEquipment().get(Equipment.HEAD_SLOT).getId() == 3505) { // Razer
+            	maxHit *= 1.25;
+            }
+            if (player.getEquipment().get(Equipment.BODY_SLOT).getId() == 3506) { // Razer
+            	maxHit *= 1.25;;
+            }
+            if (player.getEquipment().get(Equipment.LEG_SLOT).getId() == 3507) { // Razer
+            	maxHit *= 1.25;
+        	}
+            if (player.getEquipment().get(Equipment.HANDS_SLOT).getId() == 3509) { // Razer
+            	maxHit *= 1.25;
+            }
+            if (player.getEquipment().get(Equipment.FEET_SLOT).getId() == 3508) { // Razer
+                maxHit *= 1.25;
+            
+            }//Master of Slayer
+			if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13026
+					&& player.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 13024
+					&& player.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 13025
+					&& player.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13027 
+					&& player.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 13029) {
+				maxHit *= 1.5;	
+				
+			}//Master of Slayer set
+			if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 13026
+					&& player.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 13024
+					&& player.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 13025
+					&& player.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 13028
+					&& player.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 13027) {
+				maxHit *= 1.5;		
+			
+			}//Slayer God Set
+			if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19030
+					&& player.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19031
+					&& player.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19032
+					&& player.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19033 
+					&& player.getEquipment().getItems()[Equipment.CAPE_SLOT].getId() == 10598) {
+				maxHit *= 3.5;	
+				
+			}//Slayer God Set
+			if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19030
+					&& player.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19031
+					&& player.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19032
+					&& player.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 19034
+					&& player.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19033) {
+				maxHit *= 3.5;		
+				
+			} //NexArch Owner
+			if (player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId() == 19005
+					&& player.getEquipment().getItems()[Equipment.BODY_SLOT].getId() == 19002
+					&& player.getEquipment().getItems()[Equipment.LEG_SLOT].getId() == 19003
+					&& player.getEquipment().getItems()[Equipment.FEET_SLOT].getId() == 19016
+					&& player.getEquipment().getItems()[Equipment.HANDS_SLOT].getId() == 19004 ) {
+				maxHit *= 10;	
+			}	
+            
             if (player.getGameMode() == GameMode.GROUP_IRONMAN) {
                 maxHit /= 25.00;
             }
             if (player.getEquipment().getItems()[Equipment.BOOSTER].getId() == 18941) {
-                maxHit *= 2.07;
+                maxHit *= 1.5;
             }
             if (player.getEquipment().getItems()[Equipment.BOOSTER].getId() == 18943) {
-                maxHit *= 1.07;
+                maxHit *= .50;
+                
             }
-
-            if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 13051) {
-                otherBonusMultiplier = 1.20;
+            if (player.getEquipment().get(Equipment.CAPE_SLOT).getId() == 1413)		{ //Owner Cape
+            	maxHit *= 1.5;
             }
-            if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 4706) {
-                otherBonusMultiplier = 1.17;
+            if (player.getEquipment().get(Equipment.CAPE_SLOT).getId() == 2728)  	{ //Slayer Owner Cape
+            	maxHit *= 2;
+            }
+            if (player.getEquipment().get(Equipment.AMULET_SLOT).getId() == 996) { // OP Amulet
+            	maxHit *= 1;
+			} 
+			if (player.getEquipment().get(Equipment.FEET_SLOT).getId() == 1007) { // OP Boots
+				maxHit *= 1;
+			}
+			if (player.getEquipment().get(Equipment.RING_SLOT).getId() == 965) { // OP Ring
+				maxHit *= 1;
+				
+			}
+			if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 2787) {
+                maxHit *= 2;
+            }
+			if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 2732) {
+                maxHit *= 2.5;
+            }
+			if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 1013) {
+                maxHit *= 4;
+            }
+			if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 10946) {
+                maxHit *= 3;
+            }
+			if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 2680) {
+                maxHit *= 5;
+            }
+            if (player.getEquipment().get(Equipment.WEAPON_SLOT).getId() == 19012) {
+            	maxHit *= 6;
             }
             /** SLAYER HELMET **/
             if (npc.getId() == player.getSlayer().getSlayerTask().getNpcId()) {
@@ -1112,6 +1308,8 @@ public final class CombatFactory {
             }
         }
         maxHit *= 10;
+        if(maxHit < 0)
+        	maxHit *= -1;
         return maxHit;
     }
 
@@ -1239,7 +1437,7 @@ public final class CombatFactory {
                     return false;
                 }
             }
-            if (Nex.nexMob(npc.getId()) || npc.getId() == 6260 || npc.getId() == 6261 || npc.getId() == 6263 || npc.getId() == 6265 || npc.getId() == 6222 || npc.getId() == 6223 || npc.getId() == 6225 || npc.getId() == 6227 || npc.getId() == 6203 || npc.getId() == 6208 || npc.getId() == 6204 || npc.getId() == 6206 || npc.getId() == 6247 || npc.getId() == 6248 || npc.getId() == 6250 || npc.getId() == 6252) {
+            if (Nex.nexMob(npc.getId()) || npc.getId() == 6260 || npc.getId() == 6261 || npc.getId() == 6263 || npc.getId() == 6265 || npc.getId() == 6222 || npc.getId() == 6223 || npc.getId() == 6225 || npc.getId() == 6227 || npc.getId() == 6208 || npc.getId() == 6204 || npc.getId() == 6206 || npc.getId() == 6247 || npc.getId() == 6248 || npc.getId() == 6250 || npc.getId() == 6252) {
                 if (!((Player) entity).getMinigameAttributes()
                         .getGodwarsDungeonAttributes()
                         .hasEnteredRoom()) {
@@ -1464,7 +1662,6 @@ public final class CombatFactory {
             Player victim = (Player) builder.getVictim();
             if (victim.getEquipment()
                     .getItems()[Equipment.SHIELD_SLOT].getId() == 13740 || victim.getEquipment()
-                    .getItems()[Equipment.SHIELD_SLOT].getId() == 13742 || victim.getEquipment()
                     .getItems()[Equipment.SHIELD_SLOT].getId() == 13744) {
                 container.allHits(context -> {
                     if (context.getHit().getDamage() > 0) {
@@ -1743,9 +1940,7 @@ public final class CombatFactory {
      * @param damage
      * the total amount of damage dealt.
      */
-    private static final int[][] SS_PETS = {
-            {174},
-    };
+    private static final int[] SS_PETS = { 174, 3000, 6731 };
 
     protected static void handlePrayerEffects(Character attacker, Character target, int damage, CombatType combatType) {
         if (attacker == null || target == null)
@@ -1818,14 +2013,17 @@ public final class CombatFactory {
             Familiar playerFamiliar = p.getSummoning().getFamiliar();
 
             if (playerFamiliar != null) {
-                for (int[] pet : SS_PETS)
-                    if (playerFamiliar.getSummonNpc().getId() == pet[0]) {
+                int familiarId = playerFamiliar.getSummonNpc().getId();
+                for (int pet : SS_PETS) {
+                    if (familiarId == pet) {
                         SSpet = true;
+                        break; // Exit the loop since the pet is found
                     }
+                }
             }
 
             if (CurseHandler.isActivated(p, CurseHandler.SOUL_SPLIT) || SSpet && damage > 0) {
-                final int form = (int) (damage / 5);
+            	final int form = (int) ((damage / 5) < 0 ? 0 : (damage / 5));
                 new Projectile(attacker, target, 2263, 44, 3, 43, 31, 0).sendProjectile();
                 TaskManager.submit(new Task(1, p, false) {
                     @Override

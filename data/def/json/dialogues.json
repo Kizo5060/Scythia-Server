@@ -619,7 +619,7 @@
         "line2": "Duradel (Level 50 Slayer Required)",
         "line3": "Kuradel (Level 80 Slayer Required)",
         "line4": "Sumona (Level 92 Slayer Required)",
-        "line5": "Cancel",
+        "line5": "Chaeldar (Level 130 Slayer Required)",
         "next": -1,
         "npcId": -1
     },
@@ -758,10 +758,10 @@
         "type": "NPC_STATEMENT",
         "anim": "NORMAL",
         "lines": 4,
-        "line1": "The Well of Goodwill, brought to us by",
-        "line2": "Saradomin. It is said that the well can",
-        "line3": "hold a hundred million coins, and that if it",
-        "line4": "is filled, Saradomin will bless everyone with",
+        "line1": "The Well of Goodwill, brought to us by NexArch",
+        "line2": "Gods. It is said that the well can hold a",
+        "line3": "Billion coins, and if it is filled,",
+        "line4": "NexArch Gods will bless everyone with",
         "next": 77,
         "npcId": 802
     },
@@ -770,10 +770,10 @@
         "type": "NPC_STATEMENT",
         "anim": "NORMAL",
         "lines": 4,
-        "line1": "50% bonus experience for 2 hours.",
+        "line1": "30% bonus experience & 50 DR for 1 hour.",
         "line2": "It is also said that those who contributed",
         "line3": "will be blessed even further, and receive",
-        "line4": "bonus Loyalty points too, during these 2 hours.",
+        "line4": "bonus Loyalty points too, during this hour.",
         "next": 75,
         "npcId": 802
     },
@@ -859,7 +859,7 @@
         "type": "OPTION",
         "lines": 3,
         "line1": "Teleport: Essence mine",
-        "line2": "Teleport: Mining Guild",
+        "line2": "Teleport: Mining Zone",
         "line3": "Cancel",
         "next": -1,
         "npcId": -1
@@ -1084,7 +1084,7 @@
         "type": "OPTION",
         "lines": 3,
 		"line1": "I want 10 minutes of 30% bonus experience!",
-        "line2": "I want 1,000,000 coins & 1 Voting point!",
+        "line2": "I want 1 Vote Mystery Box coins & 1 Voting point!",
 		"line3": "Cancel",
 		"next": -1
     },
@@ -1093,7 +1093,7 @@
         "type": "OPTION",
         "lines": 3,
 		"line1": "I want 5 minutes of 10% bonus experience!",
-        "line2": "I want 150,000 coins & 1 Voting point!",
+        "line2": "I want 1 Vote Mystery Box coins & 1 Voting point!",
 		"line3": "Cancel",
 		"next": -1
     },
@@ -1409,7 +1409,7 @@
         "id": 500,
         "type": "OPTION",
         "lines": 2,
-        "line1": "Take me to the Donor Chest Zone",
+        "line1": "Let's get some loot!",
 		"line2": "Actually Never mind ",
         "next": -1,
         "npcId": -1
@@ -1439,7 +1439,7 @@
         "type": "NPC_STATEMENT",
         "anim": "NORMAL",
         "lines": 2,
-        "line1": "Hello there! if you spend 20 Voting Points with me",
+        "line1": "Hello there! if you spend 25 Voting Points with me",
         "line2": "you can fight the Instanced Vote Boss!",
         "next": 513,
         "npcId": 4341
@@ -1458,7 +1458,7 @@
         "id": 514,
         "type": "OPTION",
         "lines": 2,
-        "line1": "Iet's fight the instanced Vote Boss! (20 VP)",
+        "line1": "Iet's fight the instanced Vote Boss! (25 VP)",
 		"line2": "No not yet!",
         "next": -1,
         "npcId": -1

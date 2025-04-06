@@ -27,6 +27,7 @@ import com.ruseps.world.content.Artifacts;
 import com.ruseps.world.content.BankPin;
 import com.ruseps.world.content.CustomObjects;
 import com.ruseps.world.content.WellOfGoodwill;
+import com.ruseps.world.content.achievements.AchievementData;
 import com.ruseps.world.content.Effigies;
 import com.ruseps.world.content.Gambling.FlowersData;
 import com.ruseps.world.content.battle_royale.BattleRoyale;
@@ -41,7 +42,7 @@ import com.ruseps.world.content.combat.strategy.zulrah.Zulrah;
 import com.ruseps.world.content.dialogue.impl.AgilityTicketExchange;
 import com.ruseps.world.content.dialogue.impl.Mandrith;
 import com.ruseps.world.content.instance_manager.InstanceTime;
-import com.ruseps.world.content.instance_manager.PaymentType;
+import com.ruseps.world.content.instance_manager.SpawnType;
 import com.ruseps.world.content.instances.Cerberus;
 import com.ruseps.world.content.instances.KingBlackDragon;
 import com.ruseps.world.content.minigames.impl.Graveyard;
@@ -152,7 +153,7 @@ public class DialogueOptions {
 				break;
 			case 29:
 				SlayerMaster.changeSlayerMaster(player, SlayerMaster.VANNAKA);
-				break;
+				break;	
 			case 36:
 				TeleportHandler.teleportPlayer(player, new Position(2871, 5318, 2), player.getSpellbook().getTeleportType());
 				break;
@@ -240,6 +241,17 @@ public class DialogueOptions {
 				break;
 			case 13:
 				player.getPacketSender().sendInterfaceRemoval();
+				if(player.getSkillManager().getTotalLevel() != 3750) {
+					player.getPacketSender().sendMessage("You must have 150 In all skills in order to buy this cape.");
+					return;
+				}
+				
+				for(AchievementData achievement : AchievementData.values) {				
+					if(player.getAchievementTracker().getProgressFor(achievement) >= achievement.progressAmount) {
+						player.getPacketSender().sendMessage("You must have finished and collected all Achievements in order to buy this cape.");
+						return;
+					}
+				}
 			
 				boolean usePouch = player.getMoneyInPouch() >= 100000000;
 				if(!usePouch && player.getInventory().getAmount(995) < 100000000) {
@@ -474,6 +486,11 @@ public class DialogueOptions {
 					player.getPacketSender().sendMessage("You must have unlocked the 'Maxed' Loyalty Title in order to buy this cape.");
 					return;
 				}
+				if(player.getSkillManager().getTotalLevel() != 3750) {
+					player.getPacketSender().sendMessage("You must have 150 In all kills in order to buy this cape.");
+					return;
+				}
+						
 				boolean usePouch = player.getMoneyInPouch() >= 50000000;
 				if(!usePouch && player.getInventory().getAmount(995) < 50000000) {
 					player.getPacketSender().sendMessage("You do not have enough coins.");
@@ -572,13 +589,15 @@ public class DialogueOptions {
 			case 11:
 			case 13:
 			case 17:
-			case 29:
 			case 48:
 			case 60:
 			case 67:
 			case 68:
 				player.getPacketSender().sendInterfaceRemoval();
 				break;
+			case 29:
+				SlayerMaster.changeSlayerMaster(player, SlayerMaster.CHAELDAR);
+				break;	
 			case 12:
 				int random = Misc.getRandom(4);
 				switch(random) {
@@ -825,18 +844,20 @@ public class DialogueOptions {
 			switch(player.getDialogueActionId()) {
 			
 			case 5000:
-				player.getInstanceManager().teleportToInstance(player, PaymentType.INSTANCE_TOKEN);
-				player.getPacketSender().closeDialogueOnly(player);
+				player.getInstanceManager().spawnType = SpawnType.SPAWN_4X4;
+				player.getInstanceManager().teleportToInstance(player, SpawnType.SPAWN_4X4);
+				player.getPacketSender().closeDialogueOnly();
 				break;
 				
 			case 5001:
-				player.getInstanceManager().setTime(InstanceTime.TIME_30MIN);
-				player.getPacketSender().sendMessage("You seleceted 30 minutes of instance");
+				player.getInstanceManager().setKc(SpawnType.SPAWN_500);
+				player.getPacketSender().sendMessage("@red@You seleceted 500 spawns for the instance");
+				player.setInterfaceId(58705);
 				player.getPacketSender().closeDialogueOnly(player);
 				break;
 			
-				case 522:
-					if (player.getLocation() == Location.DZONE_SOUTH) {
+			case 522:
+				if (player.getLocation() == Location.DZONE_SOUTH) {
 						if (player.crossBridge != true) {
 							player.moveTo(new Position(1820, 3092, 2));
 							player.performGraphic(new Graphic(2009));
@@ -982,7 +1003,7 @@ public class DialogueOptions {
 			case 753:
                 player.getPacketSender().sendInterfaceRemoval();
                 if (player.getLocation() == Location.RAIDS_ONE_ENTRANCE || player.getLocation() == Location.RAIDS_TWO_ENTRANCE || player.getLocation() == Location.RAIDS_THREE_ENTRANCE 
-                		|| player.getLocation() == Location.RAIDS_FOUR_ENTRANCE || player.getLocation() == Location.RAIDS_FIVE_ENTRANCE || player.getLocation() == Location.RAIDS_SIX_ENTRANCE || player.getLocation() == Location.RAIDS_SEVEN_ENTRANCE
+                		|| player.getLocation() == Location.RAIDS_FOUR_ENTRANCE || player.getLocation() == Location.RAIDS_EIGHT_ENTRANCE || player.getLocation() == Location.RAIDS_DS_ENTRANCE || player.getLocation() == Location.RAIDS_DD_ENTRANCE || player.getLocation() == Location.RAIDS_FIVE_ENTRANCE || player.getLocation() == Location.RAIDS_SIX_ENTRANCE || player.getLocation() == Location.RAIDS_SEVEN_ENTRANCE
                         && player.getMinigameAttributes().getRaidsAttributes().getParty() == null) {
                     if (player.getMinigameAttributes().getRaidsAttributes().getPartyInvitation() != null) {
                         player.getMinigameAttributes().getRaidsAttributes().getPartyInvitation().add(player);
@@ -992,20 +1013,20 @@ public class DialogueOptions {
                 }
                 break;
 			case 512:
-				boolean vP = player.getPointsHandler().getVotingPoints()  >= 20;
+				boolean vP = player.getPointsHandler().getVotingPoints()  >= 25;
 		        if(vP) {
 					TeleportHandler.cancelCurrentActions(player);
 					RaichuInstance.enterVoteBoss(player);
-					player.getPointsHandler().decrementVotingPoints(20);
+					player.getPointsHandler().decrementVotingPoints(25);
 					PlayerPanel.refreshPanel(player);
 				} else {
-					player.getPacketSender().sendMessage("<img=10>@blu@ You need at least 20 VP " + player.getUsername());
+					player.getPacketSender().sendMessage("<img=10>@blu@ You need at least 25 VP " + player.getUsername());
 					player.getPacketSender().sendMessage("<img=10>@blu@ PSA: This NPC accepts Voting Points Only.");
 					player.getPacketSender().sendInterfaceRemoval();
 					}
 				break;
 			case 500:
-				TeleportHandler.teleportPlayer(player, new Position(2549, 3758), player.getSpellbook().getTeleportType());
+				TeleportHandler.teleportPlayer(player, new Position(3168, 9757), player.getSpellbook().getTeleportType());
 				break;
 			case 391:
 				MemberScrolls.handleScrollClaim(player);
@@ -1160,7 +1181,7 @@ public class DialogueOptions {
 					player.getPacketSender().sendMessage("You cannot change your rank.");
 					return;
 				}
-				player.setRights(PlayerRights.VETERAN);
+				//player.setRights(PlayerRights;
 				player.getPacketSender().sendRights();
 				break;
 			case 78:
@@ -1173,13 +1194,15 @@ public class DialogueOptions {
 			switch(player.getDialogueActionId()) {
 			
 			case 5000:
-				player.getInstanceManager().teleportToInstance(player, PaymentType.AOE_VOUCHERS);
-				player.getPacketSender().closeDialogueOnly(player);
+				player.getInstanceManager().spawnType = SpawnType.SPAWN_5X5;
+				player.getInstanceManager().teleportToInstance(player, SpawnType.SPAWN_5X5);
+				player.getPacketSender().closeDialogueOnly();
 				break;
 				
 			case 5001:
-				player.getInstanceManager().setTime(InstanceTime.TIME_1H);
-				player.getPacketSender().sendMessage("You seleceted 1 hour of instance");
+				player.getInstanceManager().setKc(SpawnType.SPAWN_1000);
+				player.getPacketSender().sendMessage("@red@You seleceted 1000 spawns for the instance");
+				player.setInterfaceId(58705);
 				player.getPacketSender().closeDialogueOnly(player);
 				break;
 			
@@ -1337,7 +1360,7 @@ public class DialogueOptions {
 					}
 				break;
 			case 501:
-				TeleportHandler.teleportPlayer(player, new Position(2549, 3758), player.getSpellbook().getTeleportType());
+				TeleportHandler.teleportPlayer(player, new Position(3168, 9757), player.getSpellbook().getTeleportType());
 				break;
 			case 420:
 			case 15:
@@ -1545,9 +1568,9 @@ public class DialogueOptions {
 					player.getPointsHandler().incrementVotingPoints(amt);
 					player.getPointsHandler().refreshPanel();
 					if(player.getGameMode() == GameMode.NORMAL) {
-						player.getInventory().add(995, 1000000 * amt);
+						player.getInventory().add(6199, 1 * amt);
 					} else {
-						player.getInventory().add(995, 150000 * amt);
+						player.getInventory().add(6199, 1 * amt);
 					}
 					player.getPacketSender().sendMessage("You claim the "+(amt > 1 ? "scrolls" : "scroll")+" and receive your reward.");
 					player.getClickDelay().reset();

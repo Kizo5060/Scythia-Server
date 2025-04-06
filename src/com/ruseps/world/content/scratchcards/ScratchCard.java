@@ -137,15 +137,15 @@ public class ScratchCard {
 	 */
 	public void getBonus() {
 		setBonus(true);
-		int items[] = { 19994 };
-		int BonusRewards[] = { 19994 };
+		int items[] = { 19994, 19992, 915, 19670  };
+		int BonusRewards[] = { 19994, 19992, 915, 19670 };
 
 		int item = items[random.nextInt(items.length)];
 		int item1 = BonusRewards[random.nextInt(BonusRewards.length)];
 		if (Misc.exclusiveRandom(1, 3) <= 1) {
 			player.getInventory().add(new Item(item, 1));
 			player.getPacketSender().sendItemOnInterface(39332, item, 1, 1);
-
+			player.getPA().sendMessage("@blu@Congratulations! You have received a scratch card.");
 		} else {
 			player.getInventory().add(new Item(item1, 1));
 			player.getPacketSender().sendItemOnInterface(39332, item1, 1, 1);

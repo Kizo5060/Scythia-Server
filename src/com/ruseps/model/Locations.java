@@ -69,6 +69,121 @@ public class Locations {
 	
 	 
 	public enum Location {
+		 RAIDS_DS_ENTRANCE(new int[]  {2665, 2675}, new int[]{2770, 2798}, false, false, true, false, true, true) {
+           	 @Override
+                public void process(Player player) {
+                    if (player.getMinigameAttributes().getRaidsAttributes().getParty() != null)
+                        player.getMinigameAttributes().getRaidsAttributes().getParty().refreshInterface();
+                }
+
+                @Override
+                public void login(Player player) {
+                		player.getRaidsOne().getRaidsConnector().enter(player);
+                }
+                
+                @Override
+                public void leave(Player player) {
+                		player.getRaidsOne().getRaidsConnector().leaveRaidsDSEntrance();
+                }
+                
+                @Override
+                public boolean canTeleport(Player player) {
+                		player.getRaidsOne().getRaidsConnector().leaveRaidsDSEntrance();
+                		return true;
+                		
+                }
+                
+                @Override
+                public void enter(Player player) {
+                	if(player.getAmountDonated() < 3500) {
+                		player.performAnimation(new Animation(866));
+                		player.performGraphic(new Graphic(2009));
+                		player.moveTo(GameSettings.DEFAULT_POSITION);
+                		player.sendMessage("<img=10>@red@Sorry " + player.getUsername() + " you require at least 3500 total donated.");
+                		return;
+                	}
+                    if (player.getSummoning().getFamiliar() != null) {
+                        player.getSummoning().unsummon(true, true);
+                        player.getPacketSender().sendMessage("You've dismissed your familiar.");
+                    }
+             
+                    int id = 58016;
+                    for (int i = 58016; i < 58064; i++) {
+                        id++;
+                        player.getPacketSender().sendString(id++, "");
+                        player.getPacketSender().sendString(id++, "");
+                        player.getPacketSender().sendString(id++, "");
+                    }
+                    player.getPacketSender().sendString(58009, "Create");
+                    player.getPacketSender().sendString(58002, "Raiding Party: @whi@0");
+                	
+                }
+              
+           }, RAIDS_DS_PHASE_ONE(new int[]{2637, 2664}, new int[]{2770, 2798}, true, false, true, false, false, true) {
+               @Override
+               public void process(Player player) {
+            	   player.getMinigameAttributes().getRaidsAttributes().getParty().refreshInterface();
+                   
+                   final RaidsParty party = player.getMinigameAttributes().getRaidsAttributes().getParty();
+           				for(Player partyMember : party.getPlayers())  
+           				{
+           						if(partyMember.getMinigameAttributes().getRaidsAttributes().getKillcount() == 1) 
+           						{
+           							DragonStoneRaids.exitRaidsDS(player);
+           							return;
+           						}
+           					
+           				}
+               		
+               }
+
+               @Override
+               public void login(Player player) {
+            	      player.getRaidsOne().getRaidsConnector().leaveRaidsDS();
+            	   	  player.moveTo(GameSettings.RAIDS_DS_LOBBY.copy());
+            	   	  player.getRaidsOne().getRaidsConnector().enter(player);
+            	   	  player.getPacketSender().sendMessage("@red@You have been moved back to the Lobby since you logged out.");
+            	   
+               }
+               @Override
+               public void logout(Player player) {
+            	    	player.getRaidsOne().getRaidsConnector().leaveRaidsDS();
+               	 	player.getRaidsOne().getRaidsConnector().leave(true);
+               		RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                     partyy.remove(player, false, true);
+            	   
+               }
+               
+               @Override
+               public void onDeath(Player player) {
+            	    	player.getRaidsOne().getRaidsConnector().leaveRaidsDS();
+                 	player.getRaidsOne().getRaidsConnector().leave(true);
+                 	RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                     partyy.remove(player, false, true);
+                     player.moveTo(GameSettings.RAIDS_DS_LOBBY.copy());
+                 	player.getMinigameAttributes().getRaidsAttributes().incrementDeaths();
+            	   
+               }
+           
+
+               @Override
+               public boolean canTeleport(Player player) {
+                   	 player.getRaidsOne().getRaidsConnector().attemptLeave();
+                   	 RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                      partyy.remove(player, false, true);
+                   	 return true;
+               }
+
+               @Override
+               public void enter(Player player) {
+            		   if (player.getSummoning().getFamiliar() != null) {
+                       	player.getSummoning().unsummon(true, true);
+                       	player.getPacketSender().sendMessage("You've dismissed your familiar.");
+                   		 }  
+	               
+	           }
+           },
+         
 		CASH_ZONE(new int[]  {2304, 2367}, new int[]{3584, 3647}, true, true, true, true, true, true) {
 		    @Override
 	        public void logout(Player player) {
@@ -88,6 +203,46 @@ public class Locations {
             	if(player.getRegionInstance() != null)
         			player.getRegionInstance().destruct();
              	World.getNpcs().forEach(n -> n.removeInstancedNpcs(Location.CASH_ZONE, player.getPosition().getZ()));
+             }
+		},
+		INSTANCE_MANAGER_ZONE(new int[]  {2832, 2863}, new int[] {5068, 5107}, true, true, true, true, true, true) {},
+		
+		INSTANCE_ZONE(new int[]  {3406, 3445}, new int[]{4766, 4787}, true, true, true, true, true, true) {
+		    @Override
+	        public void logout(Player player) {
+		    	if(player.getRegionInstance() != null)
+	        		player.getRegionInstance().destruct();
+	             	World.getNpcs().forEach(n -> n.removeInstancedNpcs(Location.INSTANCE_ZONE, player.getPosition().getZ()));    	 
+	             	
+	             	player.moveTo(GameSettings.DEFAULT_POSITION);
+	        }
+            @Override
+            public boolean canTeleport(Player player) {
+            	if(player.getRegionInstance() != null)
+        			player.getRegionInstance().destruct();
+             	World.getNpcs().forEach(n -> n.removeInstancedNpcs(Location.INSTANCE_ZONE, player.getPosition().getZ()));
+                return true;
+            }
+		},
+		AOE_INSTANCE_ZONE(new int[]  {3406, 3444}, new int[]{4766, 4791}, true, true, true, true, true, true) {
+		    @Override
+	        public void logout(Player player) {
+		    	if(player.getRegionInstance() != null)
+	        		player.getRegionInstance().destruct();
+	             	World.getNpcs().forEach(n -> n.removeInstancedNpcs(Location.AOE_INSTANCE_ZONE, player.getPosition().getZ()));    	 
+	        }
+            @Override
+            public boolean canTeleport(Player player) {
+            	if(player.getRegionInstance() != null)
+        			player.getRegionInstance().destruct();
+             	World.getNpcs().forEach(n -> n.removeInstancedNpcs(Location.AOE_INSTANCE_ZONE, player.getPosition().getZ()));
+                return true;
+            }
+            @Override
+             public void onDeath(Player player) {
+            	if(player.getRegionInstance() != null)
+        			player.getRegionInstance().destruct();
+             	World.getNpcs().forEach(n -> n.removeInstancedNpcs(Location.AOE_INSTANCE_ZONE, player.getPosition().getZ()));
              }
 		},
 		BUNNY(new int[]  {2605, 2610}, new int[]{9667, 9675}, false, false, true, false, true, true) {
@@ -167,7 +322,7 @@ public class Locations {
             }
        },
 		
-		RAIDS_TWO_ENTRANCE(new int[]  {3029, 3044}, new int[]{2840, 2855}, false, false, true, false, true, true) {
+		RAIDS_TWO_ENTRANCE(new int[]  {3029, 3066}, new int[]{2833, 2855}, false, false, true, false, true, true) {
          	 @Override
               public void process(Player player) { 
                   if (player.getMinigameAttributes().getRaidsAttributes().getParty() != null)
@@ -322,11 +477,11 @@ public class Locations {
                 }
                 @Override
                 public void enter(Player player) {
-                	if(player.getAmountDonated() < 250) {
+                	if(player.getAmountDonated() < 500) {
                 		player.performAnimation(new Animation(866));
                 		player.performGraphic(new Graphic(2009));
                 		player.moveTo(GameSettings.DEFAULT_POSITION);
-                		player.sendMessage("<img=10>@red@Sorry " + player.getUsername() + " you require at least 250 total donated.");
+                		player.sendMessage("<img=10>@red@Sorry " + player.getUsername() + " you require at least 500 total donated.");
                 		return;
                 	}
                     if (player.getSummoning().getFamiliar() != null) {
@@ -394,6 +549,362 @@ public class Locations {
             }
 
         },
+        RAIDS_EIGHT_ENTRANCE(new int[]  {3276, 3397}, new int[]{3985, 4012}, false, false, true, false, true, true) {
+          	 @Override
+               public void process(Player player) {
+                   if (player.getMinigameAttributes().getRaidsAttributes().getParty() != null)
+                       player.getMinigameAttributes().getRaidsAttributes().getParty().refreshInterface();
+               }
+
+               @Override
+               public void login(Player player) {
+              	 player.getRaidsOne().getRaidsConnector().enter(player);
+               }
+               
+               @Override
+               public void leave(Player player) {
+              	 player.getRaidsOne().getRaidsConnector().leaveRaidsEightEntrance();
+               }
+               
+               @Override
+               public boolean canTeleport(Player player) {
+              	 player.getRaidsOne().getRaidsConnector().leaveRaidsEightEntrance();
+                   return true;
+               }
+               
+               @Override
+               public void enter(Player player) {
+               	if(player.getAmountDonated() < 1700) {
+               		player.performAnimation(new Animation(866));
+               		player.performGraphic(new Graphic(2009));
+               		player.moveTo(GameSettings.DEFAULT_POSITION);
+               		player.sendMessage("<img=10>@red@Sorry " + player.getUsername() + " you require at least 1700 total donated.");
+               		return;
+               	}
+                   if (player.getSummoning().getFamiliar() != null) {
+                       player.getSummoning().unsummon(true, true);
+                       player.getPacketSender().sendMessage("You've dismissed your familiar.");
+                   }
+
+                   player.getPacketSender().sendTabInterface(GameSettings.ACHIEVEMENT_TAB, 58000)
+                           .sendTab(GameSettings.ACHIEVEMENT_TAB);
+
+                   int id = 58016;
+                   for (int i = 58016; i < 58064; i++) {
+                       id++;
+                       player.getPacketSender().sendString(id++, "");
+                       player.getPacketSender().sendString(id++, "");
+                       player.getPacketSender().sendString(id++, "");
+                   }
+                   player.getPacketSender().sendString(58009, "Create");
+                   player.getPacketSender().sendString(58002, "Raiding Party: @whi@0");
+                   
+               }
+           
+          },
+        
+        
+        RAIDS_DD_ENTRANCE(new int[]  {3357, 3364}, new int[]{3237, 3246}, false, false, true, false, true, true) {
+            	 @Override
+                 public void process(Player player) {
+                     if (player.getMinigameAttributes().getRaidsAttributes().getParty() != null)
+                         player.getMinigameAttributes().getRaidsAttributes().getParty().refreshInterface();
+                 }
+
+                 @Override
+                 public void login(Player player) {
+                	 player.getRaidsOne().getRaidsConnector().enter(player);
+                	 
+                 }
+                 
+                 @Override
+                 public void leave(Player player) {
+                	 player.getRaidsOne().getRaidsConnector().leaveRaidsOneEntrance();
+                 }
+                 
+                 @Override
+                 public boolean canTeleport(Player player) {
+                	 player.getRaidsOne().getRaidsConnector().leaveRaidsOneEntrance();
+                     return true;
+                 }
+                 
+                 @Override
+                 public void enter(Player player) {
+                     if (player.getSummoning().getFamiliar() != null) {
+                         player.getSummoning().unsummon(true, true);
+                         player.getPacketSender().sendMessage("You've dismissed your familiar.");
+                     }
+
+
+                     int id = 58016;
+                     for (int i = 58016; i < 58064; i++) {
+                         id++;
+                         player.getPacketSender().sendString(id++, "");
+                         player.getPacketSender().sendString(id++, "");
+                         player.getPacketSender().sendString(id++, "");
+                     }
+                     
+                     player.getPacketSender().sendString(58009, "Create");
+                     player.getPacketSender().sendString(58002, "Raiding Party: @whi@0");
+                 }
+            },	RAIDS_DD_PHASE_ONE(new int[]{3363, 3388}, new int[]{3225, 3239}, true, false, true, false, false, true) {
+                @Override
+                public void process(Player player) {
+             	   player.getMinigameAttributes().getRaidsAttributes().getParty().refreshInterface();
+                    
+                    final RaidsParty party = player.getMinigameAttributes().getRaidsAttributes().getParty();
+            				for(Player partyMember : party.getPlayers())  
+            				{
+            					
+            						if(partyMember.getMinigameAttributes().getRaidsAttributes().getKillcount() == 1) 
+            						{
+            							DarkDementionRaids.sendPhaseTwo(party);
+            							return;
+            						}
+            					
+            					
+            				}
+                		}
+
+                @Override
+                public void login(Player player) { 
+             	   player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+             	 player.moveTo(GameSettings.RAIDS_DD_LOBBY.copy());
+                    player.getRaidsOne().getRaidsConnector().enter(player);
+                    player.getPacketSender().sendMessage("@red@You have been moved back to the Lobby since you logged out.");
+                }
+
+                @Override
+                public void logout(Player player) {
+             	    player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+                	 	player.getRaidsOne().getRaidsConnector().leave(true);
+                		RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                     partyy.remove(player, false, true);
+                }
+                
+                @Override
+                public void onDeath(Player player) {
+             	    player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+                  	player.getRaidsOne().getRaidsConnector().leave(true);
+                  	RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                     partyy.remove(player, false, true);
+                     player.moveTo(GameSettings.RAIDS_DD_LOBBY.copy());
+                  	player.getMinigameAttributes().getRaidsAttributes().incrementDeaths();
+                }
+            
+
+                @Override
+                public boolean canTeleport(Player player) {
+                    	 player.getRaidsOne().getRaidsConnector().attemptLeave();
+                    	RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                     partyy.remove(player, false, true);
+                    	 return true;
+                }
+
+                @Override
+                public void enter(Player player) {
+             	   if (player.getSummoning().getFamiliar() != null) {
+                        player.getSummoning().unsummon(true, true);
+                        player.getPacketSender().sendMessage("You've dismissed your familiar.");
+                    }
+
+                   
+                }
+
+            },RAIDS_DD_PHASE_TWO(new int[]{3333, 3358}, new int[]{3225, 3239}, true, false, true, false, false, true) {
+
+           	   @Override
+                  public void process(Player player) {
+               	   player.getMinigameAttributes().getRaidsAttributes().getParty().refreshInterface();
+                      
+                      final RaidsParty party = player.getMinigameAttributes().getRaidsAttributes().getParty();
+              				for(Player partyMember : party.getPlayers())  
+              				{
+              					
+              						if(partyMember.getMinigameAttributes().getRaidsAttributes().getKillcount() == 2) 
+              						{
+              							DarkDementionRaids.sendPhaseThree(party);
+              							return;
+              						
+              					}
+              					
+              				}
+                  		}
+
+                  @Override
+                  public void login(Player player) { 
+               	    player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+               	  player.moveTo(GameSettings.RAIDS_DD_LOBBY.copy());
+                       player.getRaidsOne().getRaidsConnector().enter(player);
+                       player.getPacketSender().sendMessage("@red@You have been moved back to the Lobby since you logged out.");
+                  }
+
+                  @Override
+                  public void logout(Player player) {
+               	    player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+                  	 	player.getRaidsOne().getRaidsConnector().leave(true);
+                  		RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                       partyy.remove(player, false, true);
+                  }
+                  
+                  @Override
+                  public void onDeath(Player player) {
+               	     player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+                    	 player.getRaidsOne().getRaidsConnector().leave(true);
+                    	 RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                        partyy.remove(player, false, true);
+                        player.moveTo(GameSettings.RAIDS_DD_LOBBY.copy());
+                    	 player.getMinigameAttributes().getRaidsAttributes().incrementDeaths();
+                  }
+              
+
+                  @Override
+                  public boolean canTeleport(Player player) {
+                      	 player.getRaidsOne().getRaidsConnector().attemptLeave();
+                      	 RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                        partyy.remove(player, false, true);
+                      	 return true;
+                  }
+
+                  @Override
+                  public void enter(Player player) {
+               	   if (player.getSummoning().getFamiliar() != null) {
+                          player.getSummoning().unsummon(true, true);
+                          player.getPacketSender().sendMessage("You've dismissed your familiar.");
+                      }
+
+                     
+                  }
+              },
+              RAIDS_DD_PHASE_THREE(new int[]{3333, 3358}, new int[]{3206, 3220}, true, false, true, false, false, true) {
+
+           	   @Override
+                  public void process(Player player) {
+               	   player.getMinigameAttributes().getRaidsAttributes().getParty().refreshInterface();
+                      
+                      final RaidsParty party = player.getMinigameAttributes().getRaidsAttributes().getParty();
+              				for(Player partyMember : party.getPlayers())  
+              				{
+              						if(partyMember.getMinigameAttributes().getRaidsAttributes().getKillcount() == 3) 
+              						{
+              							DarkDementionRaids.exitRaidsDD(player);
+              							return;
+              						}
+              					
+              				}
+                  		}
+
+                  @Override
+                  public void login(Player player) { 
+               	    player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+               	  player.moveTo(GameSettings.RAIDS_DD_LOBBY.copy());
+                       player.getRaidsOne().getRaidsConnector().enter(player);
+                       player.getPacketSender().sendMessage("@red@You have been moved back to the Lobby since you logged out.");
+                  }
+
+                  @Override
+                  public void logout(Player player) {
+               	    player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+                  	 	player.getRaidsOne().getRaidsConnector().leave(true);
+                  		RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                       partyy.remove(player, false, true);
+                  }
+                  
+                  @Override
+                  public void onDeath(Player player) {
+               	     player.getRaidsOne().getRaidsConnector().leaveRaidsTwo();
+                    	 player.getRaidsOne().getRaidsConnector().leave(true);
+                    	 RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                        partyy.remove(player, false, true);
+                        player.moveTo(GameSettings.RAIDS_DD_LOBBY.copy());
+                    	 player.getMinigameAttributes().getRaidsAttributes().incrementDeaths();
+                  }
+              
+
+                  @Override
+                  public boolean canTeleport(Player player) {
+                      	 player.getRaidsOne().getRaidsConnector().attemptLeave();
+                      	RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                       partyy.remove(player, false, true);
+                      	 return true;
+                  }
+
+                  @Override
+                  public void enter(Player player) {
+               	   if (player.getSummoning().getFamiliar() != null) {
+                          player.getSummoning().unsummon(true, true);
+                          player.getPacketSender().sendMessage("You've dismissed your familiar.");
+                      }
+
+                     
+                  }
+
+              },
+        
+        
+        // x1, x2, y1, y2 this draws a square start bottom left corner, ends top right
+        RAIDS_EIGHT_PHASE_ONE(new int[]{3019, 3060}, new int[]{3026, 3053}, true, false, true, false, false, true) {
+              @Override
+              public void process(Player player) {
+           	   player.getMinigameAttributes().getRaidsAttributes().getParty().refreshInterface();
+                  
+                  final RaidsParty party = player.getMinigameAttributes().getRaidsAttributes().getParty();
+          				for(Player partyMember : party.getPlayers())  
+          				{
+          						if(partyMember.getMinigameAttributes().getRaidsAttributes().getKillcount() == 1) 
+          						{
+          							RubyRaid.exitRaidsEight(player);
+          							return;
+          						}
+          					
+          				}
+              		}
+
+              @Override
+              public void login(Player player) { 
+           	      player.getRaidsOne().getRaidsConnector().leaveRaidsEight();
+           	   	  player.moveTo(new Position(3285, 4000));
+                  player.getRaidsOne().getRaidsConnector().enter(player);
+                  player.getPacketSender().sendMessage("@red@You have been moved back to the Lobby since you logged out.");
+              }
+
+              @Override
+              public void logout(Player player) {
+           	    	player.getRaidsOne().getRaidsConnector().leaveRaidsEight();
+              	 	player.getRaidsOne().getRaidsConnector().leave(true);
+              		RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                    partyy.remove(player, false, true);
+              }
+              
+              @Override
+              public void onDeath(Player player) {
+           	    	player.getRaidsOne().getRaidsConnector().leaveRaidsEight();
+                	player.getRaidsOne().getRaidsConnector().leave(true);
+                	RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                    partyy.remove(player, false, true);
+                    player.moveTo(new Position(3285, 4000));
+                	player.getMinigameAttributes().getRaidsAttributes().incrementDeaths();
+              }
+          
+
+              @Override
+              public boolean canTeleport(Player player) {
+                  	 player.getRaidsOne().getRaidsConnector().attemptLeave();
+                  	 RaidsParty partyy = player.getMinigameAttributes().getRaidsAttributes().getParty();
+                     partyy.remove(player, false, true);
+                  	 return true;
+              }
+
+              @Override
+              public void enter(Player player) {
+           	   if (player.getSummoning().getFamiliar() != null) {
+                      player.getSummoning().unsummon(true, true);
+                      player.getPacketSender().sendMessage("You've dismissed your familiar.");
+                  }  
+              }
+          },
+
+        
 		RAIDS_SIX_PHASE_ONE(new int[]{1746, 1768}, new int[]{3215, 3239}, true, false, true, false, false, true) {
                @Override
                public void process(Player player) {
@@ -1788,7 +2299,7 @@ public class Locations {
 
 			}
 		},
-		SCYTHIA_ZONE(new int[] { 2305, 2315 }, new int[] { 3205, 3212 }, true, true, true, false, false, true) {
+		NexArch_ZONE(new int[] { 2305, 2315 }, new int[] { 3205, 3212 }, true, true, true, false, false, true) {
 			public boolean hasOverpoweredWeapon(Player player) {
                 for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
                     if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
@@ -1929,14 +2440,8 @@ public class Locations {
 
 			@Override
 			public void enter(Player player) {
-				if (hasOverpoweredWeapon(player)) {
-					player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Vader Area "
-							+ player.getUsername() + "!");
-					player.moveTo(GameSettings.DEFAULT_POSITION, true);
-				} else {
 				player.getPacketSender().sendMessage(
-						"<img=10>Use your Wr3cked Kill Count at the shop for exclusive prizes!");
-			}
+						"<img=10>Use your Inherited Kill Count at the shop for exclusive prizes!");
 		}
 			
 			@Override
@@ -1990,14 +2495,9 @@ public class Locations {
 
 			@Override
 			public void enter(Player player) {
-				if (hasOverpoweredWeapon(player)) {
-					player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Dragon Area "
-							+ player.getUsername() + "!");
-					player.moveTo(GameSettings.DEFAULT_POSITION, true);
-				} else {
 				player.getPacketSender().sendMessage(
 						"<img=10>Use your Dragon Kill Count at the shop for exclusive prizes!");
-			}
+			
 		}
 			
 			@Override
@@ -2051,15 +2551,10 @@ public class Locations {
 
             @Override
             public void enter(Player player) {
-                if (hasOverpoweredWeapon(player)) {
-                    player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Dragon Area "
-                            + player.getUsername() + "!");
-                    player.moveTo(GameSettings.DEFAULT_POSITION, true);
-                } else {
                     player.getPacketSender().sendMessage(
                             "<img=10> Smoozies Kill Count");
-                }
-            }
+               }
+            
 
             @Override
             public boolean canTeleport(Player player) {
@@ -2092,6 +2587,7 @@ public class Locations {
                 return false;
             }
         },
+        
 		OCTANE_ZONE(new int[] { 2378, 2422 }, new int[] { 2885, 2933 }, true, true, true, false, false, true) {
 			public boolean hasOverpoweredWeapon(Player player) {
                 for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
@@ -2112,7 +2608,7 @@ public class Locations {
 			@Override
 			public void enter(Player player) {
 				if (hasOverpoweredWeapon(player)) {
-					player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Dragon Area "
+					player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Octane Zone "
 							+ player.getUsername() + "!");
 					player.moveTo(GameSettings.DEFAULT_POSITION, true);
 				} else {
@@ -2152,6 +2648,526 @@ public class Locations {
 				return false;
 			}
 		},
+		
+		KNIGHT_OF_TORMENT_ZONE(new int[] { 3213, 3250 }, new int[] { 3021, 3058}, true, true, true, false, false, true) {
+			public boolean hasOverpoweredWeapon(Player player) {
+			    for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
+			        if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
+			                .get(Equipment.WEAPON_SLOT).getId() == GameSettings.AOE_WEAPONS[id]) {
+			        	 return true;
+                    }
+                }
+                return false;
+            }
+		    @Override
+		    public void process(Player player) {
+		        if (!player.walkableInterfaceList.contains(41700))
+		            player.sendParallellInterfaceVisibility(41700, true);
+		    }
+
+		    @Override
+		    public void enter(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Knight of Torment Area "
+		                    + player.getUsername() + "!");
+		            player.moveTo(GameSettings.DEFAULT_POSITION, true);
+		        } else {
+		            player.getPacketSender().sendMessage("<img=10> Knight of Torment Kill Count");
+		        }
+		    }
+
+		    @Override
+		    public boolean canTeleport(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't teleport with AOE Weapons in this area!");
+		            return false;
+		        }
+		        player.getPacketSender().sendString((-1), "0");
+		        return true;
+		    }
+
+		    @Override
+		    public void onDeath(Player player) {
+		        leave(player);
+		    }
+
+		    @Override
+		    public void leave(Player p) {
+		        p.getPacketSender().sendString((-1), "0");
+		        for (int i = 0; i < p.getMinigameAttributes().getDragonZoneAttributes()
+		                .getKillcount().length; i++) {
+		            p.getMinigameAttributes().getDragonZoneAttributes().getKillcount()[i] = 0;
+		            p.getPacketSender().sendString((41704 + i), "0");
+		        }
+		    }
+
+		    @Override
+		    public boolean handleKilledNPC(Player killer, NPC n) {
+		        int npc = n.getId();
+		        if (npc == 1038) {
+		            killer.incrementDragonKills(1);
+		            killer.save();
+		        }
+		        return false;
+		    }
+		},
+		
+		LIMES_ZONE(new int[] { 2742, 2693 }, new int[] { 3898, 3849}, true, true, true, false, false, true) {
+			public boolean hasOverpoweredWeapon(Player player) {
+			    for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
+			        if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
+			                .get(Equipment.WEAPON_SLOT).getId() == GameSettings.AOE_WEAPONS[id]) {
+			        	 return true;
+                    }
+                }
+                return false;
+            }
+		    @Override
+		    public void process(Player player) {
+		        if (!player.walkableInterfaceList.contains(41700))
+		            player.sendParallellInterfaceVisibility(41700, true);
+		    }
+
+		    @Override
+		    public void enter(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Limes Zone "
+		                    + player.getUsername() + "!");
+		            player.moveTo(GameSettings.DEFAULT_POSITION, true);
+		        } else {
+		            player.getPacketSender().sendMessage("<img=10> Limes Kill Count");
+		        }
+		    }
+
+		    @Override
+		    public boolean canTeleport(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't teleport with AOE Weapons in this area!");
+		            return false;
+		        }
+		        player.getPacketSender().sendString((-1), "0");
+		        return true;
+		    }
+
+		    @Override
+		    public void onDeath(Player player) {
+		        leave(player);
+		    }
+
+		    @Override
+		    public void leave(Player p) {
+		        p.getPacketSender().sendString((-1), "0");
+		        for (int i = 0; i < p.getMinigameAttributes().getDragonZoneAttributes()
+		                .getKillcount().length; i++) {
+		            p.getMinigameAttributes().getDragonZoneAttributes().getKillcount()[i] = 0;
+		            p.getPacketSender().sendString((41704 + i), "0");
+		        }
+		    }
+
+		    @Override
+		    public boolean handleKilledNPC(Player killer, NPC n) {
+		        int npc = n.getId();
+		        if (npc == 1017) {
+		            killer.incrementDragonKills(1);
+		            killer.save();
+		        }
+		        return false;
+		    }
+		},
+		
+		SLIFER_ZONE(new int[] { 2177, 2238 }, new int[] { 3777, 3838}, true, true, true, false, false, true) {
+			public boolean hasOverpoweredWeapon(Player player) {
+			    for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
+			        if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
+			                .get(Equipment.WEAPON_SLOT).getId() == GameSettings.AOE_WEAPONS[id]) {
+			        	 return true;
+                    }
+                }
+                return false;
+            }
+		    @Override
+		    public void process(Player player) {
+		        if (!player.walkableInterfaceList.contains(41700))
+		            player.sendParallellInterfaceVisibility(41700, true);
+		    }
+
+		    @Override
+		    public void enter(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Slifer Zone "
+		                    + player.getUsername() + "!");
+		            player.moveTo(GameSettings.DEFAULT_POSITION, true);
+		        } else {
+		            player.getPacketSender().sendMessage("<img=10> Slifer Kill Count");
+		        }
+		    }
+
+		    @Override
+		    public boolean canTeleport(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't teleport with AOE Weapons in this area!");
+		            return false;
+		        }
+		        player.getPacketSender().sendString((-1), "0");
+		        return true;
+		    }
+
+		    @Override
+		    public void onDeath(Player player) {
+		        leave(player);
+		    }
+
+		    @Override
+		    public void leave(Player p) {
+		        p.getPacketSender().sendString((-1), "0");
+		        for (int i = 0; i < p.getMinigameAttributes().getDragonZoneAttributes()
+		                .getKillcount().length; i++) {
+		            p.getMinigameAttributes().getDragonZoneAttributes().getKillcount()[i] = 0;
+		            p.getPacketSender().sendString((41704 + i), "0");
+		        }
+		    }
+
+		    @Override
+		    public boolean handleKilledNPC(Player killer, NPC n) {
+		        int npc = n.getId();
+		        if (npc == 1018) {
+		            killer.incrementDragonKills(1);
+		            killer.save();
+		        }
+		        return false;
+		    }
+		},
+		
+
+		FELLEN_ZONE(new int[] { 3411, 3437}, new int[] { 3982, 4016}, true, true, true, false, false, true) {
+			public boolean hasOverpoweredWeapon(Player player) {
+				if(player.getPosition().getZ() == 0) {
+			    for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
+			        if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
+			                .get(Equipment.WEAPON_SLOT).getId() == GameSettings.AOE_WEAPONS[id]) {
+			        	 return true;
+                    }
+                }
+			    }
+                return false;
+            }
+		    @Override
+		    public void process(Player player) {
+		    	if(player.getPosition().getZ() == 0) {
+		        if (!player.walkableInterfaceList.contains(41700))
+		            player.sendParallellInterfaceVisibility(41700, true);
+		    	}
+		    }
+
+		    @Override
+		    public void enter(Player player) {
+		    	if(player.getPosition().getZ() == 0) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Fallen Zone "
+		                    + player.getUsername() + "!");
+		            player.moveTo(GameSettings.DEFAULT_POSITION, true);
+		        } else {
+		            player.getPacketSender().sendMessage("<img=10> Fallen Kill Count");
+		        }
+		    	}
+		    }
+
+		    @Override
+		    public boolean canTeleport(Player player) {
+		    	if(player.getPosition().getZ() == 0) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't teleport with AOE Weapons in this area!");
+		            return false;
+		        }
+		        player.getPacketSender().sendString((-1), "0");
+		        return true;
+		    	}
+		    	return true;
+		    }
+
+		    @Override
+		    public void onDeath(Player player) {
+		        leave(player);
+		    }
+
+		    @Override
+		    public void leave(Player p) {
+		    	if(p.getPosition().getZ() == 0) {
+		        p.getPacketSender().sendString((-1), "0");
+		        for (int i = 0; i < p.getMinigameAttributes().getDragonZoneAttributes()
+		                .getKillcount().length; i++) {
+		            p.getMinigameAttributes().getDragonZoneAttributes().getKillcount()[i] = 0;
+		            p.getPacketSender().sendString((41704 + i), "0");
+		        }
+		    	}
+		    }
+
+		    @Override
+		    public boolean handleKilledNPC(Player killer, NPC n) {
+		    	if(killer.getPosition().getZ() == 0) {
+		        int npc = n.getId();
+		        if (npc == 1039) {
+		            killer.incrementDragonKills(1);
+		            killer.save();
+		        }
+		        return false;
+		    }
+		    	return false;
+		    }
+		},
+		
+		LITCH_ZONE(new int[] { 2485, 2547 }, new int[] { 10124, 10166}, true, true, true, false, false, true) {
+			public boolean hasOverpoweredWeapon(Player player) {
+			    for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
+			        if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
+			                .get(Equipment.WEAPON_SLOT).getId() == GameSettings.AOE_WEAPONS[id]) {
+			        	 return true;
+                    }
+                }
+                return false;
+            }
+		    @Override
+		    public void process(Player player) {
+		        if (!player.walkableInterfaceList.contains(41700))
+		            player.sendParallellInterfaceVisibility(41700, true);
+		    }
+
+		    @Override
+		    public void enter(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Litch Zone "
+		                    + player.getUsername() + "!");
+		            player.moveTo(GameSettings.DEFAULT_POSITION, true);
+		        } else {
+		            player.getPacketSender().sendMessage("<img=10> Litch Kill Count");
+		        }
+		    }
+
+		    @Override
+		    public boolean canTeleport(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't teleport with AOE Weapons in this area!");
+		            return false;
+		        }
+		        player.getPacketSender().sendString((-1), "0");
+		        return true;
+		    }
+
+		    @Override
+		    public void onDeath(Player player) {
+		        leave(player);
+		    }
+
+		    @Override
+		    public void leave(Player p) {
+		        p.getPacketSender().sendString((-1), "0");
+		        for (int i = 0; i < p.getMinigameAttributes().getDragonZoneAttributes()
+		                .getKillcount().length; i++) {
+		            p.getMinigameAttributes().getDragonZoneAttributes().getKillcount()[i] = 0;
+		            p.getPacketSender().sendString((41704 + i), "0");
+		        }
+		    }
+
+		    @Override
+		    public boolean handleKilledNPC(Player killer, NPC n) {
+		        int npc = n.getId();
+		        if (npc == 1494) {
+		            killer.incrementDragonKills(1);
+		            killer.save();
+		        }
+		        return false;
+		    }
+		},
+		
+		GODS_RULER_ZONE(new int[] { 3053, 3026 }, new int[] { 5358, 5333}, true, true, true, false, false, true) {
+			public boolean hasOverpoweredWeapon(Player player) {
+			    for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
+			        if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
+			                .get(Equipment.WEAPON_SLOT).getId() == GameSettings.AOE_WEAPONS[id]) {
+			        	 return true;
+                    }
+                }
+                return false;
+            }
+		    @Override
+		    public void process(Player player) {
+		        if (!player.walkableInterfaceList.contains(41700))
+		            player.sendParallellInterfaceVisibility(41700, true);
+		    }
+
+		    @Override
+		    public void enter(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Gods Ruler Zone "
+		                    + player.getUsername() + "!");
+		            player.moveTo(GameSettings.DEFAULT_POSITION, true);
+		        } else {
+		            player.getPacketSender().sendMessage("<img=10> Gods Ruler Kill Count");
+		        }
+		    }
+
+		    @Override
+		    public boolean canTeleport(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't teleport with AOE Weapons in this area!");
+		            return false;
+		        }
+		        player.getPacketSender().sendString((-1), "0");
+		        return true;
+		    }
+
+		    @Override
+		    public void onDeath(Player player) {
+		        leave(player);
+		    }
+
+		    @Override
+		    public void leave(Player p) {
+		        p.getPacketSender().sendString((-1), "0");
+		        for (int i = 0; i < p.getMinigameAttributes().getDragonZoneAttributes()
+		                .getKillcount().length; i++) {
+		            p.getMinigameAttributes().getDragonZoneAttributes().getKillcount()[i] = 0;
+		            p.getPacketSender().sendString((41704 + i), "0");
+		        }
+		    }
+
+		    @Override
+		    public boolean handleKilledNPC(Player killer, NPC n) {
+		        int npc = n.getId();
+		        if (npc == 1511) {
+		            killer.incrementDragonKills(1);
+		            killer.save();
+		        }
+		        return false;
+		    }
+		},
+		
+		DR_STRANGE_ZONE(new int[] { 2256, 2287 }, new int[] { 4680, 4711}, true, true, true, false, false, true) {
+			public boolean hasOverpoweredWeapon(Player player) {
+			    for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
+			        if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
+			                .get(Equipment.WEAPON_SLOT).getId() == GameSettings.AOE_WEAPONS[id]) {
+			        	 return true;
+                    }
+                }
+                return false;
+            }
+		    @Override
+		    public void process(Player player) {
+		        if (!player.walkableInterfaceList.contains(41700))
+		            player.sendParallellInterfaceVisibility(41700, true);
+		    }
+
+		    @Override
+		    public void enter(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to Dr. Strange Zone "
+		                    + player.getUsername() + "!");
+		            player.moveTo(GameSettings.DEFAULT_POSITION, true);
+		        } else {
+		            player.getPacketSender().sendMessage("<img=10> Dr. Strange Kill Count");
+		        }
+		    }
+
+		    @Override
+		    public boolean canTeleport(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't teleport with AOE Weapons in this area!");
+		            return false;
+		        }
+		        player.getPacketSender().sendString((-1), "0");
+		        return true;
+		    }
+
+		    @Override
+		    public void onDeath(Player player) {
+		        leave(player);
+		    }
+
+		    @Override
+		    public void leave(Player p) {
+		        p.getPacketSender().sendString((-1), "0");
+		        for (int i = 0; i < p.getMinigameAttributes().getDragonZoneAttributes()
+		                .getKillcount().length; i++) {
+		            p.getMinigameAttributes().getDragonZoneAttributes().getKillcount()[i] = 0;
+		            p.getPacketSender().sendString((41704 + i), "0");
+		        }
+		    }
+
+		    @Override
+		    public boolean handleKilledNPC(Player killer, NPC n) {
+		        int npc = n.getId();
+		        if (npc == 3007) {
+		            killer.incrementDragonKills(1);
+		            killer.save();
+		        }
+		        return false;
+		    }
+		},
+		
+		SPUDERMAN_ZONE(new int[] { 3389, 3363 }, new int[] { 3221, 3206}, true, true, true, false, false, true) {
+			public boolean hasOverpoweredWeapon(Player player) {
+			    for (int id = 0; id < GameSettings.AOE_WEAPONS.length; id++) {
+			        if (player.getInventory().contains(GameSettings.AOE_WEAPONS[id]) || player.getEquipment()
+			                .get(Equipment.WEAPON_SLOT).getId() == GameSettings.AOE_WEAPONS[id]) {
+			        	 return true;
+                    }
+                }
+                return false;
+            }
+		    @Override
+		    public void process(Player player) {
+		        if (!player.walkableInterfaceList.contains(41700))
+		            player.sendParallellInterfaceVisibility(41700, true);
+		    }
+
+		    @Override
+		    public void enter(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't bring AOE Weapons to the Spuderman Zone "
+		                    + player.getUsername() + "!");
+		            player.moveTo(GameSettings.DEFAULT_POSITION, true);
+		        } else {
+		            player.getPacketSender().sendMessage("<img=10> Spuderman Kill Count");
+		        }
+		    }
+
+		    @Override
+		    public boolean canTeleport(Player player) {
+		        if (hasOverpoweredWeapon(player)) {
+		            player.getPacketSender().sendMessage("@red@You can't teleport with AOE Weapons in this area!");
+		            return false;
+		        }
+		        player.getPacketSender().sendString((-1), "0");
+		        return true;
+		    }
+
+		    @Override
+		    public void onDeath(Player player) {
+		        leave(player);
+		    }
+
+		    @Override
+		    public void leave(Player p) {
+		        p.getPacketSender().sendString((-1), "0");
+		        for (int i = 0; i < p.getMinigameAttributes().getDragonZoneAttributes()
+		                .getKillcount().length; i++) {
+		            p.getMinigameAttributes().getDragonZoneAttributes().getKillcount()[i] = 0;
+		            p.getPacketSender().sendString((41704 + i), "0");
+		        }
+		    }
+
+		    @Override
+		    public boolean handleKilledNPC(Player killer, NPC n) {
+		        int npc = n.getId();
+		        if (npc == 3012) {
+		            killer.incrementDragonKills(1);
+		            killer.save();
+		        }
+		        return false;
+		    }
+		},
+		
 		MARVELS_RAID(new int[] { 2224, 2276 }, new int[] { 3300, 3323 }, true, false, false, false, false, false) {
 			@Override
 			public void enter(Player player) {
@@ -2306,7 +3322,7 @@ public class Locations {
 		},
 		REDD(new int[]{3334, 3385}, new int[]{5207, 5242}, true, true, true, true, true, true) {
 		},
-		DoomsDay(new int[]{3392, 3455}, new int[]{5248, 5310}, true, true, true, true, true, true) {
+		Dooms_Day(new int[]{3392, 3455}, new int[]{5248, 5310}, true, true, true, true, true, true) {
 		},
 		GOLDENKNIGHT(new int[]{2389, 2403}, new int[]{3481, 3494}, true, true, true, true, true, true) {
 		},
@@ -2320,7 +3336,7 @@ public class Locations {
 		},
 		BZONE(new int[]{2881, 2942 }, new int[]{2497, 2559}, true, true, true, true, true, true) {
 		},
-		DONATOR_ZONE(new int[]{2290, 2400}, new int[]{9750, 9999}, false, true, true, true, true, true) {
+		DONATOR_ZONE(new int[]{1987, 2046}, new int[]{4670, 4610}, false, true, true, true, true, true) {
 		},
 		VARROCK(new int[]{3167, 3272}, new int[]{3376, 3504}, false, true, true, true, true, true) {
 		},
@@ -2736,7 +3752,7 @@ public class Locations {
 				player.getPacketSender().sendMessage("Teleport spells are blocked here.");
 				return false;
 			}
-
+			
 			@Override
 			public void logout(Player player) {
 				
@@ -3163,7 +4179,7 @@ public class Locations {
 				player.moveTo(new Position(2657, 2612, 0));
 			}
 		},
-		PEST_CONTROL_BOAT(new int[]{2660, 2663}, new int[]{2638, 2643}, false, false, false, false, false, true) {
+		PEST_CONTROL_BOAT(new int[]{2659, 2664}, new int[]{2637, 2645}, false, false, false, false, false, true) {
 			@Override
 			public void process(Player player) {
 				if(!player.walkableInterfaceList.contains(21005))
@@ -3637,7 +4653,7 @@ public class Locations {
 		COWS(new int[]{3239, 3270}, new int[]{3250, 3300}, false, true, true, false, false, true) {
 			@Override
 			public void logout(Player player) {
-			player.moveTo(new Position(3094, 3503, 0));
+			player.moveTo(new Position(3038, 2785, 0));
 				
 			}
 			@Override
@@ -3746,7 +4762,7 @@ public class Locations {
 			public void process(Player player) {
 				int defender = Defenderz.getDefender(player);
 				
-					player.getPacketSender().sendWalkableInterface(42001, false);
+				//	player.getPacketSender().sendWalkableInterface(42001, false);
 					player.sendParallellInterfaceVisibility(54500, true);
 					player.getPacketSender().sendItemOnInterface(54503, defender, 1);
 			}
@@ -3759,7 +4775,7 @@ public class Locations {
 			@Override
 			public void leave(Player player) {
 				player.sendParallellInterfaceVisibility(54500, false);
-				player.getPacketSender().sendWalkableInterface(42001, true);
+				//player.getPacketSender().sendWalkableInterface(42001, true);
 			}
 			
 			@Override
@@ -3788,7 +4804,7 @@ public class Locations {
 				int range = Rangez.getRangez(player);
 
 					player.getPA().sendString(54502, "Range Wep: ");
-					player.getPacketSender().sendWalkableInterface(42001, false);
+			//		player.getPacketSender().sendWalkableInterface(42001, false);
 					player.sendParallellInterfaceVisibility(54500, true);
 					player.getPacketSender().sendItemOnInterface(54503, range, 1);
 			}
@@ -3801,7 +4817,7 @@ public class Locations {
 			@Override
 			public void leave(Player player) {
 				player.sendParallellInterfaceVisibility(54500, false);
-				player.getPacketSender().sendWalkableInterface(42001, true);
+		//		player.getPacketSender().sendWalkableInterface(42001, true);
 			}
 			
 			@Override
@@ -3830,7 +4846,7 @@ public class Locations {
 				int mage = Magicz.getMagic(player);
 				
 					player.getPA().sendString(54502, "Magic Wep: ");
-					player.getPacketSender().sendWalkableInterface(42001, false);
+				//	player.getPacketSender().sendWalkableInterface(42001, false);
 					player.sendParallellInterfaceVisibility(54500, true);
 					player.getPacketSender().sendItemOnInterface(54503, mage, 1);
 			}
@@ -3843,7 +4859,7 @@ public class Locations {
 			@Override
 			public void leave(Player player) {
 				player.sendParallellInterfaceVisibility(54500, false);
-				player.getPacketSender().sendWalkableInterface(42001, true);
+				//player.getPacketSender().sendWalkableInterface(42001, true);
 			}
 			
 			@Override
@@ -3872,7 +4888,7 @@ public class Locations {
 				int weapon = Weaponz.getWeaponz(player);
 				
 					player.getPA().sendString(54502, "Weaponz: ");
-					player.getPacketSender().sendWalkableInterface(42001, false);
+				//	player.getPacketSender().sendWalkableInterface(42001, true);
 					player.sendParallellInterfaceVisibility(54500, true);
 					player.getPacketSender().sendItemOnInterface(54503, weapon, 1);
 			}
@@ -3885,7 +4901,7 @@ public class Locations {
 			@Override
 			public void leave(Player player) {
 				player.sendParallellInterfaceVisibility(54500, false);
-				player.getPacketSender().sendWalkableInterface(42001, true);
+			//	player.getPacketSender().sendWalkableInterface(42001, true);
 			}
 			
 			@Override
@@ -3957,7 +4973,8 @@ public class Locations {
 					|| x >= 2520 && x <= 2594 && y >= 9800 && y <= 4932 // dragon_zone
 					|| x >= 3080 && x <= 3120 && y >= 5520 && y <= 5550 
 					|| x >= 2941 && x <= 2911 && y >= 2703 && y <= 2746 // vader_zone
-					|| x >= 1901 && x <= 1872 && y >= 5420 && y <= 5394) {
+					|| x >= 1901 && x <= 1872 && y >= 5420 && y <= 5394 // darth maul
+					|| x >= 1979 && x <= 1924 && y >= 4859 && y <= 4804) { // Santa
 				return true;
 			}
 			

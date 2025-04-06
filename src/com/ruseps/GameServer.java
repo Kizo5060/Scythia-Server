@@ -18,14 +18,14 @@ public class GameServer {
 		Runtime.getRuntime().addShutdownHook(new ShutdownHook());
 		try {
 			
-			logger.info("Starting Up Scythia...");
+			logger.info("Starting Up NexArch...");
 			loader.init();
 			loader.finish();
 			/** COMPILE **/
-			logger.info("Scythia is now ONLINE!");
+			logger.info("NexArch is now ONLINE!");
 			
 		} catch (Exception ex) {
-			logger.log(Level.SEVERE, "Could not start Scythia Program terminated.", ex);
+			logger.log(Level.SEVERE, "Could not start NexArch Program terminated.", ex);
 			System.exit(1);
 		}
 	}

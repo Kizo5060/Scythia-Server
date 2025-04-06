@@ -17,6 +17,7 @@ import com.ruseps.util.Misc;
 import com.ruseps.world.World;
 import com.ruseps.world.content.*;
 import com.ruseps.world.content.Sounds.Sound;
+import com.ruseps.world.content.achievements.AchievementData;
 import com.ruseps.world.content.combat.prayer.CurseHandler;
 import com.ruseps.world.content.combat.prayer.PrayerHandler;
 import com.ruseps.world.content.skill.impl.summoning.Familiar;
@@ -78,6 +79,9 @@ public class SkillManager {
          * If the experience in the skill is already greater or equal to
          * {@code MAX_EXPERIENCE} then stop.
          */
+        if (this.skills.experience[skill.ordinal()] >= MAX_EXPERIENCE || this.skills.level[skill.ordinal()] == 150){
+        		player.getAchievementTracker().progress(AchievementData.REACH_MAX_EXP_IN_A_SKILL, 1);
+        	}
         if (this.skills.experience[skill.ordinal()] >= MAX_EXPERIENCE)
         	if(player.getCombatBuilder().isAttacking() == false) {
         		return this;
@@ -89,7 +93,7 @@ public class SkillManager {
         
         player.getGroupIronman().addExperience(experience/256);
         if (WellOfGoodwill.isActive())
-            experience *= 3.0;
+            experience *= 2.0;
         if (player.getGameMode() == GameMode.NORMAL) {
             experience *= 2.0;
         }
@@ -97,7 +101,7 @@ public class SkillManager {
             experience *= 1.0;
         }
         if (player.getGameMode() == GameMode.GROUP_IRONMAN) {
-            experience /= 25.00;
+            experience /= 5.00;
         }
         if (player.getGameMode() == GameMode.HARDCORE_IRONMAN) {
             experience *= 2.0;
@@ -280,6 +284,9 @@ public class SkillManager {
     public static int getPrestigePoints(Player player, Skill skill) {
         float MAX_EXP = (float) MAX_EXPERIENCE;
         float experience = player.getSkillManager().getExperience(skill);
+        if(experience < 0){
+        	experience *= -1;
+        }
         int basePoints = skill.getPrestigePoints();
         double bonusPointsModifier = player.getGameMode() == GameMode.IRONMAN ? 1.3 : player.getGameMode() == GameMode.HARDCORE_IRONMAN ? 1.6 : 1;
         bonusPointsModifier += (experience / MAX_EXP) * 5;

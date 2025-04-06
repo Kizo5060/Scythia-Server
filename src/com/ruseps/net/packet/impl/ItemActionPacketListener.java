@@ -38,6 +38,8 @@ import com.ruseps.world.content.combat.range.DwarfMultiCannon;
 import com.ruseps.world.content.dialogue.DialogueManager;
 import com.ruseps.world.content.goodie_bag.GoodieBagManager;
 import com.ruseps.world.content.instances.CashZone;
+import com.ruseps.world.content.mboxes.MysteryBox;
+import com.ruseps.world.content.mboxes.RubyBox;
 import com.ruseps.world.content.skill.impl.construction.Construction;
 import com.ruseps.world.content.skill.impl.dungeoneering.ItemBinding;
 import com.ruseps.world.content.skill.impl.herblore.Herblore;
@@ -101,6 +103,14 @@ public class ItemActionPacketListener implements PacketListener
 		
 		Location targetLocation = player.getLocation();
 		
+		if(itemId == 2996) 
+		{
+        	player.getBattlePass().unlockBronzePass();
+        }	
+		if(itemId == 4067) 
+		{
+        	player.getBattlePass().unlockGoldPass();
+        }
 		if(interfaceId == 38274) {
 			Construction.handleItemClick(itemId, player);
 			return;
@@ -164,41 +174,70 @@ public class ItemActionPacketListener implements PacketListener
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(10);
-			player.getInventory().delete(18057, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(10);
+				player.getInventory().delete(18057, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
 			break;
 		case 18058:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(15);
-			player.getInventory().delete(18058, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(15);
+				player.getInventory().delete(18058, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
 			break;
 		case 18059:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(25);
-			player.getInventory().delete(18059, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(25);
+				player.getInventory().delete(18059, 1);;
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
 			break;
 		case 18060:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(35);
-			player.getInventory().delete(18060, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(35);
+				player.getInventory().delete(18060, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
 			break;
 		case 19994:
 			int amount1 = player.getInventory().getAmount(19994);
-			 amount1 = 0;
-			for(int i = 0; i < player.getInventory().getAmount(19994); i++) {
-				amount1++;
+			long addedMoney = (long)player.getMoneyInPouch() + (long)amount1;
+			if (addedMoney > (Long.MAX_VALUE/10000)) {
+				long canStore = Long.MAX_VALUE - player.getMoneyInPouch() ;
+				player.getInventory().delete(19994, (int)canStore);
+				player.setMoneyInPouch(player.getMoneyInPouch() + canStore);
+				player.getPacketSender().sendString(8135, ""+player.getMoneyInPouch());
+				player.getPacketSender().sendMessage("You've added "+ canStore + "x10k coins to your money pouch.");
 			}
+			else {
 			player.getInventory().delete(19994,amount1);
-			player.setMoneyInPouch(player.getMoneyInPouch()+(long)1000000*amount1);
+			player.setMoneyInPouch(player.getMoneyInPouch()+(long)100000*amount1);
+			player.getPacketSender().sendString(8135, ""+player.getMoneyInPouch());
+			player.getPacketSender().sendMessage("You've added "+ amount1 + "x10k coins to your money pouch.");
+			}
+			
 			player.getPacketSender().sendString(8135, ""+player.getMoneyInPouch());
 			break;
 		case 18061:
@@ -206,48 +245,84 @@ public class ItemActionPacketListener implements PacketListener
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(45);
-			player.getInventory().delete(18061, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(45);
+				player.getInventory().delete(18061, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
+;
 			break;
 		case 18062:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(55);
-			player.getInventory().delete(18062, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(55);
+				player.getInventory().delete(18062, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
+
 			break;
 		case 18063:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(65);
-			player.getInventory().delete(18063, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(65);
+				player.getInventory().delete(18063, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
+
 			break;
 		case 18064:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(75);
-			player.getInventory().delete(18064, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(75);
+				player.getInventory().delete(18064, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
+
 			break;
 		case 18065:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(85);
-			player.getInventory().delete(18065, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(85);
+				player.getInventory().delete(18065, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
+			
 			break;
 		case 18066:
 			if (!player.getClickDelay().elapsed(3000)) {
 				player.getPacketSender().sendMessage("@blu@<img=10>" + player.getUsername() + " please only claim this every 2 seconds.");
 				return;
 			}
-			player.addDrBoost(100);
-			player.getInventory().delete(18066, 1);
+			if(player.getDrBoost() < 1500) {
+				player.addDrBoost(100);
+				player.getInventory().delete(18066, 1);
+			}
+			else
+				player.sendMessage("@red@You have reached the max DR Boost Cap. You can't claim more scrolls!");
+			
+			
 			break;
 		case 10835:
 			CashZone.enterCashZone(player);
@@ -548,7 +623,7 @@ public class ItemActionPacketListener implements PacketListener
 			player.getInventory().add(1007, 1);
 			player.getInventory().add(11978, 1);
 			break;
-		case 2733: //Valentines package
+		/*case 2733: //Valentines package
 			player.getInventory().delete(2733, 1);
 			player.getInventory().add(2725, 1);
 			player.getInventory().add(2724, 1);
@@ -556,15 +631,15 @@ public class ItemActionPacketListener implements PacketListener
 			player.getInventory().add(2727, 1);
 			player.getInventory().add(2729, 1);
 			player.getInventory().add(2730, 1);
-			break;
+			break;*/
 		case 19671: //Crazy Package
 			player.getInventory().delete(19671, 1);
-			player.getInventory().add(1667, 1);
-			player.getInventory().add(1666, 1);
-			player.getInventory().add(1013, 1);
-			player.getInventory().add(1015, 1);
-			player.getInventory().add(1686, 1);
-			player.getInventory().add(1009, 1);
+			player.getInventory().add(2812, 1); //
+			player.getInventory().add(2818, 1);
+			player.getInventory().add(2814, 1);
+			player.getInventory().add(2816, 1);
+			player.getInventory().add(2815, 1);
+			player.getInventory().add(2817, 1);
 			break;
 		case 8010: //Camelot
 			
@@ -786,7 +861,7 @@ public class ItemActionPacketListener implements PacketListener
 					player.getInventory().delete(7956, 1);
 				}
 			}
-			if (player.getRights() == PlayerRights.PLAYER || player.getRights() == PlayerRights.VETERAN) {
+			if (player.getRights() == PlayerRights.PLAYER || player.getRights() == PlayerRights.YOUTUBER) {
 				player.getInventory().delete(7956, 1);
 			}
 			
@@ -835,13 +910,19 @@ public class ItemActionPacketListener implements PacketListener
 			Gambling.plantSeed(player);
 			break;
 		case 4155:
-			if(player.getSlayer().getSlayerTask() == SlayerTasks.NO_TASK) {
-				player.getPacketSender().sendInterfaceRemoval();
-				player.getPacketSender().sendMessage("Your Enchanted gem will only work if you have a Slayer task.");
-				return;
-			}
-			DialogueManager.start(player, SlayerDialogues.dialogue(player));
-			break;
+		    boolean hasEnchantedGem = player.getInventory().contains(4155); // Check if the player has the enchanted gem
+		    if (!hasEnchantedGem) {
+		        player.getPacketSender().sendInterfaceRemoval();
+		        player.getPacketSender().sendMessage("You need an Enchanted gem to speak with your Slayer master.");
+		        return;
+		    }
+		    if (player.getSlayer().getSlayerTask() == SlayerTasks.NO_TASK) {
+		        DialogueManager.start(player, SlayerDialogues.dialogue(player));
+		    } else {
+		        // Logic for the case when the player has a Slayer task
+		        // You can add the code here to handle the interaction when the player has a Slayer task
+		    }
+		    break;
 		case 11858:
 		case 11860:
 		case 11862:
@@ -910,35 +991,59 @@ public class ItemActionPacketListener implements PacketListener
 		case 13016:
 			player.getPetBox().openInterface();
 			break;
-		
-		case 6199: // Old MBOX
-			int rewards2[][] = {
-					{15501}, //Common, 0
-					{15501}, //Uncommon, 1
-					{15501}  //Rare, 2
-			};
 			
-			double numGen = Math.random();	
-			int rewardGrade = numGen >= 0.5 ? 0 : numGen >= 0.20 ? 1 : 2;
-			rewardPos = RandomUtility.getRandom(rewards2[rewardGrade].length-1);
-			player.getInventory().delete(6199, 1);
-			Random random = new Random();
-			int chance = random.nextInt(2);
-
-			if (chance == 0) 
-			{
-			    player.getInventory().add(rewards2[rewardGrade][rewardPos], 1).refreshItems();
-			    player.sendMessage("You got lucky and upgraded to a LBOX!");
-			} else {
-			    player.getInventory().add(995, 20_000 + Misc.random(30_000));
-			}
+			
+		case 6852: //ruby
+			player.getRubyBox().openInterface();
 			break;
+		case 6854: // diamond
+			player.getDiamondBox().openInterface();
+			break;
+		case 6853:
+			player.getGoldBox().openInterface();
+			break;
+		case 6855:
+			player.getBronzeBox().openInterface();
+			break;
+		case 6856:
+			player.getSilverBox().openInterface();
+			
+			break;
+		
+		case 6199: // Vote Mystery Box
+            int[][] rewards2 = {
+                {915, 19670}, // Uncommon, 0
+                {18057, 19992, 10942, 21013}, // Rare, 1
+                {2752, 13016}, // Epic, 2
+                {10934, 18060,}, // Legendary, 3
+                {21055, 21056} //extra legendary
+            };
+
+            double numGen = Math.random();
+            int rewardGrade;
+            if (numGen < 0.01) {//extra Legendary - 1% chance
+                rewardGrade = 4; 
+            }else if (numGen < 0.05) {
+                rewardGrade = 3; // Legendary - 5% chance
+            } else if (numGen < 0.15) {
+                rewardGrade = 2; // Epic - 10% chance
+            } else if (numGen < 0.35) {
+                rewardGrade = 1; // Rare - 20% chance
+            } else {
+                rewardGrade = 0; // Uncommon - 65% chance
+            }
+            int reward2Pos = RandomUtility.getRandom(rewards2[rewardGrade].length - 1);
+            int rewardItem = rewards2[rewardGrade][reward2Pos];
+            player.getInventory().delete(6199, 1);
+            player.getInventory().add(rewardItem, 1).refreshItems();
+            break;
+		    
 		case 15501:
 			int superiorRewards[][] = {
 					{941, 944, 18852, 18854, 18856, 18858, 18860, 18864, 18868, 20106, 20110, 20112, 20114, 20116}, //Uncommon, 0
 					{20134, 20136, 20138, 20140, 20142, 10502, 14018, 20150, 20154, 20156, 20158, 20160}, //Rare, 1
 					{18900, 18896, 18898, 14460, 14462, 10822, 11208, 10824, 11206, 10826}, //Epic, 2
-					{11005, 11000, 20657} //Legendary, 3
+					{11005, 20657} //Legendary, 3
 			};
 			double superiorNumGen = Math.random();
 			/** Chances
@@ -952,6 +1057,7 @@ public class ItemActionPacketListener implements PacketListener
 			player.getInventory().delete(15501, 1);
 			player.getInventory().add(superiorRewards[superiorRewardGrade][superiorRewardPos], 1).refreshItems();
 			break;
+			
 		case 11882:
 			player.getInventory().delete(11882, 1);
 			player.getInventory().add(2595, 1).refreshItems();
@@ -981,7 +1087,7 @@ public class ItemActionPacketListener implements PacketListener
 			break;
 		case 6:
 			DwarfMultiCannon.setupCannon(player);
-			break;
+			break;			
 		}
 	}
 
@@ -996,6 +1102,8 @@ public class ItemActionPacketListener implements PacketListener
 		if (SummoningData.isPouch(player, itemId, 2))
 			return;
 		switch(itemId) {
+		
+			
 		case 19085:
             int charges = player.getUltBowCharges();
             if (!player.getInventory().contains(19085)) {
@@ -1014,13 +1122,7 @@ public class ItemActionPacketListener implements PacketListener
                 player.getPacketSender().sendMessage("You need an inventory space.");
             }
             break;
-		case 621:
-			player.getInventory().delete(621, 1);
-			player.getPointsHandler().incrementDonationPoints(2);
-			player.getPacketSender().sendMessage("Your account has gained funds worth $1. Your total is now at $"+player.getAmountDonated()+".");
-			player.sendMessage("<img=10>@blu@ " + player.getUsername() + " has just donated $1, Now they have Donated $" + player.getAmountDonated()+".");
-			PlayerPanel.refreshPanel(player);
-			break;
+	
 		case 6500:
 			if(player.getCombatBuilder().isAttacking() || player.getCombatBuilder().isBeingAttacked()) {
 				player.getPacketSender().sendMessage("You cannot configure this right now.");
@@ -1030,6 +1132,92 @@ public class ItemActionPacketListener implements PacketListener
 			DialogueManager.start(player, 101);
 			player.setDialogueActionId(60);
 			break;
+			
+		 
+		case 915: //NexArch Mbox
+			player.getMysteryBox().rewardAll();
+			break;
+			
+		case 21055: //secret Special
+			player.getAuroraBox().rewardAll();
+			break;	
+			
+		case 6852: //ruby
+			player.getRubyBox().rewardAll();
+			break;
+		case 6854: // diamond
+			player.getDiamondBox().rewardAll();
+			break;
+		case 6853:
+			player.getGoldBox().rewardAll();
+			break;
+		case 6855:
+			player.getBronzeBox().rewardAll();
+			break;
+		case 6856:
+			player.getSilverBox().rewardAll();
+			break;
+			
+			
+		case 15501:
+			player.sendMessage("@red@Items will be add to your bank, If your inventory is full.");
+			new Thread(() -> { 
+			while(player.getInventory().contains(15501)) {
+			int superiorRewards[][] = {
+					{941, 944, 18852, 18854, 18856, 18858, 18860, 18864, 18868, 20106, 20110, 20112, 20114, 20116}, //Uncommon, 0
+					{20134, 20136, 20138, 20140, 20142, 10502, 14018, 20150, 20154, 20156, 20158, 20160}, //Rare, 1
+					{18900, 18896, 18898, 14460, 14462, 10822, 11208, 10824, 11206, 10826}, //Epic, 2
+					{11005, 20657} //Legendary, 3
+			};
+			double superiorNumGen = Math.random();
+			/** Chances
+			 *  40% chance of Uncommon Items - various high-end coin-bought gear
+			 *  30% chance of Rare Items - Highest-end coin-bought gear, Some poor voting-point/pk-point equipment
+			 *  20% chance of Epic Items -Better voting-point/pk-point equipment
+			 *  10% chance of Legendary Items - Only top-notch voting-point/pk-point equipment
+			 */
+			int superiorRewardGrade = superiorNumGen >= 0.60 ? 0 : superiorNumGen >= 0.30 ? 1 : superiorNumGen >= 0.10 ? 2 : 3;
+			int superiorRewardPos = RandomUtility.getRandom(superiorRewards[superiorRewardGrade].length-1);
+			player.getInventory().delete(15501, 1);
+			player.addItemToAny(superiorRewards[superiorRewardGrade][superiorRewardPos], 1);
+			}
+			}).start();
+			break;
+		case 621: //1$ Scrolls
+			MemberScrolls.giveWarning(player);
+			player.setScrollAmount(104);
+			player.setScrollNum(player.getInventory().getAmount(621));
+			break;
+		
+			
+		case 10942: // 10$ scrolls
+			MemberScrolls.giveWarning(player);
+			player.setScrollAmount(100);
+			player.setScrollNum(player.getInventory().getAmount(10942));
+			
+			break;
+			
+		case 10934: // 20$ scrolls
+			MemberScrolls.giveWarning(player);
+			player.setScrollAmount(101);
+			player.setScrollNum(player.getInventory().getAmount(10934));
+			
+			break;
+			
+		case 10935: // 50$ scrolls
+			MemberScrolls.giveWarning(player);
+			player.setScrollAmount(102);
+			player.setScrollNum(player.getInventory().getAmount(10935));
+			
+			break;
+			
+		case 10943: // 100$ scrolls
+			MemberScrolls.giveWarning(player);
+			player.setScrollAmount(103);
+			player.setScrollNum(player.getInventory().getAmount(10943));
+			
+			break;
+			
 		case 12926:
 			player.getBlowpipeLoading().handleUnloadBlowpipe();
 			break;
@@ -1060,7 +1248,7 @@ public class ItemActionPacketListener implements PacketListener
 				amount1++;
 			}
 			player.getInventory().delete(19994,amount1);
-			player.setMoneyInPouch(player.getMoneyInPouch()+(long)1000000*amount1);
+			player.setMoneyInPouch(player.getMoneyInPouch()+(long)100000*amount1);
 			player.getPacketSender().sendString(8135, ""+player.getMoneyInPouch());
 			break;
 			
@@ -1126,6 +1314,11 @@ public class ItemActionPacketListener implements PacketListener
 		}
 		switch(itemId) {
 		case 14019:
+
+		case 18338:
+            GoodieBagManager.openAll(player);
+            break;
+		
 		case 14022:
 			player.setCurrentCape(itemId);
 			int[] colors = itemId == 14019 ? player.getMaxCapeColors() : player.getCompCapeColors();

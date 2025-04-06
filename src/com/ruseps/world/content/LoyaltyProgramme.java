@@ -316,7 +316,6 @@ public class LoyaltyProgramme {
 		if(player.getInterfaceId() == 43000) {
 			player.getPacketSender().sendString(43120, "Your Loyalty Points: "+totalPoints);
 		}
-		player.getPacketSender().sendString(39178, "@or2@Loyalty Points: @yel@"+totalPoints);
 		
 	}
 }

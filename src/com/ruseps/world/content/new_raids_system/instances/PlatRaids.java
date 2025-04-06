@@ -47,6 +47,17 @@ public class PlatRaids
             p.getPacketSender().sendMessage("Only the party leader can start the Silver Raid.");
             return;
         }
+        final int MIN_DONATION_AMOUNT = 500; // Replace this with your actual threshold
+
+        // Check if all party members have donated the required amount or have allowed roles
+        for (Player member : party.getPlayers()) {
+            int donatedAmount = member.getAmountDonated(); // Replace with the actual method to get the donated amount
+            if (donatedAmount < MIN_DONATION_AMOUNT) {
+                p.getPacketSender().sendMessage("All party members need to be Plat Members or higher to start the raid.");
+                return;
+            }
+        }
+        
         party.enteredDungeon(true);
         for (Player member : party.getPlayers())
         {
@@ -89,7 +100,7 @@ public class PlatRaids
             @Override
             public void execute() 
             {
-                if (tick == 10) 
+                if (tick == 3) 
                 {
                     startTask(party, height);
              
@@ -98,7 +109,7 @@ public class PlatRaids
                     memberr.getPacketSender().sendCameraNeutrality();
                 }
             }
-                if(tick == 20 ) {
+                if(tick == 10 ) {
                 	 for (NPC npc : World.getNpcs()) 
                      {
                      	if (npc != null && npc.getPosition().getZ() == party.getHeight()) 
@@ -109,7 +120,7 @@ public class PlatRaids
                      }
                 }
                 
-                if(tick == 15) {
+                if(tick == 5) {
                 	p.setRegionInstance(new RegionInstance(p, RegionInstanceType.RAIDS_SIX_PHASE_ONE_INSTANCE));
                 	p.getRegionInstance().spawnNPC(new NPC(RaidsConstants.R6P1_FIRST_NPC_ID, new Position(1756, 3224, height)));
                 }
@@ -161,13 +172,21 @@ public class PlatRaids
 
         if (party.getOwner() != p) 
         {
-            p.getPacketSender().sendMessage("Only the party leader can exit the Silver Raid.");
+            p.getPacketSender().sendMessage("Only the party leader can exit the Plat Raid.");
             return;
         }
         party.enteredDungeon(false);
         
-        	for(Player partyMember : party.getPlayers()) 
-        	{
+        for(Player partyMember : party.getPlayers()) 
+        {
+			partyMember.setRegionInstance(null);
+            
+            if(partyMember.getRights() != PlayerRights.PLATINUM_MEMBER){
+            	partyMember.moveTo(GameSettings.RAIDS_SIX_LOBBY);
+            } else {
+            	  partyMember.moveTo(new Position(3096, 3936 + Misc.getRandom(3), 0));
+            }
+			
     			partyMember.setRegionInstance(null);
     			partyMember.getInventory().add(4015, 1);
     			partyMember.getPacketSender().sendInterfaceRemoval();
@@ -177,7 +196,8 @@ public class PlatRaids
     			partyMember.getPacketSender().sendDungeoneeringTabIcon(false);
     			partyMember.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
     			partyMember.getEquipment().refreshItems();
-    			partyMember.getPacketSender().sendMessage("<img=10>@blu@"+partyMember.getUsername()+" you have received Raids Two Points!");
+    			partyMember.getPointsHandler().incrementRaidsOnePoints(30);
+    			partyMember.getPacketSender().sendMessage("<img=10>@blu@"+partyMember.getUsername()+" you have received Raid Points!");
                 partyMember.getMinigameAttributes().getRaidsAttributes().setKillcount(0);
                 partyMember.getMinigameAttributes().getRaidsAttributes().incrementCompleted();
     			partyMember.getPacketSender().sendMessage("You have completed the Plat Raids and earned yourself and your team a Raids Key! Congrats!");

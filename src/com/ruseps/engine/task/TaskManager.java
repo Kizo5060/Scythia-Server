@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import com.ruseps.engine.task.impl.PlayerSpecialAmountTask;
+
 public final class TaskManager {
 
 	private final static Queue<Task> pendingTasks = new LinkedList<>();
@@ -77,5 +79,10 @@ public final class TaskManager {
 
 	public static int getTaskAmount() {
 		return (pendingTasks.size() + activeTasks.size());
+	}
+
+	public static void submit(PlayerSpecialAmountTask playerSpecialAmountTask) {
+		// TODO Auto-generated method stub
+		
 	}
 }

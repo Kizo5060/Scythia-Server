@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 public class SantaEvent extends GameEvent {
 
     private static final int delay = 1;
-    private static final Position spawnPos = new Position(2835, 3910);
+    private static final Position spawnPos = new Position(2526, 3932);
     private NPC Santa;
-    private int lastHitpointsBroadcasted;
+    private long lastHitpointsBroadcasted;
     private boolean over;
 
     public SantaEvent() {
@@ -33,7 +33,7 @@ public class SantaEvent extends GameEvent {
         Santa = NPC.of(8540, spawnPos);
         World.register(Santa);
         lastHitpointsBroadcasted = Santa.getDefaultConstitution();
-        sendMessage("<col=FFFFCC><shad=1>The Santa Boss Event has begun! Use command ::Santa to Teleport to the Event.");
+        sendMessage("@blu@<shad=1>The Santa Boss Event has begun! Use command ::Santa to Teleport to the Event.");
         return true;
     }
 
@@ -73,7 +73,7 @@ public class SantaEvent extends GameEvent {
             return;
         }
 
-        int currentHitpoints = Santa.getConstitution();
+        long currentHitpoints = Santa.getConstitution();
 
         if (currentHitpoints == lastHitpointsBroadcasted) {
             return;
@@ -90,5 +90,4 @@ public class SantaEvent extends GameEvent {
             lastHitpointsBroadcasted = currentHitpoints;
         }
     }
-
 }*/

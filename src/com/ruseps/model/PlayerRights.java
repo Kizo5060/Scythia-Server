@@ -56,7 +56,7 @@ public enum PlayerRights {
 	/*
 	 * A member who has been with the server for a long time.
 	 */
-	VETERAN(30, "<col=CD661D>", 1, 1),
+	YOUTUBER(30, "<col=CD661D>", 1, 1),
 	
 	/*
 	 * Manager rank for the fucking cunt ass nigger fucks of the server fucking
@@ -64,7 +64,7 @@ public enum PlayerRights {
 	 */
 	RUBY_MEMBER(0, "<col=B40404>", 4, 2.5),
 	DRAGONSTONE_MEMBER(0, "<col=351C75>", 6, 7.5),
-	MANAGER(-1, "<col=FFFF64>", 1, 2),;
+	MANAGER(-1, "<col=FFFF64>", 1, 2), ;
 
 	PlayerRights(int yellDelaySeconds, String yellHexColorPrefix, double loyaltyPointsGainModifier, double experienceGainModifier) {
 		this.yellDelay = yellDelaySeconds;

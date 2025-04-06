@@ -69,10 +69,7 @@ public class PestControl {
 	 * @param p			The player entering
 	 */
 	public static void boardBoat(Player p) {
-		if(p.getSummoning().getFamiliar() != null) {
-			p.getPacketSender().sendMessage("Familiars are not allowed on the boat.");
-			return;
-		}
+
 		if (p.getSkillManager().getCombatLevel() < 30) {
 			p.getPacketSender().sendMessage("You must have a combat level of at least 30 to play this minigame.");
 			return;
@@ -95,60 +92,84 @@ public class PestControl {
 	 * and removes the player from the map.
 	 * @param p			The player leaving
 	 */
+	/**
+	 * Checks if the player is still within the boat area.
+	 * If the player has teleported out, they are unregistered from the waiting list.
+	 */
+	public static void checkPlayerLocation(Player player) {
+	    if (playerMap.containsKey(player) && getState(player).equals(WAITING) && !isInBoat(player)) {
+	        leave(player, true);
+	    }
+	}
+
+	/**
+	 * Checks if the player is in the boat area.
+	 * @param player The player to check.
+	 * @return True if the player is in the boat area, otherwise false.
+	 */
+	private static boolean isInBoat(Player player) {
+	    Position position = player.getPosition();
+	    return position.getX() >= 2657 && position.getX() <= 2663 && position.getY() >= 2637 && position.getY() <= 2643;
+	}
+	
 	public static void leave(Player p, boolean fromList) {
-		final String state = getState(p);
-		if(state != null) {
-			if(fromList) {
-				playerMap.remove(p);
-			}
-			TOTAL_PLAYERS--;
-			if(state == WAITING) {
-				PLAYERS_IN_BOAT--;
-			}
-		}
-		p.getPacketSender().sendInterfaceRemoval();
-		p.getSession().clearMessages();
-		p.moveTo(new Position(2657, 2639, 0));
-		p.getMovementQueue().setLockMovement(false).reset();
+	    final String state = getState(p);
+	    if (state != null) {
+	        if (fromList) {
+	            playerMap.remove(p);
+	        }
+	        TOTAL_PLAYERS--;
+	        if (state.equals(WAITING)) {
+	            PLAYERS_IN_BOAT--;
+	        }
+	    }
+	    p.getPacketSender().sendInterfaceRemoval();
+	    p.getSession().clearMessages();
+	    p.moveTo(new Position(2657, 2639, 0));
+	    p.getMovementQueue().setLockMovement(false).reset();
 	}
 
 	/**
 	 * Handles the static process required.
 	 */
 	public static void sequence() {
-		if(TOTAL_PLAYERS == 0 && !gameRunning)
-			return;
-		updateBoatInterface();
-		if(waitTimer > 0)
-			waitTimer--;
-		if(waitTimer <= 0) {
-			if(!gameRunning)
-				startGame();
-			else {
-				for (Player p : playerMap.keySet()) {
-					if(p == null)
-						continue;
-					String state = getState(p);
-					if(state != null && state.equals(WAITING)) {
-						p.getPacketSender().sendMessage("A new Pest control game will be started once the current one has finished.");
-					}
-				}
-			}
-			waitTimer = WAIT_TIMER;
-		}
-		if(gameRunning) {
-			updateIngameInterface();
-			if(Math.random() < 0.1)
-				spawnRandomNPC();
-			processNPCs();
-			if(knight == null || (knight != null && knight.getConstitution() <= 0)) {
-				endGame(false);
-				waitTimer = WAIT_TIMER;
-			} else if (allPortalsDead()) {
-				endGame(true);
-				waitTimer = WAIT_TIMER;
-			}
-		}
+	    if (TOTAL_PLAYERS == 0 && !gameRunning)
+	        return;
+	    updateBoatInterface();
+	    if (waitTimer > 0)
+	        waitTimer--;
+	    if (waitTimer <= 0) {
+	        if (!gameRunning)
+	            startGame();
+	        else {
+	            for (Player p : playerMap.keySet()) {
+	                if (p == null)
+	                    continue;
+	                String state = getState(p);
+	                if (state != null && state.equals(WAITING)) {
+	                    p.getPacketSender().sendMessage("A new Pest control game will be started once the current one has finished.");
+	                }
+	            }
+	        }
+	        waitTimer = WAIT_TIMER;
+	    }
+	    if (gameRunning) {
+	        updateIngameInterface();
+	        if (Math.random() < 0.1)
+	            spawnRandomNPC();
+	        processNPCs();
+	        if (knight == null || (knight != null && knight.getConstitution() <= 0)) {
+	            endGame(false);
+	            waitTimer = WAIT_TIMER;
+	        } else if (allPortalsDead()) {
+	            endGame(true);
+	            waitTimer = WAIT_TIMER;
+	        }
+	    }
+	    // Check player locations
+	    for (Player p : playerMap.keySet()) {
+	        checkPlayerLocation(p);
+	    }
 	}
 
 	public static String[] KNIGHT_CHAT = {
@@ -244,54 +265,54 @@ public class PestControl {
 			String state = getState(p);
 			if(state != null && state.equals(PLAYING)) {
 				leave(p, false);
-				if (won && p.getMinigameAttributes().getPestControlAttributes().getDamageDealt() >= 50) {
+				if (won && p.getMinigameAttributes().getPestControlAttributes().getDamageDealt() >= 0) {
 					int points = GameLoader.getDay() == GameLoader.TUESDAY ? 54 : 27;
 					p.getPointsHandler().setCommendations(points, true);
 					if(GameLoader.getDay() == GameLoader.TUESDAY) {
 						
 					} else {
-						p.getInventory().add(995, 500000);
+						p.getInventory().add(19994, 20);
 					}
 					p.getPacketSender().sendMessage("The portals were successfully closed. You've been rewarded for your effort.");
-					if (p.getRights() == PlayerRights.PLAYER || p.getRights() == PlayerRights.VETERAN) {
-						p.getPointsHandler().setCommendations(27, true);
-						p.getPacketSender().sendMessage("You've received 27 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
+					if (p.getRights() == PlayerRights.PLAYER) {
+						p.getPointsHandler().setCommendations(10, true);
+						p.getPacketSender().sendMessage("You've received 10 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
 
 					}
 					if (p.getRights() == PlayerRights.BRONZE_MEMBER) {
+						p.getPointsHandler().setCommendations(15, true);
+						p.getPacketSender().sendMessage("You've received 15 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
+
+
+					}
+					if (p.getRights() == PlayerRights.SILVER_MEMBER || p.getRights() == PlayerRights.SUPPORT) {
+						p.getPointsHandler().setCommendations(25, true);
+						p.getPacketSender().sendMessage("You've received 25 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
+
+
+					}
+					if (p.getRights() == PlayerRights.GOLD_MEMBER || p.getRights() == PlayerRights.MODERATOR || p.getRights() == PlayerRights.YOUTUBER) {
+						p.getPointsHandler().setCommendations(30, true);
+						p.getPacketSender().sendMessage("You've received 30 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
+
+
+					}
+					if (p.getRights() == PlayerRights.PLATINUM_MEMBER || p.getRights() == PlayerRights.DIAMOND_MEMBER) {
 						p.getPointsHandler().setCommendations(35, true);
 						p.getPacketSender().sendMessage("You've received 35 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
 
 
 					}
-					if (p.getRights() == PlayerRights.SILVER_MEMBER || p.getRights() == PlayerRights.SUPPORT) {
-						p.getPointsHandler().setCommendations(40, true);
-						p.getPacketSender().sendMessage("You've received 40 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
-
-
-					}
-					if (p.getRights() == PlayerRights.GOLD_MEMBER || p.getRights() == PlayerRights.MODERATOR) {
+					if (p.getRights() == PlayerRights.RUBY_MEMBER || p.getRights() == PlayerRights.DRAGONSTONE_MEMBER || p.getRights() == PlayerRights.OWNER || p.getRights() == PlayerRights.DEVELOPER) {
 						p.getPointsHandler().setCommendations(45, true);
 						p.getPacketSender().sendMessage("You've received 45 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
-
-
-					}
-					if (p.getRights() == PlayerRights.PLATINUM_MEMBER) {
-						p.getPointsHandler().setCommendations(50, true);
-						p.getPacketSender().sendMessage("You've received 50 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
-
-
-					}
-					if (p.getRights() == PlayerRights.DIAMOND_MEMBER || p.getRights() == PlayerRights.RUBY_MEMBER|| p.getRights() == PlayerRights.DEVELOPER) {
-						p.getPointsHandler().setCommendations(60, true);
-						p.getPacketSender().sendMessage("You've received 60 Commendations and "+p.getSkillManager().getCombatLevel() * 50+" coins.");
 
 
 					}
 				
 					
 					p.getPointsHandler().refreshPanel();
-					p.getInventory().add(995, p.getSkillManager().getCombatLevel() * 80);
+					p.getInventory().add(19994, 5);
 					p.restart();
 				} else if (won)
 					p.getPacketSender().sendMessage("You didn't participate enough to receive a reward.");
@@ -332,7 +353,7 @@ public class PestControl {
 	 * Spawns the game's key/main NPC's on to the map
 	 */
 	private static void spawnMainNPCs() {
-		int knightHealth = 3000 - (PLAYERS_IN_BOAT * 14);
+		int knightHealth = 75000000 - (PLAYERS_IN_BOAT * 14);
 		int portalHealth = getDefaultPortalConstitution();
 		knight = spawnPCNPC(3782, new Position(2656,2592), knightHealth); //knight
 		portals[0] = spawnPCNPC(6142, new Position(2628,2591), portalHealth); //purple
@@ -346,7 +367,7 @@ public class PestControl {
 	}
 
 	public static int getDefaultPortalConstitution() {
-		return 1600 + (PLAYERS_IN_BOAT * 190);
+		return 2000000000 + (PLAYERS_IN_BOAT * 750);
 	}
 
 	/**
@@ -654,17 +675,17 @@ public class PestControl {
 			 * Pest control reward interface
 			 */
 			//PC Equipment Tab
-			case 18733:PestControl.buyFromShop(player, true, 11665, 1, 200); return true;//melee helm
-			case 18735:PestControl.buyFromShop(player, true, 11664, 1, 200); return true;//ranger helm
-			case 18741:PestControl.buyFromShop(player, true, 11663, 1, 200); return true;//mage helm
-			case 18734:PestControl.buyFromShop(player, true, 8839, 1, 250); return true;//top
-			case 18737:PestControl.buyFromShop(player, true, 8840, 1, 250); return true;//robes
-			case 18742:PestControl.buyFromShop(player, true, 8842, 1, 150); return true;//gloves
-			case 18740:PestControl.buyFromShop(player, true, 19712, 1, 350); return true;//deflector
-			case 18745:PestControl.buyFromShop(player, true, 19780, 1, 10000); return true;//korasi
+			case 18733:PestControl.buyFromShop(player, true, 11665, 1, 1500); return true;//melee helm
+			case 18735:PestControl.buyFromShop(player, true, 11664, 1, 1500); return true;//ranger helm
+			case 18741:PestControl.buyFromShop(player, true, 11663, 1, 1500); return true;//mage helm
+			case 18734:PestControl.buyFromShop(player, true, 8839, 1, 1750); return true;//top
+			case 18737:PestControl.buyFromShop(player, true, 8840, 1, 1750); return true;//robes
+			case 18742:PestControl.buyFromShop(player, true, 8842, 1, 1000); return true;//gloves
+			case 18740:PestControl.buyFromShop(player, true, 19712, 1, 15000); return true;//deflector
+			case 18745:PestControl.buyFromShop(player, true, 19780, 1, 35000); return true;//korasi
 			//ENCHANCE
-			case 18749:PestControl.buyFromShop(player, true, 19785, 1, 500); return true;//elite top
-			case 18750:PestControl.buyFromShop(player, true, 19786, 1, 500); return true;//elite legs
+			case 18749:PestControl.buyFromShop(player, true, 19785, 1, 2500); return true;//elite top
+			case 18750:PestControl.buyFromShop(player, true, 19786, 1, 2500); return true;//elite legs
 			//INTERFACE
 			case 18743:
 				player.getPacketSender().sendInterface(18746);

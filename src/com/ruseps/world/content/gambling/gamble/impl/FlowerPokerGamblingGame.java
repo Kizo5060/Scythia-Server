@@ -243,7 +243,8 @@ public class FlowerPokerGamblingGame extends GamblingGame {
 			protected void execute() {
 				switch (time) {
 				case 0:
-					player.moveTo(new Position(opponent.getPosition().getX(), opponent.getPosition().getY() + 1));
+					opponent.moveTo(new Position(2921, 2598));
+					player.moveTo(new Position(2921, 2597));
 					break;
 				case 1:
 					player.performAnimation(new Animation(827));

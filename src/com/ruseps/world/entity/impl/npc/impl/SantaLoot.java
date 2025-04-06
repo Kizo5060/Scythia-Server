@@ -1,4 +1,4 @@
-/**package com.ruseps.world.entity.impl.npc.impl;
+package com.ruseps.world.entity.impl.npc.impl;
 
 
 import java.util.ArrayList;
@@ -23,21 +23,21 @@ import com.ruseps.world.entity.impl.GroundItemManager;
 import com.ruseps.world.entity.impl.npc.NPC;
 import com.ruseps.world.entity.impl.player.Player;
 
-/**
- * A class that handles the Wyrm boss.
- * 
- * @author Blake
- *
+
+// * A class that handles the Wyrm boss.
+ //* 
+ //* @author Blake
+// *
  
 public class SantaLoot extends NPC {
 	
 	public static int spawnTime = 10;
 	
-	public static int[] COMMONLOOT = { 6183, 18338, 19994, 1050, 14595, 14603, 14602, 14605   };
-	public static int[] MEDIUMLOOT = { 5090, 5091, 5092, 11658, 14044, 14046, 14045, 14047, 14048 };
-	public static int[] RARELOOT = { 18689, 951, 621 };
-	public static int[] SUPERRARELOOT = { 19888, 11896, 10942 };
-	
+	public static int[] COMMONLOOT = { 6183, 18338, 19994, 19992, 19990, 19888, 11896 };
+	public static int[] MEDIUMLOOT = { 5090, 5091, 5092, 11658, 14044, 14046, 14045, 14047, 14048, 15501 };
+	public static int[] RARELOOT = { 21055, 13016, 621, 10942, 18057, 21056, 6859, 1050, 14595, 14603 };
+	public static int[] SUPERRARELOOT = {18689, 19116, 3527, 14602, 14605, 11651};
+	public static int [][] allLoot = {SUPERRARELOOT,RARELOOT };
 
 	public SantaLoot(Position position) {
 		super(8540, position); 
@@ -54,7 +54,7 @@ public class SantaLoot extends NPC {
 			return;
 		}
 
-		Map<Player, Integer> killers = new HashMap<>();
+		Map<Player, Long> killers = new HashMap<>();
 
 		for (Entry<Player, CombatDamageCache> entry : npc.getCombatBuilder().getDamageMap().entrySet()) {
 
@@ -75,19 +75,18 @@ public class SantaLoot extends NPC {
 			}
 
 			killers.put(player, entry.getValue().getDamage());
-			
 		}
 
 		npc.getCombatBuilder().getDamageMap().clear();
 
-		List<Entry<Player, Integer>> result = sortEntries(killers);
+		List<Entry<Player, Long>> result = sortEntries(killers);
 		
 		int count = 0;
 		
-		for (Entry<Player, Integer> entry : result) {
+		for (Entry<Player, Long> entry : result) {
 
 			Player killer = entry.getKey();
-			int damage = entry.getValue();
+			Long damage = entry.getValue();
 
 			handleDrop(npc, killer, damage);
 
@@ -105,7 +104,10 @@ public class SantaLoot extends NPC {
 		int rare = RARELOOT[Misc.getRandom(RARELOOT.length - 1)];
 		int common = COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)];
 		int medium = MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)]; 
-		
+		player.getDailyTaskManager().submitProgressToIdentifier(21, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(20, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(17, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(16, 1);
 		World.sendMessage("<img=469> <col=dbffba><shad=1>"+player.getUsername()+ " received a loot from the @gre@Mighty Santa!");
 		
 		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
@@ -137,7 +139,7 @@ public class SantaLoot extends NPC {
 		} 
 	}
 
-	private static void handleDrop(NPC npc, Player player, int damage) {
+	private static void handleDrop(NPC npc, Player player, Long damage) {
 		Position pos = npc.getPosition();
 		giveLoot(player, npc, pos);
 	}
@@ -176,4 +178,3 @@ public class SantaLoot extends NPC {
 	}
 	
 }
-*/

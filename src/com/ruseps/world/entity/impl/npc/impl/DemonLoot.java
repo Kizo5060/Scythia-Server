@@ -32,13 +32,13 @@ import com.ruseps.world.entity.impl.player.Player;
  */
 public class DemonLoot extends NPC {
 	
-	public static int spawnTime = 10;
+	public static int spawnTime = 30;
 	
 	public static int[] COMMONLOOT = { 5085, 5086, 5087, 5088, 5089 };
-	public static int[] MEDIUMLOOT = { 18949, 18951, 18952, 18953, 18954, 18955, 18956 };
-	public static int[] RARELOOT = { 2679, 3490, 3491, 3492, 3493, 3494, 18966, 2680, 2812, 2814, 2815, 2816, 2817, 2818 };
-	public static int[] SUPERRARELOOT = { 2677, 2678, 2806, 2807, 2808, 2809, 2810, 2811, 18943, 18947, 18948, 18941, 2703 };
-	
+	public static int[] MEDIUMLOOT = { 18949, 18951, 18952, 18953, 18954, 18955, 18956, 915 };
+	public static int[] RARELOOT = { 2679, 3490, 3491, 3492, 3493, 3494, 18966, 8863, 8864, 8865, 18057, 10942, 915, 10934, 13016, 18958 };
+	public static int[] SUPERRARELOOT = { 2677, 2678, 2806, 2807, 2808, 2809, 2810, 2811, 18943, 18947, 18948, 18941, 2703, 18063, 10935, 21056, 18061, 18961 };
+	public static int [][] allLoot = {RARELOOT, SUPERRARELOOT };
 	/**
 	 * The npc isd.
 	 */
@@ -127,65 +127,75 @@ public class DemonLoot extends NPC {
 	 *            The position.
 	 */
 	public static void giveLoot(Player player, NPC npc, Position pos) {
-		int chance = Misc.getRandom(10000);
+		int chance = Misc.getRandom(100);
 		int superrare = SUPERRARELOOT[Misc.getRandom(SUPERRARELOOT.length - 1)];
 		int rare = RARELOOT[Misc.getRandom(RARELOOT.length - 1)];
 		int common = COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)];
 		int medium = MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)]; 
+		player.getDailyTaskManager().submitProgressToIdentifier(21, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(20, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(17, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(16, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(40, 1);
+		World.sendMessage("<img=469> <col=dbffba><shad=1>"+player.getUsername()+ " received a loot from the @gre@Lava Demon!");
 		
-		
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+	//	GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 		
 		boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
-	
+		if(isWearingCollector) {
+			player.addItemToAny(19990, Misc.inclusiveRandom(10, 25));
+		}else
+			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19990, Misc.inclusiveRandom(10, 25)), pos, player.getUsername(), false, 150, true, 200));
+
+
 		
-		if (chance > 9999) {
-			//super rare
-			if (isWearingCollector)
-			{
-				player.addItemToAny(SUPERRARELOOT[Misc.getRandom(SUPERRARELOOT.length - 1)], 1);
-				player.addItemToAny(RARELOOT[Misc.getRandom(RARELOOT.length - 1)], 1);
-				player.addItemToAny(COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)], 1);
+		if (chance > 99) {
+			// super rare
+			player.getCollectionLogManager().addDrop(npc, new Item(superrare));
+			if (isWearingCollector) {
+				player.addItemToAny(superrare, 1);
 				return;
 			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(superrare), pos, player.getUsername(), false, 150, true, 200));
+			GroundItemManager.spawnGroundItem(player,
+					new GroundItem(new Item(superrare), pos, player.getUsername(), false, 150, true, 200));
 			return;
+		} else {
+			if (chance > 90) {
+				// rare
+				player.getCollectionLogManager().addDrop(npc, new Item(rare));
+				if (isWearingCollector) {
+					player.addItemToAny(rare, 1);
+					return;
+				}
+				GroundItemManager.spawnGroundItem(player,
+						new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
+				return;
+			} else {
+
+				if (chance > 50) {
+					if (isWearingCollector) {
+						player.addItemToAny(medium, 1);
+						return;
+					}
+					// medium
+					GroundItemManager.spawnGroundItem(player,
+							new GroundItem(new Item(medium), pos, player.getUsername(), false, 150, true, 200));
+					return;
+				} else {
+					if (chance >= 0) {
+						// common
+						
+						if (isWearingCollector) {
+							player.addItemToAny(common, 1);
+							return;
+						}
+						GroundItemManager.spawnGroundItem(player,
+								new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
+						return;
+					}
+				}
+			}
 		}
-		
-		if (chance > 9950) {
-			//rare
-			if (isWearingCollector)
-			{
-				player.addItemToAny(RARELOOT[Misc.getRandom(RARELOOT.length - 1)], 1);
-				return;
-			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		}
-		
-		if (chance > 7550) {
-			if (isWearingCollector)
-			{
-				player.addItemToAny(MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)], 1);
-				return;
-			}
-			//medium
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(medium), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		}
-		
-		if (chance >= 0) {
-			//common
-			if (isWearingCollector)
-			{
-				player.addItemToAny(COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)], 1);
-				return;
-			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		} 
 	}
 	
 	/**
@@ -223,7 +233,7 @@ public class DemonLoot extends NPC {
 	public static final void loadDrops() {
 		Map<Integer, NpcDropItem> items = new HashMap<>();
 		
-		items.put(19994, new NpcDropItem(19994, new int[] { 5 }, 0));
+		items.put(19990, new NpcDropItem(19990, new int[] { 10 }, 0));
 		
 		Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
 		Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

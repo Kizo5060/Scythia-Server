@@ -266,7 +266,7 @@ public class Gambling {
 			}
 		}
 		
-		if(player.getAmountDonated() > 19 || player.getRights() == PlayerRights.VETERAN) {
+		if(player.getAmountDonated() > 19 || player.getRights() == PlayerRights.YOUTUBER) {
 			
 		} else {
 			player.getPA().sendMessage("You need to be a donator + to do this!");

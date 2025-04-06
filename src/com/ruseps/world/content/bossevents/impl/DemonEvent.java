@@ -5,7 +5,7 @@ import com.ruseps.world.World;
 import com.ruseps.world.content.bossevents.GameEvent;
 import com.ruseps.world.entity.impl.npc.NPC;
 import com.ruseps.world.entity.impl.npc.impl.DemonLoot;
-
+import com.ruseps.net.packet.impl.CommandPacketListener;
 import java.util.concurrent.TimeUnit;
 
 //so watch.
@@ -19,12 +19,12 @@ public class DemonEvent extends GameEvent {
     /**
      * The delay between the events in hours.
      */
-    private static final int delay = 30;
+    private static final int delay = 3 ;
 
     /**
      * The spawn position for the Madara.
      */
-    private static final Position spawnPos = new Position(2310, 3226);
+    private static final Position spawnPos = new Position(2337, 3209);
     
     /**
      * The Madara NPC.
@@ -45,7 +45,7 @@ public class DemonEvent extends GameEvent {
      * Constructor for the event.
      */
     public DemonEvent() {
-        super("Lava Demon", TimeUnit.MINUTES.toMillis(delay));
+        super("Lava Demon", TimeUnit.HOURS.toMillis(delay));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DemonEvent extends GameEvent {
         DemonEvent = NPC.of(DemonLoot.NPC_ID, spawnPos);
         World.register(DemonEvent);
         lastHitpointsBroadcasted = DemonEvent.getDefaultConstitution();
-        sendMessage("<col=FFFFCC><shad=1>The Lava Demon has begun! Use command ::Lava to Teleport to the Event.");
+        sendMessage("@red@<shad=1>The Lava Demon has begun! Use command ::Lava to Teleport, look South.");
         return true;
     }
 

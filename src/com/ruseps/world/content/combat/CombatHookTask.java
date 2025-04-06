@@ -94,7 +94,7 @@ public class CombatHookTask extends Task {
 				if (player.isSpecialActivated() && player.getCastSpell() == null) {
 					container = player.getCombatSpecial().container(player, builder.getVictim());
 					boolean magicShortbowSpec = player.getCombatSpecial() != null
-							&& player.getCombatSpecial() == CombatSpecial.MAGIC_SHORTBOW;
+							&& player.getCombatSpecial() == CombatSpecial.DRAGON_DAGGER;
 					CombatSpecial.drain(player, player.getCombatSpecial().getDrainAmount());
 
 					Sounds.sendSound(player,

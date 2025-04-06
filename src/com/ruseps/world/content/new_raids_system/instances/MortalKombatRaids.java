@@ -25,6 +25,7 @@ public class MortalKombatRaids
 	
     public static void startRaidsFour(final Player p)
     {
+    	
         final int height = p.getIndex() * 4;
         final RaidsParty party = p.getMinigameAttributes().getRaidsAttributes().getParty();
         	p.getPacketSender().sendInterfaceRemoval();
@@ -44,8 +45,25 @@ public class MortalKombatRaids
         }
         if (party.getOwner() != p) 
         {
-            p.getPacketSender().sendMessage("Only the party leader can start the Silver Raid.");
+            p.getPacketSender().sendMessage("Only the party leader can start the Mortal Kombat Raid.");
             return;
+        }
+        boolean kcFlag = false;
+        if(party.getOwner() == p) {
+        for (Player member : party.getPlayers()){
+        		if(member.getAnimeRaidsOpened() < 125) {
+        			kcFlag = true;
+        			if(member == party.getOwner()) {
+        				member.getPacketSender().sendMessage("You need 125 Anime Raids completion to start MortalKombat Raid");
+        				continue;
+        			}
+        			member.getPacketSender().sendMessage(member.getUsername()+" need 125 Anime Raids completion to start MortalKombat Raid");
+        			p.getPacketSender().sendMessage(member.getUsername()+" need 125 Anime Raids completion to start MortalKombat Raid");
+        		}
+        	}
+        	if(kcFlag) {
+        		return;
+        	}
         }
         party.enteredDungeon(true);
         for (Player member : party.getPlayers())
@@ -265,7 +283,8 @@ public class MortalKombatRaids
     			partyMember.getPacketSender().sendDungeoneeringTabIcon(false);
     			partyMember.getPacketSender().sendTab(GameSettings.ACHIEVEMENT_TAB);
     			partyMember.getEquipment().refreshItems();
-    			partyMember.getPacketSender().sendMessage("<img=10>@blu@"+partyMember.getUsername()+" you have received Raids Two Points!");
+    			partyMember.getPointsHandler().incrementRaidsOnePoints(25);
+    			partyMember.getPacketSender().sendMessage("<img=10>@blu@"+partyMember.getUsername()+" you have received Raid Points!");
                 partyMember.getMinigameAttributes().getRaidsAttributes().setKillcount(0);
                 partyMember.getMinigameAttributes().getRaidsAttributes().incrementCompleted();
     			partyMember.getPacketSender().sendMessage("You have completed the Mortal Kombat Raids and earned yourself and your team a Raids Key! Congrats!");

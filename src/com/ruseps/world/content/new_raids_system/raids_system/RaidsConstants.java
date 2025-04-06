@@ -63,4 +63,12 @@ public class RaidsConstants {
 	public static final int R6P1_FIRST_NPC_ID = 4862;
 	/*----------------------------------------------------*/
 	public static final int R7P1_FIRST_NPC_ID = 1037;
+	
+	/*----------------Dark Demention raid---------------------*/
+	public static final int RDD_P1_ID = 198;
+	public static final int RDD_P2_ID = 199;
+	public static final int RDD_P3_ID = 200;
+	/*----------------Dragonstone raid---------------------*/
+	public static final int RDS_P1_ID = 706;
+	
 }

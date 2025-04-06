@@ -29,10 +29,10 @@ public class TelosLoot extends NPC {
 	public static int spawnTime = 10;
 	
 	public static int[] COMMONLOOT = { 14793 };
-	public static int[] MEDIUMLOOT = { 10822, 11208, 10824, 11206, 10826, 18448, 18950, 18920, 14793, 15501, 6183 };
-	public static int[] RARELOOT = { 11039, 11040, 11041, 11042, 11147, 11148, 11149 };
+	public static int[] MEDIUMLOOT = { 10822, 11208, 10824, 11206, 10826, 18448, 18950, 18920, 14793, 15501, 6183, 915 };
+	public static int[] RARELOOT = { 11039, 11040, 11041, 11042, 11147, 11148, 11149, 10942, 10934, 18057 };
 	public static int[] SUPERRARELOOT = { 19007, 19008, 19009, 19010, 19011, 19013 };
-	
+	public static int [][] allLoot = {RARELOOT, SUPERRARELOOT };
 	/**
 	 * The npc id.
 	 */
@@ -130,60 +130,71 @@ public class TelosLoot extends NPC {
 		int rare = RARELOOT[Misc.getRandom(RARELOOT.length - 1)];
 		int common = COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)];
 		int medium = MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)]; 
-		
+		player.getDailyTaskManager().submitProgressToIdentifier(21, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(20, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(17, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(16, 1);
+		player.getDailyTaskManager().submitProgressToIdentifier(40, 1);
 		World.sendMessage("<img=25> <col=29690e><shad=1>"+player.getUsername()+ " @bla@received a loot from the <col=29690e>Immortal Telos!");
 		
-		GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
+		//GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19994, Misc.inclusiveRandom(5, 10)), pos, player.getUsername(), false, 150, true, 200));
 
 		boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
 		
+		if(isWearingCollector) {
+			player.addItemToAny(19992, Misc.inclusiveRandom(50, 150));
+		}else
+			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(19992, Misc.inclusiveRandom(50, 150)), pos, player.getUsername(), false, 150, true, 200));
+
+
+		
 		if (chance > 99) {
-			//super rare
-			if (isWearingCollector)
-			{
-				player.addItemToAny(SUPERRARELOOT[Misc.getRandom(SUPERRARELOOT.length - 1)], 1);
-				player.addItemToAny(RARELOOT[Misc.getRandom(RARELOOT.length - 1)], 1);
-				player.addItemToAny(COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)], 1);
+			// super rare
+			player.getCollectionLogManager().addDrop(npc, new Item(superrare));
+			if (isWearingCollector) {
+				player.addItemToAny(superrare, 1);
 				return;
 			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(superrare), pos, player.getUsername(), false, 150, true, 200));
+			GroundItemManager.spawnGroundItem(player,
+					new GroundItem(new Item(superrare), pos, player.getUsername(), false, 150, true, 200));
 			return;
+		} else {
+			if (chance > 90) {
+				// rare
+				player.getCollectionLogManager().addDrop(npc, new Item(rare));
+				if (isWearingCollector) {
+					player.addItemToAny(rare, 1);
+					return;
+				}
+				GroundItemManager.spawnGroundItem(player,
+						new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
+				return;
+			} else {
+
+				if (chance > 50) {
+					if (isWearingCollector) {
+						player.addItemToAny(medium, 1);
+						return;
+					}
+					// medium
+					GroundItemManager.spawnGroundItem(player,
+							new GroundItem(new Item(medium), pos, player.getUsername(), false, 150, true, 200));
+					return;
+				} else {
+					if (chance >= 0) {
+						// common
+						
+						if (isWearingCollector) {
+							player.addItemToAny(common, 1);
+							return;
+						}
+						GroundItemManager.spawnGroundItem(player,
+								new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
+						return;
+					}
+				}
+			}
 		}
-		
-		if (chance > 95) {
-			//rare
-			if (isWearingCollector)
-			{
-				player.addItemToAny(RARELOOT[Misc.getRandom(RARELOOT.length - 1)], 1);
-				return;
-			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(rare), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		}
-		
-		if (chance > 50) {
-			if (isWearingCollector)
-			{
-				player.addItemToAny(MEDIUMLOOT[Misc.getRandom(MEDIUMLOOT.length - 1)], 1);
-				return;
-			}
-			//medium
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(medium), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		}
-		
-		if (chance >= 0) {
-			//common
-			if (isWearingCollector)
-			{
-				player.addItemToAny(COMMONLOOT[Misc.getRandom(COMMONLOOT.length - 1)], 1);
-				return;
-			}
-			GroundItemManager.spawnGroundItem(player, new GroundItem(new Item(common), pos, player.getUsername(), false, 150, true, 200));
-			return;
-		} 
 	}
 	
 	/**
@@ -221,7 +232,7 @@ public class TelosLoot extends NPC {
 	public static final void loadDrops() {
 		Map<Integer, NpcDropItem> items = new HashMap<>();
 		
-		items.put(19994, new NpcDropItem(19994, new int[] { 5 }, 0));
+		items.put(19992, new NpcDropItem(19992, new int[] { 50 }, 0));
 		
 		Arrays.stream(COMMONLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 3)));
 		Arrays.stream(MEDIUMLOOT).filter(i -> !items.containsKey(i)).forEach(i -> items.put(i, new NpcDropItem(i, new int[] { 1 }, 5)));

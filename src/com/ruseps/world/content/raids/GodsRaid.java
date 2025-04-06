@@ -71,11 +71,11 @@ public class GodsRaid extends Raid {
                     World.sendMessage(announcement);
                 }
                 reward.setAmount(amount);
-                players[i].sendMessage("you got " + amount + "x " + reward.getDefinition().getName() + " as a reward");
+                players[i].sendMessage("You received " + amount + "x " + reward.getDefinition().getName() + " as a reward");
                 if (reward.getDefinition().isStackable() || players[i].getInventory().getFreeSlots() > amount)
                     players[i].getInventory().add(reward);
                 else {
-                    players[i].sendMessage("reward was added to your bank because you have no inventory spaces");
+                    players[i].sendMessage("Reward was added to your bank because you have no inventory spaces");
                     players[i].getBank(players[i].getCurrentBankTab()).add(reward);
                 }
         }

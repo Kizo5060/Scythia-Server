@@ -12,7 +12,7 @@ public class Gems {
 
 	enum GEM_DATA {
 		
-		OPAL(1625, 1609, 8, 347, new Animation(886)),
+		OPAL(1625, 1609, 1, 347, new Animation(886)),
 		JADE(1627, 1611, 13, 680, new Animation(886)),
 		RED_TOPAZ(1629, 1613, 16, 790, new Animation(887)),
 		SAPPHIRE(1623, 1607, 20, 1200, new Animation(888)),

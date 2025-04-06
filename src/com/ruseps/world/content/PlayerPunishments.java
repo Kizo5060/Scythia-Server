@@ -52,19 +52,19 @@ public class PlayerPunishments {
 			Position pos = null;
 			switch (emptyCell) {
 			case 0:
-				pos = new Position(1905, 4277);
+				pos = new Position(2092, 4429);
 				break;
 			case 1:
-				pos = new Position(1903, 4279);
+				pos = new Position(2092, 4429);
 				break;
 			case 2:
-				pos = new Position(1906, 4276);
+				pos = new Position(2092, 4429);
 				break;
 			case 3:
-				pos = new Position(1906, 4280);
+				pos = new Position(2092, 4429);
 				break;
 			case 4:
-				pos = new Position(1904, 4282);
+				pos = new Position(2092, 4429);
 				break;
 			}
 			p.moveTo(pos);
