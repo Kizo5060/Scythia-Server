@@ -102,7 +102,7 @@ public class CommandPacketListener implements PacketListener {
 
 	public static int config;
 	private static int VOTES;
-	private static final String TEAMGAMES_API_KEY = "0r9sUMZuKE1XveTp9yjGlq0gdQFm4Qyj7Zgl8PnXQnpZT6HGiOE7xrwzXq2AuYPTettthbNA";
+	private static final String TEAMGAMES_API_KEY = "9bYRIZZPCgwir41uACzljrmAkR6DXpmolY1EVyKej2dAVyfhbzTC0gTIssxQDNLvA1dAv5Zu";
 
 	public static String getFormatedTime(GameEvent event) {
 
