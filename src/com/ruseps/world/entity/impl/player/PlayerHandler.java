@@ -120,7 +120,7 @@ public class PlayerHandler
             player.getSkillManager().updateSkill(skill);
         }
 
-        if (player.getSerialNumber().toLowerCase().contains("00-ff-") || player.getSerialNumber()
+   /*     if (player.getSerialNumber().toLowerCase().contains("00-ff-") || player.getSerialNumber()
                 .toLowerCase()
                 .contains("00-1C-") || player.getSuperSerialNumber().contains("20181227165339")) {
             World.sendStaffMessage("<img=483> [SUS ACCOUNT] " + "@red@" + player.getName() + " has logged in with a suspicous marker.");
@@ -128,7 +128,7 @@ public class PlayerHandler
             World.sendStaffMessage("<img=483> [SUS ACCOUNT] " + "@red@" + player.getName() + " has been auto kicked on suspicion of compromised.");
             //player.setAccountCompromised(true);
             player.getPacketSender().sendLogout();
-        }
+        }*/
 
         if (player.getHostAddress() != player.getLastHostAddress() && GameSettings.HIGH_SECURITY) {
             World.sendStaffMessage("<img=483> [ HIGH SECURITY ] @dre@" + player.getName() + " has logged in with a different ip address than usual.");
