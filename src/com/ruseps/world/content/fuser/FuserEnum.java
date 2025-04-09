@@ -47,6 +47,8 @@ public enum FuserEnum {
 			new Item[] { new Item(2572, 1), new Item(10480, 1), new Item(11005, 1), new Item(8788, 10), }),
 	EXTRAHANDS(5, FuserType.MISC, 12437, 100, 15, 10000, -1,
 			new Item[] { new Item(6570, 25), new Item(19992, 25000), new Item(19994, 150000), new Item(8788, 50), }),
+	LAMPQ(6, FuserType.MISC, 18782, 50, 15, 10000, -1,
+			new Item[] {  new Item(19994, 15000), }),
 
 	;
 

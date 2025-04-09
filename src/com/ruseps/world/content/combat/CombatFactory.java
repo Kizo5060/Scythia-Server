@@ -354,17 +354,18 @@ public final class CombatFactory {
      * @return true if the player has arrows equipped.
      */
     public static boolean arrowsEquipped(Player player) {
-        Item item;
-        if ((item = player.getEquipment().get(Equipment.AMMUNITION_SLOT)) == null) {
+        // Bypass for NexArch Beginner Bow — must come FIRST!
+        if (NexArchBeginnerBow(player)) {
+            return true; // Skip arrow check
+        }
+
+        Item item = player.getEquipment().get(Equipment.AMMUNITION_SLOT);
+        if (item == null) {
             return false;
         }
 
-        return !(!item.getDefinition().getName().endsWith("arrow") && !item.getDefinition()
-                .getName()
-                .endsWith(
-                        "arrowp") && !item.getDefinition().getName().endsWith(
-                "arrow(p+)") && !item.getDefinition().getName().endsWith(
-                "arrow(p++)"));
+        String name = item.getDefinition().getName().toLowerCase();
+        return name.endsWith("arrow") || name.endsWith("arrowp") || name.endsWith("arrow(p+)") || name.endsWith("arrow(p++)");
     }
 
     /**

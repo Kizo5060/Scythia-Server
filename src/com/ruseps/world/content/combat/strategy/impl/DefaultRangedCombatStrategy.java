@@ -359,6 +359,9 @@ public class DefaultRangedCombatStrategy implements CombatStrategy {
 	 *            the player to decrement ammo for.
 	 */
 			public static void decrementAmmo(Player player, Position pos) {
+				if (CombatFactory.NexArchBeginnerBow(player)) {
+					return; // ✅ Skip ammo removal for NexArch beginner bow
+				}
 				if (CombatFactory.mortalBow(player)) {
 					return ;
 				}

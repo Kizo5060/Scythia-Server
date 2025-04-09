@@ -524,7 +524,7 @@ public class Tutorial {
 					p.setNewPlayer(false);
 					if(ConnectionHandler.getStarters(p.getHostAddress()) <= GameSettings.MAX_STARTERS_PER_IP) {
 						if(p.getGameMode() != GameMode.NORMAL) {
-							p.getInventory().add(995, 10000).add(1153, 1).add(1115, 1).add(1067, 1).add(20523, 1).add(1191, 1).add(841, 1).add(1063, 1).add(1011, 1).add(1379, 1).add(556, 50).add(558, 50).add(557, 50).add(555, 50).add(1351, 1).add(1265, 1).add(1712, 1).add(11118, 1).add(1007, 1).add(1061, 1).add(330, 100).add(1419, 1);
+							p.getInventory().add(995, 10000).add(1153, 1).add(1115, 1).add(1067, 1).add(18373, 1).add(1191, 1).add(841, 1).add(1063, 1).add(1011, 1).add(1379, 1).add(556, 50).add(558, 50).add(557, 50).add(555, 50).add(1351, 1).add(1265, 1).add(1712, 1).add(11118, 1).add(1007, 1).add(1061, 1).add(330, 100).add(1419, 1);
 						} else {
 							p.getInventory().add(995, 5000000).add(1153, 1).add(1115, 1).add(1067, 1).add(1323, 1).add(1191, 1).add(841, 1).add(1063, 1).add(1011, 1).add(1379, 1).add(556, 1000).add(558, 1000).add(557, 1000).add(555, 1000).add(1351, 1).add(1265, 1).add(1712, 1).add(11118, 1).add(1007, 1).add(1061, 1).add(386, 100).add(1419, 1);
 						}

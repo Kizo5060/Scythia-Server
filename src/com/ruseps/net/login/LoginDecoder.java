@@ -207,9 +207,15 @@ public final class LoginDecoder extends FrameDecoder {
 			}*/
 		//iam pre sure it has nothing to do with login because as of what iknow he was trying to do player owned shops so ibelieve its PlayerLoading
 		}
-		
+		World.getLogoutQueue().removeIf(p -> p != null && p.getUsername().equalsIgnoreCase(player.getUsername()));
+		World.getLoginQueue().removeIf(p -> p != null && p.getUsername().equalsIgnoreCase(player.getUsername()));
 		int response = LoginResponses.getResponse(player, msg);
-		System.out.println(response);
+		System.out.println("Cleared login/logout queue for: " + player.getUsername());
+		Player existing = World.getPlayerByName(player.getUsername());
+		if (existing != null) {
+			System.out.println("Force-removing ghost session for: " + existing.getUsername());
+			World.deregister(existing); // 👈 forcibly removes the old session
+		}
 
 		final boolean newAccount = response == LoginResponses.NEW_ACCOUNT;
 		
