@@ -28,6 +28,7 @@ import com.ruseps.world.World;
 import com.ruseps.world.content.*;
 import com.ruseps.world.content.LoyaltyProgramme.LoyaltyTitles;
 import com.ruseps.net.security.ConnectionHandler;
+import com.ruseps.world.content.achievements.AchievementData;
 import com.ruseps.world.content.newdroptable.DropTableInterface;
 import com.ruseps.world.content.upgrading.UpgradeData;
 import com.ruseps.world.content.bossevents.GameEvent;
@@ -590,6 +591,10 @@ public class CommandPacketListener implements PacketListener {
 						}
 						if (claimed) {
 							player.sendMessage("Thank you for voting!");
+							player.getAchievementTracker().progress(AchievementData.VOTE_ONCE, 1);
+							player.getAchievementTracker().progress(AchievementData.VOTE_10_TIMES, 1);
+							player.getAchievementTracker().progress(AchievementData.VOTE_25_TIMES, 1);
+							player.getAchievementTracker().progress(AchievementData.VOTE_EXPERT, 1);
 						}
 					} catch (Exception e) {
 						System.err.println("Error claiming reward: " + e.getMessage());

@@ -8,11 +8,11 @@ import com.ruseps.world.entity.impl.player.Player;
 
 public enum SlayerMaster {
 	
-	VANNAKA(1, 1597, new Position(3026, 2782)), 
-	DURADEL(50, 8275, new Position(3026, 2782)),
-	KURADEL(80, 9085, new Position(3026, 2782)),
-	SUMONA(92, 7780, new Position(3026, 2782)),
-	CHAELDAR(130, 1598, new Position(3026, 2782)),
+	VANNAKA(1, 1597, new Position(2968, 3207)),
+	DURADEL(50, 8275, new Position(2968, 3207)),
+	KURADEL(80, 9085, new Position(2968, 3207)),
+	SUMONA(92, 7780, new Position(2968, 3207)),
+	CHAELDAR(130, 1598, new Position(2968, 3207)),
 	;
 	
 	private SlayerMaster(int slayerReq, int npcId, Position telePosition) {
