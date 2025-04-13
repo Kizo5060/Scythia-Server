@@ -16,7 +16,7 @@ public class GameSettings {
 	public static final Set<String> CHECKED_IPS = new HashSet<>(Arrays.asList());
 	public static final String[] CLIENT_HASH = { "d41d8cd98f00b204e9800998ecf8427e" };
 	public static boolean DZONEON = false;
-	public static final int GAME_PORT = 43594;
+	public static final int GAME_PORT = 43595;
 	public static final int GAME_VERSION = 14;
 	public static final int LOGIN_THRESHOLD = 15;
 	public static final int LOGOUT_THRESHOLD = 25;
