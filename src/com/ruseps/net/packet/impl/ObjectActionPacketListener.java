@@ -411,6 +411,9 @@ public class ObjectActionPacketListener implements PacketListener {
 						int[] rare = new int[] { 6828, 2858, 2869, 2859, 13024, 13025, 3526, 3525, 13327, 1002, 13029, 8467, 8465, 18058 };
 						
 							player.getChestViewer().display(6759, " 1", common, uncommon, rare);
+						// ✅ BattlePass XP reward
+						player.getBattlePass().addExperience(500);
+						player.sendMessage("@blu@You gained 2,000 BattlePass XP from the Slayer Chest!");
 					} else {
 							player.getPacketSender().sendMessage("@blu@You need a Slayer Key to open this chest");
 					}

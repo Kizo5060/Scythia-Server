@@ -41,7 +41,7 @@ public enum DailyTask {
     COMPLETE_30_HSLAYER_TASKS(33,"Complete 30 Hard Slayer Tasks", new Item[] {new Item(14471, 30)}, 30, DailyTaskDifficulty.MEDIUM, new Position(2553, 3717)),
     COMPLETE_20_ESLAYER_TASKS(34,"Complete 20 Elite Slayer Tasks", new Item[] {new Item(14471, 25)}, 20, DailyTaskDifficulty.MEDIUM, new Position(1740, 5236)),
     COMPLETE_20_SILVER_RAIDS(12,"Complete 20 Silver Raids", new Item[] {new Item(18872, 10)}, 20, DailyTaskDifficulty.MEDIUM, new Position(2553, 3717)),
-    COMPLETE_25_SILVER_RAIDS(13,"Complete 20 Silver Raids", new Item[] {new Item(18872, 10)}, 25, DailyTaskDifficulty.MEDIUM, new Position(2553, 3717)),
+    COMPLETE_25_SILVER_RAIDS(13,"Complete 25 Silver Raids", new Item[] {new Item(18872, 10)}, 25, DailyTaskDifficulty.MEDIUM, new Position(2553, 3717)),
     COMPLETE_10_MK_RAIDS(43,"Complete 10 Mortal Kombat Raids", new Item[] {new Item(2752, 10)}, 10, DailyTaskDifficulty.MEDIUM),
     COMPLETE_10_DD_RAIDS(44,"Complete 10 Dark Dimension Raids", new Item[] {new Item(13234, 10)}, 10, DailyTaskDifficulty.MEDIUM),
     

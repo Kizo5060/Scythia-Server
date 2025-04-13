@@ -878,7 +878,14 @@ public class DropUtils {
         }
 		return totalBonus;
 	}
-	
+	public static boolean isWearingCollector(Player player) {
+		for (int itemId : COLLITEMS) {
+			if (player.getEquipment().contains(itemId)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public static boolean hasCollItemEquipped(Player player) {
 		for(int itemId : COLLITEMS)
 			if(player.getEquipment().contains(itemId))

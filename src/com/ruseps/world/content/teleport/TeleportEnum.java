@@ -77,7 +77,7 @@ public enum TeleportEnum
     
     
     
-	BARBARAN_VILLAGE(2253, 6,"Barbarian Villiage", new Position(3083,3423),"@or1@Barbarian Villige");
+	BARBARAN_VILLAGE(3334, 6,"Wildy Wirm", new Position(3566,3319),"@or1HARD");
 	
     private TeleportEnum(int npcId, int id, String teleportName, Position position, String difficulty){
         this.npcId = npcId;

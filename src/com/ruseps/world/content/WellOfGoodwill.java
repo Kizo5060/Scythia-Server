@@ -20,7 +20,7 @@ public class WellOfGoodwill {
 
 	private static final int AMOUNT_NEEDED = 1000000000; //1b
 	private static final int LEAST_DONATE_AMOUNT_ACCEPTED = 10000000; //10m 
-	private static final int BONUSES_DURATION = 60; //hours in minutes
+	private static final int BONUSES_DURATION = 120; //hours in minutes
 
 	private static CopyOnWriteArrayList<Player> DONATORS = new CopyOnWriteArrayList<Player>();
 	private static WellState STATE = WellState.EMPTY;

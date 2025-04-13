@@ -26,13 +26,13 @@ public class Raichu
             	{
             		World.sendMessage("@blu@<img=10>[Vote Boss]: Pinata will begin in 30 seconds!");
             	}
-                if(tick >= 100)
-                {
-                    NPC n = new NPC(4340, new Position(p.getPosition().getX(), p.getPosition().getY() - 2, p.getPosition().getZ()));
-                    p.getRegionInstance().spawnNPC(new NPC(4340, new Position(2897, 3230, 0)));
-                    World.sendMessage("@blu@<img=10>[Vote Boss]: Pinata has just Respawned");
-                    n.getCombatBuilder().attack(p);
-                    n.performGraphic(new Graphic(2009));
+                if (tick >= 100) {
+                    Position spawn = new Position(2897, 3230, 0);
+                    NPC pinata = new NPC(4340, spawn);
+                    World.register(pinata);
+
+                    World.sendMessage("@red@<img=10>[Vote Boss]: @bla@Use ::voteboss @red@to fight!");
+                    pinata.performGraphic(new Graphic(2009));
                     stop();
                 }
                 

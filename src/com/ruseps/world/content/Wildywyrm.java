@@ -44,9 +44,9 @@ public class Wildywyrm extends NPC {
 	 * 
 	 */
 	public static final WildywyrmLocation[] LOCATIONS = {
-			new WildywyrmLocation(2652, 2654, 0, "Pest Control"),
-			new WildywyrmLocation(2448, 5169, 0, "Tzhaar Dungeon"),
-			new WildywyrmLocation(3560, 3098, 0, "Spawned Events"),
+			new WildywyrmLocation(3566, 3319, 0, "Barrows"),
+			new WildywyrmLocation(3566, 3319, 0, "Barrows"),
+			new WildywyrmLocation(3566, 3319, 0, "Barrows"),
 			new WildywyrmLocation(3566, 3319, 0, "Barrows")
 	};
 	

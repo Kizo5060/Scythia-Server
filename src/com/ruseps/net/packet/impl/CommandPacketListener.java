@@ -104,7 +104,8 @@ public class CommandPacketListener implements PacketListener {
 	public static int config;
 	private static int VOTES;
 	private static final String TEAMGAMES_API_KEY = "9bYRIZZPCgwir41uACzljrmAkR6DXpmolY1EVyKej2dAVyfhbzTC0gTIssxQDNLvA1dAv5Zu";
-
+	private static int TOTAL_VOTES = 0;
+	private static int NEXT_VOTE_BOSS_THRESHOLD = 25 + Misc.getRandom(5);
 	public static String getFormatedTime(GameEvent event) {
 
 		long timeLeft = event.getLastEventInstant() + event.getDelayBetweenEvents() - System.currentTimeMillis();
@@ -590,11 +591,19 @@ public class CommandPacketListener implements PacketListener {
 							player.getInventory().add(new Item(rewards[i].getRewardId(), rewards[i].getGiveAmount()));
 						}
 						if (claimed) {
+							TOTAL_VOTES++;
+							if (TOTAL_VOTES >= NEXT_VOTE_BOSS_THRESHOLD) {
+								TOTAL_VOTES = 0;
+								NEXT_VOTE_BOSS_THRESHOLD = 25 + Misc.getRandom(5); // Reset with a new random threshold
+
+								for (int i = 0; i < 5; i++) {
+									World.sendMessage("@red@<img=10>[Vote Boss]: @dre@The Pinata has spawned globally! Use @or1@::voteboss@dre@ to fight!");
+								}
+								Raichu.startRaichuEvent(player); // Or null if you want it to be truly global
+							}
 							player.sendMessage("Thank you for voting!");
 							player.getAchievementTracker().progress(AchievementData.VOTE_ONCE, 1);
-							player.getAchievementTracker().progress(AchievementData.VOTE_10_TIMES, 1);
-							player.getAchievementTracker().progress(AchievementData.VOTE_25_TIMES, 1);
-							player.getAchievementTracker().progress(AchievementData.VOTE_EXPERT, 1);
+
 						}
 					} catch (Exception e) {
 						System.err.println("Error claiming reward: " + e.getMessage());
@@ -789,6 +798,9 @@ public class CommandPacketListener implements PacketListener {
 		}
 		if (command[0].equalsIgnoreCase("junk")) {
 			ShopManager.getShops().get(12).open(player);
+		}
+		if (command[0].equalsIgnoreCase("seller")) {
+			ShopManager.getShops().get(45).open(player);
 		}
 		if (command[0].equals("tree")) {
 			player.getPacketSender().sendMessage("<img=4> <shad=1><col=FF9933> The Evil Tree has sprouted at: "
@@ -2435,6 +2447,16 @@ public class CommandPacketListener implements PacketListener {
 
 		if (command[0].equalsIgnoreCase("coords")) {
 			player.sendMessage(player.getPosition().toString());
+		}
+		if (command[0].equalsIgnoreCase("forcepinata")) {
+			if (player.getRights().isStaff() || player.getRights().name().contains("DEVELOPER")) {
+				Raichu.startRaichuEvent(player);
+				for (int i = 0; i < 5; i++) {
+					World.sendMessage("<img=10><col=ff0000><shad=1>[Vote Boss]: @dre@The Pinata has spawned globally! Use @bla@::voteboss@dre@ to fight!");
+				}
+			} else {
+				player.sendMessage("@red@You don’t have permission to use this command.");
+			}
 		}
 
 		if (command[0].equalsIgnoreCase("doublevoteon")) {

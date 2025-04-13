@@ -708,8 +708,8 @@ public class Shop extends ItemContainer {
 	}
 
 	public static boolean shopBuysItem(int shopId, Item item) {
-		if (shopId == GENERAL_STORE)
-			return true;
+		if (shopId == GENERAL_STORE || shopId == GENERAL_STORE_2)
+					return true;
 		if (shopId == DUNGEONEERING_STORE || shopId == BOSS_POINT_STORE || shopId == TRIVIA_STORE || shopId == RAIDS1 || shopId == PLATEMINI
 				|| shopId == DIAMONDMINI
 				|| shopId == DONATOR_STORE_1 || shopId == DONATOR_STORE_2 || shopId == DONATOR_STORE_3|| shopId == PKING_REWARDS_STORE
@@ -1510,6 +1510,8 @@ public class Shop extends ItemContainer {
 	public static final int TRIVIA_STORE = 50;
 
 	public static final int GENERAL_STORE = 12;
+	public static final int GENERAL_STORE_2 = 45;
+
 	public static final int RECIPE_FOR_DISASTER_STORE = 36;
 	public static final int POTIONS = 6;
 

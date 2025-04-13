@@ -354,18 +354,17 @@ public final class CombatFactory {
      * @return true if the player has arrows equipped.
      */
     public static boolean arrowsEquipped(Player player) {
-        // Bypass for NexArch Beginner Bow — must come FIRST!
-        if (NexArchBeginnerBow(player)) {
-            return true; // Skip arrow check
-        }
-
-        Item item = player.getEquipment().get(Equipment.AMMUNITION_SLOT);
-        if (item == null) {
+        Item item;
+        if ((item = player.getEquipment().get(Equipment.AMMUNITION_SLOT)) == null) {
             return false;
         }
 
-        String name = item.getDefinition().getName().toLowerCase();
-        return name.endsWith("arrow") || name.endsWith("arrowp") || name.endsWith("arrow(p+)") || name.endsWith("arrow(p++)");
+        return !(!item.getDefinition().getName().endsWith("arrow") && !item.getDefinition()
+                .getName()
+                .endsWith(
+                        "arrowp") && !item.getDefinition().getName().endsWith(
+                "arrow(p+)") && !item.getDefinition().getName().endsWith(
+                "arrow(p++)"));
     }
 
     /**
@@ -588,35 +587,56 @@ public final class CombatFactory {
             int chance = RandomUtility.inclusiveRandom(100);
             CombatIcon icon = getIcon(type);
             if (difference == 0 && chance > 50) {
-             //   System.out.println("Dodged1");
                 return new Hit(RandomUtility.inclusiveRandom(0, 20), Hitmask.RED, icon);
             }
 
             if(playerTier > npcTier) {
                 int dodgeChance = 25 + (25 * difference);
                 if(dodgeChance >= 100) {
-                  //  System.out.println("Dodged2");
                     return new Hit(0, Hitmask.RED, icon);
                 }
 
                 if(dodgeChance > RandomUtility.inclusiveRandom(100)) {
-                 //   System.out.println("Dodged3");
                     return new Hit(0, Hitmask.RED, icon);
                 }
             }
         }
 
-       // System.out.println("Didn't dodge");
+
 
         switch (type) {
-            case MELEE:
-                return new Hit(RandomUtility.inclusiveRandom(1, /*CombatFactory.calculateMaxMeleeHit(entity, victim)*/ DesolaceFormulas.calculateMaxMeleeHit(entity, victim)), Hitmask.RED, CombatIcon.MELEE);
-            case RANGED:
-                return new Hit(10 * RandomUtility.inclusiveRandom(1, CombatFactory.calculateMaxRangedHit(entity, victim)), Hitmask.RED, CombatIcon.RANGED);
-            case MAGIC:
-                return new Hit(RandomUtility.inclusiveRandom(1, DesolaceFormulas.getMagicMaxhit(entity)), Hitmask.RED, CombatIcon.MAGIC);
-            case DRAGON_FIRE:
-                return new Hit(RandomUtility.inclusiveRandom(0, CombatFactory.calculateMaxDragonFireHit(entity, victim)), Hitmask.RED, CombatIcon.MAGIC);
+            case MELEE: {
+                int damage = RandomUtility.inclusiveRandom(1, DesolaceFormulas.calculateMaxMeleeHit(entity, victim));
+                if (entity.isPlayer() && com.ruseps.world.content.WellOfGoodwill.isActive()) {
+                    damage *= 1.5;
+                }
+                return new Hit(damage, Hitmask.RED, CombatIcon.MELEE);
+            }
+
+            case RANGED: {
+                int damage = 10 * RandomUtility.inclusiveRandom(1, CombatFactory.calculateMaxRangedHit(entity, victim));
+                if (entity.isPlayer() && com.ruseps.world.content.WellOfGoodwill.isActive()) {
+                    damage *= 1.5;
+                }
+                return new Hit(damage, Hitmask.RED, CombatIcon.RANGED);
+            }
+
+            case MAGIC: {
+                int damage = RandomUtility.inclusiveRandom(1, DesolaceFormulas.getMagicMaxhit(entity));
+                if (entity.isPlayer() && com.ruseps.world.content.WellOfGoodwill.isActive()) {
+                    damage *= 1.5;
+                }
+                return new Hit(damage, Hitmask.RED, CombatIcon.MAGIC);
+            }
+
+            case DRAGON_FIRE: {
+                int damage = RandomUtility.inclusiveRandom(0, CombatFactory.calculateMaxDragonFireHit(entity, victim));
+                if (entity.isPlayer() && com.ruseps.world.content.WellOfGoodwill.isActive()) {
+                    damage *= 1.5;
+                }
+                return new Hit(damage, Hitmask.RED, CombatIcon.MAGIC);
+            }
+
             default:
                 throw new IllegalArgumentException("Invalid combat type: " + type);
         }

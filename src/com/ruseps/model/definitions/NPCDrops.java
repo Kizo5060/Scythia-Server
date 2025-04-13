@@ -304,7 +304,7 @@ public class NPCDrops {
             .getZ() < 4) {
 
         }
-		
+
         if (npc.getDefaultConstitution() > 10000) {
             System.out.println("DROPPING");
             dropScratchcard(p, p.getPosition());
@@ -313,7 +313,11 @@ public class NPCDrops {
         if(p.getSlayer().getSlayerTask().getNpcId() == npc.getId()) {
         	dropSlayerKey(p,p.getPosition());
         }
-
+        int id = npc.getId();
+        if (id == 466 || id == 4867 || id == 29 || id == 3168 || id == 6820 || id == 7286 || id == 1416 || id == 16118 || id == 16119 || id == 16120) {
+            p.getBattlePass().addExperience(5000); // Adjust XP value as needed
+            p.sendMessage("@blu@You received 5000 BattlePass XP for killing a global boss.");
+        }
         rollDropTable(false, p, drops.getDropList().clone(), npc, npcPos, goGlobal);
     }
 
@@ -405,7 +409,20 @@ public class NPCDrops {
         int itemId = item.getId();
         int amount = item.getAmount();
         Player toGive = player;
+// ✅ FORCE Pokémon Raid drops into inventory (Z=4, bounds)
+        if (player.getPosition().getZ() == 4 &&
+                player.getPosition().getX() >= 3025 && player.getPosition().getX() <= 3055 &&
+                player.getPosition().getY() >= 2890 && player.getPosition().getY() <= 2940) {
 
+            if (player.getInventory().getFreeSlots() < 1 && !item.getDefinition().isNoted()) {
+                player.getBank(0).add(item);
+                player.sendMessage("@red@[RAID] Drop went to bank: " + item.getAmount() + "x " + item.getDefinition().getName());
+            } else {
+                player.getInventory().add(item);
+                player.sendMessage("@blu@[RAID] You received: " + item.getAmount() + "x " + item.getDefinition().getName());
+            }
+            return;
+        }
         if (player.getInventory().contains(18337) && BonesData.forId(item.getId()) != null) {
             player.getPacketSender().sendGlobalGraphic(new Graphic(777), pos);
             player.getSkillManager()
@@ -420,7 +437,19 @@ public class NPCDrops {
                 return;
             }
         }
-        boolean isWearingCollector = DropUtils.hasCollItemEquipped(player);
+        boolean isWearingCollector = DropUtils.isWearingCollector(player);
+        if (isWearingCollector && !player.getBlockedCollectorsList().contains(item.getId())) {
+            if (player.getInventory().getFreeSlots() < 1 && !item.getDefinition().isNoted()) {
+                player.getBank(0).add(item);
+                player.sendMessage("@red@Your collector sent: " + item.getAmount() + "x " + item.getDefinition().getName() + " to your bank.");
+            } else {
+                player.getInventory().add(item);
+                player.sendMessage("@blu@Your collector picked up: " + item.getAmount() + "x " + item.getDefinition().getName());
+            }
+            return;
+        }
+
+
         //boolean isWearingCollectorPet = hasCollPetSummoned(player);
         int itemIdd = item.getId();
         int amountt = item.getAmount();
@@ -545,6 +574,7 @@ public class NPCDrops {
             GroundItemManager.spawnGroundItem(player,
                     new GroundItem(new Item(915), pos, player.getUsername(), false, 150, true, 200));
         }
+
     }
     
     private static void dropInstanceToken(Player player, Position pos) {
@@ -553,6 +583,7 @@ public class NPCDrops {
         if (chance <= 49) {
             return;
         }
+
         if(isWearingCollector) {
         	player.addItemToAny(19990, 1);
         }else

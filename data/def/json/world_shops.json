@@ -3128,7 +3128,7 @@
   },
 	{
        "id": 26,
-       "name": "Pk Points Store",
+       "name": "Evil tree shop",
        "items": [
 		{
           "id": 19111,
@@ -3270,7 +3270,7 @@
           "amount": 500000
         }
 	   ],
-       "currency": -1
+       "currency": 14666
     },
 	{
        "id": 27,
@@ -4652,109 +4652,13 @@
 	   ],
 	   "currency": -1
 	},
-	{
-       "id": 45,
-       "name": "Smuggler's Items",
-       "items": [
-		{
-          "id": 1351,
-          "amount": 500000
-        },
-		{
-          "id": 1511,
-          "amount": 500000
-        },
-		{
-          "id": 590,
-          "amount": 500000
-        },
-		{
-          "id": 17797,
-          "amount": 500000
-        },
-		{
-          "id": 17799,
-          "amount": 500000
-        },
-		{
-          "id": 17801,
-          "amount": 500000
-        },
-		{
-          "id": 17803,
-          "amount": 500000
-        },
-		{
-          "id": 17805,
-          "amount": 500000
-        },
-		{
-          "id": 17807,
-          "amount": 500000
-        },
-		{
-          "id": 17809,
-          "amount": 500000
-        },
-		{
-          "id": 17811,
-          "amount": 500000
-        },
-		{
-          "id": 17813,
-          "amount": 500000
-        },
-		{
-          "id": 157,
-          "amount": 500000
-        },
-		{
-          "id": 145,
-          "amount": 500000
-        },
-		{
-          "id": 163,
-          "amount": 500000
-        },
-		{
-          "id": 169,
-          "amount": 500000
-        },
-		{
-          "id": 3042,
-          "amount": 500000
-        },
-		{
-          "id": 139,
-          "amount": 500000
-        },
-		{
-          "id": 1331,
-          "amount": 500000
-        },
-		{
-          "id": 857,
-          "amount": 500000
-        },
-		{
-          "id": 890,
-          "amount": 500000
-        },
-		{
-          "id": 1383,
-          "amount": 500000
-        },
-		{
-          "id": 556,
-          "amount": 500000
-        },
-		{
-          "id": 558,
-          "amount": 500000
-        }
-	   ],
-	   "currency": 18201
-	},
+  {
+    "id": 45,
+    "name": "NexArch Seller",
+    "currency": 19994,
+    "items": [],
+    "sellable": true
+  },
 	{
        "id": 46,
        "name": "Prestige Points Store",

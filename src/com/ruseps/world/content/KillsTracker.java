@@ -17,28 +17,27 @@ public class KillsTracker {
 	public static void reset(Player player, final int npcId, boolean boss) {
 		entryForID(player, npcId, boss).setAmount(0);
 	}
-	
-	public static void submitById(Player player, int npcId, boolean runningTotal, boolean boss) {
-	    KillsEntry entry = entryForID(player, npcId, boss);
-	    int X2_KC_PET = 10001; //669;
 
-	    if (runningTotal) {
-	        if (player.getSummoning() != null && player.getSummoning().getFamiliar() != null
-	                && player.getSummoning().getFamiliar().getSummonNpc().getId() ==
-	                (X2_KC_PET)) {
-	            entry.setRunningTotal(entry.getRunningTotal() + 2);
-	        } else {
-	            entry.setRunningTotal(entry.getRunningTotal() + 1);
-	        }
-	    } else {
-	        if (player.getSummoning() != null && player.getSummoning().getFamiliar() != null
-	                && player.getSummoning().getFamiliar().getSummonNpc().getId() ==
-	                (X2_KC_PET)) {
-	            entry.setAmount(entry.getAmount() + 2);
-	        } else {
-	            entry.setAmount(entry.getAmount() + 1);
-	        }
-	    }
+	public static void submitById(Player player, int npcId, boolean runningTotal, boolean boss) {
+		KillsEntry entry = entryForID(player, npcId, boss);
+		int X2_KC_PET = 10001;
+		System.out.println("[DEBUG] KC Called: npc=" + npcId +
+				" | runTotal=" + runningTotal +
+				" | boss=" + boss +
+				" | by=" + Thread.currentThread().getStackTrace()[2]);
+		boolean hasX2Pet = player.getSummoning() != null &&
+				player.getSummoning().getFamiliar() != null &&
+				player.getSummoning().getFamiliar().getSummonNpc().getId() == X2_KC_PET;
+
+		boolean isWellActive = com.ruseps.world.content.WellOfGoodwill.isActive();
+
+		int kcAmount = (hasX2Pet || isWellActive) ? 2 : 1;
+
+		if (runningTotal) {
+			entry.setRunningTotal(entry.getRunningTotal() + kcAmount);
+		} else {
+			entry.setAmount(entry.getAmount() + kcAmount);
+		}
 	}
 
 	public static void submit(Player player, KillsEntry kill) {

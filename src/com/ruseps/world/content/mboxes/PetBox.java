@@ -95,6 +95,8 @@ public class PetBox
 	        	tier = all[6]; // Legendary (5% probability)
 	        }
         int PRIZE_ID = tier[Misc.random(tier.length -1)];
+        plr.getBattlePass().addExperience(1000); // Adjust amount as needed
+        plr.sendMessage("@blu@You gained 1,000 BattlePass XP from the box!");
 
         //final int PRIZE_ID = 1040; // TODO: Add box prize logic here, use mysteryPrizeTier too (0-6) for different coloured reward text
         mysteryPrize = PRIZE_ID; // For rewards handling

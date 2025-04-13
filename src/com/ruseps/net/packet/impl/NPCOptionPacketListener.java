@@ -390,6 +390,9 @@ public class NPCOptionPacketListener implements PacketListener {
 				case 4906:
 					ShopManager.getShops().get(14).open(player);
 					break;
+					case 2233:
+						ShopManager.getShops().get(26).open(player);
+						break;
 				case 520:
 				case 521:
 					ShopManager.getShops().get(12).open(player);

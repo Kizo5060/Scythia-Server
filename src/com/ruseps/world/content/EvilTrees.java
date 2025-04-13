@@ -52,11 +52,11 @@ public class EvilTrees {
  */
 	public static enum LocationData {
 
-		LOCATION_1(new Position(3093, 3528), "In the wilderness (Level 1)", "Wilderness"), 
-		LOCATION_2(new Position(2470, 5166), "Somewhere in the Tzhaar-Dungeon", "TzHaar dungeon"),
-		LOCATION_3(new Position(2928, 3453), "Close to a lot of trees", "Woodcutting"), 
-		LOCATION_4(new Position(3082, 3416), "Near a bunch of Barberians", "Barberian Villiage"), 
-		LOCATION_5(new Position(3043, 2767), "Near Home", "Home"), ;
+		LOCATION_1(new Position(2016, 4635), "In the wilderness (Level 1)", "Wilderness"),
+		LOCATION_2(new Position(2016, 4635), "Somewhere in the Tzhaar-Dungeon", "TzHaar dungeon"),
+		LOCATION_3(new Position(2016, 4635), "Close to a lot of trees", "Woodcutting"),
+		LOCATION_4(new Position(2016, 4635), "Near a bunch of Barberians", "Barberian Villiage"),
+		LOCATION_5(new Position(2016, 4635), "Near Home", "Home"), ;
 
 		private LocationData(Position spawnPos, String clue, String playerPanelFrame) {
 			this.spawnPos = spawnPos;

@@ -273927,14 +273927,14 @@ Noted: false
 Double-handed: false
 Equipment type: WEAPON
 Is Weapon: true
-Bonus[3]: 92750.0
-Bonus[5]: 40000.0
-Bonus[6]: 40000.0
-Bonus[7]: 40000.0
-Bonus[8]: 40000.0
-Bonus[9]: 40000.0
-Bonus[16]: 40000.0
-Bonus[17]: 50000.0
+Bonus[3]: 350000.0
+Bonus[5]: 350000.0
+Bonus[6]: 350000.0
+Bonus[7]: 350000.0
+Bonus[8]: 350000.0
+Bonus[9]: 350000.0
+Bonus[16]: 350000.0
+Bonus[17]: 600000.0
 finish
 
 Item Id: 21049
