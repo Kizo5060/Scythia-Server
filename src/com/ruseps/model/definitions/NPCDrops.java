@@ -441,10 +441,10 @@ public class NPCDrops {
         if (isWearingCollector && !player.getBlockedCollectorsList().contains(item.getId())) {
             if (player.getInventory().getFreeSlots() < 1 && !item.getDefinition().isNoted()) {
                 player.getBank(0).add(item);
-                player.sendMessage("@red@Your collector sent: " + item.getAmount() + "x " + item.getDefinition().getName() + " to your bank.");
+                //player.sendMessage("@red@Your collector sent: " + item.getAmount() + "x " + item.getDefinition().getName() + " to your bank.");
             } else {
                 player.getInventory().add(item);
-                player.sendMessage("@blu@Your collector picked up: " + item.getAmount() + "x " + item.getDefinition().getName());
+              //  player.sendMessage("@blu@Your collector picked up: " + item.getAmount() + "x " + item.getDefinition().getName());
             }
             return;
         }
